@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WpPostWithSource } from "@/lib/wp";
-import { stripHtml } from "@/lib/wp";
+import { blogPostPath, stripHtml } from "@/lib/wp";
 import { africaRoutes } from "@/lib/africa-routes";
 import { PubSubNav } from "./AfricaBlogsPage";
 
@@ -80,7 +80,7 @@ function StoryCard({ post }: { post: WpPostWithSource }) {
 
   return (
     <Link
-      href={`/blog/${post.source}/${post.slug}`}
+      href={blogPostPath(post)}
       className="group relative flex flex-col overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-violet-200/70 hover:shadow-xl hover:shadow-violet-900/8 dark:border-zinc-800/70 dark:bg-zinc-900/60 dark:hover:border-violet-800/50"
     >
       <div aria-hidden className="absolute bottom-0 left-0 h-[2px] w-0 bg-linear-to-r from-violet-500 to-purple-500 transition-all duration-500 group-hover:w-full" />

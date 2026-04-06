@@ -1,20 +1,6 @@
 import Link from "next/link";
-import { getPosts, sourceDisplay } from "@/lib/wp";
-
-function SourceBadge({ source }: { source: "main" | "africa" }) {
-  const isMain = source === "main";
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${
-        isMain
-          ? "bg-stone-200/90 text-stone-700 dark:bg-zinc-800 dark:text-zinc-300"
-          : "bg-emerald-950/25 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200"
-      }`}
-    >
-      {sourceDisplay(source)}
-    </span>
-  );
-}
+import { BlogSourceBadge } from "@/components/blog/BlogSourceBadge";
+import { blogPostPath, getPosts } from "@/lib/wp";
 
 export default async function BlogPage() {
   const posts = await getPosts();
@@ -35,7 +21,7 @@ export default async function BlogPage() {
         {posts.map((post) => (
           <li key={`${post.source}-${post.id}`}>
             <Link
-              href={`/blog/${post.source}/${post.slug}`}
+              href={blogPostPath(post)}
               className="group relative block overflow-hidden rounded-2xl border border-stone-200/90 bg-white/80 p-6 shadow-sm ring-1 ring-stone-950/4 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/80 hover:shadow-lg hover:shadow-amber-950/5 dark:border-zinc-800 dark:bg-zinc-900/70 dark:ring-white/6 dark:hover:border-amber-900/50 dark:hover:shadow-black/40"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -43,7 +29,7 @@ export default async function BlogPage() {
               </div>
               <div className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                 <div className="min-w-0 flex-1">
-                  <SourceBadge source={post.source} />
+                  <BlogSourceBadge source={post.source} />
                   <h2 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-stone-900 transition-colors group-hover:text-amber-900 dark:text-zinc-50 dark:group-hover:text-amber-100 sm:text-[1.35rem]">
                     <span
                       dangerouslySetInnerHTML={{

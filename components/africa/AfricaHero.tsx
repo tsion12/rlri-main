@@ -1,27 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { stripHtml, type WpPageHighlight, type WpPostWithSource } from "@/lib/wp";
+import { blogPostPath, stripHtml, type WpPageHighlight, type WpPostWithSource } from "@/lib/wp";
 import { africaRoutes } from "@/lib/africa-routes";
 import { africaStock } from "./africa-stock";
 import { au } from "./africa-ui";
 
-const FOCUS_AREAS = [
-  {
-    title: "Climate resilience",
-    body: "Evidence-based adaptation with communities on the front lines of change.",
-    icon: ClimateIcon,
-  },
-  {
-    title: "Energy & cities",
-    body: "Cleaner energy access and more sustainable, livable urban systems.",
-    icon: EnergyIcon,
-  },
-  {
-    title: "Food security",
-    body: "Youth-led research and action for secure, equitable food systems.",
-    icon: FoodIcon,
-  },
-] as const;
 
 type Props = {
   featuredPost?: WpPostWithSource | null;
@@ -56,7 +39,7 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
         )}
       </div>
       <Link
-        href={featuredPost ? `/blog/${featuredPost.source}/${featuredPost.slug}` : "/blog"}
+        href={featuredPost ? blogPostPath(featuredPost) : "/blog"}
         className={au.hero.spotlightLink}
       >
         Read latest
@@ -221,7 +204,7 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
                           {featuredPost ? formatDate(featuredPost.date) : "Fresh updates from the journal"}
                         </p>
                         <Link
-                          href={featuredPost ? `/blog/${featuredPost.source}/${featuredPost.slug}` : "/blog"}
+                          href={featuredPost ? blogPostPath(featuredPost) : "/blog"}
                           className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
                         >
                           Open featured story
@@ -241,30 +224,6 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
               </div>
             </div>
 
-            <div className={`${au.hero.featureCard} mt-6 home-fade-up`} style={{ animationDelay: "220ms" }}>
-              <div className={au.hero.featureInner}>
-                <p className={au.hero.featureTitle}>Where we focus</p>
-                <ul className="mt-6 space-y-1">
-                  {FOCUS_AREAS.map(({ title, body, icon: Icon }, index) => (
-                    <li
-                      key={title}
-                      className="home-fade-up"
-                      style={{ animationDelay: `${280 + index * 70}ms` }}
-                    >
-                      <div className={au.hero.focusRow}>
-                        <span className={au.hero.focusIcon} aria-hidden>
-                          <Icon />
-                        </span>
-                        <div>
-                          <p className={au.hero.focusHeading}>{title}</p>
-                          <p className={au.hero.focusText}>{body}</p>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -284,34 +243,3 @@ function trimText(text: string, limit: number) {
   return text.length > limit ? `${text.slice(0, limit - 1).trimEnd()}…` : text;
 }
 
-function ClimateIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path
-        d="M12 3v3M12 18v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M3 12h3M18 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"
-        strokeLinecap="round"
-      />
-      <circle cx="12" cy="12" r="4" />
-    </svg>
-  );
-}
-
-function EnergyIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path d="M13 2L4 14h7l-1 8 10-12h-7l0-8z" strokeLinejoin="round" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function FoodIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path
-        d="M12 22c4.97 0 9-3.58 9-8 0-3.5-2.5-6-5-8-1.5 1-3 2-4 2s-2.5-1-4-2c-2.5 2-5 4.5-5 8 0 4.42 4.03 8 9 8z"
-        strokeLinejoin="round"
-      />
-      <path d="M12 14v-4M9 12h6" strokeLinecap="round" />
-    </svg>
-  );
-}

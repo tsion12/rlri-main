@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WpPostWithSource } from "@/lib/wp";
-import { stripHtml } from "@/lib/wp";
+import { blogPostPath, stripHtml } from "@/lib/wp";
 
 /* ── Sub-nav ──────────────────────────────────────────────────── */
 export const PUB_SUBNAV = [
@@ -56,7 +56,7 @@ function FeaturedPostCard({ post }: { post: WpPostWithSource }) {
 
   return (
     <Link
-      href={`/blog/${post.source}/${post.slug}`}
+      href={blogPostPath(post)}
       className="group relative flex flex-col overflow-hidden rounded-4xl border border-zinc-200/80 bg-white shadow-sm transition duration-300 hover:shadow-2xl hover:shadow-teal-900/10 dark:border-zinc-800/80 dark:bg-zinc-900/60 lg:flex-row"
     >
       {/* Image */}
@@ -115,7 +115,7 @@ function BlogCard({ post }: { post: WpPostWithSource }) {
 
   return (
     <Link
-      href={`/blog/${post.source}/${post.slug}`}
+      href={blogPostPath(post)}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200/60 hover:shadow-xl hover:shadow-teal-900/8 dark:border-zinc-800/70 dark:bg-zinc-900/60 dark:hover:border-teal-800/50"
     >
       <div aria-hidden className="absolute bottom-0 left-0 h-[2px] w-0 bg-linear-to-r from-teal-500 to-emerald-500 transition-all duration-500 group-hover:w-full" />

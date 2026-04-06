@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { africaRoutes } from "@/lib/africa-routes";
 import type { WpPostWithSource } from "@/lib/wp";
-import { stripHtml } from "@/lib/wp";
+import { blogPostPath, stripHtml } from "@/lib/wp";
 
 /* ── Publication types ───────────────────────────────────────── */
 const PUB_TYPES = [
@@ -93,7 +93,7 @@ function LatestPostCard({ post }: { post: WpPostWithSource }) {
 
   return (
     <Link
-      href={`/blog/${post.source}/${post.slug}`}
+      href={blogPostPath(post)}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200/70 hover:shadow-xl hover:shadow-teal-900/8 dark:border-zinc-800/70 dark:bg-zinc-900/60 dark:hover:border-teal-800/50"
     >
       <div aria-hidden className="absolute bottom-0 left-0 h-[2px] w-0 bg-linear-to-r from-teal-500 to-emerald-500 transition-all duration-500 group-hover:w-full" />

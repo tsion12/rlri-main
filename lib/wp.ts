@@ -57,6 +57,14 @@ export function isWpSource(s: string): s is WpSource {
   return s === "main" || s === "africa";
 }
 
+/**
+ * Internal URL for a journal post. Encodes the slug so literal `%` (common on
+ * some WP installs) and other reserved characters survive path parsing.
+ */
+export function blogPostPath(post: WpPostWithSource): string {
+  return `/blog/${post.source}/${encodeURIComponent(post.slug)}`;
+}
+
 /** Plain text from WordPress HTML fields */
 export function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();

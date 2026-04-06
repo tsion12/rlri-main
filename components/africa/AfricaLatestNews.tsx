@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { sourceDisplay, stripHtml, type WpPostWithSource } from "@/lib/wp";
+import { blogPostPath, sourceDisplay, stripHtml, type WpPostWithSource } from "@/lib/wp";
 import { africaStock } from "./africa-stock";
 import { au } from "./africa-ui";
 
@@ -77,7 +77,7 @@ export function AfricaLatestNews({ posts }: Props) {
                 className="home-fade-up"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
-                <Link href={`/blog/${post.source}/${post.slug}`} className={au.home.newsCard}>
+                <Link href={blogPostPath(post)} className={au.home.newsCard}>
                   <div className={au.home.newsMedia}>
                     <Image
                       src={imageSrc}
