@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AfricaHomeContent } from "@/components/africa/AfricaHomeContent";
 import { AfricaPageShell } from "@/components/africa/AfricaPageShell";
 
 export const metadata: Metadata = {
@@ -8,10 +7,10 @@ export const metadata: Metadata = {
     "Pan-African programs for climate resilience, energy access, urban sustainability, and food security.",
 };
 
-export default function Home() {
-  return (
-    <AfricaPageShell>
-      <AfricaHomeContent />
-    </AfricaPageShell>
-  );
+export default function AfricaLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <AfricaPageShell>{children}</AfricaPageShell>;
 }
