@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogPostPath, sourceDisplay, stripHtml, type WpPostWithSource } from "@/lib/wp";
+import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
 import { africaStock } from "./africa-stock";
 import { au } from "./africa-ui";
 
@@ -27,9 +27,9 @@ function excerptFor(post: WpPostWithSource): string {
   return t.length > 180 ? `${t.slice(0, 177)}…` : t;
 }
 
-function SourceBadge({ source }: { source: WpPostWithSource["source"] }) {
-  const cls = source === "main" ? au.home.badgeMain : au.home.badgeAfrica;
-  return <span className={cls}>{sourceDisplay(source)}</span>;
+function ThemeBadge({ theme }: { theme?: string | null }) {
+  if (!theme) return null;
+  return <span className={au.home.badgeAfrica}>{theme}</span>;
 }
 
 type Props = {
@@ -37,6 +37,7 @@ type Props = {
 };
 
 export function AfricaLatestNews({ posts }: Props) {
+  const recentPosts = posts.slice(0, 3);
   return (
     <section className={`${au.home.section} ${au.home.sectionPad}`} aria-labelledby="africa-latest-heading">
       <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -56,7 +57,7 @@ export function AfricaLatestNews({ posts }: Props) {
         </Link>
       </div>
 
-      {posts.length === 0 ? (
+      {recentPosts.length === 0 ? (
         <p className="mt-12 rounded-2xl border border-dashed border-zinc-300/80 bg-white/60 px-6 py-12 text-center text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-400">
           We couldn&apos;t load posts right now. Please try again later or visit the{" "}
           <Link href="/blog" className="font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-400">
@@ -66,7 +67,7 @@ export function AfricaLatestNews({ posts }: Props) {
         </p>
       ) : (
         <ul className={au.home.newsGrid}>
-          {posts.map((post, index) => {
+          {recentPosts.map((post, index) => {
             const stockFallback = africaStock.programs[index % africaStock.programs.length];
             const imageSrc = post.featuredImage ?? stockFallback.src;
             const imageAlt = post.featuredImage ? stripHtml(post.title.rendered) : stockFallback.alt;
@@ -90,7 +91,7 @@ export function AfricaLatestNews({ posts }: Props) {
                   </div>
                   <div className={au.home.newsBody}>
                     <div className="flex flex-wrap items-center gap-2">
-                      <SourceBadge source={post.source} />
+                      <ThemeBadge theme={post.theme} />
                       <time className={au.home.newsDate} dateTime={post.date}>
                         {formatPostDate(post.date)}
                       </time>

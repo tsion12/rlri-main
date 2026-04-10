@@ -21,6 +21,11 @@ export const africaStock = {
       alt: "Community members gathered in dialogue.",
       creditLabel: "RDNE Stock Project / Pexels",
     },
+    foodEnvironment: {
+      src: "https://images.pexels.com/photos/2132174/pexels-photo-2132174.jpeg?auto=compress&cs=tinysrgb&w=1400",
+      alt: "Agricultural fields and food production landscape.",
+      creditLabel: "Pixabay / Pexels",
+    },
   },
   hero: {
     src: "https://images.pexels.com/photos/30688590/pexels-photo-30688590.jpeg?auto=compress&cs=tinysrgb&w=1600",

@@ -12,23 +12,37 @@ type Props = {
 };
 
 export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
-  /** Prefer journal layout unless we parsed a concrete scheduled event from the events page. */
-  const prioritizeEvent = Boolean(upcomingEvent?.eventDateISO);
+  /** Prioritize events in the hero spotlight when we have any event content. */
+  const prioritizeEvent = Boolean(upcomingEvent);
   const featuredPostTitle = featuredPost ? stripHtml(featuredPost.title.rendered) : null;
 
   const storySpotlight = (
     <article className={`${au.hero.spotlightCard} home-fade-up`} style={{ animationDelay: "280ms" }}>
-      <p className={au.hero.spotlightLabel}>Latest story</p>
+      <p className={au.hero.spotlightLabel}>Latest Insights</p>
       <h2 className={au.hero.spotlightTitle}>
-        {featuredPostTitle ?? "Fresh research and commentary from the Africa journal"}
+        {prioritizeEvent
+          ? upcomingEvent?.title ?? "Upcoming webinar and event updates"
+          : featuredPostTitle ?? "Fresh research and commentary from the Africa journal"}
       </h2>
       <p className={au.hero.spotlightText}>
-        {featuredPost
-          ? "A new post is live now. Open the latest article directly from the hero."
-          : "Follow the newest research notes, commentary, and institute updates as they are published."}
+        {prioritizeEvent
+          ? upcomingEvent?.excerpt
+            ? trimText(upcomingEvent.excerpt, 150)
+            : "Webinars and events are highlighted first in the hero so visitors can quickly find what is happening next."
+          : featuredPost
+            ? "A new post is live now. Open the latest article directly from the hero."
+            : "Follow the newest research notes, commentary, and institute updates as they are published."}
       </p>
       <div className={au.hero.spotlightMeta}>
-        {featuredPost ? (
+        {prioritizeEvent ? (
+          <span>
+            {upcomingEvent?.eventDateISO
+              ? `Event · ${formatDate(upcomingEvent.eventDateISO)}`
+              : upcomingEvent
+                ? `Updated ${formatDate(upcomingEvent.modified)}`
+                : "Live schedule"}
+          </span>
+        ) : featuredPost ? (
           <>
             <span>{formatDate(featuredPost.date)}</span>
             <span aria-hidden>•</span>
@@ -39,10 +53,10 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
         )}
       </div>
       <Link
-        href={featuredPost ? blogPostPath(featuredPost) : "/blog"}
+        href={prioritizeEvent ? africaRoutes.events : featuredPost ? blogPostPath(featuredPost) : "/blog"}
         className={au.hero.spotlightLink}
       >
-        Read latest
+        {prioritizeEvent ? "See events" : "Read latest"}
         <span aria-hidden>→</span>
       </Link>
     </article>
@@ -50,26 +64,47 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
 
   const eventSpotlight = (
     <article className={`${au.hero.spotlightCard} home-fade-up`} style={{ animationDelay: "360ms" }}>
-      <p className={au.hero.spotlightLabel}>Upcoming event</p>
+      <p className={au.hero.spotlightLabel}>{prioritizeEvent ? "Latest article" : "Upcoming event"}</p>
       <h2 className={au.hero.spotlightTitle}>
-        {upcomingEvent?.title ?? "What's coming up next"}
+        {prioritizeEvent
+          ? featuredPostTitle ?? "Fresh research and commentary from the Africa journal"
+          : upcomingEvent?.title ?? "What's coming up next"}
       </h2>
       <p className={au.hero.spotlightText}>
-        {upcomingEvent
-          ? trimText(upcomingEvent.excerpt, 150)
-          : "See the latest webinar announcements, registration links, and event details from the Africa Program."}
+        {prioritizeEvent
+          ? featuredPost
+            ? "Browse the newest article while keeping upcoming webinars and events front and center."
+            : "No recent article is available right now. Visit the journal for the full archive."
+          : upcomingEvent
+            ? trimText(upcomingEvent.excerpt, 150)
+            : "See the latest webinar announcements, registration links, and event details from the Africa Program."}
       </p>
       <div className={au.hero.spotlightMeta}>
-        <span>
-          {upcomingEvent
-            ? upcomingEvent.eventDateISO
-              ? `Event · ${formatDate(upcomingEvent.eventDateISO)}`
-              : `Updated ${formatDate(upcomingEvent.modified)}`
-            : "Live schedule"}
-        </span>
+        {prioritizeEvent ? (
+          featuredPost ? (
+            <>
+              <span>{formatDate(featuredPost.date)}</span>
+              <span aria-hidden>•</span>
+              <span>{featuredPost.source === "africa" ? "Africa Program" : "Main Institute"}</span>
+            </>
+          ) : (
+            <span>Live from the journal</span>
+          )
+        ) : (
+          <span>
+            {upcomingEvent
+              ? upcomingEvent.eventDateISO
+                ? `Event · ${formatDate(upcomingEvent.eventDateISO)}`
+                : `Updated ${formatDate(upcomingEvent.modified)}`
+              : "Live schedule"}
+          </span>
+        )}
       </div>
-      <Link href={africaRoutes.events} className={au.hero.spotlightLink}>
-        See events
+      <Link
+        href={prioritizeEvent ? (featuredPost ? blogPostPath(featuredPost) : "/blog") : africaRoutes.events}
+        className={au.hero.spotlightLink}
+      >
+        {prioritizeEvent ? "Read article" : "See events"}
         <span aria-hidden>→</span>
       </Link>
     </article>
@@ -97,45 +132,36 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
               Africa Program
             </p>
             <h1 id="africa-hero-heading" className={au.hero.headline}>
-              Community-driven solutions for Africa
+              Advancing African-led solutions for sustainable futures
             </h1>
             <p className={au.hero.body}>
-              The Real Life Research Institute – Africa Program empowers African youth and communities to
-              co-create evidence-based solutions for climate resilience, energy access, urban
-              sustainability, and food security.
+              The Real Life Research Institute – Africa Program accelerates actionable research and connects
+              African knowledge, policy, and practice to deliver evidence-based solutions with global impact.
             </p>
             <div className={au.hero.statRow}>
               <span className={`${au.hero.statChip} home-fade-up`} style={{ animationDelay: "90ms" }}>
                 <span className="size-2 rounded-full bg-teal-500 dark:bg-teal-400" />
-                Youth-led research
+                Research-driven
               </span>
               <span className={`${au.hero.statChip} home-fade-up`} style={{ animationDelay: "160ms" }}>
-                Pan-African dialogue
+                Policy-oriented
               </span>
               <span className={`${au.hero.statChip} home-fade-up`} style={{ animationDelay: "230ms" }}>
-                Community-first impact
+                Implementation-focused
               </span>
             </div>
             <div className={au.hero.ctaRow}>
-              {prioritizeEvent ? (
-                <>
-                  <Link href={africaRoutes.events} className={au.hero.primaryCta}>
-                    Upcoming events
-                  </Link>
-                  <Link href="/blog" className={au.hero.secondaryCta}>
-                    Read the journal
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link href="/blog" className={au.hero.primaryCta}>
-                    Read the journal
-                  </Link>
-                  <Link href={africaRoutes.events} className={au.hero.secondaryCta}>
-                    Upcoming events
-                  </Link>
-                </>
-              )}
+              {/* <Link href="/blog" className={au.hero.primaryCta}>
+                Read the Journal
+              </Link> */}
+              <a
+                href={africaRoutes.canadianProgram}
+                className={au.hero.secondaryCta}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Explore Our Canadian Program
+              </a>
             </div>
             <div className={au.hero.spotlightGrid}>
               {prioritizeEvent ? (
@@ -217,10 +243,7 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
                 </div>
               </div>
               <div className={`${au.hero.floatingCard} home-float-slow hidden sm:block`}>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-                  Next generation
-                </p>
-                <p className="mt-1 font-semibold tracking-tight">Beautiful research storytelling</p>
+                <p className="font-semibold tracking-tight">Latest Insights</p>
               </div>
             </div>
 

@@ -5,7 +5,7 @@ import { getAfricaPosts } from "@/lib/wp";
 export const metadata: Metadata = {
   title: "Publications | Africa Program – Real Life Research Institute",
   description:
-    "Research insights, field stories, policy briefs, and peer-reviewed scholarship from the Real Life Research Institute Africa Programs.",
+    "Research insights, field stories, and policy content from the Real Life Research Institute Africa Programs.",
 };
 
 export default async function PublicationsPage() {

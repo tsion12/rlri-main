@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { AfricaNewsletterForm } from "./AfricaNewsletterForm";
 import { au } from "./africa-ui";
 import {
   IconMail,
   IconMap,
-  IconPhone,
   SocialFacebook,
   SocialInstagram,
   SocialLinkedIn,
@@ -17,6 +15,9 @@ import { africaRoutes } from "@/lib/africa-routes";
 const quickLinks = [
   { label: "Home", href: africaRoutes.home },
   { label: "About", href: africaRoutes.about },
+  { label: "Team", href: africaRoutes.team },
+  { label: "Volunteers", href: africaRoutes.volunteers },
+  { label: "Career", href: africaRoutes.career },
   { label: "Contact", href: `mailto:contact-africa@reallifeinstitute.org` },
   { label: "Programs", href: africaRoutes.programs },
   { label: "Publications", href: africaRoutes.publications },
@@ -28,10 +29,10 @@ const quickLinks = [
 const social = [
   { label: "Instagram", href: "https://www.instagram.com/rlri.africaprogram/", icon: SocialInstagram },
   { label: "X (Twitter)", href: "https://x.com/rlri_africa", icon: SocialX },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/107252714/", icon: SocialLinkedIn },
+  { label: "LinkedIn", href: "https://www.linkedin.com/showcase/rlri-africa-program/", icon: SocialLinkedIn },
   {
     label: "Facebook",
-    href: "https://web.facebook.com/people/Real-Life-Research-Institute-Africa-Program/61587409661285/",
+    href: "https://www.facebook.com/profile.php?id=61587409661285",
     icon: SocialFacebook,
   },
   { label: "YouTube", href: "https://www.youtube.com/@RealLifeResearchInstitute", icon: SocialYouTube },
@@ -100,42 +101,66 @@ export function AfricaFooter() {
               <ul className="space-y-4 text-sm text-zinc-600 dark:text-zinc-400">
                 <li className="flex gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400">
-                    <IconMap className="h-4 w-4" />
-                  </span>
-                  <span className="pt-1 leading-snug">Baobab, SIMBOCK, Yaounde, Cameroon</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400">
                     <IconMail className="h-4 w-4" />
                   </span>
-                  <a
-                    href="mailto:contact-africa@reallifeinstitute.org"
-                    className="pt-1 font-medium text-zinc-800 underline-offset-4 transition hover:text-teal-700 hover:underline dark:text-zinc-200 dark:hover:text-teal-400"
-                  >
-                    contact-africa@reallifeinstitute.org
-                  </a>
+                  <div className="min-w-0 pt-0.5">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-500">
+                      Contact us
+                    </p>
+                    <a
+                      href="mailto:contact-africa@reallifeinstitute.org"
+                      className="mt-1 block font-medium text-zinc-800 underline-offset-4 transition hover:text-teal-700 hover:underline dark:text-zinc-200 dark:hover:text-teal-400"
+                    >
+                      contact-africa@reallifeinstitute.org
+                    </a>
+                  </div>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400">
-                    <IconPhone className="h-4 w-4" />
+                    <IconMap className="h-4 w-4" />
                   </span>
-                  <a
-                    href="tel:+237682787465"
-                    className="pt-1 font-medium text-zinc-800 underline-offset-4 transition hover:text-teal-700 hover:underline dark:text-zinc-200 dark:hover:text-teal-400"
-                  >
-                    +237 682 787 465
-                  </a>
+                  <div className="min-w-0 pt-0.5 leading-snug">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-500">
+                      Ottawa office
+                    </p>
+                    <p className="mt-1">96 Ontario Street, Ottawa, ON K1K 1K9</p>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400">
+                    <IconMap className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0 pt-0.5 leading-snug">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-500">
+                      Iqaluit Office
+                    </p>
+                    <p className="mt-1">4104 Road to Nowhere, Iqaluit, NU X0A 2H0 Canada</p>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Newsletter */}
+          {/* No mailing list — point visitors to email & events */}
           <div className="lg:col-span-3">
-            <h2 className={au.footer.sectionTitle}>Newsletter</h2>
-            <div className="mt-5">
-              <div className={au.footer.card}>
-                <AfricaNewsletterForm idSuffix="footer" />
+            <h2 className={au.footer.sectionTitle}>Stay in touch</h2>
+            <div className="mt-5 rounded-2xl border border-zinc-200/80 bg-white/60 p-5 shadow-sm dark:border-zinc-800/80 dark:bg-zinc-900/40">
+              <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                We don&apos;t offer a newsletter yet. Follow us on social media, browse upcoming events, or email the team.
+              </p>
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                <Link
+                  href={africaRoutes.events}
+                  className="inline-flex min-h-10 items-center justify-center rounded-lg border border-teal-200/80 bg-teal-50 px-4 text-sm font-semibold text-teal-800 transition hover:bg-teal-100 dark:border-teal-800/50 dark:bg-teal-950/40 dark:text-teal-200 dark:hover:bg-teal-900/50"
+                >
+                  Upcoming events
+                </Link>
+                <a
+                  href="mailto:contact-africa@reallifeinstitute.org"
+                  className="inline-flex min-h-10 items-center justify-center rounded-lg border border-zinc-200 bg-white px-4 text-sm font-semibold text-zinc-800 transition hover:border-teal-300 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+                >
+                  Email us
+                </a>
               </div>
             </div>
           </div>

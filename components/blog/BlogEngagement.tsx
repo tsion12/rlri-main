@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 /* ── types ────────────────────────────────────────────────────────── */
@@ -142,8 +143,6 @@ export function BlogEngagement({ slug, source, title }: Props) {
   });
   const [active, setActive] = useState<Set<ReactionKey>>(new Set());
   const [copyState, setCopyState] = useState<"idle" | "copied">("idle");
-  const [email, setEmail] = useState("");
-  const [newsletterState, setNewsletterState] = useState<"idle" | "sent">("idle");
   const [thoughts, setThoughts] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [pageUrl, setPageUrl] = useState("");
@@ -367,7 +366,7 @@ export function BlogEngagement({ slug, source, title }: Props) {
         </section>
       </div>
 
-      {/* ── Newsletter ─────────────────────────────────────────── */}
+      {/* ── No mailing list — events & contact ───────────────── */}
       <section
         aria-label="Stay updated"
         className="relative overflow-hidden rounded-3xl bg-stone-900 p-8 text-white dark:bg-zinc-100 dark:text-zinc-900"
@@ -385,50 +384,25 @@ export function BlogEngagement({ slug, source, title }: Props) {
           Stay in the loop
         </p>
         <p className="relative mt-2 text-2xl font-semibold tracking-tight">
-          Get notified on new research
+          We don&apos;t run a newsletter yet
         </p>
-        <p className="relative mt-1.5 max-w-sm text-sm leading-relaxed text-stone-400 dark:text-zinc-500">
-          New posts, upcoming webinars, and program highlights — straight to your inbox. No noise.
+        <p className="relative mt-1.5 max-w-md text-sm leading-relaxed text-stone-400 dark:text-zinc-500">
+          For new posts and webinars, visit the journal often or check upcoming Africa Program events.
         </p>
-
-        {newsletterState === "idle" ? (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setNewsletterState("sent");
-            }}
-            className="relative mt-7 flex flex-col gap-2.5 sm:flex-row sm:items-stretch"
+        <div className="relative mt-7 flex flex-wrap gap-3">
+          <Link
+            href="/africa/events"
+            className="inline-flex min-h-11 items-center justify-center rounded-xl bg-amber-400 px-7 text-sm font-bold text-amber-950 shadow transition hover:bg-amber-300"
           >
-            <label htmlFor="engagement-newsletter-email" className="sr-only">
-              Email
-            </label>
-            <input
-              id="engagement-newsletter-email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              className="min-h-11 w-full flex-1 rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-stone-400 outline-none backdrop-blur-sm transition focus:border-amber-400/70 focus:ring-2 focus:ring-amber-400/25 dark:border-zinc-900/20 dark:bg-zinc-900/20 dark:text-zinc-900 dark:placeholder:text-zinc-500"
-            />
-            <button
-              type="submit"
-              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl bg-amber-400 px-7 text-sm font-bold text-amber-950 shadow transition hover:bg-amber-300"
-            >
-              Subscribe
-            </button>
-          </form>
-        ) : (
-          <div className="relative mt-7 flex items-center gap-4">
-            <span className="text-3xl">✅</span>
-            <div>
-              <p className="font-semibold">You&apos;re subscribed.</p>
-              <p className="mt-0.5 text-sm text-stone-400 dark:text-zinc-500">
-                Look out for our next dispatch.
-              </p>
-            </div>
-          </div>
-        )}
+            Upcoming events
+          </Link>
+          <a
+            href="mailto:contact-africa@reallifeinstitute.org"
+            className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15 dark:border-zinc-900/30 dark:bg-zinc-900/60 dark:text-zinc-900 dark:hover:bg-zinc-900/80"
+          >
+            Email the team
+          </a>
+        </div>
       </section>
     </div>
   );

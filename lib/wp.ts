@@ -1,4 +1,5 @@
 export type WpSource = "main" | "africa";
+import { request as httpsRequest } from "node:https";
 
 export type WpPost = {
   id: number;
@@ -9,6 +10,10 @@ export type WpPost = {
   content: { rendered: string };
   excerpt?: { rendered: string };
   featuredImage?: string | null;
+  theme?: string | null;
+  authorName?: string | null;
+  authorBio?: string | null;
+  authorAvatar?: string | null;
 };
 
 export type WpPostWithSource = WpPost & { source: WpSource };
@@ -24,6 +29,21 @@ export type WpPageHighlight = {
 };
 
 type WpApiPost = Omit<WpPost, "featuredImage"> & {
+  categories?: number[];
+  _embedded?: {
+    author?: Array<{
+      name?: string;
+      description?: string;
+      avatar_urls?: Record<string, string>;
+    }>;
+    "wp:term"?: Array<
+      Array<{
+        id?: number;
+        taxonomy?: string;
+        name?: string;
+      }>
+    >;
+  };
   yoast_head_json?: {
     og_image?: Array<{
       url?: string;
@@ -49,6 +69,10 @@ const API: Record<WpSource, string> = {
   africa: "https://africa-programs.reallifeinstitute.org/wp-json/wp/v2",
 };
 
+const WP_REVALIDATE_SECONDS = 300;
+const WP_TIMEOUT_MS = 12000;
+const WP_POSTS_PER_PAGE = 50;
+
 export function sourceDisplay(source: WpSource): string {
   return source === "main" ? "Main" : "Africa";
 }
@@ -71,6 +95,17 @@ export function stripHtml(html: string): string {
 }
 
 function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
+  const terms = post._embedded?.["wp:term"] ?? [];
+  const allTerms = terms.flatMap((group) => group ?? []);
+  const author = post._embedded?.author?.[0];
+  const avatarCandidates = author?.avatar_urls ? Object.values(author.avatar_urls) : [];
+  const category = allTerms.find(
+    (term) =>
+      term.taxonomy === "category" &&
+      term.name &&
+      term.name.trim().length > 0 &&
+      term.name.toLowerCase() !== "uncategorized",
+  );
   return {
     id: post.id,
     slug: post.slug,
@@ -79,27 +114,84 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
     content: post.content,
     excerpt: post.excerpt,
     featuredImage: post.yoast_head_json?.og_image?.[0]?.url ?? null,
+    theme: category?.name?.trim() ?? null,
+    authorName: author?.name?.trim() ?? null,
+    authorBio: author?.description?.trim() ?? null,
+    authorAvatar: avatarCandidates[0] ?? null,
     source,
   };
 }
 
-export async function getPosts(): Promise<WpPostWithSource[]> {
-  const [mainRes, africaRes] = await Promise.all([
-    fetch(`${API.main}/posts`, { cache: "no-store" }),
-    fetch(`${API.africa}/posts`, { cache: "no-store" }),
-  ]);
+async function fetchJsonViaHttpsIpv4<T>(url: string): Promise<T | null> {
+  return new Promise((resolve) => {
+    const req = httpsRequest(
+      url,
+      {
+        family: 4,
+        timeout: WP_TIMEOUT_MS,
+        headers: { accept: "application/json" },
+      },
+      (res) => {
+        if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
+          res.resume();
+          resolve(null);
+          return;
+        }
+        let raw = "";
+        res.setEncoding("utf8");
+        res.on("data", (chunk) => {
+          raw += chunk;
+        });
+        res.on("end", () => {
+          try {
+            resolve(JSON.parse(raw) as T);
+          } catch {
+            resolve(null);
+          }
+        });
+      },
+    );
 
-  if (!mainRes.ok || !africaRes.ok) {
-    throw new Error("Failed to fetch posts");
+    req.on("timeout", () => {
+      req.destroy(new Error("timeout"));
+    });
+    req.on("error", () => {
+      resolve(null);
+    });
+    req.end();
+  });
+}
+
+async function wpFetchJson<T>(url: string): Promise<T | null> {
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: WP_REVALIDATE_SECONDS },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as T;
+  } catch {
+    // Fallback path for environments where undici fetch intermittently times out
+    // on dual-stack DNS routes; forcing IPv4 is typically more reliable.
+    return fetchJsonViaHttpsIpv4<T>(url);
   }
+}
 
-  const mainPosts = (await mainRes.json()) as WpApiPost[];
-  const africaPosts = (await africaRes.json()) as WpApiPost[];
+async function fetchPostsForSource(source: WpSource): Promise<WpPostWithSource[]> {
+  const url = new URL(`${API[source]}/posts`);
+  url.searchParams.set("per_page", String(WP_POSTS_PER_PAGE));
+  url.searchParams.set("_embed", "author,wp:term");
+  const posts = await wpFetchJson<WpApiPost[]>(url.toString());
+  if (!Array.isArray(posts)) return [];
+  return posts.map((p) => normalizePost(source, p));
+}
 
-  const taggedMain = mainPosts.map((p) => normalizePost("main", p));
-  const taggedAfrica = africaPosts.map((p) => normalizePost("africa", p));
-
-  return [...taggedMain, ...taggedAfrica];
+/** Merged posts from both WordPress sites. If one site fails, posts from the other are still returned. */
+export async function getPosts(): Promise<WpPostWithSource[]> {
+  const [mainPosts, africaPosts] = await Promise.all([
+    fetchPostsForSource("main"),
+    fetchPostsForSource("africa"),
+  ]);
+  return [...mainPosts, ...africaPosts];
 }
 
 /** Category IDs on the Africa Programs WordPress site. */
@@ -110,36 +202,28 @@ const AFRICA_CAT = {
 
 /** Africa "Blog-AP" category posts, newest first. Safe on fetch failure (empty list). */
 export async function getAfricaPosts(): Promise<WpPostWithSource[]> {
-  try {
-    const res = await fetch(
-      `${API.africa}/posts?categories=${AFRICA_CAT.blogAp}&per_page=50`,
-      { cache: "no-store" },
-    );
-    if (!res.ok) return [];
-    const posts = (await res.json()) as WpApiPost[];
-    return posts
-      .map((p) => normalizePost("africa", p))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  } catch {
-    return [];
-  }
+  const url = new URL(`${API.africa}/posts`);
+  url.searchParams.set("categories", String(AFRICA_CAT.blogAp));
+  url.searchParams.set("per_page", "50");
+  url.searchParams.set("_embed", "author,wp:term");
+  const posts = await wpFetchJson<WpApiPost[]>(url.toString());
+  if (!Array.isArray(posts)) return [];
+  return posts
+    .map((p) => normalizePost("africa", p))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 /** Africa "Stories-AP" category posts, newest first. Safe on fetch failure (empty list). */
 export async function getAfricaStories(): Promise<WpPostWithSource[]> {
-  try {
-    const res = await fetch(
-      `${API.africa}/posts?categories=${AFRICA_CAT.storiesAp}&per_page=50`,
-      { cache: "no-store" },
-    );
-    if (!res.ok) return [];
-    const posts = (await res.json()) as WpApiPost[];
-    return posts
-      .map((p) => normalizePost("africa", p))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  } catch {
-    return [];
-  }
+  const url = new URL(`${API.africa}/posts`);
+  url.searchParams.set("categories", String(AFRICA_CAT.storiesAp));
+  url.searchParams.set("per_page", "50");
+  url.searchParams.set("_embed", "author,wp:term");
+  const posts = await wpFetchJson<WpApiPost[]>(url.toString());
+  if (!Array.isArray(posts)) return [];
+  return posts
+    .map((p) => normalizePost("africa", p))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 /** Newest first, merged from both sites. Safe on fetch failure (empty list). */
@@ -161,11 +245,10 @@ export async function getPost(
 ): Promise<WpPostWithSource | null> {
   const url = new URL(`${API[source]}/posts`);
   url.searchParams.set("slug", slug);
+  url.searchParams.set("_embed", "author,wp:term");
 
-  const res = await fetch(url.toString(), { cache: "no-store" });
-  if (!res.ok) return null;
-
-  const posts = (await res.json()) as WpApiPost[];
+  const posts = await wpFetchJson<WpApiPost[]>(url.toString());
+  if (!Array.isArray(posts)) return null;
   const post = posts[0];
   if (!post) return null;
 
@@ -198,7 +281,7 @@ function parseElementorCountdownEvents(html: string): ParsedCountdownEvent[] {
       ...before.matchAll(/class="ekit-heading--title[^"]*"[^>]*>([^<]+)<\/h2>/gi),
     ].map((x) => stripHtml(x[1]).trim());
     const titles = titleMatches.filter(
-      (t) => t.length >= 24 && !ELEMENTOR_TITLE_SKIP.test(t),
+      (t) => t.length >= 12 && !ELEMENTOR_TITLE_SKIP.test(t),
     );
     const title = titles[titles.length - 1];
     if (!title) continue;
@@ -237,49 +320,63 @@ function pickHeroCountdownEvent(events: ParsedCountdownEvent[]): ParsedCountdown
  * (ElementsKit countdown + heading) when present.
  */
 export async function getUpcomingEventsPage(): Promise<WpPageHighlight | null> {
-  try {
-    const url = new URL(`${API.africa}/pages`);
-    url.searchParams.set("slug", "upcoming-events");
+  const url = new URL(`${API.africa}/pages`);
+  url.searchParams.set("slug", "upcoming-events");
 
-    const res = await fetch(url.toString(), { cache: "no-store" });
-    if (!res.ok) return null;
+  const pages = await wpFetchJson<WpApiPage[]>(url.toString());
+  if (!Array.isArray(pages) || pages.length === 0) return null;
 
-    const pages = (await res.json()) as WpApiPage[];
-    if (pages.length === 0) return null;
-
-    const preferred =
-      pages.find((page) => page.link.includes("/events/upcoming-events/")) ??
-      [...pages].sort((a, b) => new Date(b.modified).getTime() - new Date(a.modified).getTime())[0];
-
-    const html = preferred.content.rendered;
-    const parsed = parseElementorCountdownEvents(html);
+  const candidates = pages.map((page) => {
+    const parsed = parseElementorCountdownEvents(page.content.rendered);
     const selected = pickHeroCountdownEvent(parsed);
+    return { page, selected };
+  });
 
-    const rawPageExcerpt = preferred.excerpt?.rendered || preferred.content.rendered;
-    const pageExcerpt = stripHtml(rawPageExcerpt).slice(0, 220).trim();
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const todayMs = now.getTime();
 
-    const pageTitle = stripHtml(preferred.title.rendered) || "Upcoming Events";
+  const withUpcoming = candidates
+    .filter((c) => c.selected && c.selected.at.getTime() >= todayMs)
+    .sort((a, b) => a.selected!.at.getTime() - b.selected!.at.getTime());
 
-    if (selected) {
-      return {
-        title: selected.title,
-        excerpt: selected.excerpt || pageExcerpt,
-        link: preferred.link,
-        modified: preferred.modified,
-        featuredImage: preferred.yoast_head_json?.og_image?.[0]?.url ?? null,
-        eventDateISO: selected.at.toISOString(),
-      };
-    }
+  const withAnyEvent = candidates
+    .filter((c) => c.selected)
+    .sort((a, b) => b.selected!.at.getTime() - a.selected!.at.getTime());
 
+  const preferredCandidate =
+    withUpcoming[0] ??
+    withAnyEvent[0] ??
+    (candidates.find((c) => c.page.link.includes("/events/upcoming-events/")) ??
+      [...candidates].sort(
+        (a, b) => new Date(b.page.modified).getTime() - new Date(a.page.modified).getTime(),
+      )[0]);
+
+  const preferred = preferredCandidate.page;
+  const selected = preferredCandidate.selected;
+
+  const rawPageExcerpt = preferred.excerpt?.rendered || preferred.content.rendered;
+  const pageExcerpt = stripHtml(rawPageExcerpt).slice(0, 220).trim();
+
+  const pageTitle = stripHtml(preferred.title.rendered) || "Upcoming Events";
+
+  if (selected) {
     return {
-      title: pageTitle,
-      excerpt: pageExcerpt,
+      title: selected.title,
+      excerpt: selected.excerpt || pageExcerpt,
       link: preferred.link,
       modified: preferred.modified,
       featuredImage: preferred.yoast_head_json?.og_image?.[0]?.url ?? null,
-      eventDateISO: null,
+      eventDateISO: selected.at.toISOString(),
     };
-  } catch {
-    return null;
   }
+
+  return {
+    title: pageTitle,
+    excerpt: pageExcerpt,
+    link: preferred.link,
+    modified: preferred.modified,
+    featuredImage: preferred.yoast_head_json?.og_image?.[0]?.url ?? null,
+    eventDateISO: null,
+  };
 }

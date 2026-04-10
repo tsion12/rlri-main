@@ -8,14 +8,6 @@ const inputClass =
   "w-full rounded-xl border border-zinc-200/90 bg-white px-4 py-3 text-sm text-zinc-900 shadow-sm outline-none transition placeholder:text-zinc-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-700 dark:bg-zinc-950/50 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:ring-teal-500/25";
 const labelClass = "mb-1.5 block text-xs font-semibold text-zinc-700 dark:text-zinc-300";
 
-function Starburst({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M12 2l1.6 5.3L19 5l-3.4 4.5L21 12l-5.4 1.4L17 19l-5-2.6L12 22l-1.6-5.3L5 19l3.4-4.5L3 12l5.4-1.4L6 5l5 2.6z" />
-    </svg>
-  );
-}
-
 export function AfricaDonatePage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -71,15 +63,12 @@ export function AfricaDonatePage() {
     <>
       {/* Hero */}
       <section
-        className="relative isolate overflow-hidden bg-linear-to-br from-teal-950 via-[#0b2d2a] to-zinc-950"
+        className="relative isolate overflow-hidden bg-zinc-900"
         aria-labelledby="donate-heading"
       >
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-size-[40px_40px]" />
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[800px] -translate-x-1/2 rounded-full bg-amber-400/6 blur-[130px]" />
         <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-[360px] w-[360px] rounded-full border border-teal-500/8" />
-        <Starburst className="pointer-events-none absolute right-[10%] top-14 h-11 w-11 text-amber-400/15" />
-        <Starburst className="pointer-events-none absolute left-[8%] top-24 h-8 w-8 rotate-12 text-teal-400/12" />
-
         <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3">
@@ -93,7 +82,7 @@ export function AfricaDonatePage() {
             </p>
             <h1
               id="donate-heading"
-              className="mt-3 font-black leading-[0.95] tracking-tighter text-white"
+              className="mt-3 font-bold leading-[0.95] tracking-tight text-white"
               style={{ fontSize: "clamp(2.5rem, 7vw, 4.5rem)" }}
             >
               Give the gift of{" "}
@@ -117,7 +106,7 @@ export function AfricaDonatePage() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700 dark:text-teal-400">
                 Get involved
               </p>
-              <h2 className="mt-3 font-black tracking-tight text-zinc-900 dark:text-zinc-50" style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
+              <h2 className="mt-3 font-bold tracking-tight text-zinc-900 dark:text-zinc-50" style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
                 Every contribution counts
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">

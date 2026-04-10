@@ -157,10 +157,24 @@ function stripLargestElementorBlockWithPhrase(html: string): string {
  */
 const MAX_STRIP_FRACTION = 0.35;
 
+/**
+ * Remove executable/non-article tags that should never be rendered inside post body HTML.
+ * This keeps React client rendering safe and avoids script-tag runtime warnings.
+ */
+function stripUnsafeBodyTags(html: string): string {
+  if (!html) return html;
+  const root = parse(html);
+  for (const node of root.querySelectorAll("script, noscript, iframe, object, embed")) {
+    (node as HTMLElement).remove();
+  }
+  return root.toString();
+}
+
 export function stripBlogWordPressHtml(html: string): string {
   if (!html) return html;
-  const inLen = html.length;
-  let out = html;
+  const safeInput = stripUnsafeBodyTags(html);
+  const inLen = safeInput.length;
+  let out = safeInput;
   out = stripByHeadingNodes(out);
   out = stripByHeadingNodes(out);
   out = stripWidgetHeadingWidgets(out);
@@ -169,10 +183,10 @@ export function stripBlogWordPressHtml(html: string): string {
 
   const removedFraction = inLen > 0 ? (inLen - out.length) / inLen : 0;
   if (removedFraction > MAX_STRIP_FRACTION) {
-    return html;
+    return safeInput;
   }
 
-  return out;
+  return stripUnsafeBodyTags(out);
 }
 
 /** @deprecated Use {@link stripBlogWordPressHtml} */

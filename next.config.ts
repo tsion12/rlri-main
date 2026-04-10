@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: "reallifeinstitute.org",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "secure.gravatar.com",
+        pathname: "/avatar/**",
+      },
     ],
   },
 };

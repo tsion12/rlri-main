@@ -22,7 +22,7 @@ export const au = {
     dropdownItem:
       "block rounded-lg px-3 py-2.5 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/80 dark:hover:text-white",
     donate:
-      "inline-flex items-center justify-center rounded-lg bg-linear-to-b from-teal-600 to-teal-700 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-md shadow-teal-900/20 ring-1 ring-white/15 transition hover:from-teal-500 hover:to-teal-600 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 focus-visible:ring-offset-2 dark:ring-white/10",
+      "inline-flex items-center justify-center rounded-lg bg-teal-700 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/15 transition hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 focus-visible:ring-offset-2 dark:ring-white/10",
     iconButton:
       "inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200/80 bg-white text-zinc-600 shadow-sm transition hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800",
   },
@@ -68,7 +68,7 @@ export const au = {
     body:
       "mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400",
     primaryCta:
-      "inline-flex min-h-11 items-center justify-center rounded-xl bg-linear-to-b from-teal-600 to-teal-700 px-6 text-sm font-semibold text-white shadow-[0_12px_32px_-10px_rgba(20,184,166,0.45)] ring-1 ring-white/20 transition [transform:translateZ(0)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-10px_rgba(20,184,166,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 focus-visible:ring-offset-2 dark:ring-white/10",
+      "inline-flex min-h-11 items-center justify-center rounded-xl bg-teal-700 px-6 text-sm font-semibold text-white shadow-sm ring-1 ring-white/20 transition hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 focus-visible:ring-offset-2 dark:ring-white/10",
     secondaryCta:
       "inline-flex min-h-11 items-center justify-center rounded-xl border border-zinc-200/90 bg-white/80 px-6 text-sm font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition hover:border-teal-300 hover:bg-white hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900/60 dark:text-zinc-100 dark:hover:border-teal-700 dark:hover:bg-zinc-900",
     ctaRow: "mt-10 flex flex-wrap items-center gap-3",
@@ -123,10 +123,10 @@ export const au = {
       "inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300",
     newsGrid: "mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
     newsCard:
-      "group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white/95 shadow-sm transition [transform:translateZ(0)] hover:-translate-y-1 hover:border-teal-200/90 hover:shadow-xl hover:shadow-zinc-900/10 dark:border-zinc-800/80 dark:bg-zinc-900/55 dark:hover:border-teal-800/50 dark:hover:shadow-black/50",
+      "group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-sm transition hover:shadow-md hover:border-zinc-300/80 dark:border-zinc-800/80 dark:bg-zinc-900/55 dark:hover:border-zinc-700",
     newsMedia:
       "relative aspect-[16/10] overflow-hidden border-b border-zinc-200/80 bg-linear-to-br from-teal-100 via-emerald-50 to-white dark:border-zinc-800/80 dark:from-teal-950 dark:via-zinc-900 dark:to-zinc-950",
-    newsImage: "h-full w-full object-cover transition duration-700 will-change-transform group-hover:scale-105",
+    newsImage: "h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]",
     newsMediaFallback:
       "absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(20,184,166,0.45),transparent_35%),linear-gradient(135deg,rgba(13,148,136,0.95),rgba(15,23,42,0.92))]",
     newsBody: "flex flex-1 flex-col p-6",
@@ -141,10 +141,10 @@ export const au = {
       "inline-flex rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-teal-900 dark:bg-teal-950/80 dark:text-teal-200",
     programsGrid: "mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3",
     programCard:
-      "flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white/90 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-900/10 dark:border-zinc-800/80 dark:bg-zinc-900/40 dark:hover:shadow-black/40",
+      "flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white/90 shadow-sm transition hover:shadow-md hover:border-zinc-300/80 dark:border-zinc-800/80 dark:bg-zinc-900/40 dark:hover:border-zinc-700",
     programMedia:
       "relative aspect-[16/10] overflow-hidden border-b border-zinc-200/80 bg-linear-to-br from-teal-100 via-emerald-50 to-white dark:border-zinc-800/80 dark:from-teal-950 dark:via-zinc-900 dark:to-zinc-950",
-    programImage: "h-full w-full object-cover transition duration-700 will-change-transform group-hover:scale-105",
+    programImage: "h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]",
     programCredit:
       "absolute inset-x-0 bottom-0 bg-linear-to-t from-zinc-950/75 to-transparent px-4 py-3 text-[11px] text-white/80",
     programBodyWrap: "flex flex-1 flex-col p-6",
@@ -173,19 +173,15 @@ export const au = {
     showcaseCard:
       "mt-8 rounded-3xl border border-teal-200/80 bg-linear-to-br from-teal-50 via-white to-white p-6 shadow-sm dark:border-teal-900/50 dark:from-teal-950/40 dark:via-zinc-900/60 dark:to-zinc-900/40",
     ctaBand:
-      "relative overflow-hidden border-y border-teal-900/20 bg-linear-to-br from-teal-900 via-teal-950 to-zinc-950 py-16 text-white dark:border-teal-950/40",
+      "relative overflow-hidden border-y border-teal-900/20 bg-teal-700 py-16 text-white dark:border-teal-950/40",
     ctaInner: "relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
     ctaTitle: "text-2xl font-semibold tracking-tight sm:text-3xl",
     ctaLead: "mt-3 max-w-xl text-teal-100/90",
     ctaRow: "mt-8 flex flex-wrap gap-3",
     ctaPrimary:
-      "inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-teal-900 shadow-lg transition hover:bg-teal-50",
+      "inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-teal-900 shadow-sm transition hover:bg-teal-50",
     ctaGhost:
       "inline-flex min-h-11 items-center justify-center rounded-xl border border-white/25 bg-white/5 px-6 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10",
-    newsletterShell:
-      "rounded-3xl border border-zinc-200/80 bg-white/90 p-8 shadow-sm dark:border-zinc-800/80 dark:bg-zinc-900/50 sm:p-10",
-    newsletterTitle: "text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50",
-    newsletterLead: "mt-2 max-w-lg text-zinc-600 dark:text-zinc-400",
   },
   /** About page */
   about: {
