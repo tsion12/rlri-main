@@ -134,7 +134,13 @@ function EmptyState() {
   );
 }
 
-export function AfricaBlogsPage({ posts }: { posts: WpPostWithSource[] }) {
+export function AfricaBlogsPage({
+  posts,
+  activeProgramLabel,
+}: {
+  posts: WpPostWithSource[];
+  activeProgramLabel?: string | null;
+}) {
   const [featured, ...rest] = posts;
 
   return (
@@ -154,8 +160,20 @@ export function AfricaBlogsPage({ posts }: { posts: WpPostWithSource[] }) {
             Blogs &amp; op-eds
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-            Research insights, field perspectives, and expert commentary from our team across Africa.
+            {activeProgramLabel
+              ? `Research insights, field perspectives, and expert commentary in ${activeProgramLabel}.`
+              : "Research insights, field perspectives, and expert commentary from our team across Africa."}
           </p>
+          {activeProgramLabel ? (
+            <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+              Showing program:{" "}
+              <span className="font-medium text-zinc-900 dark:text-zinc-200">{activeProgramLabel}</span>
+              <span className="text-zinc-400"> · </span>
+              <Link href="/africa/publications/blogs" className="font-medium text-teal-800 hover:underline dark:text-teal-300">
+                View all blogs
+              </Link>
+            </p>
+          ) : null}
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
             <span className="font-medium text-zinc-900 dark:text-zinc-200">{posts.length}</span> article
             {posts.length !== 1 ? "s" : ""} in this section

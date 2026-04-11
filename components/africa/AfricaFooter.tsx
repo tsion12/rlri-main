@@ -49,11 +49,7 @@ export function AfricaFooter() {
           {/* Brand */}
           <div className="lg:col-span-4">
             <AfricaProgramLogo variant="footer" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Empowering young minds, building brighter futures. Together, we create a world of purpose,
-              resilience, and hope.
-            </p>
-            <ul className="mt-8 flex flex-wrap gap-2">
+            <ul className="mt-6 flex flex-wrap gap-2">
               {social.map(({ label, href, icon: Icon }) => (
                 <li key={label}>
                   <a

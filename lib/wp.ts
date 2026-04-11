@@ -1,6 +1,21 @@
 export type WpSource = "main" | "africa";
 import { request as httpsRequest } from "node:https";
 
+export type AfricaProgramKey =
+  | "oceans"
+  | "digital-futures"
+  | "climate"
+  | "peacebuilding"
+  | "food-environment-natural-resources";
+
+const AFRICA_PROGRAM_META: Record<AfricaProgramKey, { label: string; categoryId: number }> = {
+  oceans: { label: "Oceans", categoryId: 44 },
+  "digital-futures": { label: "Digital Futures", categoryId: 45 },
+  climate: { label: "Climate Adaptation & Resilience", categoryId: 46 },
+  peacebuilding: { label: "Peacebuilding & Inclusive Dialogues", categoryId: 47 },
+  "food-environment-natural-resources": { label: "Food, Environment, and Natural Resources", categoryId: 48 },
+};
+
 export type WpPost = {
   id: number;
   slug: string;
@@ -11,6 +26,8 @@ export type WpPost = {
   excerpt?: { rendered: string };
   featuredImage?: string | null;
   theme?: string | null;
+  programKey?: AfricaProgramKey | null;
+  programLabel?: string | null;
   authorName?: string | null;
   authorBio?: string | null;
   authorAvatar?: string | null;
@@ -94,18 +111,77 @@ export function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function decodeBasicEntities(input: string): string {
+  return input
+    .replaceAll("&amp;", "&")
+    .replaceAll("&#038;", "&")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#039;", "'");
+}
+
+function normCategoryName(input: string): string {
+  return decodeBasicEntities(input)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+const CATEGORY_NAME_TO_PROGRAM = new Map<string, AfricaProgramKey>([
+  ["oceans", "oceans"],
+  ["ocean maritime", "oceans"],
+  ["digital futures", "digital-futures"],
+  ["technology society", "digital-futures"],
+  ["climate adaptation resilience", "climate"],
+  ["environment resilience", "climate"],
+  ["peacebuilding inclusive dialogues", "peacebuilding"],
+  ["peace civil society", "peacebuilding"],
+  ["food environment and natural resources", "food-environment-natural-resources"],
+  ["food systems environment", "food-environment-natural-resources"],
+]);
+
+const GENERIC_CATEGORY_NAMES = new Set([
+  "uncategorized",
+  "blog",
+  "blog ap",
+  "stories ap",
+  "stories africa",
+  "publication",
+  "policy",
+  "policies africa",
+  "research",
+  "development",
+]);
+
+function parseAfricaProgramFromCategories(
+  categories: Array<{ id?: number; name: string }>,
+): AfricaProgramKey | null {
+  for (const cat of categories) {
+    if (typeof cat.id === "number") {
+      const key = (Object.keys(AFRICA_PROGRAM_META) as AfricaProgramKey[]).find(
+        (k) => AFRICA_PROGRAM_META[k].categoryId === cat.id,
+      );
+      if (key) return key;
+    }
+  }
+  for (const cat of categories) {
+    const key = CATEGORY_NAME_TO_PROGRAM.get(normCategoryName(cat.name));
+    if (key) return key;
+  }
+  return null;
+}
+
 function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
   const terms = post._embedded?.["wp:term"] ?? [];
   const allTerms = terms.flatMap((group) => group ?? []);
   const author = post._embedded?.author?.[0];
   const avatarCandidates = author?.avatar_urls ? Object.values(author.avatar_urls) : [];
-  const category = allTerms.find(
-    (term) =>
-      term.taxonomy === "category" &&
-      term.name &&
-      term.name.trim().length > 0 &&
-      term.name.toLowerCase() !== "uncategorized",
-  );
+  const categories = allTerms
+    .filter((term) => term.taxonomy === "category" && term.name && term.name.trim().length > 0)
+    .map((term) => ({ id: term.id, name: decodeBasicEntities(term.name!.trim()) }));
+  const programKey = source === "africa" ? parseAfricaProgramFromCategories(categories) : null;
+  const programLabel = programKey ? AFRICA_PROGRAM_META[programKey].label : null;
+  const category = categories.find((cat) => !GENERIC_CATEGORY_NAMES.has(normCategoryName(cat.name)));
+
   return {
     id: post.id,
     slug: post.slug,
@@ -114,12 +190,47 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
     content: post.content,
     excerpt: post.excerpt,
     featuredImage: post.yoast_head_json?.og_image?.[0]?.url ?? null,
-    theme: category?.name?.trim() ?? null,
+    theme: programLabel ?? category?.name?.trim() ?? null,
+    programKey,
+    programLabel,
     authorName: author?.name?.trim() ?? null,
     authorBio: author?.description?.trim() ?? null,
     authorAvatar: avatarCandidates[0] ?? null,
     source,
   };
+}
+
+const AFRICA_PROGRAM_QUERY_VALUES: Record<AfricaProgramKey, string[]> = {
+  oceans: ["oceans", "ocean", "ocean-maritime"],
+  "digital-futures": ["digital-futures", "digital", "technology-society"],
+  climate: ["climate", "climate-adaptation-resilience", "environment-resilience"],
+  peacebuilding: ["peacebuilding", "peacebuilding-inclusive-dialogues", "peace-civil-society"],
+  "food-environment-natural-resources": [
+    "food-environment-natural-resources",
+    "food-environment",
+    "food-systems-environment",
+  ],
+};
+
+export function parseAfricaProgram(value: string | null | undefined): AfricaProgramKey | null {
+  if (!value) return null;
+  const v = value.trim().toLowerCase();
+  const keys = Object.keys(AFRICA_PROGRAM_QUERY_VALUES) as AfricaProgramKey[];
+  for (const key of keys) {
+    if (AFRICA_PROGRAM_QUERY_VALUES[key].includes(v)) return key;
+  }
+  return null;
+}
+
+export function getAfricaProgramLabel(program: AfricaProgramKey): string {
+  return AFRICA_PROGRAM_META[program].label;
+}
+
+export function postMatchesAfricaProgram(post: WpPostWithSource, program: AfricaProgramKey): boolean {
+  if (post.source !== "africa") return false;
+  if (post.programKey) return post.programKey === program;
+  if (post.programLabel) return getAfricaProgramLabel(program) === post.programLabel;
+  return false;
 }
 
 async function fetchJsonViaHttpsIpv4<T>(url: string): Promise<T | null> {

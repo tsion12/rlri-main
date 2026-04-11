@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { africaRoutes, programsAnchor } from "@/lib/africa-routes";
-import { africaStock } from "./africa-stock";
+import { africaRoutes } from "@/lib/africa-routes";
 
 /* ── Program data ─────────────────────────────────────────────────── */
 const PROGRAMS = [
   {
     n: "01",
     slug: "oceans",
-    label: "Ocean & Maritime",
     title: "Oceans",
     tagline: "Blue economy, maritime security, and inclusive coastal development",
     body: [
@@ -16,14 +14,16 @@ const PROGRAMS = [
       "The program supports contemporary debates and policy action on sustainable ocean resource management, economic development, strengthening environmental protection, and enhancing the resilience of coastal and marine-dependent communities. We contribute to research that advances understanding of ocean ecosystems and ocean health, with a focus on the Gulf of Guinea and beyond.",
       "By generating context-specific knowledge and linking African expertise with international research and policy platforms, the program positions Africa as a critical contributor to global ocean science and governance.",
     ],
-    image: africaStock.programHeros.oceans,
+    image: {
+      src: "/assets/programs/ocean.jpg",
+      alt: "Ocean and maritime program",
+    },
     topics: ["Blue Economy", "Maritime Security", "Ocean Governance", "Coastal Resilience", "Gulf of Guinea"],
-    href: programsAnchor("01"),
+    href: `${africaRoutes.blogs}?program=oceans`,
   },
   {
     n: "02",
     slug: "digital-futures",
-    label: "Technology & Society",
     title: "Digital Futures",
     tagline: "AI governance, digital transformation, and inclusive tech for Africa",
     body: [
@@ -31,14 +31,16 @@ const PROGRAMS = [
       "The program supports research and policy engagement on the ethical use of AI, AI governance frameworks, and the gendered dimensions of artificial intelligence. It also examines how biases in AI systems can reinforce inequalities, particularly for women and marginalized groups, and explores pathways for more inclusive, accountable, and context-sensitive AI design and deployment.",
       "The program contributes to shaping more equitable and responsible digital futures while positioning Africa as an important actor in global debates on AI governance and digital transformation.",
     ],
-    image: africaStock.programHeros.digital,
+    image: {
+      src: "/assets/programs/digital.jpg",
+      alt: "Digital futures program",
+    },
     topics: ["AI Governance", "Digital Transformation", "Tech Ethics", "Gender & AI", "Inclusive Design"],
-    href: programsAnchor("02"),
+    href: `${africaRoutes.blogs}?program=digital-futures`,
   },
   {
     n: "03",
     slug: "climate",
-    label: "Environment & Resilience",
     title: "Climate Adaptation & Resilience",
     tagline: "Local voices, indigenous knowledge, and climate justice across Africa",
     body: [
@@ -46,14 +48,16 @@ const PROGRAMS = [
       "The program also examines the intersection of climate change and conflict, including how environmental stressors such as resource scarcity, displacement, and livelihood disruption can exacerbate existing tensions and undermine stability in vulnerable regions like the Sahel.",
       "By advancing evidence-based and context-sensitive approaches, and by connecting African perspectives to broader global debates, the program contributes to stronger and more inclusive responses to climate change across the continent and beyond.",
     ],
-    image: africaStock.programHeros.climate,
+    image: {
+      src: "/assets/programs/climate.jpg",
+      alt: "Climate adaptation and resilience program",
+    },
     topics: ["Climate Justice", "Resilience Building", "Sahel Stability", "Indigenous Knowledge", "Livelihood Protection"],
-    href: programsAnchor("03"),
+    href: `${africaRoutes.blogs}?program=climate`,
   },
   {
     n: "04",
     slug: "peacebuilding",
-    label: "Peace & Civil Society",
     title: "Peacebuilding & Inclusive Dialogues",
     tagline: "Civil society, national dialogues, and sustainable conflict transformation",
     body: [
@@ -61,14 +65,16 @@ const PROGRAMS = [
       "It supports research and policy engagement on peace processes, national and local dialogue initiatives, civil society participation, gender inclusion, and the institutional conditions needed for meaningful and sustainable peacebuilding.",
       "By producing context-specific knowledge and linking African practitioners and researchers with wider policy and dialogue platforms, the program engages communities, civil society actors, and decision-makers, ensuring that locally grounded insights meaningfully inform policy processes and support effective conflict transformation.",
     ],
-    image: africaStock.programHeros.peacebuilding,
+    image: {
+      src: "/assets/programs/peace.jpg",
+      alt: "Peacebuilding and inclusive dialogues program",
+    },
     topics: ["Civil Society", "National Dialogues", "Gender Inclusion", "Conflict Transformation", "Peace Processes"],
-    href: programsAnchor("04"),
+    href: `${africaRoutes.blogs}?program=peacebuilding`,
   },
   {
     n: "05",
     slug: "food-environment-natural-resources",
-    label: "Food Systems & Environment",
     title: "Food, Environment, and Natural Resources",
     tagline: "Sustainable food systems, environmental stewardship, and equitable natural resource governance",
     body: [
@@ -76,9 +82,12 @@ const PROGRAMS = [
       "The program examines how these systems intersect with environmental sustainability, climate change, livelihoods, and governance across diverse African contexts. It supports research and policy dialogue on sustainable food production, ecosystem stewardship, mining governance, and water, sanitation, and hygiene (WASH), including how mining affects agricultural land through degradation and displacement and impacts water systems through overuse and contamination, directly shaping food production, safety, and access, and contributing to resource-based tensions and conflict dynamics.",
       "By advancing context-specific and evidence-based approaches and linking African expertise with global policy and research platforms, the program contributes to more resilient, inclusive, and sustainable food systems and natural resource management.",
     ],
-    image: africaStock.programHeros.foodEnvironment,
+    image: {
+      src: "/assets/programs/climate.jpg",
+      alt: "Food systems and environment program",
+    },
     topics: ["Food Systems", "Ecosystem Stewardship", "Mining Governance", "WASH", "Climate & Livelihoods"],
-    href: programsAnchor("05"),
+    href: `${africaRoutes.blogs}?program=food-environment-natural-resources`,
   },
 ] as const;
 
@@ -87,7 +96,6 @@ const topicPillClass =
 
 function ProgramCopy({
   className = "",
-  label,
   title,
   tagline,
   body,
@@ -95,7 +103,6 @@ function ProgramCopy({
   href,
 }: {
   className?: string;
-  label: string;
   title: string;
   tagline: string;
   body: readonly string[];
@@ -104,8 +111,7 @@ function ProgramCopy({
 }) {
   return (
     <div className={`flex flex-col justify-center p-6 sm:p-8 lg:p-10 ${className}`}>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">{label}</p>
-      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">{title}</h2>
+      <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">{title}</h2>
       <p className="mt-2 text-sm font-medium leading-snug text-zinc-700 dark:text-zinc-300">{tagline}</p>
       <div className="mt-5 space-y-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
         {body.map((para, i) => (
@@ -176,7 +182,7 @@ export function AfricaProgramsPage() {
       </section>
 
       <div className="bg-zinc-50/80 dark:bg-zinc-950">
-        {PROGRAMS.map(({ n, slug, label, title, tagline, body, image, topics, href }, index) => {
+        {PROGRAMS.map(({ n, slug, title, tagline, body, image, topics, href }, index) => {
           const imageFirst = index % 2 === 0;
           return (
             <section
@@ -198,13 +204,12 @@ export function AfricaProgramsPage() {
                             sizes="(max-width: 768px) 100vw, 50vw"
                           />
                         </div>
-                        <ProgramCopy label={label} title={title} tagline={tagline} body={body} topics={topics} href={href} />
+                        <ProgramCopy title={title} tagline={tagline} body={body} topics={topics} href={href} />
                       </>
                     ) : (
                       <>
                         <ProgramCopy
                           className="order-2 md:order-1"
-                          label={label}
                           title={title}
                           tagline={tagline}
                           body={body}

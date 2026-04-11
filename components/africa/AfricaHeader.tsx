@@ -24,7 +24,6 @@ const aboutMenu = [
 const navItems = [
   { label: "Events", href: "/africa/events" },
   { label: "Programs", href: "/africa/programs" },
-  { label: "FAQs", href: "/africa/faq" },
 ] as const;
 
 const donateHref = "/africa/donate";
@@ -228,6 +227,10 @@ export function AfricaHeader() {
                 </div>
               )}
             </div>
+
+            <NavLink href={africaRoutes.faq} active={navItemActive(pathname, africaRoutes.faq)}>
+              FAQs
+            </NavLink>
           </div>
         </nav>
 
@@ -322,6 +325,13 @@ export function AfricaHeader() {
                 ))}
               </div>
             </div>
+            <Link
+              href={africaRoutes.faq}
+              className={`${mobileRow} ${navItemActive(pathname, africaRoutes.faq) ? mobileRowActive : ""}`}
+              onClick={() => setMobileOpen(false)}
+            >
+              FAQs
+            </Link>
             <Link href={donateHref} className={`${au.header.donate} w-full sm:hidden`}>
               Donate
             </Link>

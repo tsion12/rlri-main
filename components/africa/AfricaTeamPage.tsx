@@ -23,6 +23,7 @@ const TEAM: Member[] = [
     role: "Administrative and Finance Assistant",
     bio: "Achai Kuol Deng is the Administrative and Finance Assistant at the Real Life Research Institute (RLRI), where she manages day-to-day administrative operations, responds to institutional emails, and coordinates financial processes. She serves as a key point of contact for research fellows and affiliates, supports financial coordination and documentation, and contributes to the effective delivery of RLRI’s programs by ensuring smooth communication and operational support across research activities. Achai holds a Bachelor of Arts in International Relations.",
     photo: "/assets/Team/Achai.webp",
+    linkedin: "https://www.linkedin.com/in/achai-deng-0b581a37b/",
   },
   {
     id: "tsion",
@@ -31,6 +32,7 @@ const TEAM: Member[] = [
     role: "Research and Data Analyst Fellow (Ethiopia)",
     bio: "Tsion Mengistu Ademe brings a strong combination of technology, communications, and research expertise to her work at the Real Life Research Institute (RLRI) where she serves as a Research and Data Analyst Fellow. In this role, she contributes to website management, digital communications, and design, and supports research initiatives exploring digital futures, including related activities in Ethiopia. Her work strengthens RLRI’s research dissemination, digital platforms, data analysis, and engagement strategies. Tsion holds a Master’s degree in Project Management and dual Bachelor’s degrees in Software Engineering and Management.",
     photo: "/assets/Team/Tsion.webp",
+    linkedin: "https://www.linkedin.com/in/tsion-mengistu-46a840208/",
   },
   {
     id: "roselyn",
@@ -39,6 +41,7 @@ const TEAM: Member[] = [
     role: "Research Fellow (Zimbabwe)",
     bio: "Roselyn Ruvimbo Kwaramba is a Research Fellow at the Real Life Research Institute (RLRI) with a country focus on Zimbabwe. She supports senior research teams, coordinates community development initiatives, and contributes to project implementation, with particular attention to locally grounded and community-responsive research. Her work strengthens RLRI’s engagement with community development and resilience-focused programming in Zimbabwe. Roselyn holds a Bachelor of Science in Community Development Studies and is currently pursuing a Master of Arts in Disaster Risk Reduction Management Systems.",
     photo: "/assets/Team/Roselyn.webp",
+    linkedin: "https://www.linkedin.com/in/ruvimbo-kwaramba-8208a2198/",
   },
   {
     id: "nfor",
@@ -47,6 +50,7 @@ const TEAM: Member[] = [
     role: "Project Assistant (Cameroon)",
     bio: "Nfor Christelle Mugha is a Project Assistant at the Real Life Research Institute (RLRI) with a country focus on Cameroon. She supports research activities, community engagement, and communications initiatives, contributing to the documentation and dissemination of research and community-based work. Her role bridges research and storytelling, strengthening RLRI’s engagement with communities and enhancing the visibility of locally grounded, social justice–oriented initiatives in Cameroon. Christelle holds a Bachelor of Arts in Journalism from the Advanced School of Mass Communication (ESSTIC), Yaoundé.",
     photo: "",
+    linkedin: "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
   },
   {
     id: "richard",
@@ -63,6 +67,7 @@ const TEAM: Member[] = [
     role: "Research Affiliate",
     bio: "Chris Begealawuh is a Research Affiliate at the Real Life Research Institute (RLRI), where he contributes to research and policy work at the intersection of climate change, peace, security, and digital futures. He brings over 10 years of experience in social sciences, policy, and international development, with a focus on climate-related drivers of conflict, emerging digital transformations, and their implications for governance and sustainable development. At RLRI, he also writes blogs and opinion pieces that translate complex climate, security, and digital futures issues into accessible insights for policy and public audiences. Chris holds a Ph.D. in International Development from the University of Ottawa, Canada, and a Master’s degree in Global Affairs from the University of Leipzig, Germany.",
     photo: "/assets/Team/Dr-Chris-Begealawuh-1.webp",
+    linkedin: "https://www.linkedin.com/in/nchongayi-christantus-020827a1/",
   },
   {
     id: "ernest",
@@ -70,7 +75,8 @@ const TEAM: Member[] = [
     name: "Ernest Lequimboh",
     role: "Senior Policy Advisor",
     bio: "Ernest Lequimboh is an Award-Winning Author of 10 Investments You Must Make Before 40 and a Senior Policy Advisor at the Real Life Research Institute (RLRI), where he contributes to research and policy work at the intersection of artificial intelligence, governance, and inclusive public leadership. He brings experience in policy analysis and legislative modernization, with a focus on how emerging technologies shape public institutions and decision-making. At RLRI, he also writes blogs and opinion pieces on artificial intelligence and governance, contributing to public discourse and policy-relevant knowledge production. Ernest has academic foundation in Women and Gender Studies, Law, and Public Policy, alongside advanced studies in artificial intelligence and DevOps. His forthcoming paper critically examines AI Governance Capacity.",
-    photo: "/assets/Team/Enoch.webp",
+    photo: "/assets/Team/Ernest-Lequimboh.webp",
+    linkedin: "https://www.linkedin.com/in/ernest-lequimboh-3ba6b786/",
   },
 ];
 
