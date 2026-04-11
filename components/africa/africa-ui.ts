@@ -49,7 +49,11 @@ export const au = {
   /** Home hero */
   hero: {
     section:
-      "relative isolate overflow-hidden border-b border-zinc-200/60 bg-[#f7faf9] dark:border-zinc-800/80 dark:bg-zinc-950",
+      "relative overflow-hidden border-b border-zinc-300 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950",
+    overlay:
+      "pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.01)_36%,transparent_65%),linear-gradient(to_bottom,rgba(255,255,255,0.6),rgba(255,255,255,0.15))] dark:bg-[linear-gradient(120deg,rgba(2,6,23,0.45)_0%,rgba(2,6,23,0.2)_40%,transparent_72%),linear-gradient(to_bottom,rgba(2,6,23,0.18),rgba(2,6,23,0.05))]",
+    texture:
+      "pointer-events-none absolute inset-0 opacity-40 bg-[linear-gradient(to_right,rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.06)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:linear-gradient(to_bottom,black_20%,transparent_90%)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)]",
     bloomA:
       "pointer-events-none absolute -left-[20%] top-0 h-[min(85vh,720px)] w-[70%] bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(45,212,191,0.14),transparent_65%)] dark:bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(20,184,166,0.12),transparent_65%)]",
     bloomB:
@@ -57,24 +61,24 @@ export const au = {
     grid:
       "pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(24,24,27,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(24,24,27,0.04)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black_20%,transparent_85%)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]",
     inner:
-      "relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24 xl:py-28",
-    gridLayout: "grid items-center gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14",
+      "relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20",
+    gridLayout: "grid items-start gap-10 lg:grid-cols-12 lg:gap-10",
     colCopy: "lg:col-span-6 xl:col-span-7",
-    colAside: "lg:col-span-6 xl:col-span-5",
+    colAside: "lg:col-span-6 xl:col-span-5 lg:pt-1",
     eyebrow:
-      "inline-flex items-center gap-2 rounded-full border border-teal-200/80 bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-800 shadow-sm backdrop-blur-sm dark:border-teal-800/60 dark:bg-zinc-900/70 dark:text-teal-300",
+      "inline-flex items-center gap-2 border-l-2 border-emerald-700 pl-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-700 dark:border-emerald-500 dark:text-zinc-300",
     headline:
-      "mt-6 text-balance bg-linear-to-br from-[#0f766e] via-[#0d9488] to-[#14b8a6] bg-clip-text text-4xl font-semibold tracking-tight text-transparent sm:text-5xl xl:text-[3.25rem] xl:leading-[1.08]",
+      "mt-5 max-w-3xl text-balance font-serif text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl xl:text-[3.2rem] xl:leading-[1.12] dark:text-zinc-100",
     body:
-      "mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400",
+      "mt-5 max-w-2xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300",
     primaryCta:
-      "inline-flex min-h-11 items-center justify-center rounded-xl bg-teal-700 px-6 text-sm font-semibold text-white shadow-sm ring-1 ring-white/20 transition hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 focus-visible:ring-offset-2 dark:ring-white/10",
+      "inline-flex min-h-11 items-center justify-center border border-emerald-800 bg-emerald-800 px-6 text-sm font-semibold uppercase tracking-[0.04em] text-white transition hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 dark:border-emerald-600 dark:bg-emerald-700 dark:hover:bg-emerald-600",
     secondaryCta:
-      "inline-flex min-h-11 items-center justify-center rounded-xl border border-zinc-200/90 bg-white/80 px-6 text-sm font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition hover:border-teal-300 hover:bg-white hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900/60 dark:text-zinc-100 dark:hover:border-teal-700 dark:hover:bg-zinc-900",
-    ctaRow: "mt-10 flex flex-wrap items-center gap-3",
-    statRow: "mt-8 flex flex-wrap items-center gap-3",
+      "inline-flex min-h-11 items-center justify-center border border-zinc-400 bg-white px-6 text-sm font-semibold uppercase tracking-[0.04em] text-zinc-800 transition hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800",
+    ctaRow: "mt-8 flex flex-wrap items-center gap-3",
+    statRow: "mt-7 flex flex-wrap items-center gap-2.5",
     statChip:
-      "inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/80 px-3 py-2 text-sm font-medium text-zinc-700 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-300",
+      "inline-flex items-center border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300",
     spotlightGrid: "mt-10 grid gap-4 sm:grid-cols-2",
     spotlightCard:
       "group rounded-2xl border border-zinc-200/80 bg-white/88 p-5 shadow-sm backdrop-blur-sm transition [transform:translateZ(0)] hover:-translate-y-0.5 hover:border-teal-200/90 hover:shadow-lg hover:shadow-zinc-900/5 dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-teal-800/60 dark:hover:shadow-black/30",

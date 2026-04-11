@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { blogPostPath, stripHtml, type WpPageHighlight, type WpPostWithSource } from "@/lib/wp";
 import { africaRoutes } from "@/lib/africa-routes";
-import { africaStock } from "./africa-stock";
 import { au } from "./africa-ui";
 
 
@@ -16,119 +14,45 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
   const prioritizeEvent = Boolean(upcomingEvent);
   const featuredPostTitle = featuredPost ? stripHtml(featuredPost.title.rendered) : null;
 
-  const storySpotlight = (
-    <article className={`${au.hero.spotlightCard} home-fade-up`} style={{ animationDelay: "280ms" }}>
-      <p className={au.hero.spotlightLabel}>Latest Insights</p>
-      <h2 className={au.hero.spotlightTitle}>
-        {prioritizeEvent
-          ? upcomingEvent?.title ?? "Upcoming webinar and event updates"
-          : featuredPostTitle ?? "Fresh research and commentary from the Africa journal"}
-      </h2>
-      <p className={au.hero.spotlightText}>
-        {prioritizeEvent
-          ? upcomingEvent?.excerpt
-            ? trimText(upcomingEvent.excerpt, 150)
-            : "Webinars and events are highlighted first in the hero so visitors can quickly find what is happening next."
-          : featuredPost
-            ? "A new post is live now. Open the latest article directly from the hero."
-            : "Follow the newest research notes, commentary, and institute updates as they are published."}
-      </p>
-      <div className={au.hero.spotlightMeta}>
-        {prioritizeEvent ? (
-          <span>
-            {upcomingEvent?.eventDateISO
-              ? `Event · ${formatDate(upcomingEvent.eventDateISO)}`
-              : upcomingEvent
-                ? `Updated ${formatDate(upcomingEvent.modified)}`
-                : "Live schedule"}
-          </span>
-        ) : featuredPost ? (
-          <>
-            <span>{formatDate(featuredPost.date)}</span>
-            <span aria-hidden>•</span>
-            <span>{featuredPost.source === "africa" ? "Africa Program" : "Main Institute"}</span>
-          </>
-        ) : (
-          <span>Live from the journal</span>
-        )}
-      </div>
-      <Link
-        href={prioritizeEvent ? africaRoutes.events : featuredPost ? blogPostPath(featuredPost) : "/blog"}
-        className={au.hero.spotlightLink}
-      >
-        {prioritizeEvent ? "See events" : "Read latest"}
-        <span aria-hidden>→</span>
-      </Link>
-    </article>
-  );
-
-  const eventSpotlight = (
-    <article className={`${au.hero.spotlightCard} home-fade-up`} style={{ animationDelay: "360ms" }}>
-      <p className={au.hero.spotlightLabel}>{prioritizeEvent ? "Latest article" : "Upcoming event"}</p>
-      <h2 className={au.hero.spotlightTitle}>
-        {prioritizeEvent
-          ? featuredPostTitle ?? "Fresh research and commentary from the Africa journal"
-          : upcomingEvent?.title ?? "What's coming up next"}
-      </h2>
-      <p className={au.hero.spotlightText}>
-        {prioritizeEvent
-          ? featuredPost
-            ? "Browse the newest article while keeping upcoming webinars and events front and center."
-            : "No recent article is available right now. Visit the journal for the full archive."
-          : upcomingEvent
-            ? trimText(upcomingEvent.excerpt, 150)
-            : "See the latest webinar announcements, registration links, and event details from the Africa Program."}
-      </p>
-      <div className={au.hero.spotlightMeta}>
-        {prioritizeEvent ? (
-          featuredPost ? (
-            <>
-              <span>{formatDate(featuredPost.date)}</span>
-              <span aria-hidden>•</span>
-              <span>{featuredPost.source === "africa" ? "Africa Program" : "Main Institute"}</span>
-            </>
-          ) : (
-            <span>Live from the journal</span>
-          )
-        ) : (
-          <span>
-            {upcomingEvent
-              ? upcomingEvent.eventDateISO
-                ? `Event · ${formatDate(upcomingEvent.eventDateISO)}`
-                : `Updated ${formatDate(upcomingEvent.modified)}`
-              : "Live schedule"}
-          </span>
-        )}
-      </div>
-      <Link
-        href={prioritizeEvent ? (featuredPost ? blogPostPath(featuredPost) : "/blog") : africaRoutes.events}
-        className={au.hero.spotlightLink}
-      >
-        {prioritizeEvent ? "Read article" : "See events"}
-        <span aria-hidden>→</span>
-      </Link>
-    </article>
-  );
-
-  const heroImageSrc = prioritizeEvent && upcomingEvent?.featuredImage ? upcomingEvent.featuredImage : africaStock.hero.src;
-  const heroImageAlt =
-    prioritizeEvent && upcomingEvent
-      ? `${upcomingEvent.title} — upcoming event`
-      : africaStock.hero.alt;
-  const heroCredit =
-    prioritizeEvent && upcomingEvent?.featuredImage ? "Image from events page" : africaStock.hero.creditLabel;
+  const featuredAnnouncementTitle = prioritizeEvent
+    ? upcomingEvent?.title ?? "Upcoming webinar and event updates"
+    : "Upcoming webinar and event updates";
+  const featuredAnnouncementText = prioritizeEvent
+    ? upcomingEvent?.excerpt
+      ? trimText(upcomingEvent.excerpt, 185)
+      : "Webinars and events are highlighted first in the hero so visitors can quickly find what is happening next."
+    : "See the latest webinar announcements, registration links, and event details from the Africa Program.";
+  const featuredAnnouncementMeta = prioritizeEvent
+    ? upcomingEvent?.eventDateISO
+      ? `Date and time · ${formatDate(upcomingEvent.eventDateISO)}`
+      : upcomingEvent
+        ? `Updated ${formatDate(upcomingEvent.modified)}`
+        : "Live schedule"
+    : "Live schedule";
+  const bulletinTitle = prioritizeEvent
+    ? featuredPostTitle ?? "Fresh research and commentary from the Africa journal"
+    : featuredPostTitle ?? "Latest Insights";
+  const bulletinText = prioritizeEvent
+    ? featuredPost
+      ? "Browse the newest article while keeping upcoming webinars and events front and center."
+      : "No recent article is available right now. Visit the journal for the full archive."
+    : featuredPost
+      ? "A new post is live now. Open the latest article directly from the hero."
+      : "Follow the newest research notes, commentary, and institute updates as they are published.";
 
   return (
     <section className={au.hero.section} aria-labelledby="africa-hero-heading">
-      <div className={au.hero.bloomA} aria-hidden />
-      <div className={au.hero.bloomB} aria-hidden />
-      <div className={au.hero.grid} aria-hidden />
-
-      <div className={au.hero.inner}>
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-[url('/assets/map.jpg')] bg-center bg-cover bg-no-repeat opacity-45 dark:opacity-55" />
+        <div className="absolute inset-0 bg-black/50 dark:bg-black/60" />
+      </div>
+      <div className={au.hero.overlay} aria-hidden />
+      <div className={au.hero.texture} aria-hidden />
+      <div className={`${au.hero.inner} relative z-10`}>
         <div className={au.hero.gridLayout}>
           <div className={au.hero.colCopy}>
             <p className={au.hero.eyebrow}>
-              <span className="inline-block size-1.5 rounded-full bg-teal-500 shadow-[0_0_0_3px_rgba(20,184,166,0.25)] dark:bg-teal-400" />
+              <span className="inline-block h-1.5 w-1.5 bg-emerald-700 dark:bg-emerald-500" />
               Africa Program
             </p>
             <h1 id="africa-hero-heading" className={au.hero.headline}>
@@ -139,115 +63,73 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
               African knowledge, policy, and practice to deliver evidence-based solutions with global impact.
             </p>
             <div className={au.hero.statRow}>
-              <span className={`${au.hero.statChip} home-fade-up`} style={{ animationDelay: "90ms" }}>
-                <span className="size-2 rounded-full bg-teal-500 dark:bg-teal-400" />
+              <span className={au.hero.statChip}>
                 Research-driven
               </span>
-              <span className={`${au.hero.statChip} home-fade-up`} style={{ animationDelay: "160ms" }}>
+              <span className={au.hero.statChip}>
                 Policy-oriented
               </span>
-              <span className={`${au.hero.statChip} home-fade-up`} style={{ animationDelay: "230ms" }}>
+              <span className={au.hero.statChip}>
                 Implementation-focused
               </span>
             </div>
             <div className={au.hero.ctaRow}>
-              {/* <Link href="/blog" className={au.hero.primaryCta}>
-                Read the Journal
-              </Link> */}
+              <Link href={africaRoutes.programs} className={au.hero.primaryCta}>
+                Explore programs
+              </Link>
               <a
                 href={africaRoutes.canadianProgram}
                 className={au.hero.secondaryCta}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Explore Our Canadian Program
+                Explore our Canadian program
               </a>
             </div>
-            <div className={au.hero.spotlightGrid}>
-              {prioritizeEvent ? (
-                <>
-                  {eventSpotlight}
-                  {storySpotlight}
-                </>
-              ) : (
-                <>
-                  {storySpotlight}
-                  {eventSpotlight}
-                </>
-              )}
-            </div>
           </div>
 
-          <div className={au.hero.colAside}>
-            <div className={`${au.hero.mediaStage} home-fade-up`} style={{ animationDelay: "140ms" }}>
-              <div className={`${au.hero.mediaShell} group`}>
-                <div className={au.hero.mediaFrame}>
-                  <Image
-                    src={heroImageSrc}
-                    alt={heroImageAlt}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 42vw"
-                    className={au.hero.mediaImage}
-                  />
-                  <div className={au.hero.mediaOverlay}>
-                    <p className={au.hero.mediaKicker}>
-                      {prioritizeEvent ? "Featured event" : "Featured story"}
-                    </p>
-                    {prioritizeEvent && upcomingEvent ? (
-                      <>
-                        <p className={au.hero.mediaHeading}>{upcomingEvent.title}</p>
-                        {upcomingEvent.excerpt ? (
-                          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/85">
-                            {trimText(upcomingEvent.excerpt, 180)}
-                          </p>
-                        ) : null}
-                        <p className={au.hero.mediaMeta}>
-                          <span className="inline-block size-1.5 rounded-full bg-amber-300" />
-                          {upcomingEvent.eventDateISO
-                            ? `${formatDate(upcomingEvent.eventDateISO)} · Webinar`
-                            : `${formatDate(upcomingEvent.modified)} · Events`}
-                        </p>
-                        <Link
-                          href={africaRoutes.events}
-                          className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
-                        >
-                          View event details
-                          <span aria-hidden>→</span>
-                        </Link>
-                      </>
-                    ) : (
-                      <>
-                        <p
-                          className={au.hero.mediaHeading}
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              featuredPost?.title.rendered ?? "Research, learning, and local leadership in motion.",
-                          }}
-                        />
-                        <p className={au.hero.mediaMeta}>
-                          <span className="inline-block size-1.5 rounded-full bg-teal-300" />
-                          {featuredPost ? formatDate(featuredPost.date) : "Fresh updates from the journal"}
-                        </p>
-                        <Link
-                          href={featuredPost ? blogPostPath(featuredPost) : "/blog"}
-                          className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
-                        >
-                          Open featured story
-                          <span aria-hidden>→</span>
-                        </Link>
-                      </>
-                    )}
-                    <p className="mt-2 text-xs text-white/60">{heroCredit}</p>
-                  </div>
-                </div>
+          <aside className={au.hero.colAside} aria-label="Featured institute announcements">
+            <article className="border border-zinc-300 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-900">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-600 dark:text-zinc-400">
+                Featured announcement
+              </p>
+              <h2 className="mt-3 font-serif text-2xl leading-tight text-zinc-900 dark:text-zinc-100">
+                {featuredAnnouncementTitle}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                {featuredAnnouncementText}
+              </p>
+              <div className="mt-4 border-t border-zinc-200 pt-3 text-xs font-medium uppercase tracking-[0.12em] text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">
+                {featuredAnnouncementMeta}
               </div>
-              <div className={`${au.hero.floatingCard} home-float-slow hidden sm:block`}>
-                <p className="font-semibold tracking-tight">Latest Insights</p>
-              </div>
-            </div>
+              <Link href={africaRoutes.events} className="mt-5 inline-flex text-sm font-semibold text-emerald-800 hover:underline dark:text-emerald-300">
+                {prioritizeEvent ? "Register for event" : "Review event schedule"}
+              </Link>
+            </article>
 
-          </div>
+            <article className="mt-4 border border-zinc-300 bg-zinc-50 p-5 dark:border-zinc-700 dark:bg-zinc-900/70">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
+                Research bulletin
+              </p>
+              <h3 className="mt-2 text-lg font-semibold leading-snug text-zinc-900 dark:text-zinc-100">
+                {bulletinTitle}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                {bulletinText}
+              </p>
+              <div className="mt-4 border-t border-zinc-200 pt-3 text-xs text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">
+                {featuredPost
+                  ? `${formatDate(featuredPost.date)} · ${featuredPost.source === "africa" ? "Africa Program" : "Main Institute"}`
+                  : "Live from the journal"}
+              </div>
+              <Link
+                href={featuredPost ? blogPostPath(featuredPost) : "/blog"}
+                className="mt-4 inline-flex text-sm font-semibold text-emerald-800 hover:underline dark:text-emerald-300"
+              >
+                Read latest publication
+              </Link>
+            </article>
+          </aside>
         </div>
       </div>
     </section>

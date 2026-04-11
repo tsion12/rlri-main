@@ -26,8 +26,6 @@ const navItems = [
   { label: "Programs", href: "/africa/programs" },
 ] as const;
 
-const donateHref = "/africa/donate";
-
 const mobileRow =
   "flex w-full items-center rounded-xl px-3 py-2.5 text-left text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800/80";
 const mobileRowActive =
@@ -236,9 +234,6 @@ export function AfricaHeader() {
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
           <ThemeToggle className="!h-10 !w-10 !rounded-lg !border-zinc-200/80 !shadow-sm dark:!border-zinc-700" />
-          <Link href={donateHref} className={`${au.header.donate} hidden sm:inline-flex`}>
-            Donate
-          </Link>
 
           <button
             type="button"
@@ -331,9 +326,6 @@ export function AfricaHeader() {
               onClick={() => setMobileOpen(false)}
             >
               FAQs
-            </Link>
-            <Link href={donateHref} className={`${au.header.donate} w-full sm:hidden`}>
-              Donate
             </Link>
           </div>
         </div>

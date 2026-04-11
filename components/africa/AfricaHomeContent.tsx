@@ -1,4 +1,5 @@
 import { AfricaHero } from "@/components/africa/AfricaHero";
+import { AfricaHomeGallery } from "@/components/africa/AfricaHomeGallery";
 import { AfricaImpactShowcase } from "@/components/africa/AfricaImpactShowcase";
 import { AfricaHomePrograms } from "@/components/africa/AfricaHomePrograms";
 import { AfricaLatestNews } from "@/components/africa/AfricaLatestNews";
@@ -12,6 +13,7 @@ export async function AfricaHomeContent() {
     <>
       <AfricaHero featuredPost={featuredPost} upcomingEvent={upcomingEvent} />
       <AfricaLatestNews posts={latestPosts} />
+      <AfricaHomeGallery />
       <AfricaImpactShowcase />
       <AfricaHomePrograms />
     </>
