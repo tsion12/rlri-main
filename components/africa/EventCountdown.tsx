@@ -18,15 +18,11 @@ const LABELS = { days: "Days", hours: "Hrs", minutes: "Min", seconds: "Sec" };
 
 export function EventCountdown({ targetISO }: { targetISO: string }) {
   const [time, setTime] = useState(getTimeLeft(targetISO));
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const id = setInterval(() => setTime(getTimeLeft(targetISO)), 1000);
     return () => clearInterval(id);
   }, [targetISO]);
-
-  if (!mounted) return null;
 
   const isOver = Object.values(time).every((v) => v === 0);
 

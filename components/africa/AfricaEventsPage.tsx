@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { africaRoutes } from "@/lib/africa-routes";
+import { EventCountdown } from "./EventCountdown";
 
 const FEATURED = {
   series: "Webinar Series | Real Life Research Institute",
@@ -22,7 +23,7 @@ const FEATURED = {
 
 const PAST_EVENTS = [
   {
-    title: "Closing the Justice Gap: Strengthening Legal Protection Systems for Women and Girls in Africa",
+    title: "Strengthening Legal Protection Systems for Women and Girls in Sub-Saharan Africa in the Age of AI",
     description:
       "This webinar explored why progressive legal frameworks across Africa often fail to translate into real justice for women and girls, examining institutional weaknesses, gender-responsive budgeting, survivor support systems, and accountability mechanisms.",
     day: "27",
@@ -31,11 +32,12 @@ const PAST_EVENTS = [
     format: "Online Webinar",
     tags: ["Gender Justice", "Legal Frameworks"],
     href: africaRoutes.events,
+    policyBriefHref: null as string | null,
     /**
      * Recording / recap link for past events.
      * Set to a URL string to enable the "Watch Recording" button.
      */
-    recordingHref: null as string | null,
+    recordingHref: "https://www.youtube.com/watch?v=ZnAWHbZ5Gsk",
   },
   {
     title: "Assuring Sustainable Water Availability and Safe Sanitation Systems in Africa",
@@ -47,8 +49,9 @@ const PAST_EVENTS = [
     format: "Pan-African Webinar",
     tags: ["Water & Sanitation", "Governance"],
     href: africaRoutes.events,
+    policyBriefHref: africaRoutes.policyBriefs,
     /** Recording link — set this to the webinar replay URL */
-    recordingHref: null as string | null,
+    recordingHref: "https://www.youtube.com/watch?v=IIorkFDsOZ0",
   },
 ] as const;
 
@@ -88,6 +91,13 @@ export function AfricaEventsPage() {
           <div className="mb-8 flex items-center gap-3">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">Upcoming</p>
             <span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+          </div>
+          <div className="mb-8 rounded-2xl bg-linear-to-r from-teal-700 via-teal-800 to-teal-900 p-4 text-white shadow-sm sm:p-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-200">Countdown to webinar</p>
+            <p className="mt-1 text-sm text-teal-100">{FEATURED.title}</p>
+            <div className="mt-4">
+              <EventCountdown targetISO={FEATURED.isoDate} />
+            </div>
           </div>
 
           <div className="overflow-hidden rounded-4xl shadow-[0_24px_55px_-24px_rgba(15,23,42,0.35)]">
@@ -149,7 +159,19 @@ export function AfricaEventsPage() {
           </div>
 
           <ul className="grid gap-6 sm:grid-cols-2">
-            {PAST_EVENTS.map(({ title, description, day, month, year, format, tags, href, recordingHref }) => (
+            {PAST_EVENTS.map(
+              ({
+                title,
+                description,
+                day,
+                month,
+                year,
+                format,
+                tags,
+                href,
+                policyBriefHref,
+                recordingHref,
+              }) => (
               <li key={title} className="flex">
                 <article className="flex w-full flex-col rounded-2xl border border-zinc-200/80 bg-zinc-50 p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
@@ -191,10 +213,23 @@ export function AfricaEventsPage() {
                     >
                       Read more
                     </Link>
+                    {policyBriefHref ? (
+                      <Link
+                        href={policyBriefHref}
+                        className="inline-flex items-center rounded-lg border border-teal-200 bg-teal-50 px-4 py-2 text-xs font-semibold text-teal-800 transition hover:bg-teal-100 dark:border-teal-800/50 dark:bg-teal-950/40 dark:text-teal-300"
+                      >
+                        Policy brief
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center rounded-lg border border-zinc-200 bg-white px-4 py-2 text-xs font-medium text-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400">
+                        Policy brief coming soon
+                      </span>
+                    )}
                   </div>
                 </article>
               </li>
-            ))}
+            ),
+          )}
           </ul>
 
           <div className="mt-10 text-center">

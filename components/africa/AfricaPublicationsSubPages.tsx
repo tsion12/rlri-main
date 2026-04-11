@@ -148,7 +148,8 @@ export function AfricaStoriesPage({ posts }: { posts: WpPostWithSource[] }) {
 export function AfricaPolicyBriefsPage() {
   const briefs = [
     {
-      title: "Policy Brief — February 2026",
+      title:
+        "IMPROVING WATER AND SANITATION SERVICE DELIVERY IN CAMEROON, ETHIOPIA, KENYA, AND ZIMBABWE: WHAT IS WORKING, WHAT ISN'T, AND WHY?",
       description:
         "Evidence-informed policy brief from RLRI Africa Program. Download the full PDF for findings and recommendations.",
       href: "https://africa-programs.reallifeinstitute.org/wp-content/uploads/2026/04/Policy-Brief-FEBRUARY-1.pdf",
