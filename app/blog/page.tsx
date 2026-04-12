@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BlogSourceBadge } from "@/components/blog/BlogSourceBadge";
-import { blogPostPath, getAfricaPosts } from "@/lib/wp";
+import { blogPostPath, getAfricaPosts, stripHtml } from "@/lib/wp";
 
 export default async function BlogPage() {
   const posts = await getAfricaPosts();
@@ -31,11 +31,7 @@ export default async function BlogPage() {
                 <div className="min-w-0 flex-1">
                   <BlogSourceBadge source={post.source} />
                   <h2 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-stone-900 transition-colors group-hover:text-amber-900 dark:text-zinc-50 dark:group-hover:text-amber-100 sm:text-[1.35rem]">
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: post.title.rendered,
-                      }}
-                    />
+                    {stripHtml(post.title.rendered)}
                   </h2>
                 </div>
                 <span

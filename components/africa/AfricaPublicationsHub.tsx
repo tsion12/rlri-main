@@ -96,8 +96,9 @@ function LatestPostCard({ post }: { post: WpPostWithSource }) {
       </span>
       <h3
         className="flex-1 text-sm font-semibold leading-snug text-zinc-900 transition-colors group-hover:text-teal-800 dark:text-zinc-50 dark:group-hover:text-teal-300"
-        dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-      />
+      >
+        {stripHtml(post.title.rendered)}
+      </h3>
       {excerpt && (
         <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">{excerpt}</p>
       )}

@@ -73,8 +73,9 @@ function StoryCard({ post }: { post: WpPostWithSource }) {
         </div>
         <h3
           className="mt-3 flex-1 text-sm font-semibold leading-snug text-zinc-900 transition-colors group-hover:text-teal-800 dark:text-zinc-50 dark:group-hover:text-teal-300"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        >
+          {stripHtml(post.title.rendered)}
+        </h3>
         {excerpt && <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{excerpt}</p>}
         <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-teal-800 dark:text-teal-300">
           Read story

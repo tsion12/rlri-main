@@ -179,8 +179,9 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
         <h1
           className="mt-6 text-balance text-3xl font-semibold leading-[1.12] tracking-tight text-stone-900 dark:text-zinc-50 sm:mt-8 sm:text-4xl sm:leading-[1.08] lg:text-[2.5rem]"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        >
+          {stripHtml(post.title.rendered)}
+        </h1>
 
         <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-stone-500 dark:text-zinc-500">
           <time dateTime={post.date} className="font-medium text-stone-700 dark:text-zinc-300">

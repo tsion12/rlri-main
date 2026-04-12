@@ -43,8 +43,9 @@ function FeaturedPostCard({ post }: { post: WpPostWithSource }) {
         </div>
         <h2
           className="mt-4 text-xl font-semibold leading-snug tracking-tight text-zinc-900 transition-colors group-hover:text-teal-800 dark:text-zinc-50 dark:group-hover:text-teal-300 sm:text-2xl"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        >
+          {stripHtml(post.title.rendered)}
+        </h2>
         {excerpt && (
           <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{excerpt}</p>
         )}
@@ -92,8 +93,9 @@ function BlogCard({ post }: { post: WpPostWithSource }) {
         </div>
         <h3
           className="mt-3 flex-1 text-sm font-semibold leading-snug text-zinc-900 transition-colors group-hover:text-teal-800 dark:text-zinc-50 dark:group-hover:text-teal-300"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        >
+          {stripHtml(post.title.rendered)}
+        </h3>
         {excerpt && (
           <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">{excerpt}</p>
         )}

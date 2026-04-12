@@ -98,8 +98,9 @@ export function AfricaLatestNews({ posts }: Props) {
                     </div>
                     <h3
                       className={au.home.newsTitle}
-                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                    />
+                    >
+                      {stripHtml(post.title.rendered)}
+                    </h3>
                     <p className={au.home.newsExcerpt}>{excerptFor(post)}</p>
                     <span className={au.home.newsRead}>
                       Read article <span aria-hidden>→</span>
