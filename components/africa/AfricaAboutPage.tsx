@@ -5,14 +5,54 @@ import { getAfricaPosts, stripHtml } from "@/lib/wp";
 import { AboutValuePillars } from "./AboutValuePillars";
 
 const POLICIES = [
-  { date: "Aug 23", name: "Finance Management Policy", excerpt: "High standards of financial accountability across all programs." },
-  { date: "Aug 23", name: "Anti-racism Policy", excerpt: "Safe, inclusive, respectful environment free from racism in all its forms." },
-  { date: "Aug 5", name: "Screening and Background Check Policy", excerpt: "Reliable hiring through thorough candidate screening and verification." },
-  { date: "Aug 5", name: "Equity, Diversity, and Inclusion (EDI) Policy", excerpt: "Promoting equity, diversity, and inclusion across all programs." },
-  { date: "Aug 5", name: "Anti-corruption and Whistleblowing Policy", excerpt: "Zero tolerance for fraud, bribery, and corruption at every level." },
-  { date: "Aug 5", name: "Anti-harassment and Discrimination Policy", excerpt: "A safe, flexible, respectful environment for everyone." },
-  { date: "Aug 5", name: "Sexual Exploitation, Abuse, and Harassment (SEAH) Policy", excerpt: "Zero tolerance toward sexual exploitation, abuse, and harassment." },
-  { date: "Aug 5", name: "Safeguarding and Protection Policy", excerpt: "Everyone treated with dignity and protected from all forms of harm." },
+  {
+    date: "Aug 2025",
+    name: "Finance Management Policy",
+    excerpt: "High standards of financial accountability across all programs.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/08/RLRI-_-Financial-Policy_2025.pdf",
+  },
+  {
+    date: "Aug 2025",
+    name: "Anti-racism Policy",
+    excerpt: "Safe, inclusive, respectful environment free from racism in all its forms.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/08/RLRI-_-Anti-racism-policy_2025.pdf",
+  },
+  {
+    date: "Aug 2025",
+    name: "Screening and Background Check Policy",
+    excerpt: "Reliable hiring through thorough candidate screening and verification.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/08/RLRI_Screening-Background-Check-Policy-1.pdf",
+  },
+  {
+    date: "Aug 2025",
+    name: "Equity, Diversity, and Inclusion (EDI) Policy",
+    excerpt: "Promoting equity, diversity, and inclusion across all programs.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/08/RLRI_EDI_POLICY-2.pdf",
+  },
+  {
+    date: "Dec 2025",
+    name: "Anti-corruption and Whistleblowing Policy",
+    excerpt: "Zero tolerance for fraud, bribery, and corruption at every level.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/12/RLRI_anticorruptionwhistleblowing.pdf",
+  },
+  {
+    date: "Aug 2025",
+    name: "Anti-harassment and Discrimination Policy",
+    excerpt: "A safe, flexible, respectful environment for everyone.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/08/RLRI_Anti-harrasement-discrimination-policy-1.pdf",
+  },
+  {
+    date: "Aug 2025",
+    name: "Sexual Exploitation, Abuse, and Harassment (SEAH) Policy",
+    excerpt: "Zero tolerance toward sexual exploitation, abuse, and harassment.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/08/RLRI-SEAH-POLICY-.pdf",
+  },
+  {
+    date: "Dec 2025",
+    name: "Safeguarding and Protection Policy",
+    excerpt: "Everyone treated with dignity and protected from all forms of harm.",
+    href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2025/12/RLRI_Safeguarding-and-Protection-Policy-1.pdf",
+  },
 ] as const;
 
 /* ── Main component ───────────────────────────────────────────────────── */
@@ -343,10 +383,12 @@ export async function AfricaAboutPage() {
 
           {/* ── Card grid ── */}
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {POLICIES.map(({ date, name, excerpt }) => (
+            {POLICIES.map(({ date, name, excerpt, href }) => (
               <li key={name} className="flex">
                 <Link
-                  href={africaRoutes.aboutPolicies}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex w-full flex-col rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-teal-300/60 hover:bg-teal-50/60 hover:shadow-md dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-teal-800/50 dark:hover:bg-teal-950/20"
                 >
                   {/* Top: date badge */}
