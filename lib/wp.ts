@@ -35,6 +35,53 @@ export type WpPost = {
 
 export type WpPostWithSource = WpPost & { source: WpSource };
 
+const LOCAL_AFRICA_POSTS: WpPostWithSource[] = [
+  {
+    id: 9_000_001,
+    source: "africa",
+    slug: "shaping-development-policies-in-the-sahel-through-evidence-based-synthesis-progress-from-a-baobab-clare-programme-funded-team",
+    date: "2026-04-16T09:00:00.000Z",
+    title: {
+      rendered:
+        "Shaping Development Policies in the Sahel through Evidence-Based Synthesis: Progress from a BAOBAB-CLARE Programme Funded Team",
+    },
+    excerpt: {
+      rendered:
+        "An update on evidence-based synthesis work in the Sahel and how emerging insights can support more grounded, policy-relevant development responses.",
+    },
+    content: {
+      rendered: `
+        <p>
+          Across the Sahel, development policy decisions are increasingly shaped by overlapping climate, livelihood,
+          and governance pressures. This update highlights progress from a BAOBAB-CLARE Programme funded team working
+          to synthesize evidence that can better inform policy and practice.
+        </p>
+        <p>
+          Our approach centers on translating complex and often fragmented evidence into actionable insights for
+          policymakers, practitioners, and communities. By connecting research findings to lived realities, the team
+          aims to support development strategies that are context-responsive, inclusive, and implementable.
+        </p>
+        <p>
+          This work contributes to ongoing conversations on adaptation, resilience, and conflict-sensitive development
+          in the Sahel, with a focus on strengthening the quality and relevance of policy design through
+          evidence-based synthesis.
+        </p>
+      `,
+    },
+    featuredImage: null,
+    theme: "Climate Adaptation & Resilience",
+    programKey: "climate",
+    programLabel: "Climate Adaptation & Resilience",
+    authorName: "Chris Begealawuh, PhD",
+    authorBio: null,
+    authorAvatar: null,
+  },
+];
+
+function getLocalAfricaPost(slug: string): WpPostWithSource | null {
+  return LOCAL_AFRICA_POSTS.find((post) => post.slug === slug) ?? null;
+}
+
 export type WpPageHighlight = {
   title: string;
   excerpt: string;
@@ -466,9 +513,14 @@ export async function getAfricaPosts(): Promise<WpPostWithSource[]> {
       postHasCategory(post, { id: resolvedCategory ?? AFRICA_CAT.blogAp, names: BLOG_AP_CATEGORY_NAMES }),
     );
   }
-  return posts
+  const remotePosts = posts
     .map((p) => normalizePost("africa", p))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const merged = [...LOCAL_AFRICA_POSTS, ...remotePosts];
+  const deduped = merged.filter(
+    (post, index, all) => all.findIndex((candidate) => candidate.slug === post.slug) === index,
+  );
+  return deduped.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 /** Africa "Stories-AP" category posts, newest first. Safe on fetch failure (empty list). */
@@ -502,6 +554,11 @@ export async function getPost(
   source: WpSource,
   slug: string,
 ): Promise<WpPostWithSource | null> {
+  if (source === "africa") {
+    const local = getLocalAfricaPost(slug);
+    if (local) return local;
+  }
+
   const url = new URL(`${API[source]}/posts`);
   url.searchParams.set("slug", slug);
   url.searchParams.set("_embed", "author,wp:term");

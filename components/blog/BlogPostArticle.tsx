@@ -125,6 +125,9 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
     "Cameroon celebrates national dialogue anniversary, but critics say dialogue outcomes remain unmet",
   )]: CHRIS_SOLO,
   [normalizeTitleKey("Mjadala Afrika: The AU Chairperson Elections & 2024 Candidate Debate")]: CHRIS_SOLO,
+  [normalizeTitleKey(
+    "Shaping Development Policies in the Sahel through Evidence-Based Synthesis: Progress from a BAOBAB-CLARE Programme Funded Team",
+  )]: CHRIS_SOLO,
 };
 
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
