@@ -17,7 +17,7 @@ const quickLinks = [
   { label: "About", href: africaRoutes.about },
   { label: "Team", href: africaRoutes.team },
   { label: "Volunteers", href: africaRoutes.volunteers },
-  { label: "Career", href: africaRoutes.career },
+  { label: "Careers", href: africaRoutes.career },
   { label: "Contact", href: `mailto:contact-africa@reallifeinstitute.org` },
   { label: "Programs", href: africaRoutes.programs },
   { label: "Publications", href: africaRoutes.publications },

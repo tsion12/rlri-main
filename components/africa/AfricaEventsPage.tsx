@@ -21,6 +21,25 @@ const FEATURED = {
     "https://docs.google.com/forms/d/e/1FAIpQLSfGSPxWyIdYLIXDRPWZs4XezOXcBZ09rV3yxnPze1DXZ3lXxA/viewform?usp=publish-editor",
 } as const;
 
+const CLIMATE_ADAPTATION_EVENT = {
+  series: "Webinar Series | Real Life Research Institute",
+  locationDate: "Online webinar | Friday, May 29, 2026",
+  title: "Rethinking Climate Adaptation in Africa",
+  subtitle:
+    "Evidence from a Sahel Climate–Conflict Synthesis, Disinformation Research, and Local Practice in Sierra Leone",
+  timezoneLine:
+    "Ottawa: 9:00 – 10:30 AM (EDT) | West Africa: 1:00–2:30 PM | Central Africa: 2:00–3:30 PM | Southern Africa: 3:00–4:30 PM | East Africa: 4:00–5:30 PM",
+  summary:
+    "Across Africa, climate change is no longer a future risk but a lived reality. This webinar recentres locally grounded adaptation in African climate responses by bringing together three complementary perspectives: evidence from a Sahel-focused climate-conflict-livelihoods synthesis; expert insight on climate misinformation and disinformation and their implications for adaptation governance; and lived experience from a local civil society leader working in high-risk communities in Sierra Leone.",
+  day: "29",
+  month: "MAY",
+  year: "2026",
+  time: "9:00 AM – 10:30 AM (Ottawa, EDT)",
+  format: "Online Webinar",
+  href: africaRoutes.eventClimateAdaptation,
+  speakersNote: "Full details on the speakers and moderator will be announced shortly.",
+} as const;
+
 const PAST_EVENTS = [
   {
     title: "Strengthening Legal Protection Systems for Women and Girls in Sub-Saharan Africa in the Age of AI",
@@ -140,6 +159,49 @@ export function AfricaEventsPage() {
                   )}
                   <Link
                     href={FEATURED.href}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
+                  >
+                    View details
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Second upcoming event */}
+          <div className="mt-8 overflow-hidden rounded-4xl shadow-[0_24px_55px_-24px_rgba(15,23,42,0.25)]">
+            <div className="grid lg:grid-cols-[280px_1fr]">
+              <div className="relative flex flex-col items-center justify-center overflow-hidden bg-linear-to-br from-teal-500 via-teal-600 to-teal-800 px-8 py-10 text-center text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-200/90">
+                  {CLIMATE_ADAPTATION_EVENT.month} · {CLIMATE_ADAPTATION_EVENT.year}
+                </p>
+                <p className="mt-2 text-7xl font-bold leading-none">{CLIMATE_ADAPTATION_EVENT.day}</p>
+                <p className="mt-3 text-xs font-semibold text-teal-100">{CLIMATE_ADAPTATION_EVENT.time}</p>
+                <span className="mt-3 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-medium">
+                  {CLIMATE_ADAPTATION_EVENT.format}
+                </span>
+              </div>
+
+              <div className="bg-white p-6 sm:p-8 dark:bg-zinc-900/80">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
+                  {CLIMATE_ADAPTATION_EVENT.series}
+                </p>
+                <h2 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
+                  {CLIMATE_ADAPTATION_EVENT.title}
+                </h2>
+                <p className="mt-1 text-sm font-medium italic text-zinc-500 dark:text-zinc-400">
+                  {CLIMATE_ADAPTATION_EVENT.subtitle}
+                </p>
+                <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{CLIMATE_ADAPTATION_EVENT.locationDate}</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{CLIMATE_ADAPTATION_EVENT.timezoneLine}</p>
+                <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{CLIMATE_ADAPTATION_EVENT.summary}</p>
+                <p className="mt-3 text-xs italic text-zinc-400 dark:text-zinc-500">{CLIMATE_ADAPTATION_EVENT.speakersNote}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <span className="inline-flex min-h-11 cursor-default items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100 px-6 text-sm font-semibold text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+                    Registration opening soon
+                  </span>
+                  <Link
+                    href={CLIMATE_ADAPTATION_EVENT.href}
                     className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
                   >
                     View details

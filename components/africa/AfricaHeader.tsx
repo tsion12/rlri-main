@@ -17,7 +17,7 @@ const publications = [
 const aboutMenu = [
   { label: "Team", href: africaRoutes.team },
   { label: "Volunteers", href: africaRoutes.volunteers },
-  { label: "Career", href: africaRoutes.career },
+  { label: "Careers", href: africaRoutes.career },
   { label: "Policies", href: africaRoutes.aboutPolicies },
 ] as const;
 
@@ -229,7 +229,7 @@ export function AfricaHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <ThemeToggle className="!h-10 !w-10 !rounded-lg !border-zinc-200/80 !shadow-sm dark:!border-zinc-700" />
+          <ThemeToggle className="h-10! w-10! rounded-lg! border-zinc-200/80! shadow-sm! dark:border-zinc-700!" />
 
           <button
             type="button"

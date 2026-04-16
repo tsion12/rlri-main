@@ -75,7 +75,7 @@ const TEAM: Member[] = [
     name: "Nfor Christelle Mugha",
     role: "Project Assistant (Cameroon)",
     bio: "Nfor Christelle Mugha is a Project Assistant at the Real Life Research Institute (RLRI) with a country focus on Cameroon. She supports research activities, community engagement, and communications initiatives, contributing to the documentation and dissemination of research and community-based work. Her role bridges research and storytelling, strengthening RLRI’s engagement with communities and enhancing the visibility of locally grounded, social justice–oriented initiatives in Cameroon. Christelle holds a Bachelor of Arts in Journalism from the Advanced School of Mass Communication (ESSTIC), Yaoundé.",
-    photo: "",
+    photo: "/assets/Team/christelle.jpeg",
     linkedin: "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
   },
 ];
@@ -170,7 +170,7 @@ export function AfricaTeamPage() {
           <p className="mt-16 text-center text-sm text-zinc-500 dark:text-zinc-500">
             Looking for career openings?{" "}
             <Link href={africaRoutes.career} className="font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-400">
-              Career
+              Careers
             </Link>
           </p>
         </div>

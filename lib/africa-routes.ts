@@ -12,6 +12,7 @@ export const africaRoutes = {
   career: "/africa/career",
   events: "/africa/events",
   eventNextWebinar: "/africa/events/tensions-middle-east-security-digital-infrastructure",
+  eventClimateAdaptation: "/africa/events/rethinking-climate-adaptation-in-africa",
   programs: "/africa/programs",
   publications: "/africa/publications",
   blogs: "/africa/publications/blogs",
