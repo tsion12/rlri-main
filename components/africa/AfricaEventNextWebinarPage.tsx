@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { africaRoutes } from "@/lib/africa-routes";
+import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 
 const REGISTER_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfGSPxWyIdYLIXDRPWZs4XezOXcBZ09rV3yxnPze1DXZ3lXxA/viewform?usp=publish-editor";
@@ -96,7 +97,8 @@ export function AfricaEventNextWebinarPage() {
 
       <section className="bg-white py-16 dark:bg-zinc-950 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">Speakers &amp; moderator</h2>
+          <WebinarProgramSupportLine month="april" className="max-w-4xl" />
+          <h2 className="mt-10 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">Speakers &amp; moderator</h2>
           <ul className="mt-8 space-y-8">
             {SPEAKERS.map((person) => (
               <li key={person.name}>

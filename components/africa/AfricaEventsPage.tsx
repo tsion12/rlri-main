@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { africaRoutes } from "@/lib/africa-routes";
+import {
+  WebinarProgramSupportLine,
+  type WebinarProgramMonth,
+} from "@/components/africa/WebinarProgramSupportLine";
 import { EventCountdown } from "./EventCountdown";
 
 const FEATURED = {
@@ -19,6 +23,7 @@ const FEATURED = {
   href: africaRoutes.eventNextWebinar,
   registerHref:
     "https://docs.google.com/forms/d/e/1FAIpQLSfGSPxWyIdYLIXDRPWZs4XezOXcBZ09rV3yxnPze1DXZ3lXxA/viewform?usp=publish-editor",
+  supportMonth: "april" satisfies WebinarProgramMonth,
 } as const;
 
 const CLIMATE_ADAPTATION_EVENT = {
@@ -38,6 +43,7 @@ const CLIMATE_ADAPTATION_EVENT = {
   format: "Online Webinar",
   href: africaRoutes.eventClimateAdaptation,
   speakersNote: "Full details on the speakers and moderator will be announced shortly.",
+  supportMonth: "may" satisfies WebinarProgramMonth,
 } as const;
 
 const PAST_EVENTS = [
@@ -57,6 +63,7 @@ const PAST_EVENTS = [
      * Set to a URL string to enable the "Watch Recording" button.
      */
     recordingHref: "https://www.youtube.com/watch?v=ZnAWHbZ5Gsk",
+    supportMonth: "march" satisfies WebinarProgramMonth,
   },
   {
     title: "Assuring Sustainable Water Availability and Safe Sanitation Systems in Africa",
@@ -71,6 +78,7 @@ const PAST_EVENTS = [
     policyBriefHref: africaRoutes.policyBriefs,
     /** Recording link — set this to the webinar replay URL */
     recordingHref: "https://www.youtube.com/watch?v=IIorkFDsOZ0",
+    supportMonth: "february" satisfies WebinarProgramMonth,
   },
 ] as const;
 
@@ -142,6 +150,7 @@ export function AfricaEventsPage() {
                 <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{FEATURED.locationDate}</p>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{FEATURED.timezoneLine}</p>
                 <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{FEATURED.summary}</p>
+                <WebinarProgramSupportLine month={FEATURED.supportMonth} className="mt-4" />
                 <div className="mt-6 flex flex-wrap gap-3">
                   {FEATURED.registerHref ? (
                     <a
@@ -195,6 +204,7 @@ export function AfricaEventsPage() {
                 <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{CLIMATE_ADAPTATION_EVENT.locationDate}</p>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{CLIMATE_ADAPTATION_EVENT.timezoneLine}</p>
                 <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{CLIMATE_ADAPTATION_EVENT.summary}</p>
+                <WebinarProgramSupportLine month={CLIMATE_ADAPTATION_EVENT.supportMonth} className="mt-4" />
                 <p className="mt-3 text-xs italic text-zinc-400 dark:text-zinc-500">{CLIMATE_ADAPTATION_EVENT.speakersNote}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <span className="inline-flex min-h-11 cursor-default items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100 px-6 text-sm font-semibold text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
@@ -233,6 +243,7 @@ export function AfricaEventsPage() {
                 href,
                 policyBriefHref,
                 recordingHref,
+                supportMonth,
               }) => (
               <li key={title} className="flex">
                 <article className="flex w-full flex-col rounded-2xl border border-zinc-200/80 bg-zinc-50 p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
@@ -247,6 +258,7 @@ export function AfricaEventsPage() {
                     {title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{description}</p>
+                  <WebinarProgramSupportLine month={supportMonth} className="mt-3" />
                   <div className="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag) => (
                       <span key={tag} className="rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-[11px] font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">

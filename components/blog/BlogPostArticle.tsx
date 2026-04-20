@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BlogSharePanel } from "@/components/blog/BlogSharePanel";
+import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 import { programsAnchor } from "@/lib/africa-routes";
 import { stripBlogWordPressHtml } from "@/lib/strip-blog-html";
 import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
@@ -206,6 +207,10 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
           </span>
           <span>{minutes} min read</span>
         </div>
+
+        {post.slug === "rethinking-wash-governance-in-africa-insights-from-webinar-speaker-agbor" ? (
+          <WebinarProgramSupportLine month="february" className="mt-5" />
+        ) : null}
 
         <section className="mt-6 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">

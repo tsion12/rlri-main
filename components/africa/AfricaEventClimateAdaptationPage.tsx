@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { africaRoutes } from "@/lib/africa-routes";
+import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 
 export function AfricaEventClimateAdaptationPage() {
   return (
@@ -91,6 +92,8 @@ export function AfricaEventClimateAdaptationPage() {
             sustainable development programming; policymakers and donor agencies shaping climate, adaptation, and
             development finance; as well as students engaged in climate adaptation, resilience, and sustainable development.
           </p>
+
+          <WebinarProgramSupportLine month="may" className="mt-8" />
 
           <p className="mt-6 text-sm italic leading-relaxed text-zinc-500 dark:text-zinc-400">
             —Full details on the speakers and moderator will be announced shortly.
