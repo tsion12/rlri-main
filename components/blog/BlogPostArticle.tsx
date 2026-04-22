@@ -114,12 +114,10 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       name: "Richard A. Nyiawung, PhD",
       role: "Co-author",
       linkedin: "https://www.linkedin.com/in/richard-nyiawung-phd-67165b87/",
-      bio: "Dr. Richard Nyiawung is a Postdoctoral Fellow at the University of Waterloo in Canada, with extensive research and professional experience in fisheries and oceans policies and governance. He is a Research Affiliate at the Real Life Research Institute (RLRI), contributing seasonally to the organization's Oceans Program activities. Richard is a member of the African and Adjacent Island States Ocean Decade Taskforce, IOC-UNESCO.",
     },
     {
       name: "Maurice Besseng, PhD",
       role: "Co-author",
-      bio: "Dr. Maurice Beseng is a Teaching Fellow at the Department of Global Sustainable Development, University of Warwick, UK, with substantial research experience in maritime security governance, with a particular interest in the nexus between fisheries crime and ocean governance.",
     },
   ],
 };
