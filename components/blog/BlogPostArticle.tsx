@@ -279,30 +279,6 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
             })}
           </div>
         </section>
-
-        {post.featuredImage ? (
-          <div className="relative mt-10 overflow-hidden rounded-2xl border border-stone-200/80 shadow-2xl shadow-stone-950/10 ring-1 ring-stone-950/5 dark:border-zinc-800 dark:shadow-black/40 dark:ring-white/5 sm:rounded-3xl">
-            <div className="relative aspect-video w-full sm:aspect-2/1">
-              <Image
-                src={post.featuredImage}
-                alt={titlePlain || "Article cover image"}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 48rem"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-linear-to-t from-stone-950/40 via-transparent to-transparent dark:from-zinc-950/50"
-              />
-            </div>
-          </div>
-        ) : (
-          <div
-            aria-hidden
-            className="mt-10 h-px w-full max-w-md bg-linear-to-r from-amber-500/50 via-amber-400/20 to-transparent"
-          />
-        )}
       </header>
 
       {excerptPlain ? (
