@@ -4,7 +4,7 @@ import { AfricaCareerPage } from "@/components/africa/AfricaCareerPage";
 export const metadata: Metadata = {
   title: "Career | Africa Program | Real Life Research Institute",
   description:
-    "Career opportunities with the Real Life Research Institute Africa Program—stay tuned for future openings.",
+    "Careers with the Real Life Research Institute Africa Program—the Assistant Editor (remote) role. Apply by May 15, 2026.",
 };
 
 export default function CareerPage() {

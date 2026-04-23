@@ -29,10 +29,15 @@ export const africaRoutes = {
   canadianProgram: "https://reallifeinstitute.org",
 } as const;
 
-/** Inboxes for volunteering vs careers—use in mailto links on those pages. */
+/**
+ * Inboxes for program coordination, applications, and HR.
+ * - `jobsHr`: resumes, job and structured volunteer applications.
+ * - `hrSupport`: general HR questions and support.
+ */
 export const africaEmails = {
   programsCoord: "programs_coord@reallifeinstitute.org",
   jobsHr: "jobs_hr@reallifeinstitute.org",
+  hrSupport: "hr.support@reallifeinstitute.org",
 } as const;
 
 export function programsAnchor(programOrdinal: string) {
