@@ -122,6 +122,12 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
         linkedin: "https://www.linkedin.com/in/mbeseng/",
       },
     ],
+  "when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online": [
+    {
+      name: "Prudence Chepngeno",
+      role: "Author",
+    },
+  ],
 };
 
 /** Normalize titles so WP punctuation/spacing variants still match overrides. */
@@ -156,6 +162,12 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   [normalizeTitleKey(
     "Empowering roots: Why the World Trade Organization (WTO) Agreement on Fisheries Subsidies matters for small-scale fisheries",
   )]: AUTHOR_OVERRIDES["empowering-roots-why-the-world-trade-organization-wto-agreement-on-fisheries-subsidies-matters-for-small-scale-fisheries"],
+  [normalizeTitleKey(
+    "When AI becomes a weapon: what African governments must do to protect women online",
+  )]: AUTHOR_OVERRIDES["when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"],
+  [normalizeTitleKey(
+    "When AI becomes a weapon: what African governments must do to protect women online.",
+  )]: AUTHOR_OVERRIDES["when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"],
 };
 
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
