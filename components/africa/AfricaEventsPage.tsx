@@ -42,6 +42,8 @@ const CLIMATE_ADAPTATION_EVENT = {
   time: "9:00 AM – 10:30 AM (Ottawa, EDT)",
   format: "Online Webinar",
   href: africaRoutes.eventClimateAdaptation,
+  registerHref:
+    "https://docs.google.com/forms/d/e/1FAIpQLSdgvJw-YcKHoeblL1dUp3JeTuuy0j4oXMT7N1mper6-JIkPsg/viewform?usp=publish-editor",
   speakersNote: "Full details on the speakers and moderator will be announced shortly.",
   supportMonth: "may" satisfies WebinarProgramMonth,
 } as const;
@@ -207,9 +209,14 @@ export function AfricaEventsPage() {
                 <WebinarProgramSupportLine month={CLIMATE_ADAPTATION_EVENT.supportMonth} className="mt-4" />
                 <p className="mt-3 text-xs italic text-zinc-400 dark:text-zinc-500">{CLIMATE_ADAPTATION_EVENT.speakersNote}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <span className="inline-flex min-h-11 cursor-default items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100 px-6 text-sm font-semibold text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
-                    Registration opening soon
-                  </span>
+                  <a
+                    href={CLIMATE_ADAPTATION_EVENT.registerHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-6 text-sm font-semibold text-white transition hover:bg-teal-600"
+                  >
+                    Register now
+                  </a>
                   <Link
                     href={CLIMATE_ADAPTATION_EVENT.href}
                     className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
