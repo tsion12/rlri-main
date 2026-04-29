@@ -1,12 +1,20 @@
 import Link from "next/link";
-import { blogPostPath, stripHtml, type WpPageHighlight, type WpPostWithSource } from "@/lib/wp";
+import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
 import { africaRoutes } from "@/lib/africa-routes";
 import { au } from "./africa-ui";
 
 
+type HeroEventHighlight = {
+  title: string;
+  excerpt: string;
+  modified: string;
+  eventDateISO?: string | null;
+  link?: string;
+};
+
 type Props = {
   featuredPost?: WpPostWithSource | null;
-  upcomingEvent?: WpPageHighlight | null;
+  upcomingEvent?: HeroEventHighlight | null;
 };
 
 export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
@@ -29,6 +37,7 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
         ? `Updated ${formatDate(upcomingEvent.modified)}`
         : "Live schedule"
     : "Live schedule";
+  const featuredAnnouncementHref = prioritizeEvent ? upcomingEvent?.link ?? africaRoutes.events : africaRoutes.events;
   const bulletinTitle = prioritizeEvent
     ? featuredPostTitle ?? "Fresh research and commentary from the Africa journal"
     : featuredPostTitle ?? "Latest Insights";
@@ -102,7 +111,7 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
               <div className="mt-4 border-t border-zinc-200 pt-3 text-xs font-medium uppercase tracking-[0.12em] text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">
                 {featuredAnnouncementMeta}
               </div>
-              <Link href={africaRoutes.events} className="mt-5 inline-flex text-sm font-semibold text-emerald-800 hover:underline dark:text-emerald-300">
+              <Link href={featuredAnnouncementHref} className="mt-5 inline-flex text-sm font-semibold text-emerald-800 hover:underline dark:text-emerald-300">
                 {prioritizeEvent ? "Register for event" : "Review event schedule"}
               </Link>
             </article>

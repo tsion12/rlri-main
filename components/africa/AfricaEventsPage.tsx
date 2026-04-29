@@ -1,90 +1,23 @@
 import Link from "next/link";
 import { africaRoutes } from "@/lib/africa-routes";
-import {
-  WebinarProgramSupportLine,
-  type WebinarProgramMonth,
-} from "@/components/africa/WebinarProgramSupportLine";
+import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
+import { getCategorizedAfricaEvents } from "@/lib/africa-events";
 import { EventCountdown } from "./EventCountdown";
 
-const FEATURED = {
-  series: "Webinar Series | Real Life Research Institute",
-  locationDate: "Location: Online | Monday, April 27, 2026",
-  title: "Tensions in the Middle East: Implications for African Security and Digital Infrastructure",
-  timezoneLine:
-    "Ottawa (EDT): 9:00 am – 10:00 am | South Africa (SAST): 3:00 pm – 4:00 pm | Kenya / Ethiopia (EAT): 4:00 pm – 5:00 pm | Cameroon/Nigeria (WAT): 2:00 pm – 3:00 pm",
-  summary:
-    "This event brings together scholars, policymakers, and practitioners to examine the economic, security, and political implications of the evolving Middle East crisis for Africa, with special focus on digital infrastructure resilience.",
-  day: "27",
-  month: "APR",
-  year: "2026",
-  time: "9:00 AM – 10:00 AM (Ottawa, EDT)",
-  format: "Online Webinar",
-  isoDate: "2026-04-27T09:00:00-04:00",
-  href: africaRoutes.eventNextWebinar,
-  registerHref:
-    "https://docs.google.com/forms/d/e/1FAIpQLSfGSPxWyIdYLIXDRPWZs4XezOXcBZ09rV3yxnPze1DXZ3lXxA/viewform?usp=publish-editor",
-  supportMonth: "april" satisfies WebinarProgramMonth,
-} as const;
-
-const CLIMATE_ADAPTATION_EVENT = {
-  series: "Webinar Series | Real Life Research Institute",
-  locationDate: "Online webinar | Friday, May 29, 2026",
-  title: "Rethinking Climate Adaptation in Africa",
-  subtitle:
-    "Evidence from a Sahel Climate–Conflict Synthesis, Disinformation Research, and Local Practice in Sierra Leone",
-  timezoneLine:
-    "Ottawa: 9:00 – 10:30 AM (EDT) | West Africa: 1:00–2:30 PM | Central Africa: 2:00–3:30 PM | Southern Africa: 3:00–4:30 PM | East Africa: 4:00–5:30 PM",
-  summary:
-    "Across Africa, climate change is no longer a future risk but a lived reality. This webinar recentres locally grounded adaptation in African climate responses by bringing together three complementary perspectives: evidence from a Sahel-focused climate-conflict-livelihoods synthesis; expert insight on climate misinformation and disinformation and their implications for adaptation governance; and lived experience from a local civil society leader working in high-risk communities in Sierra Leone.",
-  day: "29",
-  month: "MAY",
-  year: "2026",
-  time: "9:00 AM – 10:30 AM (Ottawa, EDT)",
-  format: "Online Webinar",
-  href: africaRoutes.eventClimateAdaptation,
-  registerHref:
-    "https://docs.google.com/forms/d/e/1FAIpQLSdgvJw-YcKHoeblL1dUp3JeTuuy0j4oXMT7N1mper6-JIkPsg/viewform?usp=publish-editor",
-  speakersNote: "Full details on the speakers and moderator will be announced shortly.",
-  supportMonth: "may" satisfies WebinarProgramMonth,
-} as const;
-
-const PAST_EVENTS = [
-  {
-    title: "Strengthening Legal Protection Systems for Women and Girls in Sub-Saharan Africa in the Age of AI",
-    description:
-      "This webinar explored why progressive legal frameworks across Africa often fail to translate into real justice for women and girls, examining institutional weaknesses, gender-responsive budgeting, survivor support systems, and accountability mechanisms.",
-    day: "27",
-    month: "MAR",
-    year: "2026",
-    format: "Online Webinar",
-    tags: ["Gender Justice", "Legal Frameworks"],
-    href: africaRoutes.events,
-    policyBriefHref: null as string | null,
-    /**
-     * Recording / recap link for past events.
-     * Set to a URL string to enable the "Watch Recording" button.
-     */
-    recordingHref: "https://www.youtube.com/watch?v=ZnAWHbZ5Gsk",
-    supportMonth: "march" satisfies WebinarProgramMonth,
-  },
-  {
-    title: "Assuring Sustainable Water Availability and Safe Sanitation Systems in Africa",
-    description:
-      "This Pan-African webinar brought together researchers, policy practitioners, and civil society actors to discuss governance, sustainability, and financing challenges affecting water availability and sanitation systems across Africa.",
-    day: "—",
-    month: "2025",
-    year: "",
-    format: "Pan-African Webinar",
-    tags: ["Water & Sanitation", "Governance"],
-    href: africaRoutes.events,
-    policyBriefHref: africaRoutes.policyBriefs,
-    /** Recording link — set this to the webinar replay URL */
-    recordingHref: "https://www.youtube.com/watch?v=IIorkFDsOZ0",
-    supportMonth: "february" satisfies WebinarProgramMonth,
-  },
-] as const;
+function formatCalendarParts(isoDate: string) {
+  const date = new Date(isoDate);
+  return {
+    day: new Intl.DateTimeFormat("en-US", { day: "2-digit" }).format(date),
+    month: new Intl.DateTimeFormat("en-US", { month: "short" }).format(date).toUpperCase(),
+    year: new Intl.DateTimeFormat("en-US", { year: "numeric" }).format(date),
+  };
+}
 
 export function AfricaEventsPage() {
+  const { upcoming, past } = getCategorizedAfricaEvents();
+  const featured = upcoming[0] ?? null;
+  const featuredDateParts = featured ? formatCalendarParts(featured.isoDate) : null;
+
   return (
     <>
       <section className="border-b border-zinc-200/80 bg-white py-20 dark:border-zinc-800 dark:bg-zinc-950 sm:py-24">
@@ -121,112 +54,75 @@ export function AfricaEventsPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">Upcoming</p>
             <span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
           </div>
-          <div className="mb-8 rounded-2xl bg-linear-to-r from-teal-700 via-teal-800 to-teal-900 p-4 text-white shadow-sm sm:p-5">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-200">Countdown to webinar</p>
-            <p className="mt-1 text-sm text-teal-100">{FEATURED.title}</p>
-            <div className="mt-4">
-              <EventCountdown targetISO={FEATURED.isoDate} />
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-4xl shadow-[0_24px_55px_-24px_rgba(15,23,42,0.35)]">
-            <div className="grid lg:grid-cols-[280px_1fr]">
-              <div className="relative flex flex-col items-center justify-center overflow-hidden bg-linear-to-br from-teal-600 via-teal-700 to-teal-900 px-8 py-10 text-center text-white">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-200/90">
-                  {FEATURED.month} · {FEATURED.year}
-                </p>
-                <p className="mt-2 text-7xl font-bold leading-none">{FEATURED.day}</p>
-                <p className="mt-3 text-xs font-semibold text-teal-100">{FEATURED.time}</p>
-                <span className="mt-3 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-medium">
-                  {FEATURED.format}
-                </span>
+          {featured ? (
+            <>
+              <div className="mb-8 rounded-2xl bg-linear-to-r from-teal-700 via-teal-800 to-teal-900 p-4 text-white shadow-sm sm:p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-200">Countdown to webinar</p>
+                <p className="mt-1 text-sm text-teal-100">{featured.title}</p>
+                <div className="mt-4">
+                  <EventCountdown targetISO={featured.isoDate} />
+                </div>
               </div>
 
-              <div className="bg-white p-6 sm:p-8 dark:bg-zinc-900/80">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
-                  {FEATURED.series}
-                </p>
-                <h2 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
-                  {FEATURED.title}
-                </h2>
-                <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{FEATURED.locationDate}</p>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{FEATURED.timezoneLine}</p>
-                <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{FEATURED.summary}</p>
-                <WebinarProgramSupportLine month={FEATURED.supportMonth} className="mt-4" />
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {FEATURED.registerHref ? (
-                    <a
-                      href={FEATURED.registerHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-6 text-sm font-semibold text-white transition hover:bg-teal-600"
-                    >
-                      Register now
-                    </a>
-                  ) : (
-                    <span className="inline-flex min-h-11 cursor-default items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100 px-6 text-sm font-semibold text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
-                      Registration opening soon
+              <div className="overflow-hidden rounded-4xl shadow-[0_24px_55px_-24px_rgba(15,23,42,0.35)]">
+                <div className="grid lg:grid-cols-[280px_1fr]">
+                  <div className="relative flex flex-col items-center justify-center overflow-hidden bg-linear-to-br from-teal-600 via-teal-700 to-teal-900 px-8 py-10 text-center text-white">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-200/90">
+                      {featuredDateParts?.month} · {featuredDateParts?.year}
+                    </p>
+                    <p className="mt-2 text-7xl font-bold leading-none">{featuredDateParts?.day}</p>
+                    <p className="mt-3 text-xs font-semibold text-teal-100">{featured.time}</p>
+                    <span className="mt-3 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-medium">
+                      {featured.format}
                     </span>
-                  )}
-                  <Link
-                    href={FEATURED.href}
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
-                  >
-                    View details
-                  </Link>
+                  </div>
+
+                  <div className="bg-white p-6 sm:p-8 dark:bg-zinc-900/80">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
+                      Webinar Series | Real Life Research Institute
+                    </p>
+                    <h2 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
+                      {featured.title}
+                    </h2>
+                    {featured.subtitle ? (
+                      <p className="mt-1 text-sm font-medium italic text-zinc-500 dark:text-zinc-400">{featured.subtitle}</p>
+                    ) : null}
+                    <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{featured.locationDate}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{featured.timezoneLine}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{featured.summary}</p>
+                    <WebinarProgramSupportLine month={featured.supportMonth} className="mt-4" />
+                    <div className="mt-6 flex flex-wrap gap-3">
+                      {featured.registerHref ? (
+                        <a
+                          href={featured.registerHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-6 text-sm font-semibold text-white transition hover:bg-teal-600"
+                        >
+                          Register now
+                        </a>
+                      ) : (
+                        <span className="inline-flex min-h-11 cursor-default items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100 px-6 text-sm font-semibold text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+                          Registration closed
+                        </span>
+                      )}
+                      <Link
+                        href={featured.href}
+                        className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
+                      >
+                        View details
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </>
+          ) : (
+            <div className="rounded-2xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
+              No upcoming webinar is currently scheduled. Please check back soon for the next event.
             </div>
-          </div>
+          )}
 
-          {/* Second upcoming event */}
-          <div className="mt-8 overflow-hidden rounded-4xl shadow-[0_24px_55px_-24px_rgba(15,23,42,0.25)]">
-            <div className="grid lg:grid-cols-[280px_1fr]">
-              <div className="relative flex flex-col items-center justify-center overflow-hidden bg-linear-to-br from-teal-500 via-teal-600 to-teal-800 px-8 py-10 text-center text-white">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-200/90">
-                  {CLIMATE_ADAPTATION_EVENT.month} · {CLIMATE_ADAPTATION_EVENT.year}
-                </p>
-                <p className="mt-2 text-7xl font-bold leading-none">{CLIMATE_ADAPTATION_EVENT.day}</p>
-                <p className="mt-3 text-xs font-semibold text-teal-100">{CLIMATE_ADAPTATION_EVENT.time}</p>
-                <span className="mt-3 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-medium">
-                  {CLIMATE_ADAPTATION_EVENT.format}
-                </span>
-              </div>
-
-              <div className="bg-white p-6 sm:p-8 dark:bg-zinc-900/80">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
-                  {CLIMATE_ADAPTATION_EVENT.series}
-                </p>
-                <h2 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
-                  {CLIMATE_ADAPTATION_EVENT.title}
-                </h2>
-                <p className="mt-1 text-sm font-medium italic text-zinc-500 dark:text-zinc-400">
-                  {CLIMATE_ADAPTATION_EVENT.subtitle}
-                </p>
-                <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{CLIMATE_ADAPTATION_EVENT.locationDate}</p>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{CLIMATE_ADAPTATION_EVENT.timezoneLine}</p>
-                <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{CLIMATE_ADAPTATION_EVENT.summary}</p>
-                <WebinarProgramSupportLine month={CLIMATE_ADAPTATION_EVENT.supportMonth} className="mt-4" />
-                <p className="mt-3 text-xs italic text-zinc-400 dark:text-zinc-500">{CLIMATE_ADAPTATION_EVENT.speakersNote}</p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a
-                    href={CLIMATE_ADAPTATION_EVENT.registerHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-6 text-sm font-semibold text-white transition hover:bg-teal-600"
-                  >
-                    Register now
-                  </a>
-                  <Link
-                    href={CLIMATE_ADAPTATION_EVENT.href}
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
-                  >
-                    View details
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -238,33 +134,21 @@ export function AfricaEventsPage() {
           </div>
 
           <ul className="grid gap-6 sm:grid-cols-2">
-            {PAST_EVENTS.map(
-              ({
-                title,
-                description,
-                day,
-                month,
-                year,
-                format,
-                tags,
-                href,
-                policyBriefHref,
-                recordingHref,
-                supportMonth,
-              }) => (
-              <li key={title} className="flex">
+            {past.map(({ id, title, summary, isoDate, format, tags, href, policyBriefHref, recordingHref, supportMonth }) => {
+              const dateParts = formatCalendarParts(isoDate);
+              return (
+              <li key={id} className="flex">
                 <article className="flex w-full flex-col rounded-2xl border border-zinc-200/80 bg-zinc-50 p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
                     {format}
                   </p>
                   <p className="mt-2 text-sm font-semibold text-teal-700 dark:text-teal-400">
-                    {day !== "—" ? `${day} ${month}` : month}
-                    {year ? ` ${year}` : ""}
+                    {dateParts.day} {dateParts.month} {dateParts.year}
                   </p>
                   <h3 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
                     {title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{summary}</p>
                   <WebinarProgramSupportLine month={supportMonth} className="mt-3" />
                   <div className="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag) => (
@@ -309,8 +193,8 @@ export function AfricaEventsPage() {
                   </div>
                 </article>
               </li>
-            ),
-          )}
+              );
+            })}
           </ul>
 
           <div className="mt-10 text-center">
