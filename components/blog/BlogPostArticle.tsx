@@ -145,35 +145,55 @@ function normalizeTitleKey(raw: string): string {
  * Keys are built from readable titles; must match {@link normalizeTitleKey}(post title).
  */
 const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
-  [normalizeTitleKey("Cameroon hosted the WTO's Ministers – Were LDCs Able to Reshape the Rules?")]:
-    AUTHOR_OVERRIDES["cameroon-hosted-the-wtos-ministers-were-ldcs-able-to-reshape-the-rules"],
+  [normalizeTitleKey(
+    "Cameroon hosted the WTO's Ministers – Were LDCs Able to Reshape the Rules?",
+  )]:
+    AUTHOR_OVERRIDES[
+      "cameroon-hosted-the-wtos-ministers-were-ldcs-able-to-reshape-the-rules"
+    ],
   [normalizeTitleKey(
     "BBNJ and the High Seas ambitions in the Gulf of Guinea (GoG) region: The need for more attention",
   )]: AUTHOR_OVERRIDES["await-featuretour-clearallseennotify"],
-  [normalizeTitleKey("Are African Laws Ready for Tech-Facilitated Violence Against Women?")]:
-    AUTHOR_OVERRIDES["are-african-laws-ready-for-tech-facilitated-violence-against-women"],
+  [normalizeTitleKey(
+    "Are African Laws Ready for Tech-Facilitated Violence Against Women?",
+  )]:
+    AUTHOR_OVERRIDES[
+      "are-african-laws-ready-for-tech-facilitated-violence-against-women"
+    ],
   [normalizeTitleKey(
     "Cameroon’s National Dialogue as a Lens for Uncovering Persistent Patterns of Inadequate Inclusion in African Peacebuilding Dialogues",
   )]: CHRIS_SOLO,
   [normalizeTitleKey(
     "Cameroon celebrates national dialogue anniversary, but critics say dialogue outcomes remain unmet",
   )]: CHRIS_SOLO,
-  [normalizeTitleKey("Mjadala Afrika: The AU Chairperson Elections & 2024 Candidate Debate")]: CHRIS_SOLO,
+  [normalizeTitleKey(
+    "Mjadala Afrika: The AU Chairperson Elections & 2024 Candidate Debate",
+  )]: CHRIS_SOLO,
   [normalizeTitleKey(
     "Empowering roots: Why the World Trade Organization (WTO) Agreement on Fisheries Subsidies matters for small-scale fisheries",
-  )]: AUTHOR_OVERRIDES["empowering-roots-why-the-world-trade-organization-wto-agreement-on-fisheries-subsidies-matters-for-small-scale-fisheries"],
+  )]:
+    AUTHOR_OVERRIDES[
+      "empowering-roots-why-the-world-trade-organization-wto-agreement-on-fisheries-subsidies-matters-for-small-scale-fisheries"
+    ],
   [normalizeTitleKey(
     "When AI becomes a weapon: what African governments must do to protect women online",
-  )]: AUTHOR_OVERRIDES["when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"],
+  )]:
+    AUTHOR_OVERRIDES[
+      "when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"
+    ],
   [normalizeTitleKey(
     "When AI becomes a weapon: what African governments must do to protect women online.",
-  )]: AUTHOR_OVERRIDES["when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"],
+  )]:
+    AUTHOR_OVERRIDES[
+      "when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"
+    ],
   [normalizeTitleKey(
     "From Data Cables to Conflict Corridors: How Middle East Instability is Reshaping Africa's Security and Political Landscape",
   )]: [
     {
       name: "Solomon Kimaita",
       role: "Author",
+      linkedin: "https://www.linkedin.com/in/solomon-kimaita-5802021a8/",
     },
   ],
 };
