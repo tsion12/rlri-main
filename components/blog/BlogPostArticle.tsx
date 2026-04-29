@@ -168,6 +168,14 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   [normalizeTitleKey(
     "When AI becomes a weapon: what African governments must do to protect women online.",
   )]: AUTHOR_OVERRIDES["when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online"],
+  [normalizeTitleKey(
+    "From Data Cables to Conflict Corridors: How Middle East Instability is Reshaping Africa's Security and Political Landscape",
+  )]: [
+    {
+      name: "Solomon Kimaita",
+      role: "Author",
+    },
+  ],
 };
 
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
