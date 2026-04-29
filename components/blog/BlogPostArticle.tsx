@@ -196,6 +196,13 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       linkedin: "https://www.linkedin.com/in/solomon-kimaita-5802021a8/",
     },
   ],
+  [normalizeTitleKey("Africa’s Digital Infrastructure Is More Exposed Than It Appears")]: [
+    {
+      name: "Alvin Korkie",
+      role: "Author",
+      linkedin: "https://www.linkedin.com/in/korkiecom/",
+    },
+  ],
 };
 
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
