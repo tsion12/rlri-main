@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BlogEngagement } from "@/components/blog/BlogEngagement";
 import { BlogSharePanel } from "@/components/blog/BlogSharePanel";
 import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 import { programsAnchor } from "@/lib/africa-routes";
@@ -126,6 +127,13 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
     {
       name: "Prudence Chepngeno",
       role: "Author",
+    },
+  ],
+  "inclusive-dialogue-in-action-reflections-on-pope-leo-xivs-apostolic-visit-to-africa": [
+    {
+      name: "Christelle Nfor",
+      role: "Author",
+      linkedin: "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
     },
   ],
 };
@@ -421,6 +429,8 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
           </Link>
         </div>
       </section>
+
+      <BlogEngagement slug={post.slug} source={post.source} title={titlePlain} />
     </article>
   );
 }
