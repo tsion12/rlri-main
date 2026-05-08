@@ -123,19 +123,31 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
         linkedin: "https://www.linkedin.com/in/mbeseng/",
       },
     ],
-  "when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online": [
-    {
-      name: "Prudence Chepngeno",
-      role: "Author",
-    },
-  ],
-  "inclusive-dialogue-in-action-reflections-on-pope-leo-xivs-apostolic-visit-to-africa": [
-    {
-      name: "Christelle Nfor",
-      role: "Author",
-      linkedin: "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
-    },
-  ],
+  "when-ai-becomes-a-weapon-what-african-governments-must-do-to-protect-women-online":
+    [
+      {
+        name: "Prudence Chepngeno",
+        role: "Author",
+      },
+    ],
+  "inclusive-dialogue-in-action-reflections-on-pope-leo-xivs-apostolic-visit-to-africa":
+    [
+      {
+        name: "Christelle Nfor",
+        role: "Author",
+        linkedin:
+          "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
+      },
+    ],
+  "the-next-digital-divide-why-africa-risks-becoming-an-ai-consumer-rather-than-an-ai-creator":
+    [
+      {
+        name: "Alvin Korkie",
+        role: "Author",
+        linkedin:
+          "https://za.linkedin.com/in/korkiecom?utm_source=share&utm_medium=member_mweb&utm_campaign=share_via&utm_content=profile",
+      },
+    ],
 };
 
 /** Normalize titles so WP punctuation/spacing variants still match overrides. */
