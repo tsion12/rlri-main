@@ -151,8 +151,9 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   "running-away-from-heat-hunger-and-violence-understanding-the-sequencing-of-climate-conflict-dynamics-in-the-sahel":
     [
       {
-        name: "Lloyd George Banda",
-        role: "African Synthesis Centre for Climate Change, Environment, and Development (ASCEND), University of Cape Town, Western Cape, South Africa",
+        name: "Lloyd George Banda, PhD",
+        role: "Author",
+        linkedin: "https://www.linkedin.com/in/lloydgeorgeii/",
       },
     ],
 };
