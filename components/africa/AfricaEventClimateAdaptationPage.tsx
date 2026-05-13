@@ -27,6 +27,13 @@ const SPEAKERS = [
   },
 ] as const;
 
+const MODERATOR = {
+  name: "Lina Aburas Awadalla",
+  role: "Moderator",
+  photo: "/assets/may/lina.jpeg",
+  bio: "Lina Aburas Awadalla is a PhD candidate in International Development and Global Studies at the University of Ottawa. Her research focuses on the climate-insecurity nexus in Nigeria, where she critically examines the intricate dynamics of climate-insecurity patterns in the country, with a particular focus on how knowledge about the nexus is constructed, mobilized, and translated into policy. She critiques dominant framings of climate insecurity and examines whose knowledge is legitimized in environmental and security policy processes. Alongside her academic work, Lina brings years of professional experience with the International Committee of the Red Cross (ICRC) in conflict-affected areas in the Middle East, West Africa, and Eastern Europe, where she worked in various supervisory positions focusing on protection activities of the ICRC. She brings her field experience into her academic research, including work in hard-to-reach areas often inaccessible to actors other than humanitarian workers.",
+} as const;
+
 export function AfricaEventClimateAdaptationPage() {
   return (
     <>
@@ -38,6 +45,9 @@ export function AfricaEventClimateAdaptationPage() {
           <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl lg:text-5xl">
             Rethinking Climate Adaptation in Africa
           </h1>
+          <p className="mt-3 max-w-5xl text-base font-medium italic leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
+            Evidence from a Sahel Climate-Conflict Synthesis, Disinformation Research, and Local Practice in Sierra Leone
+          </p>
           <p className="mt-5 text-sm font-medium text-zinc-700 dark:text-zinc-300">
             Online webinar | Friday, May 29, 2026
           </p>
@@ -158,7 +168,27 @@ export function AfricaEventClimateAdaptationPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-sm italic leading-relaxed text-zinc-500 dark:text-zinc-400">Moderator: TBC</p>
+          <h2 className="mt-12 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">Moderator</h2>
+          <article className="mt-6 overflow-hidden rounded-2xl border border-zinc-200/80 bg-zinc-50 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70 md:flex md:gap-8">
+            <div className="relative aspect-4/3 w-full shrink-0 md:aspect-auto md:h-full md:min-h-64 md:w-72 md:self-stretch">
+              <Image
+                src={MODERATOR.photo}
+                alt={MODERATOR.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 288px"
+              />
+            </div>
+            <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">
+                {MODERATOR.role}
+              </p>
+              <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                {MODERATOR.name}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{MODERATOR.bio}</p>
+            </div>
+          </article>
         </div>
       </section>
     </>

@@ -148,6 +148,13 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
           "https://za.linkedin.com/in/korkiecom?utm_source=share&utm_medium=member_mweb&utm_campaign=share_via&utm_content=profile",
       },
     ],
+  "running-away-from-heat-hunger-and-violence-understanding-the-sequencing-of-climate-conflict-dynamics-in-the-sahel":
+    [
+      {
+        name: "Lloyd George Banda",
+        role: "African Synthesis Centre for Climate Change, Environment, and Development (ASCEND), University of Cape Town, Western Cape, South Africa",
+      },
+    ],
 };
 
 /** Normalize titles so WP punctuation/spacing variants still match overrides. */
