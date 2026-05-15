@@ -2,6 +2,7 @@ import Link from "next/link";
 import { africaEmails, africaRoutes } from "@/lib/africa-routes";
 
 const AFRICA_PROGRAM_URL = "https://africa-programs.reallifeinstitute.org/";
+const APPLICATION_CLOSED_AT = "May 15, 2026 at 11:59 PM (EAT)";
 
 const listItemClass = "pl-1 text-[1.025rem] leading-relaxed";
 const subheadingClass = "mt-6 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-500";
@@ -24,16 +25,15 @@ export function AfricaCareerPage() {
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
             The Real Life Research Institute (RLRI) is a Canadian non-profit organization advancing equity and inclusion so
-            that no one is left behind. The paid role below is with the Africa Program; applications are accepted until{" "}
-            <strong className="font-semibold text-zinc-800 dark:text-zinc-200">May 15, 2026</strong>.
+            that no one is left behind. The paid role below is with the Africa Program.
+          </p>
+          <p className="mt-4 inline-flex items-center rounded-full border border-zinc-300 bg-zinc-100 px-4 py-1 text-sm font-semibold text-zinc-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100">
+            Applications closed on {APPLICATION_CLOSED_AT}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href={`mailto:${africaEmails.jobsHr}?subject=Application%20%E2%80%94%20Assistant%20Editor%20%28Remote%29`}
-              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-600"
-            >
-              Email applications
-            </a>
+            <span className="inline-flex min-h-11 items-center justify-center rounded-lg bg-zinc-200 px-6 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+              Applications closed
+            </span>
             <a
               href={`mailto:${africaEmails.hrSupport}?subject=HR%20inquiry%20%E2%80%94%20RLRI%20careers`}
               className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
@@ -130,16 +130,18 @@ export function AfricaCareerPage() {
               </li>
             </ul>
 
-            <h3 className={subheadingClass}>How to apply</h3>
+            <h3 className={subheadingClass}>Application status</h3>
             <p className="mt-3 text-[1.025rem] leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Email the following to{" "}
+              This position is currently closed. Applications were accepted through{" "}
+              <strong className="font-medium text-zinc-800 dark:text-zinc-200">{APPLICATION_CLOSED_AT}</strong>. The full
+              posting remains available in case the role is reopened after screening. For HR questions, contact{" "}
               <a
-                href={`mailto:${africaEmails.jobsHr}?subject=Application%20%E2%80%94%20Assistant%20Editor%20%28Remote%29`}
+                href={`mailto:${africaEmails.hrSupport}?subject=HR%20inquiry%20%E2%80%94%20RLRI%20careers`}
                 className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
               >
-                {africaEmails.jobsHr}
-              </a>{" "}
-              by <strong className="font-medium text-zinc-800 dark:text-zinc-200">May 15, 2026</strong>:
+                {africaEmails.hrSupport}
+              </a>
+              .
             </p>
             <ul className={bulletListClass}>
               <li className={listItemClass}>
