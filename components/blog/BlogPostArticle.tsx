@@ -156,6 +156,19 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
         linkedin: "https://www.linkedin.com/in/lloydgeorgeii/",
       },
     ],
+  "aid-for-trade-and-development-cuts-how-donor-policy-shifts-are-deepening-the-climate-conflict-crisis-in-the-sahel":
+    [
+      {
+        name: "Chris Begealawuh, PhD",
+        role: "Co-author",
+        linkedin: "https://www.linkedin.com/in/nchongayi-christantus-020827a1/",
+      },
+      {
+        name: "María Ayuk, PhD",
+        role: "Co-author",
+        linkedin: "https://www.linkedin.com/in/maria-ayuk-923b201a",
+      },
+    ],
 };
 
 /** Normalize titles so WP punctuation/spacing variants still match overrides. */
