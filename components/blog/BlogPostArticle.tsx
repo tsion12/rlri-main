@@ -3,7 +3,7 @@ import { BlogAuthorsBioSection } from "@/components/blog/BlogAuthorsBioSection";
 import { BlogEngagement } from "@/components/blog/BlogEngagement";
 import { BlogSharePanel } from "@/components/blog/BlogSharePanel";
 import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
-import { programsAnchor } from "@/lib/africa-routes";
+import { africaRoutes, programsAnchor } from "@/lib/africa-routes";
 import { resolveAuthorPhoto } from "@/lib/blog-author-photos";
 import { finalizeBlogBodyHtml } from "@/lib/strip-blog-html";
 import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
@@ -332,7 +332,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <nav className="relative mb-10" aria-label="Breadcrumb">
         <Link
-          href="/blog"
+          href={africaRoutes.blogs}
           className="group inline-flex items-center gap-2 rounded-full border border-stone-200/90 bg-white/90 px-4 py-2.5 text-sm font-medium text-stone-600 shadow-sm ring-1 ring-stone-950/5 transition-all hover:border-amber-300/80 hover:bg-amber-50/80 hover:text-stone-900 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:ring-white/5 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/80 dark:hover:text-zinc-100"
         >
           <span aria-hidden className="transition-transform group-hover:-translate-x-0.5">
@@ -465,7 +465,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <footer className="relative mt-14 flex flex-col gap-4 border-t border-stone-200/80 pt-10 dark:border-zinc-800 sm:flex-row sm:items-center sm:justify-between">
         <Link
-          href="/blog"
+          href={africaRoutes.blogs}
           className="inline-flex items-center gap-2 text-sm font-semibold text-amber-800 transition hover:text-amber-950 dark:text-amber-400 dark:hover:text-amber-200"
         >
           <span aria-hidden>←</span>
