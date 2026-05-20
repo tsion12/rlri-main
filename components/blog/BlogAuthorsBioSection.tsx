@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { resolveAuthorPhoto } from "@/lib/blog-author-photos";
 
 export type BlogAuthorBio = {
   name: string;
   role: string;
-  bio: string;
+  bio?: string;
   avatar?: string | null;
   linkedin?: string;
 };
@@ -21,7 +22,27 @@ function LinkedInIcon() {
   );
 }
 
-function AuthorBioEntry({
+function AuthorPortrait({ name, avatar }: { name: string; avatar: string | null }) {
+  if (avatar) {
+    return (
+      <div className="relative mx-auto size-16 overflow-hidden rounded-full border border-teal-200/80 bg-white shadow-sm ring-1 ring-teal-950/5 dark:border-teal-800/60 dark:bg-zinc-900 dark:ring-white/5 sm:size-20">
+        <Image src={avatar} alt={name} fill className="object-cover object-top" sizes="80px" />
+      </div>
+    );
+  }
+
+  const initial = authorInitial(name);
+  return (
+    <div
+      aria-hidden
+      className="relative mx-auto flex size-16 items-center justify-center overflow-hidden rounded-full border border-teal-200/90 bg-linear-to-br from-teal-50 to-white text-base font-semibold text-teal-800 shadow-sm dark:border-teal-800/60 dark:from-teal-950/50 dark:to-zinc-900 dark:text-teal-200 sm:size-20"
+    >
+      {initial}
+    </div>
+  );
+}
+
+function AuthorEntry({
   author,
   index,
   total,
@@ -30,30 +51,18 @@ function AuthorBioEntry({
   index: number;
   total: number;
 }) {
-  const initial = authorInitial(author.name);
+  const photo = resolveAuthorPhoto(author.name, author.avatar);
+  const bio = author.bio?.trim() ?? "";
 
   return (
-    <article className="px-6 py-7 sm:px-8 sm:py-8">
-      <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
-        <div className="flex shrink-0 items-start gap-4 sm:w-52 sm:flex-col sm:items-center sm:text-center">
-          {author.avatar ? (
-            <Image
-              src={author.avatar}
-              alt=""
-              width={72}
-              height={72}
-              className="h-[4.5rem] w-[4.5rem] rounded-2xl border border-teal-200/80 object-cover shadow-sm dark:border-teal-800/60"
-            />
-          ) : (
-            <div
-              aria-hidden
-              className="flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border border-teal-200/90 bg-white text-xl font-semibold text-teal-800 shadow-sm dark:border-teal-800/60 dark:bg-zinc-900 dark:text-teal-200"
-            >
-              {initial}
-            </div>
-          )}
-          <div className="min-w-0 sm:w-full">
-            <p className="text-base font-semibold tracking-tight text-stone-900 dark:text-zinc-50">{author.name}</p>
+    <article className="px-6 py-6 sm:px-8 sm:py-7">
+      <div className={`flex flex-col gap-5 ${bio ? "sm:flex-row sm:gap-6" : "sm:items-center sm:justify-center"}`}>
+        <div className="flex w-44 shrink-0 flex-col items-center gap-2.5 text-center">
+          <AuthorPortrait name={author.name} avatar={photo} />
+          <div className="w-full text-center">
+            <p className="text-sm font-semibold leading-snug tracking-tight text-stone-900 dark:text-zinc-50">
+              {author.name}
+            </p>
             <p className="mt-1 text-xs font-medium leading-snug text-teal-800/90 dark:text-teal-300/90">{author.role}</p>
             {author.linkedin ? (
               <Link
@@ -63,32 +72,37 @@ function AuthorBioEntry({
                 className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-teal-700 underline-offset-2 transition hover:text-teal-900 hover:underline dark:text-teal-400 dark:hover:text-teal-200"
               >
                 <LinkedInIcon />
-                LinkedIn
+                LinkedIn profile
               </Link>
             ) : null}
           </div>
           {total > 1 ? (
-            <span className="hidden text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-400 sm:block dark:text-zinc-500">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-400 dark:text-zinc-500">
               {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
             </span>
           ) : null}
         </div>
 
-        <div className="min-w-0 flex-1 sm:border-l sm:border-teal-200/50 sm:pl-6 dark:sm:border-teal-900/40">
-          <p className="text-[15px] leading-[1.75] text-stone-700 dark:text-zinc-300">{author.bio}</p>
-        </div>
+        {bio ? (
+          <div className="min-w-0 flex-1 sm:border-l sm:border-teal-200/50 sm:pl-6 dark:sm:border-teal-900/40">
+            <p className="blog-author-bio-text font-serif text-[15px] italic leading-[1.85] text-stone-600 dark:text-zinc-400">
+              {bio}
+            </p>
+          </div>
+        ) : null}
       </div>
     </article>
   );
 }
 
 export function BlogAuthorsBioSection({ authors }: { authors: BlogAuthorBio[] }) {
-  const entries = authors.filter((author) => author.bio.trim().length > 0);
-  if (entries.length === 0) return null;
+  if (authors.length === 0) return null;
+
+  const heading = authors.length > 1 ? "About the authors" : "About the author";
 
   return (
     <section
-      aria-labelledby="authors-bio-heading"
+      aria-labelledby="about-authors-heading"
       className="relative mt-14 overflow-hidden rounded-3xl border border-teal-200/70 bg-linear-to-br from-teal-50/90 via-white to-stone-50/80 shadow-[0_20px_50px_-28px_rgba(15,118,110,0.35)] dark:border-teal-900/50 dark:from-teal-950/40 dark:via-zinc-900/80 dark:to-zinc-950/90 dark:shadow-none"
     >
       <div
@@ -106,19 +120,16 @@ export function BlogAuthorsBioSection({ authors }: { authors: BlogAuthorBio[] })
 
       <header className="relative border-b border-teal-200/60 px-6 pb-5 pt-7 dark:border-teal-900/40 sm:px-8 sm:pt-8">
         <p
-          id="authors-bio-heading"
+          id="about-authors-heading"
           className="text-[11px] font-semibold uppercase tracking-[0.28em] text-teal-800 dark:text-teal-300"
         >
-          Authors&apos; bio
-        </p>
-        <p className="mt-2 max-w-xl text-sm leading-relaxed text-stone-600 dark:text-zinc-400">
-          Background on the researchers and practitioners behind this article.
+          {heading}
         </p>
       </header>
 
       <div className="relative divide-y divide-teal-200/60 dark:divide-teal-900/40">
-        {entries.map((author, index) => (
-          <AuthorBioEntry key={author.name} author={author} index={index} total={entries.length} />
+        {authors.map((author, index) => (
+          <AuthorEntry key={author.name} author={author} index={index} total={authors.length} />
         ))}
       </div>
     </section>

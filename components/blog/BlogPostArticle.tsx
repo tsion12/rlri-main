@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { BlogAuthorsBioSection } from "@/components/blog/BlogAuthorsBioSection";
 import { BlogEngagement } from "@/components/blog/BlogEngagement";
 import { BlogSharePanel } from "@/components/blog/BlogSharePanel";
 import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 import { programsAnchor } from "@/lib/africa-routes";
+import { resolveAuthorPhoto } from "@/lib/blog-author-photos";
 import { finalizeBlogBodyHtml } from "@/lib/strip-blog-html";
 import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
 
@@ -168,6 +168,7 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       {
         name: "María Ayuk, PhD",
         role: "Co-author",
+        avatar: "/assets/authors/maria%20pp.jpeg",
         linkedin: "https://www.linkedin.com/in/maria-ayuk-923b201a",
         bio: "María Ayuk is a Postdoctoral Researcher and Associate Lecturer at Otto‑von‑Guericke University Magdeburg. Her research focuses on environmental and climate policy, forestry, sustainable development, knowledge transfer, and peace and security governance. She is a Member of the Baobab Sahel Climate‑Conflict project at the University of Cape Town, contributing to interdisciplinary research on climate‑related insecurity in the Sahel. An alumna of the George C. Marshall European Center for Security Studies, she brings an integrated perspective to the intersections of environmental change, security, and international cooperation.",
       },
@@ -266,17 +267,24 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
   const overrideBySlug = AUTHOR_OVERRIDES[post.slug];
   const overrideByTitle = TITLE_AUTHOR_OVERRIDES[normalizeTitleKey(titlePlain)];
   const authors = overrideBySlug ?? overrideByTitle ?? [fallbackAuthor];
-  const authorsForBioSection = authors
-    .filter((author) => author.bio?.trim())
-    .map((author) => ({
-      name: author.name,
-      role: author.role,
-      bio: author.bio!.trim(),
-      avatar: author.avatar,
-      linkedin: author.linkedin,
-    }));
+  const hasAuthorOverride = Boolean(overrideBySlug ?? overrideByTitle);
+  const authorsForSection = authors.map((author) => ({
+    name: author.name,
+    role: author.role,
+    bio: author.bio?.trim() ?? "",
+    avatar: resolveAuthorPhoto(author.name, author.avatar),
+    linkedin: author.linkedin,
+  }));
+  const isGenericFallback =
+    !hasAuthorOverride &&
+    authorsForSection.length === 1 &&
+    /RLRI|Editorial Team/i.test(authorsForSection[0].name);
+  const showAuthorsSection =
+    !isGenericFallback &&
+    (hasAuthorOverride ||
+      authorsForSection.some((author) => author.bio || author.linkedin || author.avatar));
   const bodyHtml = finalizeBlogBodyHtml(post.content.rendered, {
-    stripAuthorsBio: authorsForBioSection.length > 0,
+    stripAuthorsBio: showAuthorsSection && authorsForSection.some((author) => author.bio),
   });
   const minutes = estimateReadingMinutes(bodyHtml);
 
@@ -329,52 +337,6 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
           <WebinarProgramSupportLine month="february" className="mt-5" />
         ) : null}
 
-        <section className="mt-6 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 sm:p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">
-            {authors.length > 1 ? "Authors" : "Author profile"}
-          </p>
-          <div className="mt-3 space-y-3">
-            {authors.map((author) => {
-              const initial = author.name.charAt(0).toUpperCase();
-              return (
-                <div
-                  key={author.name}
-                  className="rounded-xl border border-zinc-200/80 bg-zinc-50/80 p-4 dark:border-zinc-700 dark:bg-zinc-800/50"
-                >
-                  <div className="flex items-start gap-3">
-                    {author.avatar ? (
-                      <Image
-                        src={author.avatar}
-                        alt={author.name}
-                        width={44}
-                        height={44}
-                        className="rounded-full border border-zinc-200 object-cover dark:border-zinc-700"
-                      />
-                    ) : (
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-zinc-200 bg-white text-sm font-semibold text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
-                        {initial}
-                      </div>
-                    )}
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{author.name}</p>
-                      <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{author.role}</p>
-                      {author.linkedin ? (
-                        <a
-                          href={author.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-700 underline-offset-2 hover:underline dark:text-teal-300"
-                        >
-                          LinkedIn profile
-                        </a>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
       </header>
 
       {excerptPlain ? (
@@ -394,7 +356,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
         />
       </div>
 
-      <BlogAuthorsBioSection authors={authorsForBioSection} />
+      {showAuthorsSection ? <BlogAuthorsBioSection authors={authorsForSection} /> : null}
 
       <section className="mt-12 rounded-2xl border border-zinc-200/80 bg-zinc-50/80 p-5 text-sm leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-400 sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-500">
