@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BlogAuthorsBioSection } from "@/components/blog/BlogAuthorsBioSection";
 import { BlogEngagement } from "@/components/blog/BlogEngagement";
 import { BlogSharePanel } from "@/components/blog/BlogSharePanel";
 import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 import { programsAnchor } from "@/lib/africa-routes";
-import { stripBlogWordPressHtml } from "@/lib/strip-blog-html";
+import { finalizeBlogBodyHtml } from "@/lib/strip-blog-html";
 import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
 
 function formatPostDate(iso: string) {
@@ -162,11 +163,13 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
         name: "Chris Begealawuh, PhD",
         role: "Co-author",
         linkedin: "https://www.linkedin.com/in/nchongayi-christantus-020827a1/",
+        bio: "Chris Begealawuh holds a PhD in International Development from the University of Ottawa. He is a Member of the Baobab (Sahel Climate-Conflict) synthesis research project at the University of Cape Town, South Africa. Chris is also a Research Affiliate at Real Life Research Institute (RLRI), contributing seasonally to the organization’s Climate Adaptation & Resilience Program.",
       },
       {
         name: "María Ayuk, PhD",
         role: "Co-author",
         linkedin: "https://www.linkedin.com/in/maria-ayuk-923b201a",
+        bio: "María Ayuk is a Postdoctoral Researcher and Associate Lecturer at Otto‑von‑Guericke University Magdeburg. Her research focuses on environmental and climate policy, forestry, sustainable development, knowledge transfer, and peace and security governance. She is a Member of the Baobab Sahel Climate‑Conflict project at the University of Cape Town, contributing to interdisciplinary research on climate‑related insecurity in the Sahel. An alumna of the George C. Marshall European Center for Security Studies, she brings an integrated perspective to the intersections of environmental change, security, and international cooperation.",
       },
     ],
 };
@@ -248,24 +251,34 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
 
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
   const dateLabel = formatPostDate(post.date);
-  const bodyHtml = stripBlogWordPressHtml(post.content.rendered);
-  const minutes = estimateReadingMinutes(bodyHtml);
   const excerptPlain = post.excerpt?.rendered ? stripHtml(post.excerpt.rendered) : null;
   const titlePlain = stripHtml(post.title.rendered);
   const canonicalPath = blogPostPath(post);
+  const wpAuthorBio = post.authorBio?.trim();
   const fallbackAuthor: AuthorProfile = {
     name:
       post.authorName?.trim() ||
       (post.source === "africa" ? "RLRI Africa Programs Team" : "RLRI Editorial Team"),
     role: post.source === "africa" ? "Africa Program Contributor" : "RLRI Contributor",
-    bio:
-      post.authorBio?.trim() ||
-      "Contributors focused on research, policy, and evidence-based analysis relevant to communities across Africa.",
+    bio: wpAuthorBio || undefined,
     avatar: post.authorAvatar ?? null,
   };
   const overrideBySlug = AUTHOR_OVERRIDES[post.slug];
   const overrideByTitle = TITLE_AUTHOR_OVERRIDES[normalizeTitleKey(titlePlain)];
   const authors = overrideBySlug ?? overrideByTitle ?? [fallbackAuthor];
+  const authorsForBioSection = authors
+    .filter((author) => author.bio?.trim())
+    .map((author) => ({
+      name: author.name,
+      role: author.role,
+      bio: author.bio!.trim(),
+      avatar: author.avatar,
+      linkedin: author.linkedin,
+    }));
+  const bodyHtml = finalizeBlogBodyHtml(post.content.rendered, {
+    stripAuthorsBio: authorsForBioSection.length > 0,
+  });
+  const minutes = estimateReadingMinutes(bodyHtml);
 
   return (
     <article className="relative mx-auto max-w-3xl px-4 pb-28 pt-6 sm:px-6 sm:pt-8">
@@ -357,11 +370,6 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
                       ) : null}
                     </div>
                   </div>
-                  {author.bio ? (
-                    <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                      {stripHtml(author.bio)}
-                    </p>
-                  ) : null}
                 </div>
               );
             })}
@@ -385,6 +393,8 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
           dangerouslySetInnerHTML={{ __html: bodyHtml }}
         />
       </div>
+
+      <BlogAuthorsBioSection authors={authorsForBioSection} />
 
       <section className="mt-12 rounded-2xl border border-zinc-200/80 bg-zinc-50/80 p-5 text-sm leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-400 sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-500">

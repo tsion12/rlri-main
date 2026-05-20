@@ -157,17 +157,79 @@ function stripLargestElementorBlockWithPhrase(html: string): string {
  */
 const MAX_STRIP_FRACTION = 0.35;
 
+/** Regex fallback when the HTML parser misses malformed WP script tags. */
+function stripScriptTagsRegex(html: string): string {
+  if (!html) return html;
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/<script\b[^>]*\/?>/gi, "")
+    .replace(/<noscript\b[^<]*(?:(?!<\/noscript>)<[^<]*)*<\/noscript>/gi, "")
+    .replace(/<noscript\b[^>]*\/?>/gi, "");
+}
+
+function stripInlineEventHandlers(html: string): string {
+  if (!html) return html;
+  return html.replace(/\s+on[a-z]+\s*=\s*(".*?"|'.*?'|[^\s>]+)/gi, "");
+}
+
 /**
  * Remove executable/non-article tags that should never be rendered inside post body HTML.
  * This keeps React client rendering safe and avoids script-tag runtime warnings.
  */
 function stripUnsafeBodyTags(html: string): string {
   if (!html) return html;
-  const root = parse(html);
-  for (const node of root.querySelectorAll("script, noscript, iframe, object, embed")) {
+  const root = parse(stripScriptTagsRegex(html));
+  for (const node of root.querySelectorAll("script, noscript, iframe, object, embed, template")) {
     (node as HTMLElement).remove();
   }
-  return root.toString();
+  for (const link of root.querySelectorAll("link")) {
+    const rel = (link.getAttribute("rel") || "").toLowerCase();
+    const as = (link.getAttribute("as") || "").toLowerCase();
+    if (rel === "preload" && as === "script") {
+      (link as HTMLElement).remove();
+    }
+  }
+  let out = stripInlineEventHandlers(root.toString());
+  out = stripScriptTagsRegex(out);
+  return out;
+}
+
+const AUTHORS_BIO_HEADING = /^authors?\s*['’]?\s*bio$/i;
+
+/** Remove embedded “Authors' Bio” blocks from WP body when we render a dedicated section. */
+export function stripEmbeddedAuthorsBio(html: string): string {
+  if (!html || !/authors?\s*['’]?\s*bio/i.test(html)) return html;
+
+  const root = parse(html);
+
+  for (const el of root.querySelectorAll("h2, h3, h4, h5, h6, strong, b")) {
+    const text = normalizeText(el.textContent || "");
+    if (!AUTHORS_BIO_HEADING.test(text)) continue;
+
+    let cursor: HTMLElement | null = el as HTMLElement;
+    const parent = el.parentNode as HTMLElement | null;
+    if (parent && (parent.tagName === "P" || parent.tagName === "DIV")) {
+      cursor = parent;
+    }
+
+    while (cursor) {
+      const next = cursor.nextSibling;
+      cursor.remove();
+      cursor = next as HTMLElement | null;
+    }
+    break;
+  }
+
+  return stripUnsafeBodyTags(root.toString());
+}
+
+/** Full blog body pipeline: WP cleanup, optional authors-bio removal, then hardening. */
+export function finalizeBlogBodyHtml(html: string, options?: { stripAuthorsBio?: boolean }): string {
+  let out = stripBlogWordPressHtml(html);
+  if (options?.stripAuthorsBio) {
+    out = stripEmbeddedAuthorsBio(out);
+  }
+  return stripUnsafeBodyTags(out);
 }
 
 export function stripBlogWordPressHtml(html: string): string {
