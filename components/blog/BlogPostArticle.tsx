@@ -80,6 +80,14 @@ const SOLOMON_KIMAITA_AUTHOR: AuthorProfile = {
   bio: "Solomon Kimaita is a Lecturer of International Relations and Diplomacy at Zetech University in Nairobi, Kenya, specializing in Peace and Conflict Studies. He holds an M.A. in International Relations from the United States International University-Africa and a B.A. from Moi University. He teaches courses on development dynamics, regional integration, and international conflict management, and is a Certified Professional Mediator. His experience includes humanitarian work with UNHCR and project management in higher education development partnerships. Solomon has published and presented on topics such as AI in conflict prevention, youth participation in climate resilience, and digital diplomacy, and he is actively involved in curriculum development and student mentorship.",
 };
 
+const ERNEST_LEQUIMBOH_AUTHOR: AuthorProfile = {
+  name: "Ernest Lequimboh",
+  role: "Author",
+  linkedin: "https://www.linkedin.com/in/ernest-lequimboh-3ba6b786/",
+  avatar: "/assets/Team/Ernest-Lequimboh.webp",
+  bio: "Ernest Lequimboh is an Award-Winning Author of 10 Investments You Must Make Before 40 and a Senior Policy Advisor at the Real Life Research Institute (RLRI), where he contributes to research and policy work at the intersection of artificial intelligence, governance, and inclusive public leadership. He brings experience in policy analysis and legislative modernization, a researcher with an academic foundation in Women and Gender Studies, Law, and Public Policy, alongside advanced studies in artificial intelligence and DevOps. His forthcoming paper critically examines AI Governance Capacity.",
+};
+
 const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   "shaping-development-policies-in-the-sahel-through-evidence-based-synthesis-progress-from-a-baobab-clare-programme-funded-team":
     [
@@ -191,6 +199,7 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       },
     ],
   "shrinking-aid-rising-instability-the-future-of-peacebuilding-in-sub-saharan-africa": [SOLOMON_KIMAITA_AUTHOR],
+  "when-ai-makes-decisions-whos-really-in-charge": [ERNEST_LEQUIMBOH_AUTHOR],
   "aid-for-trade-and-development-cuts-how-donor-policy-shifts-are-deepening-the-climate-conflict-crisis-in-the-sahel":
     [
       {
@@ -272,6 +281,8 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   [normalizeTitleKey(
     "Shrinking Aid, Rising Instability: The Future of Peacebuilding in Sub-Saharan Africa",
   )]: [SOLOMON_KIMAITA_AUTHOR],
+  [normalizeTitleKey("When AI Makes Decisions, Who's Really in Charge?")]: [ERNEST_LEQUIMBOH_AUTHOR],
+  [normalizeTitleKey("When AI Makes Decisions, Who’s Really in Charge?")]: [ERNEST_LEQUIMBOH_AUTHOR],
   [normalizeTitleKey("Africa’s Digital Infrastructure Is More Exposed Than It Appears")]: [
     {
       name: "Alvin Korkie",
