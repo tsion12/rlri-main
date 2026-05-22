@@ -46,6 +46,41 @@ function MetaDivider() {
   return <span aria-hidden className="text-stone-300 dark:text-zinc-600">·</span>;
 }
 
+function cleanWpExcerptText(html: string): string {
+  return stripHtml(html)
+    .replace(/\[\s*&hellip;\s*\]/gi, "")
+    .replace(/&hellip;/gi, "")
+    .replace(/…+/g, "")
+    .replace(/\.{3,}/g, "")
+    .trim();
+}
+
+function normalizePlainForCompare(text: string): string {
+  return text
+    .replace(/\u00a0/g, " ")
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u2013\u2014]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+/** Hide the lead block when WordPress auto-filled the excerpt from the article opening. */
+function excerptRepeatsBodyOpening(excerptHtml: string, bodyHtml: string): boolean {
+  const ex = normalizePlainForCompare(cleanWpExcerptText(excerptHtml));
+  const body = normalizePlainForCompare(stripHtml(bodyHtml));
+  if (!ex || !body || ex.length < 20) return false;
+  if (body.startsWith(ex)) return true;
+
+  const compareLen = Math.min(ex.length, body.length, 320);
+  let shared = 0;
+  for (let i = 0; i < compareLen; i += 1) {
+    if (ex[i] === body[i]) shared += 1;
+    else break;
+  }
+  return shared >= Math.min(80, Math.floor(ex.length * 0.72));
+}
+
 const FOCUS_PROGRAMS = [
   { n: "01", label: "Oceans", icon: "🌊" },
   { n: "02", label: "Digital Futures", icon: "🧠" },
@@ -294,7 +329,6 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
 
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
   const dateLabel = formatPostDate(post.date);
-  const excerptPlain = post.excerpt?.rendered ? stripHtml(post.excerpt.rendered) : null;
   const titlePlain = stripHtml(post.title.rendered);
   const canonicalPath = blogPostPath(post);
   const wpAuthorBio = post.authorBio?.trim();
@@ -328,6 +362,10 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
   const bodyHtml = finalizeBlogBodyHtml(post.content.rendered, {
     stripAuthorsBio: showAuthorsSection && authorsForSection.some((author) => author.bio),
   });
+  const excerptHtml = post.excerpt?.rendered?.trim() ?? "";
+  const excerptPlain = excerptHtml ? cleanWpExcerptText(excerptHtml) : "";
+  const showExcerpt =
+    excerptPlain.length > 0 && !excerptRepeatsBodyOpening(excerptHtml, bodyHtml);
   const minutes = estimateReadingMinutes(bodyHtml);
   const themeLabel = post.programLabel ?? post.theme?.trim() ?? null;
   const showAuthorByline = !isGenericFallback;
@@ -428,7 +466,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       </header>
 
-      {excerptPlain ? (
+      {showExcerpt ? (
         <p className="relative mt-10 border-l-[3px] border-amber-500/90 pl-5 text-lg font-medium leading-relaxed text-stone-700 dark:border-amber-400/80 dark:text-zinc-300">
           {excerptPlain}
         </p>
@@ -436,7 +474,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <div
         className={`blog-article-body rounded-2xl border border-stone-200/70 bg-white/50 px-5 py-8 shadow-inner shadow-stone-950/5 sm:rounded-3xl sm:px-8 sm:py-10 dark:border-zinc-800/70 dark:bg-zinc-950/35 dark:shadow-none ${
-          excerptPlain ? "mt-10" : "mt-12"
+          showExcerpt ? "mt-10" : "mt-12"
         }`}
       >
         <div
