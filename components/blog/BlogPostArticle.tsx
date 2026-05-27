@@ -123,6 +123,14 @@ const ERNEST_LEQUIMBOH_AUTHOR: AuthorProfile = {
   bio: "Ernest Lequimboh is an Award-Winning Author of 10 Investments You Must Make Before 40 and a Senior Policy Advisor at the Real Life Research Institute (RLRI), where he contributes to research and policy work at the intersection of artificial intelligence, governance, and inclusive public leadership. He brings experience in policy analysis and legislative modernization, a researcher with an academic foundation in Women and Gender Studies, Law, and Public Policy, alongside advanced studies in artificial intelligence and DevOps. His forthcoming paper critically examines AI Governance Capacity.",
 };
 
+const LLOYD_GEORGE_BANDA_AUTHOR: AuthorProfile = {
+  name: "Lloyd George Banda, PhD",
+  role: "Postdoctoral Research Fellow",
+  linkedin: "https://www.linkedin.com/in/lloydgeorgeii/",
+  avatar: "/assets/authors/Lloyd.png",
+  bio: "Lloyd George Banda is a political economist with expertise in applied econometrics, development economics, comparative politics, and public policy. He serves as a Postdoctoral Research Fellow on the BAOBAB synthesis team Climate Vulnerabilities, Conflicts, and Livelihood Dynamics in the Sahel (Climate Sahel Team). He holds a PhD in Political Science from Stellenbosch University. He has a strong background on governance and the effects of government policy on development outcomes at both the domestic and international levels. This work is geographically anchored in Sub-Saharan Africa and aligned with United Nations Sustainable Development Goal 16 (Peace, Justice, and Strong Institutions) and the interaction thereof with the three pillars of prosperity: environmental equilibrium, economic viability, and social equity. To support this research, Lloyd draws on a mixed-methods approach, combining qualitative inquiry with quantitative techniques such as economic modelling and computational analysis, using tools including Stata, AMOS, Python, and SPSS.",
+};
+
 const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   "shaping-development-policies-in-the-sahel-through-evidence-based-synthesis-progress-from-a-baobab-clare-programme-funded-team":
     [
@@ -131,11 +139,7 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
         role: "Co-author",
         linkedin: "https://www.linkedin.com/in/nchongayi-christantus-020827a1/",
       },
-      {
-        name: "Lloyd George Banda, PhD",
-        role: "Co-author",
-        linkedin: "https://www.linkedin.com/in/lloydgeorgeii/",
-      },
+      { ...LLOYD_GEORGE_BANDA_AUTHOR, role: "Co-author" },
     ],
   "cameroon-hosted-the-wtos-ministers-were-ldcs-able-to-reshape-the-rules": [
     {
@@ -226,13 +230,8 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       },
     ],
   "running-away-from-heat-hunger-and-violence-understanding-the-sequencing-of-climate-conflict-dynamics-in-the-sahel":
-    [
-      {
-        name: "Lloyd George Banda, PhD",
-        role: "Author",
-        linkedin: "https://www.linkedin.com/in/lloydgeorgeii/",
-      },
-    ],
+    [LLOYD_GEORGE_BANDA_AUTHOR],
+  "the-fall-of-kidal-and-the-unravelling-of-malis-military-legitimacy": [LLOYD_GEORGE_BANDA_AUTHOR],
   "shrinking-aid-rising-instability-the-future-of-peacebuilding-in-sub-saharan-africa": [SOLOMON_KIMAITA_AUTHOR],
   "when-ai-makes-decisions-whos-really-in-charge": [ERNEST_LEQUIMBOH_AUTHOR],
   "aid-for-trade-and-development-cuts-how-donor-policy-shifts-are-deepening-the-climate-conflict-crisis-in-the-sahel":
@@ -318,6 +317,12 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   )]: [SOLOMON_KIMAITA_AUTHOR],
   [normalizeTitleKey("When AI Makes Decisions, Who's Really in Charge?")]: [ERNEST_LEQUIMBOH_AUTHOR],
   [normalizeTitleKey("When AI Makes Decisions, Who’s Really in Charge?")]: [ERNEST_LEQUIMBOH_AUTHOR],
+  [normalizeTitleKey("The Fall of Kidal and the Unravelling of Mali's Military Legitimacy")]: [
+    LLOYD_GEORGE_BANDA_AUTHOR,
+  ],
+  [normalizeTitleKey("The Fall of Kidal and the Unravelling of Mali’s Military Legitimacy")]: [
+    LLOYD_GEORGE_BANDA_AUTHOR,
+  ],
   [normalizeTitleKey("Africa’s Digital Infrastructure Is More Exposed Than It Appears")]: [
     {
       name: "Alvin Korkie",
