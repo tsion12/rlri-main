@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AfricaWebinarIntroSection } from "@/components/africa/AfricaWebinarIntroSection";
 import { africaRoutes } from "@/lib/africa-routes";
 import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSupportLine";
 import { getCategorizedAfricaEvents } from "@/lib/africa-events";
@@ -39,6 +40,12 @@ export function AfricaEventsPage() {
               Upcoming event
             </Link>
             <Link
+              href="#how-webinars-work"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
+            >
+              How webinars work
+            </Link>
+            <Link
               href="#past"
               className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
             >
@@ -47,6 +54,8 @@ export function AfricaEventsPage() {
           </div>
         </div>
       </section>
+
+      <AfricaWebinarIntroSection />
 
       <section id="upcoming" className="border-b border-zinc-200/80 bg-zinc-50 py-20 dark:border-zinc-800 dark:bg-zinc-950 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
