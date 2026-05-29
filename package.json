@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",
+    "@wrksz/themes": "^0.9.3",
     "next": "16.2.2",
-    "next-themes": "^0.4.6",
     "node-html-parser": "^7.1.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",

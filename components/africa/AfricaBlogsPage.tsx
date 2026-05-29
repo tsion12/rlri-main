@@ -10,7 +10,7 @@ function themeBadge(post: WpPostWithSource) {
   return "Blog";
 }
 
-function FeaturedPostCard({ post }: { post: WpPostWithSource }) {
+export function FeaturedPostCard({ post }: { post: WpPostWithSource }) {
   const excerpt = post.excerpt ? stripHtml(post.excerpt.rendered).slice(0, 180).trim() : "";
   const date = new Date(post.date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -60,7 +60,7 @@ function FeaturedPostCard({ post }: { post: WpPostWithSource }) {
   );
 }
 
-function BlogCard({ post }: { post: WpPostWithSource }) {
+export function BlogCard({ post }: { post: WpPostWithSource }) {
   const excerpt = post.excerpt ? stripHtml(post.excerpt.rendered).slice(0, 110).trim() : "";
   const date = new Date(post.date).toLocaleDateString("en-GB", {
     day: "numeric",

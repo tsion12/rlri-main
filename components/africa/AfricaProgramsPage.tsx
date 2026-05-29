@@ -19,7 +19,7 @@ const PROGRAMS = [
       alt: "Ocean and maritime program",
     },
     topics: ["Blue Economy", "Maritime Security", "Ocean Governance", "Coastal Resilience", "Gulf of Guinea"],
-    href: `${africaRoutes.blogs}?program=oceans`,
+    href: africaRoutes.programPublications("oceans"),
   },
   {
     n: "02",
@@ -36,7 +36,7 @@ const PROGRAMS = [
       alt: "Digital futures program",
     },
     topics: ["AI Governance", "Digital Transformation", "Tech Ethics", "Gender & AI", "Inclusive Design"],
-    href: `${africaRoutes.blogs}?program=digital-futures`,
+    href: africaRoutes.programPublications("digital-futures"),
   },
   {
     n: "03",
@@ -53,7 +53,7 @@ const PROGRAMS = [
       alt: "Climate adaptation and resilience program",
     },
     topics: ["Climate Justice", "Resilience Building", "Sahel Stability", "Indigenous Knowledge", "Livelihood Protection"],
-    href: `${africaRoutes.blogs}?program=climate`,
+    href: africaRoutes.programPublications("climate"),
   },
   {
     n: "04",
@@ -70,7 +70,7 @@ const PROGRAMS = [
       alt: "Peacebuilding and inclusive dialogues program",
     },
     topics: ["Civil Society", "National Dialogues", "Gender Inclusion", "Conflict Transformation", "Peace Processes"],
-    href: `${africaRoutes.blogs}?program=peacebuilding`,
+    href: africaRoutes.programPublications("peacebuilding"),
   },
   {
     n: "05",
@@ -94,7 +94,7 @@ const PROGRAMS = [
       "Digital Health & AI",
       "WASH & Public Health",
     ],
-    href: `${africaRoutes.blogs}?program=health-systems-equity-social-transformation`,
+    href: africaRoutes.programPublications("health-systems-equity-social-transformation"),
   },
 ] as const;
 

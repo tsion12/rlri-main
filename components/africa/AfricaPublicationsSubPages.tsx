@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { WpPostWithSource } from "@/lib/wp";
 import { blogPostPath, stripHtml } from "@/lib/wp";
 import { africaRoutes } from "@/lib/africa-routes";
+import { getAfricaPolicyBriefs } from "@/lib/africa-policy-briefs";
 import { PubSubNav } from "./AfricaPublicationsNav";
 import { PolicyBriefTrackingLinks } from "./PolicyBriefTrackingLinks";
 
@@ -148,17 +149,7 @@ export function AfricaStoriesPage({ posts }: { posts: WpPostWithSource[] }) {
 }
 
 export function AfricaPolicyBriefsPage() {
-  const briefs = [
-    {
-      title:
-        "IMPROVING WATER AND SANITATION SERVICE DELIVERY IN CAMEROON, ETHIOPIA, KENYA, AND ZIMBABWE: WHAT IS WORKING, WHAT ISN'T, AND WHY?",
-      description:
-        "Evidence-informed policy brief from RLRI Africa Program. Download the full PDF for findings and recommendations.",
-      href: "https://cms-programs.reallifeinstitute.org/wp-content/uploads/2026/04/Policy-Brief-FEBRUARY-1.pdf",
-      date: "April 2026",
-      format: "PDF",
-    },
-  ] as const;
+  const briefs = getAfricaPolicyBriefs();
 
   const topics = [
     "Climate adaptation",
@@ -166,7 +157,7 @@ export function AfricaPolicyBriefsPage() {
     "Digital rights",
     "Peacebuilding",
     "Gender equality",
-    "Food security",
+    "Health equity",
   ] as const;
 
   return (

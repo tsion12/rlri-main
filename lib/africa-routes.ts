@@ -19,6 +19,9 @@ export const africaRoutes = {
   blogs: "/africa/publications/blogs",
   stories: "/africa/publications/stories",
   policyBriefs: "/africa/publications/policy-briefs",
+  /** Blogs and policy briefs filtered by program slug/key. */
+  programPublications: (program: string) =>
+    `/africa/publications/by-program?program=${encodeURIComponent(program)}`,
   faq: "/africa/faq",
   donate: "/africa/donate",
   /** Gallery / media hub (publications & stories). */
