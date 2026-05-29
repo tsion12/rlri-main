@@ -74,20 +74,27 @@ const PROGRAMS = [
   },
   {
     n: "05",
-    slug: "food-environment-natural-resources",
-    title: "Food, Environment, and Natural Resources",
-    tagline: "Sustainable food systems, environmental stewardship, and equitable natural resource governance",
+    slug: "health-systems-equity-social-transformation",
+    title: "Health Systems, Equity, and Social Transformation",
+    tagline: "Inclusive health systems, epidemic resilience, and equitable access to care across Africa",
     body: [
-      "Africa is home to rapidly evolving food systems that are deeply intertwined with environmental change, natural resource governance, and shifting livelihoods. Our Food, Environment, and Natural Resources program adopts a holistic approach to food systems, recognizing that food is sourced from interconnected ecosystems, including crops, livestock, fisheries, and natural environments.",
-      "The program examines how these systems intersect with environmental sustainability, climate change, livelihoods, and governance across diverse African contexts. It supports research and policy dialogue on sustainable food production, ecosystem stewardship, mining governance, and water, sanitation, and hygiene (WASH), including how mining affects agricultural land through degradation and displacement and impacts water systems through overuse and contamination, directly shaping food production, safety, and access, and contributing to resource-based tensions and conflict dynamics.",
-      "By advancing context-specific and evidence-based approaches and linking African expertise with global policy and research platforms, the program contributes to more resilient, inclusive, and sustainable food systems and natural resource management.",
+      "Africa's health systems are shaped by rapidly evolving demographic, environmental, technological, and socio-political changes that directly influence public health outcomes, social equity, and human security. Persistent inequalities in access to healthcare, the growing impacts of climate change and displacement, recurring epidemic threats such as Ebola and other emerging infectious diseases, and unequal access to sexual and reproductive health and rights (SRHR) continue to expose structural vulnerabilities across the continent.",
+      "Our Health Systems, Equity, and Social Transformation program adopts an interdisciplinary and systems-oriented approach to public health, recognizing that health outcomes are deeply interconnected with governance, gender relations, digital transformation, livelihoods, environmental change, conflict dynamics, and social inclusion. The program supports research and policy engagement on health systems strengthening, epidemic preparedness and response, community and primary healthcare systems, SRHR, gender-responsive health governance, digital health and AI-enabled health systems, water, sanitation, and hygiene (WASH), mental health, and equitable access to healthcare for underserved and marginalized populations. It also examines how conflict, displacement, climate-related shocks, and extractive industries affect health systems capacity, service delivery, and community resilience across diverse African contexts.",
+      "By connecting African researchers, practitioners, civil society actors, and policymakers with regional and global policy platforms, the program contributes to stronger, more inclusive, and more resilient health systems that are responsive to the realities and priorities of African communities.",
     ],
     image: {
-      src: "/assets/programs/climate.jpg",
-      alt: "Food systems and environment program",
+      src: "/assets/health.jpg",
+      alt: "Health systems, equity, and social transformation program",
     },
-    topics: ["Food Systems", "Ecosystem Stewardship", "Mining Governance", "WASH", "Climate & Livelihoods"],
-    href: `${africaRoutes.blogs}?program=food-environment-natural-resources`,
+    topics: [
+      "Health Systems Strengthening",
+      "Health Equity",
+      "Epidemic Preparedness",
+      "SRHR & Gender Justice",
+      "Digital Health & AI",
+      "WASH & Public Health",
+    ],
+    href: `${africaRoutes.blogs}?program=health-systems-equity-social-transformation`,
   },
 ] as const;
 

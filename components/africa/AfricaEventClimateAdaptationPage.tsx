@@ -135,7 +135,7 @@ export function AfricaEventClimateAdaptationPage() {
             and sustainable development.
           </p>
 
-          <WebinarProgramSupportLine month="may" className="mt-8" />
+          <WebinarProgramSupportLine program="03" className="mt-8" />
         </div>
       </section>
 

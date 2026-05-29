@@ -97,7 +97,7 @@ export function AfricaEventNextWebinarPage() {
 
       <section className="bg-white py-16 dark:bg-zinc-950 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <WebinarProgramSupportLine month="april" className="max-w-4xl" />
+          <WebinarProgramSupportLine program="04" className="max-w-4xl" />
           <h2 className="mt-10 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">Speakers &amp; moderator</h2>
           <ul className="mt-8 space-y-8">
             {SPEAKERS.map((person) => (

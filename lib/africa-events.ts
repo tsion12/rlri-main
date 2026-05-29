@@ -1,7 +1,7 @@
 import { africaRoutes } from "@/lib/africa-routes";
 import { categorizeAfricaEvents, getEventEndIso } from "@/lib/africa-event-schedule";
 
-export type AfricaSupportMonth = "february" | "march" | "april" | "may" | "june";
+export type WebinarProgramOrdinal = "01" | "02" | "03" | "04" | "05";
 
 export type AfricaWebinarEvent = {
   id: string;
@@ -17,7 +17,7 @@ export type AfricaWebinarEvent = {
   format: string;
   href: string;
   registerHref: string | null;
-  supportMonth: AfricaSupportMonth;
+  supportProgram: WebinarProgramOrdinal;
   tags: string[];
   policyBriefHref: string | null;
   recordingHref: string | null;
@@ -47,7 +47,7 @@ const AFRICA_WEBINAR_EVENTS: AfricaWebinarEvent[] = [
     format: "Pan-African Webinar",
     href: africaRoutes.events,
     registerHref: null,
-    supportMonth: "february",
+    supportProgram: "05",
     tags: ["Water & Sanitation", "Governance"],
     policyBriefHref: africaRoutes.policyBriefs,
     recordingHref: "https://www.youtube.com/watch?v=IIorkFDsOZ0",
@@ -65,7 +65,7 @@ const AFRICA_WEBINAR_EVENTS: AfricaWebinarEvent[] = [
     format: "Online Webinar",
     href: africaRoutes.events,
     registerHref: null,
-    supportMonth: "march",
+    supportProgram: "02",
     tags: ["Gender Justice", "Legal Frameworks"],
     policyBriefHref: null,
     recordingHref: "https://www.youtube.com/watch?v=ZnAWHbZ5Gsk",
@@ -85,7 +85,7 @@ const AFRICA_WEBINAR_EVENTS: AfricaWebinarEvent[] = [
     href: africaRoutes.eventNextWebinar,
     registerHref:
       "https://docs.google.com/forms/d/e/1FAIpQLSfGSPxWyIdYLIXDRPWZs4XezOXcBZ09rV3yxnPze1DXZ3lXxA/viewform?usp=publish-editor",
-    supportMonth: "april",
+    supportProgram: "04",
     tags: ["Security", "Digital Infrastructure"],
     policyBriefHref: null,
     recordingHref: "https://youtu.be/tf52SsxgKAs",
@@ -107,7 +107,7 @@ const AFRICA_WEBINAR_EVENTS: AfricaWebinarEvent[] = [
     href: africaRoutes.eventClimateAdaptation,
     registerHref:
       "https://docs.google.com/forms/d/e/1FAIpQLSdgvJw-YcKHoeblL1dUp3JeTuuy0j4oXMT7N1mper6-JIkPsg/viewform?usp=publish-editor",
-    supportMonth: "may",
+    supportProgram: "03",
     tags: ["Climate Adaptation", "Information Integrity"],
     policyBriefHref: null,
     recordingHref: null,
@@ -128,7 +128,7 @@ const AFRICA_WEBINAR_EVENTS: AfricaWebinarEvent[] = [
     format: "Online Webinar",
     href: africaRoutes.eventEbolaDrc,
     registerHref: "https://forms.gle/1bn8g7Tu2ZQGcMm36",
-    supportMonth: "june",
+    supportProgram: "05",
     tags: ["Public Health", "DRC", "Conflict & Governance"],
     policyBriefHref: null,
     recordingHref: null,

@@ -208,7 +208,7 @@ export async function AfricaAboutPage() {
                       Focus area 05
                     </dt>
                     <dd className="mt-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                      Food, Environment &amp; Natural Resources
+                      Health Systems, Equity &amp; Social Transformation
                     </dd>
                   </div>
                 </dl>

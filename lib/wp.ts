@@ -6,14 +6,17 @@ export type AfricaProgramKey =
   | "digital-futures"
   | "climate"
   | "peacebuilding"
-  | "food-environment-natural-resources";
+  | "health-systems-equity-social-transformation";
 
 const AFRICA_PROGRAM_META: Record<AfricaProgramKey, { label: string; categoryId: number }> = {
   oceans: { label: "Oceans", categoryId: 44 },
   "digital-futures": { label: "Digital Futures", categoryId: 45 },
   climate: { label: "Climate Adaptation & Resilience", categoryId: 46 },
   peacebuilding: { label: "Peacebuilding & Inclusive Dialogues", categoryId: 47 },
-  "food-environment-natural-resources": { label: "Food, Environment, and Natural Resources", categoryId: 48 },
+  "health-systems-equity-social-transformation": {
+    label: "Health Systems, Equity, and Social Transformation",
+    categoryId: 48,
+  },
 };
 
 export type WpPost = {
@@ -170,8 +173,11 @@ const CATEGORY_NAME_TO_PROGRAM = new Map<string, AfricaProgramKey>([
   ["environment resilience", "climate"],
   ["peacebuilding inclusive dialogues", "peacebuilding"],
   ["peace civil society", "peacebuilding"],
-  ["food environment and natural resources", "food-environment-natural-resources"],
-  ["food systems environment", "food-environment-natural-resources"],
+  ["food environment and natural resources", "health-systems-equity-social-transformation"],
+  ["food systems environment", "health-systems-equity-social-transformation"],
+  ["health systems equity and social transformation", "health-systems-equity-social-transformation"],
+  ["health systems", "health-systems-equity-social-transformation"],
+  ["public health", "health-systems-equity-social-transformation"],
 ]);
 
 const GENERIC_CATEGORY_NAMES = new Set([
@@ -240,7 +246,10 @@ const AFRICA_PROGRAM_QUERY_VALUES: Record<AfricaProgramKey, string[]> = {
   "digital-futures": ["digital-futures", "digital", "technology-society"],
   climate: ["climate", "climate-adaptation-resilience", "environment-resilience"],
   peacebuilding: ["peacebuilding", "peacebuilding-inclusive-dialogues", "peace-civil-society"],
-  "food-environment-natural-resources": [
+  "health-systems-equity-social-transformation": [
+    "health-systems-equity-social-transformation",
+    "health-systems",
+    "health-equity",
     "food-environment-natural-resources",
     "food-environment",
     "food-systems-environment",

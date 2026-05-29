@@ -89,7 +89,7 @@ export function AfricaEventEbolaDrcPage() {
             Moderator and speakers to be announced later.
           </p>
 
-          <WebinarProgramSupportLine month="june" className="mt-8" />
+          <WebinarProgramSupportLine program="05" className="mt-8" />
         </div>
       </section>
     </>

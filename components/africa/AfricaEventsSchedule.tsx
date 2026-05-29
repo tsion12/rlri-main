@@ -98,7 +98,7 @@ function FeaturedEventCard({ event, live }: { event: AfricaWebinarEvent; live: b
             <p className="mt-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">{event.locationDate}</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{event.timezoneLine}</p>
             <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{event.summary}</p>
-            <WebinarProgramSupportLine month={event.supportMonth} className="mt-4" />
+            <WebinarProgramSupportLine program={event.supportProgram} className="mt-4" />
             <UpcomingEventActions registerHref={event.registerHref} detailsHref={event.href} live={live} />
           </div>
         </div>
@@ -159,7 +159,7 @@ export function AfricaEventsSchedule({ events }: { events: AfricaWebinarEvent[] 
                               </p>
                             ) : null}
                             <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{event.summary}</p>
-                            <WebinarProgramSupportLine month={event.supportMonth} className="mt-3" />
+                            <WebinarProgramSupportLine program={event.supportProgram} className="mt-3" />
                             <div className="mt-auto pt-5">
                               <UpcomingEventActions registerHref={event.registerHref} detailsHref={event.href} />
                             </div>
@@ -190,7 +190,7 @@ export function AfricaEventsSchedule({ events }: { events: AfricaWebinarEvent[] 
             <p className="text-sm text-zinc-600 dark:text-zinc-400">Past webinars will appear here after they conclude.</p>
           ) : (
             <ul className="grid gap-6 sm:grid-cols-2">
-              {past.map(({ id, title, summary, isoDate, format, tags, href, policyBriefHref, recordingHref, supportMonth }) => {
+              {past.map(({ id, title, summary, isoDate, format, tags, href, policyBriefHref, recordingHref, supportProgram }) => {
                 const dateParts = formatCalendarParts(isoDate);
                 return (
                   <li key={id} className="flex">
@@ -205,7 +205,7 @@ export function AfricaEventsSchedule({ events }: { events: AfricaWebinarEvent[] 
                         {title}
                       </h3>
                       <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{summary}</p>
-                      <WebinarProgramSupportLine month={supportMonth} className="mt-3" />
+                      <WebinarProgramSupportLine program={supportProgram} className="mt-3" />
                       <div className="mt-4 flex flex-wrap gap-2">
                         {tags.map((tag) => (
                           <span

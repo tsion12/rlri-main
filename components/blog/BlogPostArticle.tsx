@@ -86,7 +86,7 @@ const FOCUS_PROGRAMS = [
   { n: "02", label: "Digital Futures", icon: "🧠" },
   { n: "03", label: "Climate Adaptation", icon: "🌍" },
   { n: "04", label: "Peacebuilding", icon: "🕊️" },
-  { n: "05", label: "Food & Resources", icon: "🌾" },
+  { n: "05", label: "Health Systems", icon: "🏥" },
 ] as const;
 
 type AuthorProfile = {
@@ -466,7 +466,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
         </div>
 
         {post.slug === "rethinking-wash-governance-in-africa-insights-from-webinar-speaker-agbor" ? (
-          <WebinarProgramSupportLine month="february" className="mt-5" />
+          <WebinarProgramSupportLine program="05" className="mt-5" />
         ) : null}
 
       </header>
