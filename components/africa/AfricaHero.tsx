@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
 import { africaRoutes } from "@/lib/africa-routes";
+import { HeroEventLiveBadge } from "@/components/africa/HeroEventLiveBadge";
 import { au } from "./africa-ui";
 
 
@@ -9,6 +10,7 @@ type HeroEventHighlight = {
   excerpt: string;
   modified: string;
   eventDateISO?: string | null;
+  eventEndISO?: string | null;
   link?: string;
 };
 
@@ -102,6 +104,12 @@ export function AfricaHero({ featuredPost, upcomingEvent }: Props) {
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-600 dark:text-zinc-400">
                 Featured announcement
               </p>
+              {upcomingEvent?.eventDateISO && upcomingEvent.eventEndISO ? (
+                <HeroEventLiveBadge
+                  startISO={upcomingEvent.eventDateISO}
+                  endISO={upcomingEvent.eventEndISO}
+                />
+              ) : null}
               <h2 className="mt-3 font-serif text-2xl leading-tight text-zinc-900 dark:text-zinc-100">
                 {featuredAnnouncementTitle}
               </h2>

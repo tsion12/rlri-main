@@ -26,8 +26,14 @@ export function AfricaCommunityUpdateSection() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href={africaRoutes.stories}
+                href={africaRoutes.eventEbolaDrc}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-5 text-sm font-semibold text-white transition hover:bg-teal-600"
+              >
+                June 9 webinar
+              </Link>
+              <Link
+                href={africaRoutes.stories}
+                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
               >
                 Field stories
               </Link>
@@ -35,7 +41,7 @@ export function AfricaCommunityUpdateSection() {
                 href={africaRoutes.events}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600"
               >
-                Events &amp; webinars
+                All events
               </Link>
             </div>
           </div>

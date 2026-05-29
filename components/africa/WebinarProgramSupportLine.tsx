@@ -21,6 +21,10 @@ const PROGRAM_BY_MONTH = {
     href: programsAnchor("03"),
     name: "Climate Adaptation & Resilience Team",
   },
+  june: {
+    href: programsAnchor("04"),
+    name: "Peacebuilding & Inclusive Dialogues Team",
+  },
 } as const;
 
 export type WebinarProgramMonth = keyof typeof PROGRAM_BY_MONTH;
