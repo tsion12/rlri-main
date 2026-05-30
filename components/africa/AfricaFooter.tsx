@@ -2,7 +2,6 @@ import Link from "next/link";
 import { au } from "./africa-ui";
 import {
   IconMail,
-  IconMap,
   SocialFacebook,
   SocialInstagram,
   SocialLinkedIn,
@@ -69,7 +68,7 @@ export function AfricaFooter() {
           {/* Quick links */}
           <div className="lg:col-span-2">
             <h2 className={au.footer.sectionTitle}>Quick links</h2>
-            <ul className="mt-5 space-y-2.5">
+            <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2.5">
               {quickLinks.map(({ label, href }) => {
                 const external =
                   href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
@@ -109,28 +108,6 @@ export function AfricaFooter() {
                     >
                       contact-africa@reallifeinstitute.org
                     </a>
-                  </div>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400">
-                    <IconMap className="h-4 w-4" />
-                  </span>
-                  <div className="min-w-0 pt-0.5 leading-snug">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-500">
-                      Ottawa office
-                    </p>
-                    <p className="mt-1">96 Ontario Street, Ottawa, ON K1K 1K9</p>
-                  </div>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400">
-                    <IconMap className="h-4 w-4" />
-                  </span>
-                  <div className="min-w-0 pt-0.5 leading-snug">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-500">
-                      Iqaluit Office
-                    </p>
-                    <p className="mt-1">4104 Road to Nowhere, Iqaluit, NU X0A 2H0 Canada</p>
                   </div>
                 </li>
               </ul>
