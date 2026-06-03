@@ -6,7 +6,8 @@ import { WebinarProgramSupportLine } from "@/components/africa/WebinarProgramSup
 import { africaRoutes, programsAnchor } from "@/lib/africa-routes";
 import { resolveAuthorPhoto } from "@/lib/blog-author-photos";
 import { finalizeBlogBodyHtml } from "@/lib/strip-blog-html";
-import { blogPostPath, stripHtml, type WpPostWithSource } from "@/lib/wp";
+import { mainAboutSectionHref } from "@/lib/main-routes";
+import { blogPostPath, postIsMainPolicy, stripHtml, type WpPostWithSource } from "@/lib/wp";
 
 function formatPostDate(iso: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -81,6 +82,10 @@ function excerptRepeatsBodyOpening(excerptHtml: string, bodyHtml: string): boole
   return shared >= Math.min(80, Math.floor(ex.length * 0.72));
 }
 
+/** Shared subtitle for main-site policy detail pages. */
+const POLICY_DETAIL_SUBTITLE =
+  "At Real Life Research Institute, our policies put community first and reflect the values we live by.";
+
 const FOCUS_PROGRAMS = [
   { n: "01", label: "Oceans", icon: "🌊" },
   { n: "02", label: "Digital Futures", icon: "🧠" },
@@ -123,6 +128,13 @@ const ERNEST_LEQUIMBOH_AUTHOR: AuthorProfile = {
   bio: "Ernest Lequimboh is an Award-Winning Author of 10 Investments You Must Make Before 40 and a Senior Policy Advisor at the Real Life Research Institute (RLRI), where he contributes to research and policy work at the intersection of artificial intelligence, governance, and inclusive public leadership. He brings experience in policy analysis and legislative modernization, a researcher with an academic foundation in Women and Gender Studies, Law, and Public Policy, alongside advanced studies in artificial intelligence and DevOps. His forthcoming paper critically examines AI Governance Capacity.",
 };
 
+const CHRISTELLE_NFOR_AUTHOR: AuthorProfile = {
+  name: "Christelle Nfor Mugha",
+  role: "Author",
+  linkedin: "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
+  bio: "Christelle Nfor Mugha is a journalist and communications professional specialising in strategic communications, content development, and stakeholder engagement. She holds a Bachelor of Arts degree in Journalism from the Advanced School of Mass Communications, Yaoundé. Her work focuses on amplifying underrepresented voices and advancing public interest narratives, particularly around gender, governance, and social justice. She currently serves as Program Assistant at the Real Life Research Institute Africa Program, where she supports communications, digital engagement, and the dissemination of research and policy outputs across Africa. Her work bridges research and practice, translating complex policy and development issues into accessible, impactful content for diverse audiences across the continent and beyond.",
+};
+
 const LLOYD_GEORGE_BANDA_AUTHOR: AuthorProfile = {
   name: "Lloyd George Banda, PhD",
   role: "Postdoctoral Research Fellow",
@@ -147,11 +159,7 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       role: "Co-author",
       linkedin: "https://www.linkedin.com/in/nchongayi-christantus-020827a1/",
     },
-    {
-      name: "Christelle Nfor",
-      role: "Co-author",
-      linkedin: "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
-    },
+    { ...CHRISTELLE_NFOR_AUTHOR, role: "Co-author" },
   ],
   "await-featuretour-clearallseennotify": [
     {
@@ -212,14 +220,9 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
       },
     ],
   "inclusive-dialogue-in-action-reflections-on-pope-leo-xivs-apostolic-visit-to-africa":
-    [
-      {
-        name: "Christelle Nfor",
-        role: "Author",
-        linkedin:
-          "https://www.linkedin.com/in/nfor-christelle-mugha-8941421a7/",
-      },
-    ],
+    [CHRISTELLE_NFOR_AUTHOR],
+  "rethinking-climate-adaptation-in-africa-why-local-knowledge-and-information-integrity-cannot-be-separated":
+    [CHRISTELLE_NFOR_AUTHOR],
   "the-next-digital-divide-why-africa-risks-becoming-an-ai-consumer-rather-than-an-ai-creator":
     [
       {
@@ -332,7 +335,18 @@ const TITLE_AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
   ],
 };
 
+function DownloadIcon() {
+  return (
+    <svg className="size-5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+      <path d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 1 0-1.09-1.03l-2.955 3.129V2.75Z" />
+      <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
+    </svg>
+  );
+}
+
 export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
+  const isPolicy = postIsMainPolicy(post);
+  const policiesListHref = mainAboutSectionHref("policies");
   const dateLabel = formatPostDate(post.date);
   const titlePlain = stripHtml(post.title.rendered);
   const canonicalPath = blogPostPath(post);
@@ -361,6 +375,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
     authorsForSection.length === 1 &&
     /RLRI|Editorial Team/i.test(authorsForSection[0].name);
   const showAuthorsSection =
+    !isPolicy &&
     !isGenericFallback &&
     (hasAuthorOverride ||
       authorsForSection.some((author) => author.bio || author.linkedin || author.avatar));
@@ -370,10 +385,12 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
   const excerptHtml = post.excerpt?.rendered?.trim() ?? "";
   const excerptPlain = excerptHtml ? cleanWpExcerptText(excerptHtml) : "";
   const showExcerpt =
-    excerptPlain.length > 0 && !excerptRepeatsBodyOpening(excerptHtml, bodyHtml);
+    !isPolicy &&
+    excerptPlain.length > 0 &&
+    !excerptRepeatsBodyOpening(excerptHtml, bodyHtml);
   const minutes = estimateReadingMinutes(bodyHtml);
   const themeLabel = post.programLabel ?? post.theme?.trim() ?? null;
-  const showAuthorByline = !isGenericFallback;
+  const showAuthorByline = !isPolicy && !isGenericFallback;
   const bylineAuthors = authors.map((author) => ({
     name: authorBylineName(author.name),
     linkedin: author.linkedin,
@@ -393,19 +410,25 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <nav className="relative mb-10" aria-label="Breadcrumb">
         <Link
-          href={africaRoutes.blogs}
+          href={isPolicy ? policiesListHref : africaRoutes.blogs}
           className="group inline-flex items-center gap-2 rounded-full border border-stone-200/90 bg-white/90 px-4 py-2.5 text-sm font-medium text-stone-600 shadow-sm ring-1 ring-stone-950/5 transition-all hover:border-amber-300/80 hover:bg-amber-50/80 hover:text-stone-900 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:ring-white/5 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/80 dark:hover:text-zinc-100"
         >
           <span aria-hidden className="transition-transform group-hover:-translate-x-0.5">
             ←
           </span>
-          All posts
+          {isPolicy ? "All policies" : "All posts"}
         </Link>
       </nav>
 
       <header className="relative">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-amber-700 dark:text-amber-400/90">
-          Journal
+        <p
+          className={`text-[11px] font-semibold uppercase tracking-[0.32em] ${
+            isPolicy
+              ? "text-teal-700 dark:text-teal-400/90"
+              : "text-amber-700 dark:text-amber-400/90"
+          }`}
+        >
+          {isPolicy ? "Policy" : "Journal"}
         </p>
 
         <h1
@@ -414,56 +437,62 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
           {stripHtml(post.title.rendered)}
         </h1>
 
-        <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-stone-500 dark:text-zinc-500">
-          {themeLabel ? (
-            <>
-              <span>
-                In{" "}
-                <span className="font-medium text-teal-800 dark:text-teal-300">{themeLabel}</span>
-              </span>
-              <MetaDivider />
-            </>
-          ) : null}
-          <span className="inline-flex items-center gap-1.5">
-            <CalendarIcon />
-            <time dateTime={post.date} className="font-medium text-stone-700 dark:text-zinc-300">
-              {dateLabel}
-            </time>
-          </span>
-          {showAuthorByline && bylineAuthors.length > 0 ? (
-            <>
-              <MetaDivider />
-              <span className="inline-flex flex-wrap items-center gap-1.5">
-                <AuthorIcon />
-                <span className="inline-flex flex-wrap items-center gap-x-1">
-                  {bylineAuthors.map((author, index) => (
-                    <span key={author.name} className="inline-flex items-center">
-                      {index > 0 ? (
-                        <span className="mr-1 text-stone-400 dark:text-zinc-500">
-                          {index === bylineAuthors.length - 1 ? "and " : ", "}
-                        </span>
-                      ) : null}
-                      {author.linkedin ? (
-                        <a
-                          href={author.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-medium text-teal-800 underline-offset-2 hover:underline dark:text-teal-300"
-                        >
-                          {author.name}
-                        </a>
-                      ) : (
-                        <span className="font-medium text-teal-800 dark:text-teal-300">{author.name}</span>
-                      )}
-                    </span>
-                  ))}
+        {isPolicy ? (
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-stone-600 dark:text-zinc-400 sm:text-lg">
+            {POLICY_DETAIL_SUBTITLE}
+          </p>
+        ) : (
+          <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-stone-500 dark:text-zinc-500">
+            {themeLabel ? (
+              <>
+                <span>
+                  In{" "}
+                  <span className="font-medium text-teal-800 dark:text-teal-300">{themeLabel}</span>
                 </span>
-              </span>
-            </>
-          ) : null}
-          <MetaDivider />
-          <span>{minutes} min read</span>
-        </div>
+                <MetaDivider />
+              </>
+            ) : null}
+            <span className="inline-flex items-center gap-1.5">
+              <CalendarIcon />
+              <time dateTime={post.date} className="font-medium text-stone-700 dark:text-zinc-300">
+                {dateLabel}
+              </time>
+            </span>
+            {showAuthorByline && bylineAuthors.length > 0 ? (
+              <>
+                <MetaDivider />
+                <span className="inline-flex flex-wrap items-center gap-1.5">
+                  <AuthorIcon />
+                  <span className="inline-flex flex-wrap items-center gap-x-1">
+                    {bylineAuthors.map((author, index) => (
+                      <span key={author.name} className="inline-flex items-center">
+                        {index > 0 ? (
+                          <span className="mr-1 text-stone-400 dark:text-zinc-500">
+                            {index === bylineAuthors.length - 1 ? "and " : ", "}
+                          </span>
+                        ) : null}
+                        {author.linkedin ? (
+                          <a
+                            href={author.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-teal-800 underline-offset-2 hover:underline dark:text-teal-300"
+                          >
+                            {author.name}
+                          </a>
+                        ) : (
+                          <span className="font-medium text-teal-800 dark:text-teal-300">{author.name}</span>
+                        )}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              </>
+            ) : null}
+            <MetaDivider />
+            <span>{minutes} min read</span>
+          </div>
+        )}
 
         {post.slug === "rethinking-wash-governance-in-africa-insights-from-webinar-speaker-agbor" ? (
           <WebinarProgramSupportLine program="05" className="mt-5" />
@@ -475,6 +504,31 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
         <p className="relative mt-10 border-l-[3px] border-amber-500/90 pl-5 text-lg font-medium leading-relaxed text-stone-700 dark:border-amber-400/80 dark:text-zinc-300">
           {excerptPlain}
         </p>
+      ) : null}
+
+      {isPolicy && post.downloadUrl ? (
+        <div
+          className={`rounded-2xl border border-teal-200/90 bg-teal-50/90 p-6 shadow-sm dark:border-teal-800/60 dark:bg-teal-950/40 sm:p-7 ${
+            showExcerpt ? "mt-10" : "mt-12"
+          }`}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-800/80 dark:text-teal-300/80">
+            Official document
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-zinc-400">
+            Download the published policy as a PDF for offline reading or printing.
+          </p>
+          <a
+            href={post.downloadUrl}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-teal-700 px-6 text-sm font-semibold text-white transition hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+          >
+            <DownloadIcon />
+            Download PDF
+          </a>
+        </div>
       ) : null}
 
       <div
@@ -502,70 +556,82 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <section className="mt-10">
         <aside className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 sm:p-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">
-            Focus programs
-          </p>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {FOCUS_PROGRAMS.map((program) => (
-              <Link
-                key={program.n}
-                href={programsAnchor(program.n)}
-                className="rounded-xl border border-zinc-200/80 bg-zinc-50 p-3 transition-colors hover:border-teal-200 hover:bg-white dark:border-zinc-700 dark:bg-zinc-800/60 dark:hover:border-teal-800/60"
-              >
-                <p className="text-lg leading-none">{program.icon}</p>
-                <p className="mt-2 text-xs font-medium leading-snug text-zinc-700 dark:text-zinc-300">
-                  {program.label}
-                </p>
-              </Link>
-            ))}
-          </div>
+          {!isPolicy ? (
+            <>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">
+                Focus programs
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {FOCUS_PROGRAMS.map((program) => (
+                  <Link
+                    key={program.n}
+                    href={programsAnchor(program.n)}
+                    className="rounded-xl border border-zinc-200/80 bg-zinc-50 p-3 transition-colors hover:border-teal-200 hover:bg-white dark:border-zinc-700 dark:bg-zinc-800/60 dark:hover:border-teal-800/60"
+                  >
+                    <p className="text-lg leading-none">{program.icon}</p>
+                    <p className="mt-2 text-xs font-medium leading-snug text-zinc-700 dark:text-zinc-300">
+                      {program.label}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </>
+          ) : null}
 
-          <BlogSharePanel title={titlePlain} fallbackPath={canonicalPath} />
+          <div className={isPolicy ? undefined : "mt-6"}>
+            <BlogSharePanel title={titlePlain} fallbackPath={canonicalPath} />
+          </div>
         </aside>
       </section>
 
       <footer className="relative mt-14 flex flex-col gap-4 border-t border-stone-200/80 pt-10 dark:border-zinc-800 sm:flex-row sm:items-center sm:justify-between">
         <Link
-          href={africaRoutes.blogs}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-amber-800 transition hover:text-amber-950 dark:text-amber-400 dark:hover:text-amber-200"
+          href={isPolicy ? policiesListHref : africaRoutes.blogs}
+          className={`inline-flex items-center gap-2 text-sm font-semibold transition ${
+            isPolicy
+              ? "text-teal-800 hover:text-teal-950 dark:text-teal-400 dark:hover:text-teal-200"
+              : "text-amber-800 hover:text-amber-950 dark:text-amber-400 dark:hover:text-amber-200"
+          }`}
         >
           <span aria-hidden>←</span>
-          Back to all posts
+          {isPolicy ? "Back to all policies" : "Back to all posts"}
         </Link>
         <p className="text-xs text-stone-500 dark:text-zinc-500">{titlePlain}</p>
       </footer>
 
-      <section className="mt-12 rounded-2xl border border-zinc-200/80 bg-zinc-50/80 p-6 dark:border-zinc-800 dark:bg-zinc-900/40 sm:p-7">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">
-          Explore more from RLRI Africa Program
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <Link
-            href="/africa/publications/blogs"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-5 text-sm font-semibold text-white transition hover:bg-teal-600"
-          >
-            Blogs &amp; op-eds
-          </Link>
-          <Link
-            href="/africa/publications/stories"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
-          >
-            Stories
-          </Link>
-          <Link
-            href="/africa/programs"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
-          >
-            Programs
-          </Link>
-          <Link
-            href="/africa/events"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
-          >
-            Events &amp; webinars
-          </Link>
-        </div>
-      </section>
+      {!isPolicy ? (
+        <section className="mt-12 rounded-2xl border border-zinc-200/80 bg-zinc-50/80 p-6 dark:border-zinc-800 dark:bg-zinc-900/40 sm:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">
+            Explore more from RLRI Africa Program
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <Link
+              href="/africa/publications/blogs"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-5 text-sm font-semibold text-white transition hover:bg-teal-600"
+            >
+              Blogs &amp; op-eds
+            </Link>
+            <Link
+              href="/africa/publications/stories"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            >
+              Stories
+            </Link>
+            <Link
+              href="/africa/programs"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            >
+              Programs
+            </Link>
+            <Link
+              href="/africa/events"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 transition hover:border-teal-700/40 hover:text-teal-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            >
+              Events &amp; webinars
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       <BlogEngagement slug={post.slug} source={post.source} title={titlePlain} />
     </article>
