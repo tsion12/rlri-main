@@ -34,6 +34,10 @@ export type WpPost = {
   authorName?: string | null;
   authorBio?: string | null;
   authorAvatar?: string | null;
+  /** Set when main-site policy pipeline is enabled; optional until then. */
+  isPolicy?: boolean;
+  /** First PDF link in policy post content, when `isPolicy`. */
+  downloadUrl?: string | null;
 };
 
 export type WpPostWithSource = WpPost & { source: WpSource };
