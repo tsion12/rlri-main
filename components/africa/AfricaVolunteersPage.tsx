@@ -103,7 +103,7 @@ export function AfricaVolunteersPage() {
             <p className="mt-3 text-[1.025rem] leading-relaxed text-zinc-600 dark:text-zinc-400">
               To apply, send your resume to{" "}
               <a
-                href={`mailto:${africaEmails.jobsHr}?subject=Application%20%E2%80%94%20Iqaluit%20Summer%20Student%20Volunteer%202026`}
+                href={`mailto:${africaEmails.jobsHr}`}
                 className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
               >
                 {africaEmails.jobsHr}

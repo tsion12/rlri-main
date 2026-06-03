@@ -10,7 +10,7 @@ export const au = {
     inner:
       "mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-2 px-3 py-1.5 sm:min-h-[4rem] sm:gap-3 sm:px-4 sm:py-2 lg:min-h-[4.25rem] lg:gap-5 lg:px-6",
     navTrack:
-      "flex items-center gap-0.5 rounded-xl border border-zinc-200/70 bg-zinc-100/60 p-1 shadow-inner shadow-zinc-900/5 dark:border-zinc-800/80 dark:bg-zinc-900/40 dark:shadow-none",
+      "flex items-center gap-0.5 overflow-visible rounded-xl border border-zinc-200/70 bg-zinc-100/60 p-1 shadow-inner shadow-zinc-900/5 dark:border-zinc-800/80 dark:bg-zinc-900/40 dark:shadow-none",
     navItem:
       "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium tracking-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950",
     navItemActive:
@@ -18,7 +18,7 @@ export const au = {
     navItemIdle:
       "text-zinc-600 hover:bg-white/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-100",
     dropdown:
-      "absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-[13.5rem] overflow-hidden rounded-xl border border-zinc-200/80 bg-white/95 p-1 shadow-lg shadow-zinc-900/10 ring-1 ring-zinc-900/5 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/95 dark:ring-white/5",
+      "absolute right-0 top-[calc(100%+0.5rem)] z-[100] min-w-[13.5rem] overflow-hidden rounded-xl border border-zinc-200/80 bg-white/95 p-1 shadow-lg shadow-zinc-900/10 ring-1 ring-zinc-900/5 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/95 dark:ring-white/5",
     dropdownItem:
       "block rounded-lg px-3 py-2.5 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/80 dark:hover:text-white",
     donate:
