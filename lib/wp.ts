@@ -1,4 +1,4 @@
-export type MainSiteLocale = "en" | "fr" | "iu";
+export type MainSiteLocale = "en" | "fr";
 
 export type WpSource = "main" | "africa";
 /* Main-site locales — no i18n import so Africa-only deploys can use a slimmer wp.ts. */
@@ -117,6 +117,10 @@ const AFRICA_API_FALLBACK = "https://cms-programs.reallifeinstitute.org/wp-json/
 const WP_REVALIDATE_SECONDS = 300;
 const WP_TIMEOUT_MS = 12000;
 const WP_POSTS_PER_PAGE = 50;
+const WP_FETCH_HEADERS = {
+  accept: "application/json",
+  "User-Agent": "RLRI-Site/1.0 (+https://reallifeinstitute.org)",
+} as const;
 
 export function sourceDisplay(source: WpSource): string {
   return source === "main" ? "Main" : "Africa";
@@ -304,7 +308,7 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
     categories.some((cat) => {
       const name = normCategoryName(cat.name);
       const slug = cat.slug ? normCategoryName(cat.slug) : "";
-      return MAIN_POLICY_CATEGORY_NAMES.has(name) || MAIN_POLICY_CATEGORY_NAMES.has(slug);
+      return MAIN_POLICY_CATEGORY_NAME_UNION.has(name) || MAIN_POLICY_CATEGORY_NAME_UNION.has(slug);
     });
   const downloadUrl = isPolicy ? extractPolicyDownloadUrl(post.content.rendered) : null;
   const isPublication =
@@ -381,7 +385,7 @@ async function fetchJsonViaHttpsIpv4<T>(url: string): Promise<T | null> {
       {
         family: 4,
         timeout: WP_TIMEOUT_MS,
-        headers: { accept: "application/json" },
+        headers: WP_FETCH_HEADERS,
       },
       (res) => {
         if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
@@ -418,14 +422,14 @@ async function wpFetchJson<T>(url: string): Promise<T | null> {
   try {
     const res = await fetch(url, {
       next: { revalidate: WP_REVALIDATE_SECONDS },
+      headers: WP_FETCH_HEADERS,
     });
-    if (!res.ok) return null;
-    return (await res.json()) as T;
+    if (res.ok) return (await res.json()) as T;
   } catch {
-    // Fallback path for environments where undici fetch intermittently times out
-    // on dual-stack DNS routes; forcing IPv4 is typically more reliable.
-    return fetchJsonViaHttpsIpv4<T>(url);
+    // fall through to IPv4
   }
+  // Retry over IPv4 when fetch fails or returns a non-2xx (timeouts, DNS, CDN blocks).
+  return fetchJsonViaHttpsIpv4<T>(url);
 }
 
 async function wpFetchJsonWithAfricaFallback<T>(url: string): Promise<T | null> {
@@ -593,6 +597,11 @@ export async function getAfricaStories(): Promise<WpPostWithSource[]> {
 
 const MAIN_POLICY_CATEGORY_ID = 28;
 const MAIN_POLICY_CATEGORY_NAMES = new Set(["policy", "policies", "policy en"]);
+const MAIN_POLICY_FR_CATEGORY_NAMES = new Set(["policy fr", "policy-fr"]);
+const MAIN_POLICY_CATEGORY_NAME_UNION = new Set([
+  ...MAIN_POLICY_CATEGORY_NAMES,
+  ...MAIN_POLICY_FR_CATEGORY_NAMES,
+]);
 
 /** First PDF hyperlink in WordPress post HTML (policy documents). */
 export function extractPolicyDownloadUrl(html: string): string | null {
@@ -681,23 +690,44 @@ function sortMainPostsNewest(posts: WpPostWithSource[]): WpPostWithSource[] {
   return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
+function filterMainPostsByCategories(
+  posts: WpApiPost[],
+  include: { categoryIds: number[]; names: ReadonlySet<string>[] },
+  exclude?: { id: number; names: ReadonlySet<string> },
+): WpApiPost[] {
+  return posts.filter((post) => {
+    const included = include.categoryIds.some((id, index) =>
+      postHasCategory(post, { id, names: include.names[index] }),
+    );
+    if (!included) return false;
+    if (exclude && postHasCategory(post, exclude)) return false;
+    return true;
+  });
+}
+
 async function fetchMainBlogPostsFiltered(options: {
   categoryIds: number[];
   names: ReadonlySet<string>[];
+  exclude?: { id: number; names: ReadonlySet<string> };
 }): Promise<WpPostWithSource[]> {
   const primaryId = options.categoryIds[0];
-  const primaryNames = options.names[0];
 
   let posts =
     options.categoryIds.length === 1
       ? await fetchMainPostsRaw(primaryId)
       : await fetchMainPostsRaw(options.categoryIds);
 
+  posts = filterMainPostsByCategories(
+    posts,
+    { categoryIds: options.categoryIds, names: options.names },
+    options.exclude,
+  );
+
   if (posts.length === 0) {
-    posts = (await fetchMainPostsRaw()).filter((post) =>
-      options.categoryIds.some((id, index) =>
-        postHasCategory(post, { id, names: options.names[index] }),
-      ),
+    posts = filterMainPostsByCategories(
+      await fetchMainPostsRaw(),
+      { categoryIds: options.categoryIds, names: options.names },
+      options.exclude,
     );
   }
 
@@ -707,7 +737,7 @@ async function fetchMainBlogPostsFiltered(options: {
 /**
  * Main site journal posts by locale:
  * - `en`: WordPress category **Blog** only
- * - `fr` / `iu`: **Blog-IU** only
+ * - `fr`: **Blog-IU** only
  */
 export async function getMainBlogPosts(locale: MainSiteLocale): Promise<WpPostWithSource[]> {
   try {
@@ -716,7 +746,7 @@ export async function getMainBlogPosts(locale: MainSiteLocale): Promise<WpPostWi
     const blogIuCategoryId =
       (await resolveMainCategoryId(MAIN_BLOG_IU_CATEGORY_NAMES)) ?? MAIN_BLOG_IU_CATEGORY_ID;
 
-    if (locale === "fr" || locale === "iu") {
+    if (locale === "fr") {
       return fetchMainBlogPostsFiltered({
         categoryIds: [blogIuCategoryId],
         names: [MAIN_BLOG_IU_CATEGORY_NAMES],
@@ -726,6 +756,7 @@ export async function getMainBlogPosts(locale: MainSiteLocale): Promise<WpPostWi
     return fetchMainBlogPostsFiltered({
       categoryIds: [blogCategoryId],
       names: [MAIN_BLOG_CATEGORY_NAMES],
+      exclude: { id: blogIuCategoryId, names: MAIN_BLOG_IU_CATEGORY_NAMES },
     });
   } catch {
     return [];
@@ -752,23 +783,37 @@ export async function getMainPublicationPosts(): Promise<WpPostWithSource[]> {
   }
 }
 
-/** Main site posts in the WordPress "Policy" category, newest first. */
-export async function getMainPolicyPosts(): Promise<WpPostWithSource[]> {
+/** Main site posts in the WordPress Policy category for the locale, newest first. */
+export async function getMainPolicyPosts(locale: MainSiteLocale = "en"): Promise<WpPostWithSource[]> {
   try {
-    const resolvedCategory =
-      (await resolveMainCategoryId(MAIN_POLICY_CATEGORY_NAMES)) ?? MAIN_POLICY_CATEGORY_ID;
-    let posts = await fetchMainPostsRaw(resolvedCategory);
-    if (posts.length === 0) {
-      posts = (await fetchMainPostsRaw()).filter((post) =>
-        postHasCategory(post, { id: resolvedCategory, names: MAIN_POLICY_CATEGORY_NAMES }),
-      );
+    if (locale === "fr") {
+      const frenchPosts = await fetchMainPolicyPostsForNames(MAIN_POLICY_FR_CATEGORY_NAMES, null);
+      if (frenchPosts.length > 0) return frenchPosts;
     }
-    return posts
-      .map((p) => normalizePost("main", p))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    return fetchMainPolicyPostsForNames(MAIN_POLICY_CATEGORY_NAMES, MAIN_POLICY_CATEGORY_ID);
   } catch {
     return [];
   }
+}
+
+async function fetchMainPolicyPostsForNames(
+  names: ReadonlySet<string>,
+  fallbackId: number | null,
+): Promise<WpPostWithSource[]> {
+  const resolvedCategory = (await resolveMainCategoryId(names)) ?? fallbackId;
+  if (resolvedCategory === null) return [];
+
+  let posts = await fetchMainPostsRaw(resolvedCategory);
+  posts = posts.filter((post) => postHasCategory(post, { id: resolvedCategory, names }));
+  if (posts.length === 0) {
+    posts = (await fetchMainPostsRaw()).filter((post) =>
+      postHasCategory(post, { id: resolvedCategory, names }),
+    );
+  }
+  return posts
+    .map((p) => normalizePost("main", p))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function formatWpPostDate(iso: string, locale = "en-CA"): string {

@@ -3,6 +3,9 @@ import { MainBlogsPage } from "@/components/main/MainBlogsPage";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { localizedTitleMetadata } from "@/lib/i18n/page-metadata";
 
+/** Always fetch fresh WordPress posts (avoid stale empty static snapshots). */
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

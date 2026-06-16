@@ -1,21 +1,21 @@
 # Main site i18n
 
-Typed dictionaries for the main institute site (`en`, `fr`, `iu`).
+Typed dictionaries for the main institute site (`en`, `fr`). Inuktitut (`messages/iu.ts`) is on hold and not routed.
 
 ## Add or change copy
 
 1. Add keys to `messages/en.ts` first.
-2. Mirror the same keys in `messages/fr.ts` and `messages/iu.ts` (`satisfies Messages`).
+2. Mirror the same keys in `messages/fr.ts` (`satisfies Messages`).
 3. Use in UI:
    - **Client components:** `const t = useTranslations()` then `t("nav.home")`
    - **Server components / metadata:** `const t = await getTranslator(locale)`
 
 ## URLs
 
-| Environment | English | French | Inuktitut |
-|-------------|---------|--------|-----------|
-| Production | `/` | `/fr/...` | `/iu/...` |
-| Local dev | `/main/en` | `/main/fr` | `/main/iu` |
+| Environment | English | French |
+|-------------|---------|--------|
+| Production | `/` | `/fr/...` |
+| Local dev | `/main/en` | `/main/fr` |
 
 `proxy.ts` rewrites production hostnames to `app/main/[locale]/…`.
 

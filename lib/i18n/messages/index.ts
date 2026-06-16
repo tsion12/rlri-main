@@ -6,7 +6,6 @@ import type { Messages } from "./en";
 const loaders: Record<Locale, () => Promise<Messages>> = {
   en: async () => (await import("./en")).en,
   fr: async () => (await import("./fr")).fr,
-  iu: async () => (await import("./iu")).iu,
 };
 
 export async function getMessages(locale: Locale): Promise<Messages> {

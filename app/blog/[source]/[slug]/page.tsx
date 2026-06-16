@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { BlogPostArticle } from "@/components/blog/BlogPostArticle";
 import { getPost, isWpSource, stripHtml, type WpSource } from "@/lib/wp";
 
+/** Resolve blog/policy detail pages from WordPress on each request. */
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ source: string; slug: string }>;
 };

@@ -1,5 +1,5 @@
-/** Supported locales for the main institute site. */
-export const locales = ["en", "fr", "iu"] as const;
+/** Active locales for the main institute site (language switcher + routing). */
+export const locales = ["en", "fr"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -13,12 +13,10 @@ export function isLocale(value: string): value is Locale {
 export const localeLabels: Record<Locale, string> = {
   en: "English",
   fr: "Français",
-  iu: "Inuktitut",
 };
 
 /** Compact labels for the header language switcher. */
 export const localeShortLabels: Record<Locale, string> = {
   en: "EN",
   fr: "FR",
-  iu: "IU",
 };

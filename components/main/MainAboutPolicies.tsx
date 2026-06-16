@@ -39,7 +39,7 @@ export function MainAboutPolicies({
   posts,
   locale,
 }: Props) {
-  const dateLocale = locale === "fr" ? "fr-CA" : locale === "iu" ? "en-CA" : "en-CA";
+  const dateLocale = locale === "fr" ? "fr-CA" : "en-CA";
 
   return (
     <section
