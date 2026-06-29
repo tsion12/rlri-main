@@ -4,12 +4,14 @@ import { AfricaHomeGallery } from "@/components/africa/AfricaHomeGallery";
 import { AfricaImpactShowcase } from "@/components/africa/AfricaImpactShowcase";
 import { AfricaHomePrograms } from "@/components/africa/AfricaHomePrograms";
 import { AfricaLatestNews } from "@/components/africa/AfricaLatestNews";
+import { africaRoutes } from "@/lib/africa-routes";
 import { getAfricaPosts, getUpcomingEventsPage } from "@/lib/wp";
 import { getUpcomingAfricaEventHighlight } from "@/lib/africa-events";
 
 export async function AfricaHomeContent() {
   const [africaPosts, wpUpcomingEvent] = await Promise.all([getAfricaPosts(), getUpcomingEventsPage()]);
-  const upcomingEvent = getUpcomingAfricaEventHighlight() ?? wpUpcomingEvent;
+  const localHighlight = getUpcomingAfricaEventHighlight();
+  const upcomingEvent = localHighlight ?? (wpUpcomingEvent ? { ...wpUpcomingEvent, link: africaRoutes.upcomingEvents } : null);
   const latestPosts = africaPosts.slice(0, 3);
   const featuredPost = latestPosts.find((post) => post.featuredImage) ?? latestPosts[0] ?? null;
 

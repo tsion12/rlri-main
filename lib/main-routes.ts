@@ -14,8 +14,8 @@ export const mainRoutes = {
   mentalHealth: "/mental-health",
   volunteer: "/volunteer",
   faq: "/faq",
-  /** Africa Program events (shared app route). */
-  events: "/africa/events",
+  /** Main institute community events in Iqaluit and across Canada. */
+  events: "/events",
   /** Donations (shared with Africa Program until a main-site flow exists). */
   donate: "/africa/donate",
   africaProgram: "https://africa-programs.reallifeinstitute.org/",

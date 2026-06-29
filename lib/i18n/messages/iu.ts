@@ -378,6 +378,161 @@ export const iu = {
         "Practical, culturally grounded mental health programming for communities in Nunavut.",
       bannerCta: "Get involved",
     },
+    events: {
+      title: "Events",
+      description:
+        "Upcoming and past community events, races, and celebrations from the Real Life Research Institute in Iqaluit and across Canada.",
+      heroEyebrow: "Iqaluit · Nunavut",
+      heroTitle: "Community events & celebrations",
+      heroLead:
+        "From the Love & Unity Run to summer festivals and Arctic security programming — RLRI brings people together through sport, culture, and community in the North.",
+      heroExplore: "Explore",
+      upcomingLabel: "Upcoming",
+      recentEventsLabel: "Recent events",
+      pastLabel: "Past events",
+      pastReportsLabel: "Event reports",
+      pastReportsLead:
+        "Flip through post-event reports — Couples Night and SSDiC programming documented on Issuu.",
+      pastUnityRunLabel: "Love & Unity Run",
+      agendaDate: "Saturday, June 27, 2026",
+      agendaActivity: "Activity",
+      agendaStart: "Start",
+      agendaEnd: "End",
+      openReport: "Open in Issuu",
+      reportEyebrow: "Event report",
+      reportIframeTitle: "Event report flipbook",
+      featuredLabel: "Next on the calendar",
+      alsoUpcomingLabel: "Also coming up",
+      emptyUpcomingTitle: "New events announced soon",
+      emptyUpcomingBody:
+        "Our calendar updates as programs are confirmed. Browse past gatherings below or explore ways to volunteer and partner with RLRI in Iqaluit.",
+      howItWorksEyebrow: "What to expect",
+      howItWorksTitle: "Events that build belonging in the North",
+      howItWorksLead:
+        "RLRI events are open, inclusive, and rooted in community. Whether you join a race, festival, or volunteer shift, you are helping strengthen Northern resilience.",
+      step1Title: "Community-first",
+      step1Body:
+        "Programs are designed with local partners — from the City of Iqaluit to the Government of Nunavut — so events reflect what communities need.",
+      step2Title: "Open participation",
+      step2Body:
+        "Races, soccer, and festivals welcome people across cultures, ages, and backgrounds. Everyone belongs at the starting line.",
+      step3Title: "Stay connected",
+      step3Body:
+        "Follow announcements here, volunteer for summer celebrations, or reach out to collaborate on research and programming.",
+      learnMore: "Learn more",
+      viewPhotos: "View photos",
+      ctaEyebrow: "Get involved",
+      ctaTitle: "Join us in Iqaluit",
+      ctaBody:
+        "Volunteer for summer celebrations, explore Arctic Security programming, or connect with the team to partner on community events.",
+      ctaVolunteer: "Volunteer with us",
+      ctaArctic: "Arctic Security program",
+      tags: {
+        community: "Community",
+        arcticSecurity: "Arctic Security",
+        youth: "Youth",
+        volunteer: "Volunteer",
+        multiculturalism: "Multiculturalism",
+        sport: "Sport",
+      },
+      reports: {
+        couplesNight: {
+          title: "Couples Night Event Report",
+          summary:
+            "A flipbook summary of RLRI's Couples Night — programming, participation, and community outcomes from this relationship-building gathering.",
+        },
+        ssdic: {
+          title: "SSDiC Event Report",
+          summary:
+            "Event report from the SSDiC program — key sessions, discussions, and takeaways documented for partners and community members.",
+        },
+      },
+      recent: {
+        multiculturalismDay: {
+          title: "Multiculturalism Day 2026",
+          subtitle: "27 June 2026 · Multiculturalism Day Agenda",
+          lead:
+            "RLRI celebrated Multiculturalism Day in Iqaluit with culture, music, community, and great food — free entry and free meals for all, funded by the Government of Canada.",
+          where: "Aqsarniit Hotel, Iqaluit",
+          freeEntry: "Free entry · Free food",
+          fundedBy: "Funded by the Government of Canada",
+          agendaHeading: "Event agenda",
+          protocolHeading: "Protocol ceremony",
+          protocolIntro: "The protocol ceremony featured:",
+          programHeading: "Main program",
+          programIntro: "The main program included:",
+          notesHeading: "Notes",
+          galleryHeading: "Photos from Multiculturalism Day",
+          photoLabel: "Multiculturalism Day photo",
+          closeGallery: "Close gallery",
+          galleryPrevious: "Previous photo",
+          galleryNext: "Next photo",
+          viewFullSize: "View full size",
+          agenda: {
+            protocol: "Protocol ceremonies",
+            food: "Traditional food",
+            family: "Children or family activities",
+            shows: "Shows",
+            dance: "Unity dance by all",
+            teardown: "Tear down and clean up",
+          },
+          protocol: {
+            landAcknowledgement:
+              "Land acknowledgement by an Inuit Elder, followed by remarks from the Real Life Institute's representative and City of Iqaluit officials.",
+            unityToast: "A symbolic unity toast.",
+            groupPhoto:
+              "A group photo session marking Multiculturalism Day and honouring the contributions of Iqaluit's diverse communities.",
+          },
+          program: {
+            tasting:
+              "Introductions to tasting stations by representatives of different cultural and community groups — each showcasing traditional dishes while sharing the history and meaning behind them.",
+            meal: "After introductions, the MC invited the general public to a shared community meal.",
+            performances:
+              "Live performances of different cultures on stage — including drumming, dancing, and more — throughout the event.",
+          },
+          notes: {
+            regalia: "Participants were encouraged to dress in traditional regalia.",
+            freeEntry: "Registration was free, and all meals were provided at no cost.",
+            takeaways:
+              "Participants could take home takeaways only if they stayed until the end of the event and if leftovers were available.",
+          },
+        },
+      },
+      items: {
+        unityRace: {
+          title: "Iqaluit Unity Race 2026",
+          summary:
+            "Our flagship community race returns — bringing together residents across cultures, ages, and backgrounds for an inclusive public celebration of unity and well-being in Iqaluit.",
+          when: "Summer 2026 · Date to be announced",
+          where: "Iqaluit, Nunavut",
+          program: "Arctic Security · Sports & Community Engagement",
+        },
+        communitySoccer: {
+          title: "Community Soccer Initiative 2026",
+          summary:
+            "Youth and community members come together through football to promote inclusion, teamwork, and social cohesion — supported by Canadian Heritage in the spirit of FIFA World Cup 2026.",
+          when: "Summer 2026 · Schedule to be announced",
+          where: "Iqaluit, Nunavut",
+          program: "Arctic Security · Sports & Community Engagement",
+        },
+        summerCelebrations: {
+          title: "Iqaluit Summer Celebrations 2026",
+          summary:
+            "RLRI is recruiting student volunteers to help deliver three of Iqaluit's biggest summer celebrations — a hands-on way to support community well-being in the North.",
+          when: "June – August 2026",
+          where: "Iqaluit, Nunavut",
+          program: "Volunteer program",
+        },
+        loveUnityRun: {
+          title: "Iqaluit Love & Unity Run",
+          summary:
+            "A community race that united people from diverse backgrounds through sport and celebration — supported by the Government of Nunavut, Department of Community Services.",
+          when: "August 2025",
+          where: "Iqaluit, Nunavut",
+          program: "Community sport & celebration",
+        },
+      },
+    },
     volunteer: {
       title: "Ikajurniq",
       description:

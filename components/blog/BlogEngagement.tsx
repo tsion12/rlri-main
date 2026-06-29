@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { africaRoutes } from "@/lib/africa-routes";
 import { useState } from "react";
 
 /* ── types ────────────────────────────────────────────────────────── */
@@ -394,7 +395,7 @@ export function BlogEngagement({ slug, source, title }: Props) {
         </p>
         <div className="relative mt-7 flex flex-wrap gap-3">
           <Link
-            href="/africa/events"
+            href={africaRoutes.upcomingEvents}
             className="inline-flex min-h-11 items-center justify-center rounded-xl bg-amber-400 px-7 text-sm font-bold text-amber-950 shadow transition hover:bg-amber-300"
           >
             Upcoming events

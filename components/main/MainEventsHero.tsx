@@ -2,63 +2,40 @@
 
 import Image from "next/image";
 import { useEffect, useId, useState } from "react";
-import { usePathname } from "next/navigation";
-import { useTranslations } from "@/components/main/i18n/LocaleProvider";
-import { MainLink } from "@/components/main/MainLink";
 import { useAutoplayIndex } from "@/components/main/useAutoplayIndex";
-import {
-  MAIN_HERO_INTERVAL_MS,
-  MAIN_HERO_SLIDES,
-  type MainHeroSlideCta,
-} from "@/lib/main-hero-slides";
-import { mainBaseFromPathname, mainHref, mainLocaleFromPathname } from "@/lib/i18n/path";
+import { EVENTS_HERO_INTERVAL_MS } from "@/lib/main-events";
+
+type Props = {
+  images: { id: string; src: string }[];
+  eyebrow: string;
+  title: string;
+  lead: string;
+  recentLabel: string;
+  upcomingLabel: string;
+  pastLabel: string;
+  exploreLabel: string;
+};
 
 const ctaPrimary =
-  "group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-7 text-sm font-semibold text-teal-800 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.35)] ring-1 ring-white/80 transition hover:-translate-y-0.5 hover:bg-teal-50 hover:shadow-[0_8px_32px_-6px_rgba(0,0,0,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-950 sm:w-auto sm:min-w-[15rem]";
+  "inline-flex min-h-12 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-teal-800 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.35)] ring-1 ring-white/80 transition hover:-translate-y-0.5 hover:bg-teal-50 hover:shadow-[0_8px_32px_-6px_rgba(0,0,0,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-950";
 
 const ctaSecondary =
-  "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:w-auto sm:min-w-[15rem]";
+  "inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
 
-function HeroCta({ cta, variant }: { cta: MainHeroSlideCta; variant: "primary" | "secondary" }) {
-  const pathname = usePathname();
-  const base = mainBaseFromPathname(pathname);
-  const locale = mainLocaleFromPathname(pathname);
-  const t = useTranslations();
-  const label = t(cta.labelKey);
-  const href = cta.external ? cta.href : mainHref(cta.href, { base, locale });
-  const className = variant === "primary" ? ctaPrimary : ctaSecondary;
-  const arrow = (
-    <span
-      className="inline-block transition-transform group-hover:translate-x-0.5"
-      aria-hidden
-    >
-      →
-    </span>
-  );
-
-  if (cta.external) {
-    return (
-      <a href={href} className={`group ${className}`} target="_blank" rel="noopener noreferrer">
-        {label}
-        {arrow}
-      </a>
-    );
-  }
-
-  return (
-    <MainLink href={cta.href} className={`group ${className}`}>
-      {label}
-      {arrow}
-    </MainLink>
-  );
-}
-
-export function MainHeroCarousel() {
-  const t = useTranslations();
+export function MainEventsHero({
+  images,
+  eyebrow,
+  title,
+  lead,
+  recentLabel,
+  upcomingLabel,
+  pastLabel,
+  exploreLabel,
+}: Props) {
   const carouselId = useId();
   const [reduceMotion, setReduceMotion] = useState(false);
-  const slideCount = MAIN_HERO_SLIDES.length;
-  const { index: activeIndex, generation, goTo } = useAutoplayIndex(slideCount, MAIN_HERO_INTERVAL_MS);
+  const slideCount = images.length;
+  const { index: activeIndex, generation, goTo } = useAutoplayIndex(slideCount, EVENTS_HERO_INTERVAL_MS);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -68,30 +45,28 @@ export function MainHeroCarousel() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  const activeSlide = MAIN_HERO_SLIDES[activeIndex];
-
   return (
     <section
       className="relative min-h-[100dvh] w-full overflow-hidden"
       aria-roledescription={slideCount > 1 ? "carousel" : undefined}
-      aria-label={slideCount > 1 ? t("home.heroCarouselLabel") : undefined}
+      aria-labelledby="main-events-hero-heading"
     >
       <div className="absolute inset-0" aria-hidden>
-        {MAIN_HERO_SLIDES.map((slide, index) => {
+        {images.map((image, index) => {
           const isActive = index === activeIndex;
           return (
             <div
-              key={slide.id}
+              key={image.id}
               className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${
                 isActive ? "opacity-100" : "opacity-0"
               }`}
             >
               <div
-                key={isActive ? `active-${generation}` : slide.id}
+                key={isActive ? `active-${generation}` : image.id}
                 className={`absolute inset-[-8%] ${isActive && !reduceMotion ? "hero-ken-burns" : ""}`}
               >
                 <Image
-                  src={slide.image}
+                  src={image.src}
                   alt=""
                   fill
                   priority={index < 4}
@@ -113,7 +88,7 @@ export function MainHeroCarousel() {
         aria-hidden
       />
 
-      <div className="relative z-10 flex min-h-[100dvh] items-center pb-24 pt-28 sm:pb-28 sm:pt-32">
+      <div className="relative z-10 flex min-h-[100dvh] items-center pb-28 pt-28 sm:pb-32 sm:pt-32">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className="max-w-3xl"
@@ -126,37 +101,44 @@ export function MainHeroCarousel() {
               style={{ animationDelay: "80ms" }}
             >
               <span className="h-px w-10 bg-teal-400/80" aria-hidden />
-              {t(activeSlide.eyebrowKey)}
+              {eyebrow}
             </p>
 
             <h1
-              id="main-hero-heading"
+              id="main-events-hero-heading"
               className="hero-content-in mt-6 text-balance font-serif text-4xl font-semibold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[3.75rem]"
               style={{ animationDelay: "160ms" }}
             >
-              {t(activeSlide.titleKey)}
+              {title}
             </h1>
 
             <p
               className="hero-content-in mt-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl sm:leading-relaxed"
               style={{ animationDelay: "240ms" }}
             >
-              {t(activeSlide.subtitleKey)}
+              {lead}
             </p>
 
             <div
               className="hero-content-in mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
               style={{ animationDelay: "320ms" }}
             >
-              <HeroCta cta={activeSlide.primaryCta} variant="primary" />
-              <HeroCta cta={activeSlide.secondaryCta} variant="secondary" />
+              <a href="#recent" className={ctaPrimary}>
+                {recentLabel}
+              </a>
+              <a href="#upcoming" className={ctaSecondary}>
+                {upcomingLabel}
+              </a>
+              <a href="#past" className={ctaSecondary}>
+                {pastLabel}
+              </a>
             </div>
           </div>
         </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-5 px-4 pb-8 sm:pb-10">
-        {slideCount > 1 && (
+        {slideCount > 1 ? (
           <div className="flex w-full max-w-lg items-center gap-4">
             <p className="shrink-0 text-[11px] font-semibold tabular-nums text-white/70">
               {activeIndex + 1} / {slideCount}
@@ -168,20 +150,19 @@ export function MainHeroCarousel() {
                 style={{
                   animation: reduceMotion
                     ? undefined
-                    : `hero-progress ${MAIN_HERO_INTERVAL_MS}ms linear forwards`,
+                    : `hero-progress ${EVENTS_HERO_INTERVAL_MS}ms linear forwards`,
                 }}
               />
             </div>
-            <div className="flex flex-1 items-center justify-end gap-1.5 overflow-x-auto">
-              {MAIN_HERO_SLIDES.map((slide, index) => {
+            <div className="hidden max-w-[12rem] flex-1 items-center gap-1.5 overflow-x-auto sm:flex">
+              {images.map((image, index) => {
                 const isActive = index === activeIndex;
                 return (
                   <button
-                    key={slide.id}
+                    key={image.id}
                     type="button"
                     className="group relative flex h-8 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                    aria-label={`${t("home.heroGoToSlide")} ${index + 1}`}
-                    aria-controls={`${carouselId}-slide-panel`}
+                    aria-label={`Slide ${index + 1}`}
                     aria-current={isActive ? "true" : undefined}
                     onClick={() => goTo(index)}
                   >
@@ -195,14 +176,14 @@ export function MainHeroCarousel() {
               })}
             </div>
           </div>
-        )}
+        ) : null}
 
         <a
-          href="#main-who-we-are"
+          href="#recent"
           className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-white/50 transition hover:text-white/80"
         >
-          <span className="sr-only">Scroll to content</span>
-          <span aria-hidden>Explore</span>
+          <span className="sr-only">{exploreLabel}</span>
+          <span aria-hidden>{exploreLabel}</span>
           <svg
             width="20"
             height="20"
@@ -216,14 +197,6 @@ export function MainHeroCarousel() {
           </svg>
         </a>
       </div>
-
-      <ul className="sr-only">
-        {MAIN_HERO_SLIDES.map((slide, index) => (
-          <li key={slide.id} aria-hidden={index !== activeIndex}>
-            {t(slide.titleKey)}
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

@@ -11,6 +11,7 @@ export const africaRoutes = {
   volunteers: "/africa/volunteers",
   career: "/africa/career",
   events: "/africa/events",
+  upcomingEvents: "/africa/events/upcoming-events",
   eventNextWebinar: "/africa/events/tensions-middle-east-security-digital-infrastructure",
   eventClimateAdaptation: "/africa/events/rethinking-climate-adaptation-in-africa",
   eventEbolaDrc: "/africa/events/ebola-responses-drc-conflict-aid-misinformation",

@@ -19,25 +19,40 @@ export type MainHeroSlide = {
   secondaryCta: MainHeroSlideCta;
 };
 
+const MAIN_HERO_IMAGE_FILES = [
+  "REAL LIFE INSTITUTE DAY 1-1.jpg",
+  "REAL LIFE INSTITUTE DAY 1-11.jpg",
+  "REAL LIFE INSTITUTE DAY 1-20.jpg",
+  "REAL LIFE INSTITUTE 1-4.jpg",
+  "WhatsApp Image 2025-08-23 at 19.07.50 (1).jpeg",
+  "REAL LIFE INSTITUTE DAY 1-30(1).jpg",
+  "REAL LIFE INSTITUTE 1-22 (1).jpg",
+  "REAL LIFE INSTITUTE DAY 1-31.jpg",
+  "REAL LIFE INSTITUTE DAY 1-14.jpg",
+  "REAL LIFE INSTITUTE 1-10 (1).jpg",
+] as const;
+
+const MAIN_HERO_COPY = {
+  imageAltKey: "home.heroSlides.primary.imageAlt",
+  eyebrowKey: "home.heroSlides.primary.eyebrow",
+  titleKey: "home.heroSlides.primary.title",
+  subtitleKey: "home.heroSlides.primary.subtitle",
+  primaryCta: { labelKey: "home.heroSlides.primary.ctaEvents", href: mainRoutes.events },
+  secondaryCta: {
+    labelKey: "home.heroSlides.primary.ctaAfrica",
+    href: mainRoutes.africaProgram,
+    external: true,
+  },
+} as const satisfies Omit<MainHeroSlide, "id" | "image">;
+
 /**
  * Hero carousel slides — update images in this file when assets change.
  * Copy lives in `lib/i18n/messages/{en,fr,iu}.ts` under `home.heroSlides`.
  */
-export const MAIN_HERO_SLIDES: MainHeroSlide[] = [
-  {
-    id: "primary",
-    image: mainGallerySrc("REAL LIFE INSTITUTE DAY 1-1.jpg"),
-    imageAltKey: "home.heroSlides.primary.imageAlt",
-    eyebrowKey: "home.heroSlides.primary.eyebrow",
-    titleKey: "home.heroSlides.primary.title",
-    subtitleKey: "home.heroSlides.primary.subtitle",
-    primaryCta: { labelKey: "home.heroSlides.primary.ctaEvents", href: mainRoutes.events },
-    secondaryCta: {
-      labelKey: "home.heroSlides.primary.ctaAfrica",
-      href: mainRoutes.africaProgram,
-      external: true,
-    },
-  },
-];
+export const MAIN_HERO_SLIDES: MainHeroSlide[] = MAIN_HERO_IMAGE_FILES.map((file, index) => ({
+  id: `hero-${index}`,
+  image: mainGallerySrc(file),
+  ...MAIN_HERO_COPY,
+}));
 
-export const MAIN_HERO_INTERVAL_MS = 5000;
+export const MAIN_HERO_INTERVAL_MS = 2800;

@@ -375,6 +375,161 @@ export const fr = {
         "Programmation pratique et culturellement adaptée en santé mentale pour les communautés du Nunavut.",
       bannerCta: "S'impliquer",
     },
+    events: {
+      title: "Événements",
+      description:
+        "Événements communautaires passés et à venir, courses et célébrations de l'Institut de recherche Real Life à Iqaluit et partout au Canada.",
+      heroEyebrow: "Iqaluit · Nunavut",
+      heroTitle: "Événements et célébrations communautaires",
+      heroLead:
+        "De la Course Love & Unity aux festivals d'été et à la programmation de sécurité arctique — l'IRRV rassemble les gens par le sport, la culture et la communauté dans le Nord.",
+      heroExplore: "Explorer",
+      upcomingLabel: "À venir",
+      recentEventsLabel: "Événements récents",
+      pastLabel: "Événements passés",
+      pastReportsLabel: "Rapports d'événements",
+      pastReportsLead:
+        "Parcourez les rapports — Soirée des couples et programmation SSDiC documentés sur Issuu.",
+      pastUnityRunLabel: "Course Love & Unity",
+      agendaDate: "Samedi 27 juin 2026",
+      agendaActivity: "Activité",
+      agendaStart: "Début",
+      agendaEnd: "Fin",
+      openReport: "Ouvrir dans Issuu",
+      reportEyebrow: "Rapport d'événement",
+      reportIframeTitle: "Flipbook du rapport d'événement",
+      featuredLabel: "Prochain événement",
+      alsoUpcomingLabel: "Également à venir",
+      emptyUpcomingTitle: "De nouveaux événements seront annoncés bientôt",
+      emptyUpcomingBody:
+        "Notre calendrier se met à jour au fur et à mesure que les programmes sont confirmés. Parcourez les rassemblements passés ci-dessous ou explorez les possibilités de bénévolat.",
+      howItWorksEyebrow: "À quoi s'attendre",
+      howItWorksTitle: "Des événements qui renforcent l'appartenance dans le Nord",
+      howItWorksLead:
+        "Les événements de l'IRRV sont ouverts, inclusifs et ancrés dans la communauté. Que vous participiez à une course, un festival ou un quart de bénévolat, vous contribuez à la résilience nordique.",
+      step1Title: "La communauté d'abord",
+      step1Body:
+        "Les programmes sont conçus avec des partenaires locaux — de la Ville d'Iqaluit au gouvernement du Nunavut — pour refléter les besoins des communautés.",
+      step2Title: "Participation ouverte",
+      step2Body:
+        "Courses, soccer et festivals accueillent les personnes de toutes cultures, âges et horizons. Tout le monde a sa place au départ.",
+      step3Title: "Restez connectés",
+      step3Body:
+        "Suivez les annonces ici, faites du bénévolat pour les célébrations estivales ou contactez l'équipe pour collaborer.",
+      learnMore: "En savoir plus",
+      viewPhotos: "Voir les photos",
+      ctaEyebrow: "S'impliquer",
+      ctaTitle: "Rejoignez-nous à Iqaluit",
+      ctaBody:
+        "Faites du bénévolat pour les célébrations estivales, explorez la programmation Sécurité arctique ou contactez l'équipe pour un partenariat.",
+      ctaVolunteer: "Devenir bénévole",
+      ctaArctic: "Programme Sécurité arctique",
+      tags: {
+        community: "Communauté",
+        arcticSecurity: "Sécurité arctique",
+        youth: "Jeunesse",
+        volunteer: "Bénévolat",
+        multiculturalism: "Multiculturalisme",
+        sport: "Sport",
+      },
+      reports: {
+        couplesNight: {
+          title: "Rapport d'événement — Soirée des couples",
+          summary:
+            "Résumé flipbook de la Soirée des couples de l'IRRV — programmation, participation et résultats communautaires.",
+        },
+        ssdic: {
+          title: "Rapport d'événement — SSDiC",
+          summary:
+            "Rapport d'événement du programme SSDiC — séances clés, discussions et enseignements pour les partenaires.",
+        },
+      },
+      recent: {
+        multiculturalismDay: {
+          title: "Journée du multiculturalisme 2026",
+          subtitle: "27 juin 2026 · Programme de la Journée du multiculturalisme",
+          lead:
+            "L'IRRV a célébré la Journée du multiculturalisme à Iqaluit avec culture, musique, communauté et excellente nourriture — entrée et repas gratuits, financés par le gouvernement du Canada.",
+          where: "Hôtel Aqsarniit, Iqaluit",
+          freeEntry: "Entrée gratuite · Repas gratuits",
+          fundedBy: "Financé par le gouvernement du Canada",
+          agendaHeading: "Programme de l'événement",
+          protocolHeading: "Cérémonie protocolaire",
+          protocolIntro: "La cérémonie protocolaire comprenait :",
+          programHeading: "Programme principal",
+          programIntro: "Le programme principal comprenait :",
+          notesHeading: "Notes",
+          galleryHeading: "Photos de la Journée du multiculturalisme",
+          photoLabel: "Photo de la Journée du multiculturalisme",
+          closeGallery: "Fermer la galerie",
+          galleryPrevious: "Photo précédente",
+          galleryNext: "Photo suivante",
+          viewFullSize: "Voir en plein écran",
+          agenda: {
+            protocol: "Cérémonies protocolaires",
+            food: "Nourriture traditionnelle",
+            family: "Activités pour enfants ou familles",
+            shows: "Spectacles",
+            dance: "Danse d'unité collective",
+            teardown: "Démontage et nettoyage",
+          },
+          protocol: {
+            landAcknowledgement:
+              "Reconnaissance territoriale par un aîné inuit, suivie de remarques du représentant de l'Institut Real Life et des responsables de la Ville d'Iqaluit.",
+            unityToast: "Un toast symbolique à l'unité.",
+            groupPhoto:
+              "Une séance photo de groupe marquant la Journée du multiculturalisme et honorant les contributions des communautés diverses d'Iqaluit.",
+          },
+          program: {
+            tasting:
+              "Présentation des stations de dégustation par des représentants de différents groupes culturels et communautaires — chacun présentant des plats traditionnels et leur histoire.",
+            meal: "Après les présentations, l'animateur a invité le public à un repas communautaire partagé.",
+            performances:
+              "Performances live de différentes cultures sur scène — tambours, danses et plus — tout au long de l'événement.",
+          },
+          notes: {
+            regalia: "Les participants étaient encouragés à porter leur tenue traditionnelle.",
+            freeEntry: "L'inscription était gratuite et tous les repas étaient offerts sans frais.",
+            takeaways:
+              "Les participants pouvaient emporter des souvenirs seulement s'ils restaient jusqu'à la fin et s'il restait des surplus.",
+          },
+        },
+      },
+      items: {
+        unityRace: {
+          title: "Course de l'unité d'Iqaluit 2026",
+          summary:
+            "Notre course communautaire phare revient — rassemblant les résidents de toutes cultures, âges et horizons pour une célébration inclusive de l'unité à Iqaluit.",
+          when: "Été 2026 · Date à confirmer",
+          where: "Iqaluit, Nunavut",
+          program: "Sécurité arctique · Sport et engagement communautaire",
+        },
+        communitySoccer: {
+          title: "Initiative de soccer communautaire 2026",
+          summary:
+            "Les jeunes et les membres de la communauté se réunissent autour du football pour promouvoir l'inclusion et la cohésion sociale — avec le soutien de Patrimoine canadien.",
+          when: "Été 2026 · Horaire à confirmer",
+          where: "Iqaluit, Nunavut",
+          program: "Sécurité arctique · Sport et engagement communautaire",
+        },
+        summerCelebrations: {
+          title: "Célébrations estivales d'Iqaluit 2026",
+          summary:
+            "L'IRRV recrute des étudiants bénévoles pour trois grandes célébrations estivales d'Iqaluit — une façon concrète de soutenir le bien-être communautaire dans le Nord.",
+          when: "Juin – août 2026",
+          where: "Iqaluit, Nunavut",
+          program: "Programme de bénévolat",
+        },
+        loveUnityRun: {
+          title: "Course Love & Unity d'Iqaluit",
+          summary:
+            "Une course communautaire qui a uni des personnes de divers horizons par le sport et la célébration — avec le soutien du gouvernement du Nunavut.",
+          when: "Août 2025",
+          where: "Iqaluit, Nunavut",
+          program: "Sport et célébration communautaire",
+        },
+      },
+    },
     volunteer: {
       title: "Bénévolat",
       description:

@@ -22,7 +22,7 @@ export function AfricaEventsPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="#upcoming"
+              href={africaRoutes.upcomingEvents}
               className="inline-flex min-h-11 items-center justify-center rounded-lg bg-teal-700 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-600"
             >
               Upcoming event

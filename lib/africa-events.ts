@@ -154,7 +154,7 @@ export function getUpcomingAfricaEventHighlight(now = new Date()): AfricaEventHi
   return {
     title: next.title,
     excerpt: next.summary,
-    link: next.href,
+    link: next.href || africaRoutes.upcomingEvents,
     modified: now.toISOString(),
     eventDateISO: next.isoDate,
     eventEndISO: getEventEndIso(next),

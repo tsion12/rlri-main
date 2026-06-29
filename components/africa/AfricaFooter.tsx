@@ -123,7 +123,7 @@ export function AfricaFooter() {
               </p>
               <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                 <Link
-                  href={africaRoutes.events}
+                  href={africaRoutes.upcomingEvents}
                   className="inline-flex min-h-10 items-center justify-center rounded-lg border border-teal-200/80 bg-teal-50 px-4 text-sm font-semibold text-teal-800 transition hover:bg-teal-100 dark:border-teal-800/50 dark:bg-teal-950/40 dark:text-teal-200 dark:hover:bg-teal-900/50"
                 >
                   Upcoming events

@@ -20,7 +20,7 @@ export function AfricaHomeCta() {
           <Link href={africaRoutes.donate} className={au.home.ctaPrimary}>
             Donate
           </Link>
-          <Link href={africaRoutes.events} className={au.home.ctaGhost}>
+          <Link href={africaRoutes.upcomingEvents} className={au.home.ctaGhost}>
             Upcoming events
           </Link>
         </div>
