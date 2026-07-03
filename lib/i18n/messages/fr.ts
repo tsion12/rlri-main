@@ -74,13 +74,13 @@ export const fr = {
       eyebrow: "Qui nous sommes",
       title: "Bienvenue à l'Institut de recherche Real Life!",
       intro:
-        "Notre parcours a commencé par une vision simple mais puissante : donner aux personnes des compétences et des connaissances souvent absentes de l'éducation traditionnelle. Nous avons reconnu un fossé critique dans la préparation des jeunes aux réalités complexes de la vie adulte. L'Institut de recherche Real Life a été fondé pour combler ce fossé!",
-      skillTitle: "Compétences pour la vie réelle",
+        "L'Institut de recherche Real Life (IRRL) a été fondé avec l'engagement de bâtir des communautés plus fortes, plus sûres et plus inclusives, où chaque personne a la possibilité de s'épanouir. De notre base dans l'Arctique canadien jusqu'à Ottawa et au-delà, nous réunissons recherche, programmes communautaires et partenariats pour promouvoir l'inclusion sociale, renforcer la résilience des communautés et permettre aux gens de façonner les décisions qui touchent leur vie.",
+      skillTitle: "Programmes communautaires",
       skillBody:
-        "Nous dotons les personnes d'outils pratiques pour l'indépendance financière et la croissance tout au long de la vie.",
+        "De l'inclusion et du leadership des jeunes au sport, au multiculturalisme et à la sécurité communautaire, nos programmes renforcent les liens sociaux, l'équité et l'appartenance.",
       researchTitle: "Recherche engagée",
       researchBody:
-        "Nous abordons des enjeux critiques dans l'Arctique et au-delà, ancrés dans le savoir autochtone et la décolonisation.",
+        "Nous abordons des enjeux critiques dans l'Arctique et au-delà, ancrés dans le savoir autochtone et les priorités communautaires.",
       ctaDonate: "Faire un don",
       imageAlt: "Équipe et partenaires de l'IRRL lors d'un événement communautaire",
       locationLabel: "Iqaluit, Nunavut",
@@ -111,19 +111,11 @@ export const fr = {
       emailLabel: "Courriel",
       cta: "Travailler avec nous",
     },
-    regionsMap: {
-      eyebrow: "Notre portée",
-      title: "Les régions que nous servons à travers le monde",
-      lead:
-        "Depuis notre base dans l'Arctique canadien jusqu'à nos partenariats internationaux, l'IRRL déploie recherche et programmes là où les communautés en ont besoin.",
-      legendCountry: "Canada",
-      legendDetail: "Siège social · Iqaluit, Nunavut",
-    },
     partners: {
-      title: "Nos partenaires",
+      title: "Anciens commanditaires",
       lead: "Des relations solides pour un impact plus grand",
-      carouselLabel: "Logos des partenaires",
-      goToSlide: "Aller au partenaire",
+      carouselLabel: "Logos des commanditaires",
+      goToSlide: "Aller au commanditaire",
     },
     focusEyebrow: "Ce que nous faisons",
     focusTitle: "Programmes et priorités",
@@ -179,19 +171,19 @@ export const fr = {
           origin: "Comment tout a commencé",
           purpose: "Ce que nous défendons",
           approach: "Notre façon de travailler",
-          milestone: "Dans la communauté",
-          forward: "L'avenir",
+          milestone: "Où nous en sommes aujourd'hui",
+          forward: "Ce qui nous guide",
         },
         p1:
-          "L'Institut de recherche Real Life est né d'une profonde préoccupation pour l'avenir des jeunes, en particulier ceux de moins de 40 ans issus de milieux défavorisés. Comme nous, beaucoup prenaient de mauvaises décisions financières par manque d'éducation pratique « réelle ». Nous avons reconnu que l'éducation formelle ne prépare pas toujours les jeunes aux défis complexes de l'âge adulte—littératie financière, relations saines, engagement civique. Nous avons réuni des personnes partageant ces préoccupations et, avec des ressources limitées, avons financé de petites initiatives et des ateliers de littératie financière au Nunavut et à Ottawa. Ces actions communautaires ont évolué en un mouvement et fondé l'institut, enregistré à but non lucratif au Nunavut et à l'échelle fédérale.",
+          "L'Institut de recherche Real Life (IRRL) a été fondé avec l'engagement de bâtir des communautés plus fortes, plus sûres et plus inclusives, où chaque personne a la possibilité de s'épanouir, peu importe son origine, son identité, sa situation géographique ou socioéconomique. Notre parcours a commencé lorsqu'un groupe de leaders communautaires, de chercheurs, de défenseurs de la jeunesse et de praticiens a reconnu des défis persistants touchant les personnes et les communautés à Iqaluit, à Ottawa et au-delà. De nombreux jeunes, nouveaux arrivants, Autochtones, femmes et autres populations mal desservies continuaient de faire face à des obstacles à une participation significative à la société : exclusion sociale, inégalités, accès limité aux occasions, expériences de discrimination et manque de systèmes de soutien adaptés à la culture.",
         p2:
-          "Notre objectif est d'équiper les personnes de compétences de vie essentielles, de soutenir la recherche inclusive et d'offrir une aide humanitaire pratique au Nunavut, dans l'Arctique, les communautés autochtones et le Sud global. Notre vision : un monde plus équitable et résilient où personne n'est laissé pour compte. Notre mission : autonomiser par des compétences réelles, faire avancer la recherche inclusive et soutenir les communautés vulnérables.",
+          "Animés par la conviction qu'un changement durable se construit de l'intérieur des communautés, nous nous sommes réunis pour créer des solutions concrètes qui autonomisent les personnes, renforcent les liens sociaux et favorisent l'équité et l'appartenance. Avec des ressources limitées mais une vision commune, nous avons organisé des dialogues communautaires, des activités d'engagement des jeunes, des événements culturels, des initiatives de mentorat, des programmes de sport et de loisirs, ainsi que des projets de recherche axés sur les priorités locales et l'amplification des voix communautaires.",
         p3:
-          "Guidés par les principes IQ, notre devise et notre slogan, nous offrons une formation en cinq grappes de littératie (financière, numérique, santé, environnementale et culturelle). Notre recherche aborde le changement climatique, l'inégalité, la consolidation de la paix et les défis géopolitiques émergents dans l'Arctique. Par des réseaux locaux, nous offrons aussi une aide humanitaire et des bourses. Nous cultivons la sécurité, l'inclusion et la dignité, avec des politiques de protection et de prévention de la violence fondée sur le genre.",
+          "À mesure que notre travail prenait de l'ampleur, notre compréhension des défis interreliés auxquels font face les communautés s'est approfondie. Nous nous sommes concentrés de plus en plus sur des enjeux tels que l'inclusion et le leadership des jeunes, le multiculturalisme, l'égalité des genres, la prévention de la violence fondée sur le genre, la sécurité communautaire, la cohésion sociale, le mieux-être mental, la prévention des conflits, la diversité et l'inclusion, l'engagement civique et la participation équitable aux processus décisionnels. Par la recherche, le renforcement des capacités et l'action collaborative, nous avons cherché à faire le pont entre les savoirs communautaires et les solutions politiques.",
         p4:
-          "Nous avons été ravis de recevoir notre première subvention publique du gouvernement du Nunavut (Services communautaires – Sport et loisirs) pour soutenir la Course Love & Unity d'Iqaluit—promouvoir la santé, l'inclusivité et la fierté culturelle par le sport et la célébration.",
+          "Aujourd'hui, l'IRRL est un organisme sans but lucratif canadien enregistré à l'échelle fédérale ainsi qu'au Nunavut. Nous travaillons avec des organismes communautaires, des partenaires autochtones, des gouvernements, des établissements d'enseignement et des intervenants internationaux pour promouvoir l'inclusion sociale, renforcer la résilience communautaire, soutenir les populations vulnérables et faire progresser des solutions fondées sur des données probantes aux défis sociaux complexes.",
         p5:
-          "À l'Institut de recherche Real Life, nous transformons le savoir en action et investissons dans le potentiel des jeunes et des communautés trop longtemps laissés pour compte. Comme nous le disons ici : à Real Life, la vraie vie commence!",
+          "Notre travail est guidé par la conviction que le développement durable, la sécurité communautaire et le bien-être social ne peuvent être atteints que lorsque chacun — jeunes, femmes, Autochtones, nouveaux arrivants, communautés racisées et autres groupes mal desservis — a de véritables occasions de participer, de diriger et de façonner les décisions qui touchent sa vie.",
       },
       welcome: "Bienvenue à bord!",
       welcomeSub: "Joignez-vous à nous pour bâtir un avenir plus équitable et résilient.",
@@ -220,42 +212,6 @@ export const fr = {
         impactTitle: "Notre impact",
         impactBody:
           "Nous renforçons les communautés par des compétences vitales, soutenons les savoirs autochtones et proposons des solutions aux défis mondiaux. Par l'éducation, la recherche et l'aide, nous créons un changement durable.",
-      },
-      team: {
-        eyebrow: "Notre équipe",
-        title: "Rencontrez l'équipe",
-        lead:
-          "Rencontrez les personnes passionnées qui font avancer notre mission avec dévouement, créativité et conviction.",
-        profileLabel: "Profil",
-        readBio: "Biographie complète",
-        close: "Fermer",
-        featuredBadge: "Direction",
-        members: {
-          alemagi: {
-            name: "Dieudonne Alemagi, Ph.D.",
-            role: "Président honoraire du conseil",
-            bio:
-              "Dr. Alemagi has over 20 years of international experience in climate change adaptation and mitigation, agriculture, forestry, renewable energy, natural resources, climate finance, project management, indigenous issues, and environmental and social impact assessment (ESIA/ESMP), including GCF and GEF project development and evaluation. He has published over 90 works, including peer-reviewed articles, and held senior positions such as Climate Change and Policy Associate Scientist at ICRAF and Postdoctoral Research Fellow at the University of British Columbia (2008–2011). Dr. Alemagi has consulted for the World Bank, UNDP, African Development Bank, FAO, IUCN, and other organizations, and provided capacity building for forestry and agricultural stakeholders across Africa and Canada. He holds a Ph.D. in Environmental and Resource Management from Brandenburg University of Technology Cottbus, Germany.",
-          },
-          carla: {
-            name: "Carla Oyukuluk",
-            role: "Conseillère en engagement autochtone",
-            bio:
-              "Carla is a committed community leader and cultural advisor with extensive experience in education and community engagement across Nunavut. She has served as a member of the District Education Authority, contributing her expertise to consultations on a wide range of issues impacting education and community wellbeing. Carla has travelled to 20 of the 25 communities in Nunavut, engaging directly with residents to listen, learn, and ensure community voices are reflected in decision-making processes. This breadth of outreach has provided her with a unique perspective on the diverse needs and strengths of communities across Nunavut. At RLRI, Carla continues to advance community-driven and culturally grounded projects, ensuring that programs remain respectful of Inuit societal values and responsive to local priorities.",
-          },
-          yousaf: {
-            name: "Yousaf Ahmad",
-            role: "Conseiller en santé mondiale et innovation",
-            bio:
-              "Yousaf has over 20 years of experience in the pharmaceutical industry, with extensive expertise across primary and secondary care in the UK and internationally. In 2020, he was appointed by the Privy Council to the governing council of the General Pharmaceutical Council, overseeing the regulation of over 80,000 pharmacists, pharmacy technicians, and 13,000 pharmacy premises in the UK. An expert in Pain Management, Yousaf has presented research at international conferences, published in leading journals, and serves in advisory and editorial roles. He regularly delivers keynote presentations on cutting-edge clinical practices to industry leaders. At the Real-Life Research Institute, he applies his expertise to advance global health and health literacy programs. Yousaf holds both undergraduate and postgraduate degrees in Pharmacy and Clinical Pharmacy and multiple certifications in Global Health and Healthcare Leadership.",
-          },
-          kyleigh: {
-            name: "Kyleigh Rosset",
-            role: "Associée santé mentale et réduction des méfaits",
-            bio:
-              "Rosset's work connects education and community empowerment, with a focus on mental health, suicide prevention, and addiction support. She has delivered hands-on programming in remote Indigenous communities across Canada and brings extensive experience teaching learners from early childhood through adolescence. She is passionate about bridging education, social impact, and STEM, integrating creative problem-solving, technology, and experiential learning into her work. At RLRI, Rosset supports mental health and harm reduction research and social development initiatives, helping young people in Nunavut and across Northern communities to benefit from community programs that are meaningful, inclusive, and culturally responsive. She holds a Bachelor of Science and Arts (BASc) in Health from St. Francis Xavier University in Nova Scotia and is currently pursuing a Master of Science in Teaching.",
-          },
-        },
       },
       policies: {
         eyebrow: "Politiques",

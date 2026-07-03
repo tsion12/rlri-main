@@ -31,7 +31,7 @@ export const iu = {
       "Empowering young minds, building brighter futures. Together, we create a world of purpose, resilience, and hope.",
     quickLinks: "Quick Links",
     getInTouch: "Get in Touch",
-    newsletterTitle: "News Letter",
+    newsletterTitle: "Newsletter",
     newsletterLead:
       "Get the latest updates on our programs, events, and success stories. Sign up and be part of a community empowering young minds.",
     newsletterPlaceholder: "Your Email",
@@ -78,13 +78,13 @@ export const iu = {
       eyebrow: "Who we are",
       title: "Welcome to Real Life Research Institute!",
       intro:
-        "Our journey began with a simple yet powerful vision: to empower individuals with skills and knowledge often lacking in traditional education. We recognized a critical gap in how young people are prepared to face the complex realities of adult life. The Real Life Research Institute was founded to bridge that gap!",
-      skillTitle: "Real-World Skills",
+        "The Real-Life Research Institute (RLRI) was founded on the commitment to building stronger, safer, and more inclusive communities where every person has the opportunity to thrive. From our home in Canada's Arctic to Ottawa and beyond, we bring together research, community programs, and partnerships that promote social inclusion, strengthen community resilience, and empower people to shape the decisions that affect their lives.",
+      skillTitle: "Community-Led Programs",
       skillBody:
-        "We equip individuals with practical tools for financial independence and lifelong growth.",
+        "From youth inclusion and leadership to sports, multiculturalism, and community safety, our programs strengthen social connection, equity, and belonging.",
       researchTitle: "Research with Purpose",
       researchBody:
-        "Addressing critical issues in the Arctic and beyond, grounded in Indigenous knowledge and decolonization.",
+        "Addressing critical issues in the Arctic and beyond, grounded in Indigenous knowledge and community priorities.",
       ctaDonate: "Donate now",
       imageAlt: "RLRI team and partners gathered at a community event",
       locationLabel: "Iqaluit, NU",
@@ -115,19 +115,11 @@ export const iu = {
       emailLabel: "Email us",
       cta: "Work with us",
     },
-    regionsMap: {
-      eyebrow: "Our reach",
-      title: "Regions We Serve Across the Globe",
-      lead:
-        "From our home in Canada's Arctic to partnerships around the world, RLRI brings research and programs where communities need them most.",
-      legendCountry: "Canada",
-      legendDetail: "Headquarters · Iqaluit, Nunavut",
-    },
     partners: {
-      title: "Our Partners",
+      title: "Past Sponsors",
       lead: "Building Strong Relationships for Greater Impact",
-      carouselLabel: "Partner logos",
-      goToSlide: "Go to partner",
+      carouselLabel: "Sponsor logos",
+      goToSlide: "Go to sponsor",
     },
     focusEyebrow: "Sunavut piliriaviujut",
     focusTitle: "Programs & priorities",
@@ -183,19 +175,19 @@ export const iu = {
           origin: "How it began",
           purpose: "What we stand for",
           approach: "How we work",
-          milestone: "In the community",
-          forward: "Where we're headed",
+          milestone: "Where we are today",
+          forward: "What guides us",
         },
         p1:
-          "The Real-Life Research Institute was born out of a deep concern for the future of young people, particularly those under 40 and from economically disadvantaged backgrounds. Like us, many were making poor financial decisions due to a lack of practical, “real-life” education. We recognized that formal education often fails to prepare youth for the complex challenges of adulthood, especially in areas such as financial literacy, healthy relationships, and civic engagement. In response, we brought together like-minded individuals who shared these concerns and were eager to make a difference. With limited resources, we initially self-funded small initiatives and financial literacy orientations, helping young adults become familiar with financial planning and settlement options. These efforts began within our own neighborhoods and families, particularly in Nunavut and Ottawa. Over time, our activities grew into a series of community actions that eventually blossomed into a movement. These activities laid the foundation for what is now called Real Life Research Institute, registered as a nonprofit in Nunavut and federally.",
+          "The Real-Life Research Institute (RLRI) was founded on the commitment to building stronger, safer, and more inclusive communities where every person has the opportunity to thrive, regardless of their background, identity, geography, or socioeconomic circumstances. Our journey began when a group of community leaders, researchers, youth advocates, and practitioners recognized persistent challenges affecting individuals and communities in Iqaluit, Ottawa, and beyond. Many young people, newcomers, Indigenous peoples, women, and other underserved populations continued to face barriers to meaningful participation in society, including social exclusion, inequality, limited access to opportunities, experiences of discrimination, and a lack of culturally responsive support systems.",
         p2:
-          "Our goal is to equip individuals with essential life skills, support inclusive research, and deliver practical, lifesaving humanitarian aid across Nunavut, the Arctic, Indigenous communities, and the Global South. Our vision is to create a more equitable and resilient world where no one is left behind. Our mission is to empower individuals with real-life skills, advance inclusive research, and support vulnerable communities.",
+          "Motivated by a belief that lasting change is built from within communities, we came together to create practical solutions that empower people, strengthen social connections, and promote equity and belonging. Working with limited resources but a shared vision, we organized community dialogues, youth engagement activities, cultural events, mentorship initiatives, sports and recreation programs, and research projects focused on addressing local priorities and amplifying community voices.",
         p3:
-          "Guided by the IQ principles and our motto, “Innovating Truth. Impacting Lives,” and our slogan, “Where Discovery Meets Real-World Change,” we offer training in five literacy clusters (financial, digital, health, environmental, and cultural literacies). Our research addresses urgent global challenges, including climate change, inequality, peacebuilding, and the emerging geopolitical challenges in the Arctic. Through local networks in conflict-affected and disaster-prone countries, we are also providing humanitarian support and scholarships to those in need. We are committed to fostering a culture of safety, inclusion, and dignity, with strong safeguarding and gender-based violence prevention policies embedded in all our work.",
+          "As our work expanded, so did our understanding of the interconnected challenges facing communities. We increasingly focused on issues such as youth inclusion and leadership, multiculturalism, gender equality, prevention of gender-based violence, community safety, social cohesion, mental wellness, conflict prevention, diversity and inclusion, civic engagement, and equitable participation in decision-making processes. Through research, capacity building, and collaborative action, we sought to bridge the gap between community knowledge and policy solutions.",
         p4:
-          "We were thrilled to receive our first public grant from the Government of Nunavut through the Department of Community Services – Sport and Recreation Division to support the Iqaluit Love & Unity Run. This initiative reflects our commitment to promoting health, inclusivity, and cultural pride by uniting people from diverse backgrounds through sport and celebration.",
+          "Today, RLRI is a federally registered Canadian nonprofit organization and a registered nonprofit in Nunavut. We work with community organizations, Indigenous partners, governments, educational institutions, and international stakeholders to promote social inclusion, strengthen community resilience, support vulnerable populations, and advance evidence-based solutions to complex social challenges.",
         p5:
-          "At Real Life Research Institute, we are turning knowledge into action and investing in the potential of youth and communities who have long been left behind. As we say here, at real life, real life begins!",
+          "Our work is guided by the belief that sustainable development, community safety, and social well-being can only be achieved when everyone, including youth, women, Indigenous peoples, newcomers, racialized communities, and other underserved groups, have meaningful opportunities to participate, lead, and shape the decisions that affect their lives.",
       },
       welcome: "Welcome Aboard!",
       welcomeSub: "Join us in building a more equitable, resilient future.",
@@ -224,42 +216,6 @@ export const iu = {
         impactTitle: "Our Impact",
         impactBody:
           "We empower communities with vital skills, support Indigenous knowledge, and drive solutions for global challenges. Through education, research, and aid, we create lasting positive change.",
-      },
-      team: {
-        eyebrow: "Our people",
-        title: "Get to know the team",
-        lead:
-          "Meet the passionate individuals driving our mission forward with dedication, creativity, and purpose.",
-        profileLabel: "Team profile",
-        readBio: "Read full bio",
-        close: "Close profile",
-        featuredBadge: "Leadership",
-        members: {
-          alemagi: {
-            name: "Dieudonne Alemagi, Ph.D.",
-            role: "Honorary Board Chair",
-            bio:
-              "Dr. Alemagi has over 20 years of international experience in climate change adaptation and mitigation, agriculture, forestry, renewable energy, natural resources, climate finance, project management, indigenous issues, and environmental and social impact assessment (ESIA/ESMP), including GCF and GEF project development and evaluation. He has published over 90 works, including peer-reviewed articles, and held senior positions such as Climate Change and Policy Associate Scientist at ICRAF and Postdoctoral Research Fellow at the University of British Columbia (2008–2011). Dr. Alemagi has consulted for the World Bank, UNDP, African Development Bank, FAO, IUCN, and other organizations, and provided capacity building for forestry and agricultural stakeholders across Africa and Canada. He holds a Ph.D. in Environmental and Resource Management from Brandenburg University of Technology Cottbus, Germany.",
-          },
-          carla: {
-            name: "Carla Oyukuluk",
-            role: "Indigenous Engagement Advisor",
-            bio:
-              "Carla is a committed community leader and cultural advisor with extensive experience in education and community engagement across Nunavut. She has served as a member of the District Education Authority, contributing her expertise to consultations on a wide range of issues impacting education and community wellbeing. Carla has travelled to 20 of the 25 communities in Nunavut, engaging directly with residents to listen, learn, and ensure community voices are reflected in decision-making processes. This breadth of outreach has provided her with a unique perspective on the diverse needs and strengths of communities across Nunavut. At RLRI, Carla continues to advance community-driven and culturally grounded projects, ensuring that programs remain respectful of Inuit societal values and responsive to local priorities.",
-          },
-          yousaf: {
-            name: "Yousaf Ahmad",
-            role: "Global Health & Innovation Advisor",
-            bio:
-              "Yousaf has over 20 years of experience in the pharmaceutical industry, with extensive expertise across primary and secondary care in the UK and internationally. In 2020, he was appointed by the Privy Council to the governing council of the General Pharmaceutical Council, overseeing the regulation of over 80,000 pharmacists, pharmacy technicians, and 13,000 pharmacy premises in the UK. An expert in Pain Management, Yousaf has presented research at international conferences, published in leading journals, and serves in advisory and editorial roles. He regularly delivers keynote presentations on cutting-edge clinical practices to industry leaders. At the Real-Life Research Institute, he applies his expertise to advance global health and health literacy programs. Yousaf holds both undergraduate and postgraduate degrees in Pharmacy and Clinical Pharmacy and multiple certifications in Global Health and Healthcare Leadership.",
-          },
-          kyleigh: {
-            name: "Kyleigh Rosset",
-            role: "Mental Health & Harm Reduction Associate",
-            bio:
-              "Rosset's work connects education and community empowerment, with a focus on mental health, suicide prevention, and addiction support. She has delivered hands-on programming in remote Indigenous communities across Canada and brings extensive experience teaching learners from early childhood through adolescence. She is passionate about bridging education, social impact, and STEM, integrating creative problem-solving, technology, and experiential learning into her work. At RLRI, Rosset supports mental health and harm reduction research and social development initiatives, helping young people in Nunavut and across Northern communities to benefit from community programs that are meaningful, inclusive, and culturally responsive. She holds a Bachelor of Science and Arts (BASc) in Health from St. Francis Xavier University in Nova Scotia and is currently pursuing a Master of Science in Teaching.",
-          },
-        },
       },
       policies: {
         eyebrow: "Policies",

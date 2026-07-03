@@ -26,7 +26,6 @@ export const mainAboutAnchors = {
   whoWeAre: "who-we-are",
   missionVision: "mission-vision",
   flipbook: "about-flipbook",
-  team: "about-team",
   policies: "institute-policies",
 } as const;
 
@@ -52,10 +51,15 @@ export const mainPhones = {
   primaryTel: "+16138582668",
 } as const;
 
-export const mainAddress = {
-  line1: "304-4104 Road to Nowhere",
-  line2: "Iqaluit, NU X0A 2H0",
-  country: "Canada",
-  /** Single-line for map / schema */
-  full: "304-4104 Road to Nowhere, Iqaluit, NU X0A 2H0 Canada",
-} as const;
+export const mainAddresses = [
+  {
+    line1: "304-4104 Road to Nowhere",
+    line2: "Iqaluit, NU X0A 2H0",
+    country: "Canada",
+  },
+  {
+    line1: "96 Ontario Street",
+    line2: "Ottawa, ON K1K 1K9",
+    country: "Canada",
+  },
+] as const;

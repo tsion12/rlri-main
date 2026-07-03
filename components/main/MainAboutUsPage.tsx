@@ -1,18 +1,12 @@
 import { MainAboutHashScroll } from "@/components/main/MainAboutHashScroll";
 import { MainAboutIssuuFlipbook } from "@/components/main/MainAboutIssuuFlipbook";
 import { MainAboutPolicies } from "@/components/main/MainAboutPolicies";
-import { MainAboutTeam } from "@/components/main/MainAboutTeam";
 import { MainAboutValuePillars } from "@/components/main/MainAboutValuePillars";
 import { MainAboutWhoWeAre } from "@/components/main/MainAboutWhoWeAre";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
 import { mainGallerySrc } from "@/lib/main-gallery";
 import { getMainPolicyPosts } from "@/lib/wp";
-import {
-  MAIN_TEAM_CANADA_IDS,
-  MAIN_TEAM_CANADA_INITIALS,
-  MAIN_TEAM_CANADA_PHOTOS,
-} from "@/lib/main-team-canada";
 
 type Props = { locale: Locale };
 
@@ -39,15 +33,6 @@ export async function MainAboutUsPage({ locale }: Props) {
       body: t("pages.aboutUs.story.p5"),
     },
   ];
-
-  const teamMembers = MAIN_TEAM_CANADA_IDS.map((id) => ({
-    id,
-    initials: MAIN_TEAM_CANADA_INITIALS[id],
-    photo: MAIN_TEAM_CANADA_PHOTOS[id],
-    name: t(`pages.aboutUs.team.members.${id}.name`),
-    role: t(`pages.aboutUs.team.members.${id}.role`),
-    bio: t(`pages.aboutUs.team.members.${id}.bio`),
-  }));
 
   const pillars = [
     {
@@ -138,16 +123,6 @@ export async function MainAboutUsPage({ locale }: Props) {
         valueLead={t("pages.aboutUs.value.lead")}
         coreLabel={t("pages.aboutUs.value.coreLabel")}
         pillars={pillars}
-      />
-
-      <MainAboutTeam
-        eyebrow={t("pages.aboutUs.team.eyebrow")}
-        title={t("pages.aboutUs.team.title")}
-        lead={t("pages.aboutUs.team.lead")}
-        profileLabel={t("pages.aboutUs.team.profileLabel")}
-        readBio={t("pages.aboutUs.team.readBio")}
-        closeLabel={t("pages.aboutUs.team.close")}
-        members={teamMembers}
       />
 
       <MainAboutPolicies

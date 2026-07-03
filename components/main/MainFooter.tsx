@@ -15,7 +15,7 @@ import {
 } from "@/components/africa/africa-icons";
 import { useTranslations } from "@/components/main/i18n/LocaleProvider";
 import { MAIN_FOOTER_NAV } from "@/lib/main-navigation";
-import { mainAboutSectionHref, mainAddress, mainEmails, mainPhones, mainRoutes } from "@/lib/main-routes";
+import { mainAboutSectionHref, mainAddresses, mainEmails, mainPhones, mainRoutes } from "@/lib/main-routes";
 import { MAIN_SOCIAL_LINKS } from "@/lib/main-social";
 import { mainBaseFromPathname, mainHref, mainLocaleFromPathname } from "@/lib/i18n/path";
 import { MainLogo } from "./MainLogo";
@@ -131,18 +131,20 @@ export function MainFooter() {
               {t("footer.getInTouch")}
             </h2>
             <ul className="mt-5 space-y-4">
-              <li className="flex gap-3">
-                <span className={iconTile} aria-hidden>
-                  <IconMap className="size-4" />
-                </span>
-                <address className="not-italic text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  {mainAddress.line1}
-                  <br />
-                  {mainAddress.line2}
-                  <br />
-                  {mainAddress.country}
-                </address>
-              </li>
+              {mainAddresses.map((address) => (
+                <li key={address.line1} className="flex gap-3">
+                  <span className={iconTile} aria-hidden>
+                    <IconMap className="size-4" />
+                  </span>
+                  <address className="not-italic text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                    {address.line1}
+                    <br />
+                    {address.line2}
+                    <br />
+                    {address.country}
+                  </address>
+                </li>
+              ))}
               <li className="flex gap-3">
                 <span className={iconTile} aria-hidden>
                   <IconMail className="size-4" />
