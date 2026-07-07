@@ -131,7 +131,7 @@ const AFRICA_WEBINAR_EVENTS: AfricaWebinarEvent[] = [
     supportProgram: "05",
     tags: ["Public Health", "DRC", "Conflict & Governance"],
     policyBriefHref: null,
-    recordingHref: null,
+    recordingHref: "https://youtu.be/YD2DqNYMBiY",
   },
 ];
 
