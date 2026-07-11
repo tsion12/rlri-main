@@ -16,6 +16,8 @@ export const mainRoutes = {
   faq: "/faq",
   /** Main institute community events in Iqaluit and across Canada. */
   events: "/events",
+  /** Flagship RLRI conference — placeholder until details are announced. */
+  conference: "/conference",
   /** Donations (shared with Africa Program until a main-site flow exists). */
   donate: "/africa/donate",
   africaProgram: "https://africa-programs.reallifeinstitute.org/",

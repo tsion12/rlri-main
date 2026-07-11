@@ -16,6 +16,7 @@ export const fr = {
     publications: "Publications",
     blogs: "Blogues",
     arcticSecurity: "Sécurité arctique",
+    conference: "Conférence",
     mentalHealth: "Santé mentale",
     volunteer: "Bénévolat",
     faq: "FAQ",
@@ -485,6 +486,72 @@ export const fr = {
           program: "Sport et célébration communautaire",
         },
       },
+    },
+    conference: {
+      title: "Conférence de l'IRRL",
+      description:
+        "La Conférence de l'IRRL réunit chercheurs, décideurs, leaders communautaires et partenaires pour un dialogue sur la sécurité, la résilience et l'inclusion. Tous les détails seront annoncés.",
+      heroEyebrow: "À vos agendas",
+      heroTitle: "La Conférence de l'IRRL",
+      heroTheme: "Thème à annoncer",
+      heroLead:
+        "Un forum national réunissant décideurs de haut niveau, chercheurs, leaders communautaires et partenaires de l'industrie pour un dialogue approfondi sur la sécurité, la résilience et le bien-être de nos communautés. Tous les détails — thème, programme et conférenciers — seront annoncés sous peu.",
+      heroWhenLabel: "Quand",
+      heroWhen: "Dates à annoncer",
+      heroWhereLabel: "Où",
+      heroWhere: "Lieu à annoncer",
+      heroNotifyCta: "Être informé(e)",
+      heroEventsCta: "Voir tous les événements",
+      heroImageAlt: "Dialogue et rassemblement communautaire de l'IRRL",
+      aboutEyebrow: "À propos de la conférence",
+      aboutTitle: "Un dialogue qui relie communautés, recherche et politiques",
+      aboutP1:
+        "Organisée par l'Institut de recherche Real Life, la conférence réunit décideurs gouvernementaux, chercheurs, leaders communautaires et autochtones, experts de la société civile et partenaires de l'industrie pour aborder les questions pressantes de sécurité, de résilience et d'inclusion — de l'Arctique canadien aux communautés de tout le pays.",
+      aboutP2:
+        "Tout au long de l'événement, des panels, des allocutions et des tables rondes examineront les défis auxquels font face nos communautés ainsi que les solutions communautaires et fondées sur des données probantes qui peuvent y répondre. Le programme complet est en cours de finalisation et sera publié ici à mesure que les détails seront confirmés.",
+      themesEyebrow: "Thèmes de la conférence",
+      themesTitle: "Sujets à l'ordre du jour",
+      themes: {
+        arctic: "Sécurité arctique",
+        resilience: "Résilience communautaire",
+        multiculturalism: "Multiculturalisme et inclusion",
+        mentalHealth: "Santé mentale et bien-être",
+        dialogue: "Dialogue Nord–Sud",
+        youth: "Jeunesse et leadership",
+      },
+      expectEyebrow: "À quoi s'attendre",
+      expectTitle: "Deux journées de panels, d'allocutions et de rencontres",
+      expectLead:
+        "Le format de la conférence est conçu pour aller au-delà des présentations — en créant de véritables échanges entre communautés, chercheurs et décideurs.",
+      expect1Title: "Panels et allocutions",
+      expect1Body:
+        "Hauts fonctionnaires, universitaires de premier plan et voix communautaires réunis dans des discussions animées sur les enjeux les plus importants.",
+      expect2Title: "Recherche et dialogue",
+      expect2Body:
+        "Des séances fondées sur des données probantes qui relient savoirs communautaires et politiques publiques — ancrées dans le vécu et les priorités locales.",
+      expect3Title: "Réseautage et communauté",
+      expect3Body:
+        "Des réceptions et des espaces partagés pour bâtir les partenariats qui feront avancer ce travail bien après la conférence.",
+      speakersEyebrow: "Conférenciers",
+      speakersTitle: "Conférenciers à annoncer",
+      speakersBody:
+        "La liste complète des conférenciers sera annoncée sous peu. Revenez nous voir ou contactez-nous pour être parmi les premiers informés des conférenciers et des séances confirmés.",
+      agendaEyebrow: "Programme",
+      agendaTitle: "Programme à venir",
+      agendaBody:
+        "Le programme détaillé — séances, panels et horaires — est en cours de finalisation et sera publié ici dès sa confirmation.",
+      partnersEyebrow: "Partenaires et commanditaires",
+      partnersTitle: "Occasions de partenariat",
+      partnersBody:
+        "Des occasions de commandite et de partenariat sont offertes aux organisations qui partagent notre engagement envers des communautés plus sûres, plus résilientes et plus inclusives. Contactez-nous pour en savoir plus.",
+      partnersCta: "Devenir commanditaire",
+      ctaEyebrow: "Restez informé(e)",
+      ctaTitle: "Soyez les premiers informés",
+      ctaBody:
+        "Les détails sur les dates, le lieu, l'inscription, les conférenciers et le programme seront annoncés bientôt. Contactez-nous pour rester au courant ou explorez nos autres événements entre-temps.",
+      ctaContact: "Nous joindre",
+      ctaEvents: "Découvrir nos événements",
+      comingSoonBadge: "Détails à venir",
     },
     volunteer: {
       title: "Bénévolat",

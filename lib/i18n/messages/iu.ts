@@ -20,6 +20,7 @@ export const iu = {
     publications: "Titiraqsimajut",
     blogs: "Blogit",
     arcticSecurity: "Ukuaqtiup Piluartumik",
+    conference: "Conference",
     mentalHealth: "Isumagijjutivut Aanniaqtailimayut",
     volunteer: "Ikajurniq",
     faq: "Apervigivaktut Apervaktaujut",
@@ -488,6 +489,72 @@ export const iu = {
           program: "Community sport & celebration",
         },
       },
+    },
+    conference: {
+      title: "RLRI Conference",
+      description:
+        "The RLRI Conference brings together researchers, policymakers, community leaders, and partners for dialogue on security, resilience, and inclusion. Full details to be announced.",
+      heroEyebrow: "Save the date",
+      heroTitle: "The RLRI Conference",
+      heroTheme: "Theme to be announced",
+      heroLead:
+        "A national forum convening senior decision-makers, researchers, community leaders, and industry partners for in-depth dialogue on the security, resilience, and well-being of our communities. Full details — theme, agenda, and speakers — will be announced shortly.",
+      heroWhenLabel: "When",
+      heroWhen: "Dates to be announced",
+      heroWhereLabel: "Where",
+      heroWhere: "Venue to be announced",
+      heroNotifyCta: "Get notified",
+      heroEventsCta: "View all events",
+      heroImageAlt: "RLRI community dialogue and gathering",
+      aboutEyebrow: "About the conference",
+      aboutTitle: "Dialogue that connects communities, research, and policy",
+      aboutP1:
+        "Hosted by the Real Life Research Institute, the conference brings together government decision-makers, researchers, community and Indigenous leaders, civil society experts, and industry partners to tackle pressing questions of security, resilience, and inclusion — from Canada's Arctic to communities across the country.",
+      aboutP2:
+        "Over the course of the event, panels, keynote addresses, and roundtable sessions will examine the challenges facing our communities and the community-rooted, evidence-based solutions that can address them. The full program is being finalized and will be shared here as details are confirmed.",
+      themesEyebrow: "Conference themes",
+      themesTitle: "Topics on the agenda",
+      themes: {
+        arctic: "Arctic Security",
+        resilience: "Community Resilience",
+        multiculturalism: "Multiculturalism & Inclusion",
+        mentalHealth: "Mental Health & Well-Being",
+        dialogue: "Northern–Southern Dialogue",
+        youth: "Youth & Leadership",
+      },
+      expectEyebrow: "What to expect",
+      expectTitle: "Two days of panels, keynotes, and connection",
+      expectLead:
+        "The conference format is designed to move beyond presentations — creating real exchange between communities, researchers, and decision-makers.",
+      expect1Title: "Panels & keynotes",
+      expect1Body:
+        "Senior officials, leading academics, and community voices in moderated discussion on the issues that matter most.",
+      expect2Title: "Research & dialogue",
+      expect2Body:
+        "Evidence-based sessions that bridge community knowledge and policy — grounded in lived experience and local priorities.",
+      expect3Title: "Networking & community",
+      expect3Body:
+        "Receptions and shared spaces to build the partnerships that carry this work forward long after the conference ends.",
+      speakersEyebrow: "Speakers",
+      speakersTitle: "Speakers to be announced",
+      speakersBody:
+        "The full speaker list will be announced shortly. Check back here or reach out to be the first to hear about confirmed speakers and sessions.",
+      agendaEyebrow: "Agenda",
+      agendaTitle: "Program coming soon",
+      agendaBody:
+        "The detailed agenda — sessions, panels, and timings — is being finalized and will be published here once confirmed.",
+      partnersEyebrow: "Partners & sponsors",
+      partnersTitle: "Partnership opportunities",
+      partnersBody:
+        "Sponsorship and partnership opportunities are available for organizations that share our commitment to safer, more resilient, and more inclusive communities. Get in touch to learn more.",
+      partnersCta: "Become a sponsor",
+      ctaEyebrow: "Stay informed",
+      ctaTitle: "Be the first to know",
+      ctaBody:
+        "Details on dates, venue, registration, speakers, and the agenda will be announced soon. Contact us to stay in the loop or explore our other events in the meantime.",
+      ctaContact: "Contact us",
+      ctaEvents: "Explore our events",
+      comingSoonBadge: "Details coming soon",
     },
     volunteer: {
       title: "Ikajurniq",

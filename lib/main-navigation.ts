@@ -19,6 +19,7 @@ export const MAIN_ABOUT_NAV: MainNavItem[] = [
 export const MAIN_PRIMARY_NAV: MainNavItem[] = [
   { labelKey: "nav.blogs", href: mainRoutes.blogs },
   { labelKey: "nav.arcticSecurity", href: mainRoutes.arcticSecurity },
+  { labelKey: "nav.conference", href: mainRoutes.conference },
   { labelKey: "nav.mentalHealth", href: mainRoutes.mentalHealth },
   { labelKey: "nav.volunteer", href: mainRoutes.volunteer },
   { labelKey: "nav.faq", href: mainRoutes.faq },
