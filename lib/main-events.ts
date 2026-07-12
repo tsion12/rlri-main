@@ -35,6 +35,19 @@ export const MAIN_PAST_GATHERING: MainInstituteEvent = {
 
 export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
   {
+    id: "arctic-security-conference-2026",
+    timing: "upcoming",
+    sortDate: "2026-08-26",
+    image: "REAL LIFE INSTITUTE-1.jpg",
+    titleKey: "pages.events.items.arcticConference.title",
+    summaryKey: "pages.events.items.arcticConference.summary",
+    whenKey: "pages.events.items.arcticConference.when",
+    whereKey: "pages.events.items.arcticConference.where",
+    programKey: "pages.events.items.arcticConference.program",
+    tagKeys: ["pages.events.tags.arcticSecurity", "pages.events.tags.community"],
+    href: mainRoutes.conference,
+  },
+  {
     id: "unity-race-2026",
     timing: "upcoming",
     sortDate: "2026-07-01",

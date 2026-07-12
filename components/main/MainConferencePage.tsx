@@ -1,23 +1,13 @@
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n/config";
-import type { TranslationKey } from "@/lib/i18n/messages/en";
 import { getTranslator } from "@/lib/i18n/translate";
-import { mainGallerySrc } from "@/lib/main-gallery";
+import { CONFERENCE_DAYS, CONFERENCE_HERO_IMAGE, type ConferenceSession } from "@/lib/main-conference";
 import { mainEmails, mainRoutes } from "@/lib/main-routes";
 import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
 
-const HERO_IMAGE = mainGallerySrc("REAL LIFE INSTITUTE-1.jpg");
-
-const THEME_KEYS: TranslationKey[] = [
-  "pages.conference.themes.arctic",
-  "pages.conference.themes.resilience",
-  "pages.conference.themes.multiculturalism",
-  "pages.conference.themes.mentalHealth",
-  "pages.conference.themes.dialogue",
-  "pages.conference.themes.youth",
-];
+type Translator = Awaited<ReturnType<typeof getTranslator>>;
 
 const EXPECT_CARDS = [
   { titleKey: "pages.conference.expect1Title", bodyKey: "pages.conference.expect1Body" },
@@ -25,30 +15,59 @@ const EXPECT_CARDS = [
   { titleKey: "pages.conference.expect3Title", bodyKey: "pages.conference.expect3Body" },
 ] as const;
 
-function ComingSoonCard({
-  eyebrow,
-  title,
-  body,
-  action,
-}: {
-  eyebrow: string;
-  title: string;
-  body: string;
-  action?: React.ReactNode;
-}) {
+function SessionRow({ session, t }: { session: ConferenceSession; t: Translator }) {
+  const isHighlight = Boolean(session.topicKey || session.breakoutQuestionKey);
+
   return (
-    <article className="flex h-full flex-col rounded-3xl border border-dashed border-zinc-300 bg-white/70 p-8 text-center dark:border-zinc-700 dark:bg-zinc-900/50">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-indigo-700 dark:text-indigo-400">
-        {eyebrow}
-      </p>
-      <h3 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-        {title}
-      </h3>
-      <p className="mx-auto mt-4 max-w-md flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-        {body}
-      </p>
-      {action ? <div className="mt-6">{action}</div> : null}
-    </article>
+    <li className="flex flex-col gap-1 py-4 sm:flex-row sm:gap-6">
+      <span className="w-32 shrink-0 pt-0.5 font-mono text-xs font-semibold tracking-tight text-sky-800 dark:text-sky-300">
+        {session.time ?? "—"}
+      </span>
+      <div className="min-w-0 flex-1">
+        <p
+          className={`text-sm ${
+            isHighlight
+              ? "font-semibold text-zinc-900 dark:text-zinc-50"
+              : "font-medium text-zinc-700 dark:text-zinc-300"
+          }`}
+        >
+          {t(session.labelKey)}
+        </p>
+        {session.who ? (
+          <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">{session.who}</p>
+        ) : null}
+        {session.topicKey ? (
+          <p className="mt-2 font-serif text-base font-semibold leading-snug text-sky-900 dark:text-sky-200">
+            {t(session.topicKey)}
+          </p>
+        ) : null}
+        {session.panelists ? (
+          <div className="mt-3">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+              {t("pages.conference.agendaPanelistsLabel")}
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {session.panelists.map((panelist) => (
+                <li key={panelist.name} className="text-sm leading-snug">
+                  <span className="font-medium text-zinc-800 dark:text-zinc-200">{panelist.name}</span>
+                  <span className="text-zinc-500 dark:text-zinc-400"> — {panelist.affiliation}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {session.breakoutQuestionKey ? (
+          <blockquote className="mt-3 rounded-2xl border border-sky-100 bg-sky-50/70 p-4 dark:border-sky-900/40 dark:bg-sky-950/20">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-700 dark:text-sky-400">
+              {t("pages.conference.agendaBreakoutLabel")}
+            </p>
+            <p className="mt-2 text-sm italic leading-relaxed text-zinc-700 dark:text-zinc-300">
+              {t(session.breakoutQuestionKey)}
+            </p>
+          </blockquote>
+        ) : null}
+      </div>
+    </li>
   );
 }
 
@@ -57,14 +76,14 @@ export async function MainConferencePage({ locale }: Props) {
   const contactHref = `mailto:${mainEmails.info}`;
 
   return (
-    <div className="bg-[#f6f7fb] dark:bg-zinc-950">
+    <div className="bg-[#f4f8fb] dark:bg-zinc-950">
       {/* Hero */}
       <section
-        className="relative flex min-h-[90dvh] items-center justify-center overflow-hidden"
+        className="relative flex min-h-dvh items-center justify-center overflow-hidden"
         aria-labelledby="conference-hero-heading"
       >
         <Image
-          src={HERO_IMAGE}
+          src={CONFERENCE_HERO_IMAGE}
           alt={t("pages.conference.heroImageAlt")}
           fill
           priority
@@ -76,38 +95,36 @@ export async function MainConferencePage({ locale }: Props) {
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_15%,rgba(129,140,248,0.2),transparent_50%),radial-gradient(ellipse_60%_50%_at_85%_85%,rgba(56,189,248,0.12),transparent_45%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_15%,rgba(56,189,248,0.18),transparent_50%),radial-gradient(ellipse_60%_50%_at_85%_85%,rgba(99,102,241,0.12),transparent_45%)]"
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-5xl px-4 py-28 text-center sm:px-6 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-indigo-300/95">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-sky-300/95">
             {t("pages.conference.heroEyebrow")}
           </p>
           <h1
             id="conference-hero-heading"
-            className="mt-6 font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="mt-6 font-serif text-3xl font-semibold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-5xl"
           >
             {t("pages.conference.heroTitle")}
           </h1>
-          <p className="mt-5 font-serif text-xl font-medium italic text-indigo-100/90 sm:text-2xl">
-            {t("pages.conference.heroTheme")}
-          </p>
           <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-slate-200/90 sm:text-lg">
             {t("pages.conference.heroLead")}
           </p>
 
-          <dl className="mx-auto mt-10 flex max-w-2xl flex-wrap items-stretch justify-center gap-4">
+          <dl className="mx-auto mt-10 flex max-w-3xl flex-wrap items-stretch justify-center gap-4">
             {(
               [
                 { labelKey: "pages.conference.heroWhenLabel", valueKey: "pages.conference.heroWhen" },
                 { labelKey: "pages.conference.heroWhereLabel", valueKey: "pages.conference.heroWhere" },
+                { labelKey: "pages.conference.heroFormatLabel", valueKey: "pages.conference.heroFormat" },
               ] as const
             ).map(({ labelKey, valueKey }) => (
               <div
                 key={labelKey}
-                className="min-w-56 rounded-2xl border border-white/15 bg-white/10 px-6 py-4 backdrop-blur-sm"
+                className="min-w-48 rounded-2xl border border-white/15 bg-white/10 px-6 py-4 backdrop-blur-sm"
               >
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-indigo-200/90">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-200/90">
                   {t(labelKey)}
                 </dt>
                 <dd className="mt-1 text-sm font-semibold text-white">{t(valueKey)}</dd>
@@ -118,20 +135,23 @@ export async function MainConferencePage({ locale }: Props) {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href={contactHref}
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:bg-indigo-50"
+              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:bg-sky-50"
             >
               {t("pages.conference.heroNotifyCta")}
             </a>
-            <MainLink
-              href={mainRoutes.events}
+            <a
+              href="#conference-agenda"
               className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
             >
-              {t("pages.conference.heroEventsCta")}
-            </MainLink>
+              {t("pages.conference.agendaEyebrow")}
+              <span aria-hidden className="ml-2">
+                ↓
+              </span>
+            </a>
           </div>
         </div>
         <div
-          className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-[#f6f7fb] to-transparent dark:from-zinc-950"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-[#f4f8fb] to-transparent dark:from-zinc-950"
           aria-hidden
         />
       </section>
@@ -142,7 +162,7 @@ export async function MainConferencePage({ locale }: Props) {
         aria-labelledby="conference-about-heading"
       >
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-700 dark:text-indigo-400">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
             {t("pages.conference.aboutEyebrow")}
           </p>
           <h2
@@ -157,62 +177,42 @@ export async function MainConferencePage({ locale }: Props) {
           <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-[17px]">
             {t("pages.conference.aboutP2")}
           </p>
+          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-[17px]">
+            {t("pages.conference.aboutP3")}
+          </p>
         </div>
       </section>
 
-      {/* Themes */}
+      {/* Thematic focus */}
       <section
         className="border-b border-zinc-200/80 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-900/40"
-        aria-labelledby="conference-themes-heading"
+        aria-labelledby="conference-focus-heading"
       >
-        <div className="mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-700 dark:text-indigo-400">
-            {t("pages.conference.themesEyebrow")}
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
+            {t("pages.conference.focusEyebrow")}
           </p>
           <h2
-            id="conference-themes-heading"
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
+            id="conference-focus-heading"
+            className="mt-4 text-center font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
           >
-            {t("pages.conference.themesTitle")}
+            {t("pages.conference.focusTitle")}
           </h2>
-          <ul className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            {THEME_KEYS.map((key) => (
-              <li
-                key={key}
-                className="rounded-full border border-indigo-200 bg-white px-5 py-2.5 text-sm font-semibold text-indigo-900 shadow-sm dark:border-indigo-900/50 dark:bg-zinc-900 dark:text-indigo-200"
-              >
-                {t(key)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* What to expect */}
-      <section
-        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-        aria-labelledby="conference-expect-heading"
-      >
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-700 dark:text-indigo-400">
-            {t("pages.conference.expectEyebrow")}
+          <p className="mx-auto mt-5 max-w-3xl text-center text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {t("pages.conference.focusLead")}
           </p>
-          <h2
-            id="conference-expect-heading"
-            className="mt-4 max-w-2xl font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
-          >
-            {t("pages.conference.expectTitle")}
-          </h2>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {t("pages.conference.expectLead")}
-          </p>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8">
-            {EXPECT_CARDS.map(({ titleKey, bodyKey }, index) => (
+          <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+            {(
+              [
+                { titleKey: "pages.conference.focus1Title", bodyKey: "pages.conference.focus1Body" },
+                { titleKey: "pages.conference.focus2Title", bodyKey: "pages.conference.focus2Body" },
+              ] as const
+            ).map(({ titleKey, bodyKey }, index) => (
               <article
                 key={titleKey}
-                className="rounded-3xl border border-zinc-200/80 bg-slate-50/70 p-8 dark:border-zinc-800 dark:bg-zinc-900/50"
+                className="rounded-3xl border border-sky-100 bg-white p-8 shadow-[0_24px_60px_-28px_rgba(15,23,42,0.18)] dark:border-sky-900/40 dark:bg-zinc-900/60"
               >
-                <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-linear-to-br from-indigo-500 to-sky-400 font-serif text-lg font-semibold text-white shadow-lg shadow-indigo-900/20">
+                <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-linear-to-br from-sky-600 to-indigo-500 font-serif text-lg font-semibold text-white shadow-lg shadow-sky-900/20">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-6 font-serif text-xl font-semibold leading-snug text-zinc-900 dark:text-zinc-50">
@@ -227,57 +227,138 @@ export async function MainConferencePage({ locale }: Props) {
         </div>
       </section>
 
-      {/* Speakers / Agenda / Partners — coming soon */}
+      {/* Format */}
       <section
-        className="border-b border-zinc-200/80 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-900/40"
-        aria-label={t("pages.conference.comingSoonBadge")}
+        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+        aria-labelledby="conference-format-heading"
       >
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <div className="mb-10 flex items-center gap-3">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-indigo-700 dark:text-indigo-400">
-              {t("pages.conference.comingSoonBadge")}
-            </p>
-            <span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
+            {t("pages.conference.expectEyebrow")}
+          </p>
+          <h2
+            id="conference-format-heading"
+            className="mt-4 max-w-2xl font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
+          >
+            {t("pages.conference.expectTitle")}
+          </h2>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {t("pages.conference.expectLead")}
+          </p>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8">
+            {EXPECT_CARDS.map(({ titleKey, bodyKey }) => (
+              <article
+                key={titleKey}
+                className="rounded-3xl border border-zinc-200/80 bg-slate-50/70 p-8 dark:border-zinc-800 dark:bg-zinc-900/50"
+              >
+                <h3 className="font-serif text-xl font-semibold leading-snug text-zinc-900 dark:text-zinc-50">
+                  {t(titleKey)}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  {t(bodyKey)}
+                </p>
+              </article>
+            ))}
           </div>
-          <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
-            <ComingSoonCard
-              eyebrow={t("pages.conference.speakersEyebrow")}
-              title={t("pages.conference.speakersTitle")}
-              body={t("pages.conference.speakersBody")}
-            />
-            <ComingSoonCard
-              eyebrow={t("pages.conference.agendaEyebrow")}
-              title={t("pages.conference.agendaTitle")}
-              body={t("pages.conference.agendaBody")}
-            />
-            <ComingSoonCard
-              eyebrow={t("pages.conference.partnersEyebrow")}
-              title={t("pages.conference.partnersTitle")}
-              body={t("pages.conference.partnersBody")}
-              action={
-                <a
-                  href={contactHref}
-                  className="inline-flex items-center justify-center rounded-full bg-indigo-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-500"
-                >
-                  {t("pages.conference.partnersCta")}
-                </a>
-              }
-            />
+        </div>
+      </section>
+
+      {/* Agenda */}
+      <section
+        id="conference-agenda"
+        className="scroll-mt-24 border-b border-zinc-200/80 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-900/40"
+        aria-labelledby="conference-agenda-heading"
+      >
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
+              {t("pages.conference.agendaEyebrow")}
+            </p>
+            <span className="rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-[11px] font-semibold text-amber-800 dark:border-amber-700/50 dark:bg-amber-950/30 dark:text-amber-300">
+              {t("pages.conference.agendaTentativeBadge")}
+            </span>
+          </div>
+          <h2
+            id="conference-agenda-heading"
+            className="mt-4 text-center font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
+          >
+            {t("pages.conference.agendaTitle")}
+          </h2>
+          <p className="mx-auto mt-5 max-w-3xl text-center text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {t("pages.conference.agendaLead")}
+          </p>
+
+          <div className="mt-14 space-y-10">
+            {CONFERENCE_DAYS.map((day) => (
+              <article
+                key={day.id}
+                className="overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-[0_24px_55px_-30px_rgba(15,23,42,0.2)] dark:border-zinc-800 dark:bg-zinc-900/60"
+              >
+                <header className="border-b border-zinc-200/80 bg-linear-to-r from-slate-900 to-sky-950 px-6 py-6 sm:px-8 dark:border-zinc-800">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-sky-300/90">
+                    {t(day.labelKey)}
+                  </p>
+                  <h3 className="mt-1 font-serif text-2xl font-semibold tracking-tight text-white">
+                    {t(day.dateKey)}
+                  </h3>
+                  <p className="mt-3 text-sm text-sky-100/85">
+                    <span className="font-semibold uppercase tracking-[0.14em] text-[10px] text-sky-300/90">
+                      {t("pages.conference.agendaThemeLabel")}
+                    </span>
+                    <span className="mt-0.5 block font-medium">{t(day.themeKey)}</span>
+                  </p>
+                </header>
+                <ul className="divide-y divide-zinc-100 px-6 py-2 sm:px-8 dark:divide-zinc-800">
+                  {day.sessions.map((session, index) => (
+                    <SessionRow key={`${day.id}-${index}`} session={session} t={t} />
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section
+        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+        aria-labelledby="conference-partners-heading"
+      >
+        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
+            {t("pages.conference.partnersEyebrow")}
+          </p>
+          <h2
+            id="conference-partners-heading"
+            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
+          >
+            {t("pages.conference.partnersTitle")}
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {t("pages.conference.partnersBody")}
+          </p>
+          <div className="mt-8">
+            <a
+              href={contactHref}
+              className="inline-flex items-center justify-center rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500"
+            >
+              {t("pages.conference.partnersCta")}
+            </a>
           </div>
         </div>
       </section>
 
       {/* CTA */}
       <section
-        className="relative overflow-hidden bg-linear-to-br from-slate-900 via-indigo-950 to-slate-950"
+        className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-sky-950"
         aria-labelledby="conference-cta-heading"
       >
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_50%,rgba(129,140,248,0.2),transparent)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_50%,rgba(14,165,233,0.2),transparent)]"
           aria-hidden
         />
         <div className="relative mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-300/90">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-300/90">
             {t("pages.conference.ctaEyebrow")}
           </p>
           <h2
@@ -286,13 +367,13 @@ export async function MainConferencePage({ locale }: Props) {
           >
             {t("pages.conference.ctaTitle")}
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-indigo-100/85">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-sky-100/85">
             {t("pages.conference.ctaBody")}
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href={contactHref}
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:bg-indigo-50"
+              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:bg-sky-50"
             >
               {t("pages.conference.ctaContact")}
             </a>

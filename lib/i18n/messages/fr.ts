@@ -453,6 +453,14 @@ export const fr = {
         },
       },
       items: {
+        arcticConference: {
+          title: "1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique",
+          summary:
+            "Repenser la sécurité de l'Arctique depuis Iqaluit — trois journées de tables rondes, de discussions en sous-groupes et de dialogue communautaire réunissant des voix fédérales, territoriales, municipales et inuites sur l'avenir de la sécurité de l'Arctique canadien.",
+          when: "Du 26 au 28 août 2026",
+          where: "Iqaluit, Nunavut",
+          program: "Sécurité arctique · Recherche et dialogue",
+        },
         unityRace: {
           title: "Course de l'unité d'Iqaluit 2026",
           summary:
@@ -488,70 +496,120 @@ export const fr = {
       },
     },
     conference: {
-      title: "Conférence de l'IRRL",
+      title: "Conférence d'Iqaluit sur la sécurité de l'Arctique",
       description:
-        "La Conférence de l'IRRL réunit chercheurs, décideurs, leaders communautaires et partenaires pour un dialogue sur la sécurité, la résilience et l'inclusion. Tous les détails seront annoncés.",
-      heroEyebrow: "À vos agendas",
-      heroTitle: "La Conférence de l'IRRL",
-      heroTheme: "Thème à annoncer",
+        "La 1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique — Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada. Du 26 au 28 août 2026 à Iqaluit, au Nunavut.",
+      heroEyebrow: "1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique",
+      heroTitle:
+        "Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada",
       heroLead:
-        "Un forum national réunissant décideurs de haut niveau, chercheurs, leaders communautaires et partenaires de l'industrie pour un dialogue approfondi sur la sécurité, la résilience et le bien-être de nos communautés. Tous les détails — thème, programme et conférenciers — seront annoncés sous peu.",
+        "L'Institut Real Life réunit à Iqaluit des acteurs fédéraux, des dirigeants territoriaux et municipaux, des institutions inuites, des étudiants et des experts en politiques pour trois journées de dialogue — afin que les investissements du Canada en matière de sécurité dans l'Arctique soient inclusifs et produisent des retombées durables pour toutes les communautés.",
       heroWhenLabel: "Quand",
-      heroWhen: "Dates à annoncer",
+      heroWhen: "Du 26 au 28 août 2026",
       heroWhereLabel: "Où",
-      heroWhere: "Lieu à annoncer",
+      heroWhere: "Iqaluit, Nunavut",
+      heroFormatLabel: "Format",
+      heroFormat: "Hybride — en personne et en ligne",
       heroNotifyCta: "Être informé(e)",
       heroEventsCta: "Voir tous les événements",
-      heroImageAlt: "Dialogue et rassemblement communautaire de l'IRRL",
+      heroImageAlt: "Rassemblement de dialogue communautaire à Iqaluit",
       aboutEyebrow: "À propos de la conférence",
-      aboutTitle: "Un dialogue qui relie communautés, recherche et politiques",
+      aboutTitle:
+        "Faire d'Iqaluit un carrefour du dialogue communautaire sur la sécurité de l'Arctique",
       aboutP1:
-        "Organisée par l'Institut de recherche Real Life, la conférence réunit décideurs gouvernementaux, chercheurs, leaders communautaires et autochtones, experts de la société civile et partenaires de l'industrie pour aborder les questions pressantes de sécurité, de résilience et d'inclusion — de l'Arctique canadien aux communautés de tout le pays.",
+        "Alors que l'Arctique suscite une attention nationale et internationale croissante, Iqaluit occupe une position stratégique unique — tout en demeurant géographiquement et institutionnellement éloignée de nombreux espaces décisionnels en matière de sécurité nationale. Les discussions sur la sécurité de l'Arctique se tiennent ainsi souvent loin des communautés les plus concernées, avec une intégration limitée des perspectives territoriales et municipales, du savoir autochtone et des voix communautaires locales.",
       aboutP2:
-        "Tout au long de l'événement, des panels, des allocutions et des tables rondes examineront les défis auxquels font face nos communautés ainsi que les solutions communautaires et fondées sur des données probantes qui peuvent y répondre. Le programme complet est en cours de finalisation et sera publié ici à mesure que les détails seront confirmés.",
-      themesEyebrow: "Thèmes de la conférence",
-      themesTitle: "Sujets à l'ordre du jour",
-      themes: {
-        arctic: "Sécurité arctique",
-        resilience: "Résilience communautaire",
-        multiculturalism: "Multiculturalisme et inclusion",
-        mentalHealth: "Santé mentale et bien-être",
-        dialogue: "Dialogue Nord–Sud",
-        youth: "Jeunesse et leadership",
-      },
-      expectEyebrow: "À quoi s'attendre",
-      expectTitle: "Deux journées de panels, d'allocutions et de rencontres",
+        "À la suite de l'annonce fédérale récente d'investissements militaires majeurs au Nunavut, un débat a éclaté à Iqaluit après que le premier ministre John Main a souligné que le gouvernement du Nunavut n'avait pas été consulté sur l'implantation de nouvelles bases militaires à Iqaluit, à Rankin Inlet et à Cambridge Bay. À ce moment critique — alors que de nombreux Nunavummiuts font face à des pénuries de logements, à l'insécurité alimentaire et à un accès limité aux perspectives de carrière — il est essentiel que les communautés ne soient pas laissées pour compte et que les retombées des investissements militaires soient partagées équitablement.",
+      aboutP3:
+        "Cette première conférence de trois jours réunit des acteurs fédéraux, des dirigeants territoriaux et municipaux, des institutions inuites et des experts en politiques pour explorer des options et des recommandations garantissant des investissements militaires inclusifs et durables. Elle rassemble des experts de l'Université d'Ottawa, de l'Université de Guelph et du Collège militaire royal du Canada, aux côtés de représentants de la Nunavut Tunngavik Incorporated (NTI), du gouvernement du Nunavut, de la Ville d'Iqaluit, du Collège de l'Arctique du Nunavut, d'organisations inuites et des communautés francophones.",
+      focusEyebrow: "Axes thématiques",
+      focusTitle: "Ancrée dans les défis de la politique de défense du Canada",
+      focusLead:
+        "La conférence fait directement progresser deux défis clés de la politique de défense du programme MINDS — en ancrant les priorités de sécurité nationale dans les réalités locales, en favorisant une gouvernance collaborative et en dégageant des voies communautaires vers une sécurité de l'Arctique résiliente et inclusive.",
+      focus1Title: "Un Canada fort — dans l'Arctique, le Nord et l'Amérique du Nord",
+      focus1Body:
+        "Faire progresser les priorités, les opérations et les enjeux transversaux de la défense dans l'Arctique et le Nord — y compris la résilience climatique, le développement social et économique et la mise en œuvre du programme Femmes, paix et sécurité (FPS).",
+      focus2Title: "Renforcer la base industrielle de défense du Canada et ses partenariats",
+      focus2Body:
+        "Approfondir les partenariats nationaux avec le milieu universitaire, les groupes de réflexion, les territoires ainsi que les communautés et organisations autochtones afin de faire progresser une approche pancanadienne qui renforce l'avantage stratégique du Canada.",
+      expectEyebrow: "Format de la conférence",
+      expectTitle: "Un modèle d'engagement inversé",
       expectLead:
-        "Le format de la conférence est conçu pour aller au-delà des présentations — en créant de véritables échanges entre communautés, chercheurs et décideurs.",
-      expect1Title: "Panels et allocutions",
+        "Contrairement aux conférences traditionnelles où les décideurs présentent et reçoivent les questions, cette conférence donne d'abord la parole aux acteurs communautaires, qui présentent leurs perspectives et leurs priorités — suivies de périodes de questions structurées permettant un dialogue direct avec les intervenants invités du MDN et des FAC.",
+      expect1Title: "Panels, sous-groupes et plénières",
       expect1Body:
-        "Hauts fonctionnaires, universitaires de premier plan et voix communautaires réunis dans des discussions animées sur les enjeux les plus importants.",
-      expect2Title: "Recherche et dialogue",
+        "Chaque séance comprend une table ronde, une période de questions interactive et des discussions en sous-groupes animées, suivies d'une plénière où les sous-groupes présentent leurs constats et recommandations.",
+      expect2Title: "Les étudiants comme contributeurs",
       expect2Body:
-        "Des séances fondées sur des données probantes qui relient savoirs communautaires et politiques publiques — ancrées dans le vécu et les priorités locales.",
-      expect3Title: "Réseautage et communauté",
+        "Les étudiants participent tout au long de la conférence — discussions en sous-groupes, corédaction d'une note de politique dédiée et contribution aux séances d'information post-conférence — formant ainsi la prochaine génération de chercheurs canadiens en défense et en sécurité.",
+      expect3Title: "Retombées locales, résultats durables",
       expect3Body:
-        "Des réceptions et des espaces partagés pour bâtir les partenariats qui feront avancer ce travail bien après la conférence.",
-      speakersEyebrow: "Conférenciers",
-      speakersTitle: "Conférenciers à annoncer",
-      speakersBody:
-        "La liste complète des conférenciers sera annoncée sous peu. Revenez nous voir ou contactez-nous pour être parmi les premiers informés des conférenciers et des séances confirmés.",
+        "Les principes d'achat canadien privilégient les fournisseurs canadiens et nunavois pour la restauration, le matériel, la traduction et les services techniques, tandis que la diffusion hybride et l'enregistrement intégral soutiennent la diffusion des connaissances et l'engagement futur.",
       agendaEyebrow: "Programme",
-      agendaTitle: "Programme à venir",
-      agendaBody:
-        "Le programme détaillé — séances, panels et horaires — est en cours de finalisation et sera publié ici dès sa confirmation.",
+      agendaTitle: "Trois journées à Iqaluit",
+      agendaLead:
+        "Chaque séance thématique combine une table ronde et une période de questions avec des discussions en sous-groupes structurées autour de questions cruciales de politique de défense. Le programme ci-dessous est provisoire et peut changer.",
+      agendaTentativeBadge: "Programme provisoire",
+      agendaThemeLabel: "Séance thématique",
+      agendaTopicLabel: "Sujet",
+      agendaPanelistsLabel: "Panélistes",
+      agendaBreakoutLabel: "Question des sous-groupes",
+      agenda: {
+        day1Label: "Jour un",
+        day1Date: "Mercredi 26 août 2026",
+        day2Label: "Jour deux",
+        day2Date: "Jeudi 27 août 2026",
+        day3Label: "Jour trois",
+        day3Date: "Vendredi 28 août 2026",
+        items: {
+          arrival: "Arrivée et inscription",
+          welcome: "Mot de bienvenue",
+          introductions: "Présentations",
+          overview: "Aperçu de la conférence",
+          groupPhoto: "Photo de groupe — tous les participants",
+          panel: "Table ronde",
+          panel1: "Table ronde (1)",
+          panel2: "Table ronde (2)",
+          qa: "Période de questions",
+          lunch: "Dîner",
+          coffee: "Pause-café",
+          breakout: "Discussions en sous-groupes",
+          reporting: "Rapports des groupes",
+          synthesis: "Synthèse par les assistants de recherche",
+          recap: "Retour sur la journée précédente",
+          reactions: "Réactions et réflexions",
+          studentBreakout: "Séance en sous-groupes — réservée aux étudiants",
+          farewell: "Dîner, réseautage et réception de clôture",
+        },
+        topics: {
+          skills:
+            "Relier les investissements de défense aux compétences, aux carrières et à la participation inuite",
+          culture:
+            "Au-delà des infrastructures : femmes, langue et culture dans la sécurité de l'Arctique",
+          nunavut: "La sécurité de l'Arctique commence au Nunavut — pas seulement à l'OTAN",
+          investments:
+            "Un Canada fort dans l'Arctique : l'impact des investissements en sécurité sur l'emploi, le logement, les infrastructures et l'environnement à Iqaluit",
+          students:
+            "Table ronde étudiante : perspectives des jeunes sur la sécurité de l'Arctique et l'avenir de la défense",
+        },
+        breakoutQuestions: {
+          industrialBase:
+            "Comment l'Équipe de la Défense pourrait-elle approfondir ses partenariats nationaux avec le milieu universitaire, les groupes de réflexion, les provinces, les territoires ainsi que les communautés et organisations autochtones afin de tirer parti de sa stratégie industrielle de défense pour faire progresser une approche pancanadienne qui renforce l'avantage stratégique du Canada, mobilise l'ingéniosité canadienne et stimule la croissance et le développement économiques ?",
+          arcticNorth:
+            "Comment l'Équipe de la Défense pourrait-elle faire progresser les priorités et les opérations de défense ainsi que les enjeux transversaux dans l'Arctique et le Nord, y compris la résilience climatique, le développement social et économique et la mise en œuvre du programme Femmes, paix et sécurité (FPS) ?",
+        },
+      },
       partnersEyebrow: "Partenaires et commanditaires",
       partnersTitle: "Occasions de partenariat",
       partnersBody:
-        "Des occasions de commandite et de partenariat sont offertes aux organisations qui partagent notre engagement envers des communautés plus sûres, plus résilientes et plus inclusives. Contactez-nous pour en savoir plus.",
+        "Des occasions de commandite et de partenariat sont offertes aux organisations qui partagent notre engagement envers une sécurité de l'Arctique inclusive et informée par les communautés. Conformément aux principes d'achat canadien, la conférence privilégie les fournisseurs canadiens et nunavois. Contactez-nous pour en savoir plus.",
       partnersCta: "Devenir commanditaire",
       ctaEyebrow: "Restez informé(e)",
-      ctaTitle: "Soyez les premiers informés",
+      ctaTitle: "Rejoignez-nous à Iqaluit",
       ctaBody:
-        "Les détails sur les dates, le lieu, l'inscription, les conférenciers et le programme seront annoncés bientôt. Contactez-nous pour rester au courant ou explorez nos autres événements entre-temps.",
+        "Les détails de l'inscription seront annoncés bientôt. Contactez-nous pour manifester votre intérêt, explorer les occasions de partenariat ou en savoir plus sur la participation en personne ou en ligne.",
       ctaContact: "Nous joindre",
       ctaEvents: "Découvrir nos événements",
-      comingSoonBadge: "Détails à venir",
     },
     volunteer: {
       title: "Bénévolat",

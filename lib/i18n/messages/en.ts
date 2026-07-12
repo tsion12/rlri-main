@@ -449,6 +449,14 @@ export const en = {
         },
       },
       items: {
+        arcticConference: {
+          title: "1st Annual Iqaluit Arctic Security Conference",
+          summary:
+            "Rethinking Arctic Security from Iqaluit — three days of panels, breakout discussions, and community dialogue bringing federal, territorial, municipal, and Inuit voices together on Canada's Arctic security future.",
+          when: "August 26–28, 2026",
+          where: "Iqaluit, Nunavut",
+          program: "Arctic Security · Research & Dialogue",
+        },
         unityRace: {
           title: "Iqaluit Unity Race 2026",
           summary:
@@ -484,70 +492,118 @@ export const en = {
       },
     },
     conference: {
-      title: "RLRI Conference",
+      title: "Iqaluit Arctic Security Conference",
       description:
-        "The RLRI Conference brings together researchers, policymakers, community leaders, and partners for dialogue on security, resilience, and inclusion. Full details to be announced.",
-      heroEyebrow: "Save the date",
-      heroTitle: "The RLRI Conference",
-      heroTheme: "Theme to be announced",
+        "The 1st Annual Iqaluit Arctic Security Conference — Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture. August 26–28, 2026 in Iqaluit, Nunavut.",
+      heroEyebrow: "1st Annual Iqaluit Arctic Security Conference",
+      heroTitle:
+        "Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture",
       heroLead:
-        "A national forum convening senior decision-makers, researchers, community leaders, and industry partners for in-depth dialogue on the security, resilience, and well-being of our communities. Full details — theme, agenda, and speakers — will be announced shortly.",
+        "The Real Life Institute convenes federal actors, territorial and municipal leaders, Inuit institutions, students, and policy experts in Iqaluit for three days of dialogue — exploring how Canada's Arctic security investments can be inclusive and deliver sustainable outcomes for all communities.",
       heroWhenLabel: "When",
-      heroWhen: "Dates to be announced",
+      heroWhen: "August 26–28, 2026",
       heroWhereLabel: "Where",
-      heroWhere: "Venue to be announced",
+      heroWhere: "Iqaluit, Nunavut",
+      heroFormatLabel: "Format",
+      heroFormat: "Hybrid — in person & online",
       heroNotifyCta: "Get notified",
       heroEventsCta: "View all events",
-      heroImageAlt: "RLRI community dialogue and gathering",
+      heroImageAlt: "Community dialogue gathering in Iqaluit",
       aboutEyebrow: "About the conference",
-      aboutTitle: "Dialogue that connects communities, research, and policy",
+      aboutTitle:
+        "Repositioning Iqaluit as a hub for community-informed Arctic security dialogue",
       aboutP1:
-        "Hosted by the Real Life Research Institute, the conference brings together government decision-makers, researchers, community and Indigenous leaders, civil society experts, and industry partners to tackle pressing questions of security, resilience, and inclusion — from Canada's Arctic to communities across the country.",
+        "Amid growing national and international attention to the Arctic, Iqaluit occupies a uniquely strategic position — yet it remains geographically and institutionally distant from many national security decision-making spaces. As a result, discussions on Arctic security are often conducted far from the communities most affected, with limited integration of territorial and municipal perspectives, Indigenous knowledge, and local community voices.",
       aboutP2:
-        "Over the course of the event, panels, keynote addresses, and roundtable sessions will examine the challenges facing our communities and the community-rooted, evidence-based solutions that can address them. The full program is being finalized and will be shared here as details are confirmed.",
-      themesEyebrow: "Conference themes",
-      themesTitle: "Topics on the agenda",
-      themes: {
-        arctic: "Arctic Security",
-        resilience: "Community Resilience",
-        multiculturalism: "Multiculturalism & Inclusion",
-        mentalHealth: "Mental Health & Well-Being",
-        dialogue: "Northern–Southern Dialogue",
-        youth: "Youth & Leadership",
-      },
-      expectEyebrow: "What to expect",
-      expectTitle: "Two days of panels, keynotes, and connection",
+        "Following the recent federal announcement of major military investments across Nunavut, a debate was sparked in Iqaluit after Premier John Main's remark that the Government of Nunavut was not asked if it wanted new military bases in Iqaluit, Rankin Inlet, and Cambridge Bay. At this critical moment — with many Nunavummiut struggling with housing shortages, food insecurity, and limited access to career opportunities — it is essential that communities are not left behind and that the benefits of military investments are equitably shared.",
+      aboutP3:
+        "The inaugural three-day conference brings together federal actors, territorial and municipal leaders, Inuit institutions, and policy experts to explore options and recommendations that ensure military investments are inclusive and deliver sustainable outcomes. It convenes experts from the University of Ottawa, the University of Guelph, and the Royal Military College of Canada, alongside representatives of Nunavut Tunngavik Incorporated (NTI), the Government of Nunavut, the City of Iqaluit, Nunavut Arctic College, Inuit organizations, and francophone communities.",
+      focusEyebrow: "Thematic focus",
+      focusTitle: "Grounded in Canada's defence policy challenges",
+      focusLead:
+        "The conference directly advances two key MINDS defence policy challenges — grounding national security priorities in local realities, fostering collaborative governance, and identifying community-driven pathways for resilient and inclusive Arctic security.",
+      focus1Title: "Canada Strong — in the Arctic, the North, and North America",
+      focus1Body:
+        "Advancing defence priorities, operations, and cross-cutting issues in the Arctic and North — including climate resilience, social and economic development, and the implementation of Women, Peace and Security (WPS).",
+      focus2Title: "Strengthening Canada's Defence Industrial Base and Partnerships",
+      focus2Body:
+        "Deepening domestic partnerships with academia, think tanks, territories, and Indigenous communities and organizations to advance a whole-of-nation approach that strengthens Canada's strategic advantage.",
+      expectEyebrow: "Conference format",
+      expectTitle: "A reverse-engagement model",
       expectLead:
-        "The conference format is designed to move beyond presentations — creating real exchange between communities, researchers, and decision-makers.",
-      expect1Title: "Panels & keynotes",
+        "Unlike traditional conferences where policymakers primarily present and receive questions, this conference creates space for community actors to present their perspectives and priorities first — followed by structured Q&A enabling direct dialogue with invited DND/CAF stakeholders.",
+      expect1Title: "Panels, breakouts & plenaries",
       expect1Body:
-        "Senior officials, leading academics, and community voices in moderated discussion on the issues that matter most.",
-      expect2Title: "Research & dialogue",
+        "Each session features a panel discussion, interactive Q&A, and facilitated breakout groups, followed by a plenary where sub-groups report back on key insights and recommendations.",
+      expect2Title: "Students as contributors",
       expect2Body:
-        "Evidence-based sessions that bridge community knowledge and policy — grounded in lived experience and local priorities.",
-      expect3Title: "Networking & community",
+        "Students take part throughout — joining breakout discussions, co-authoring a dedicated policy brief, and contributing to post-conference policy briefings — developing the next generation of Canadian defence and security scholars.",
+      expect3Title: "Local benefits, lasting outputs",
       expect3Body:
-        "Receptions and shared spaces to build the partnerships that carry this work forward long after the conference ends.",
-      speakersEyebrow: "Speakers",
-      speakersTitle: "Speakers to be announced",
-      speakersBody:
-        "The full speaker list will be announced shortly. Check back here or reach out to be the first to hear about confirmed speakers and sessions.",
+        "Buy Canadian principles prioritize Canadian and Nunavut-based suppliers for catering, materials, translation, and technical services, while hybrid delivery and full recording support knowledge dissemination and future engagement.",
       agendaEyebrow: "Agenda",
-      agendaTitle: "Program coming soon",
-      agendaBody:
-        "The detailed agenda — sessions, panels, and timings — is being finalized and will be published here once confirmed.",
+      agendaTitle: "Three days in Iqaluit",
+      agendaLead:
+        "Each thematic session pairs a panel and Q&A with facilitated breakout groups structured around critical defence policy questions. The agenda below is tentative and may change as the program is finalized.",
+      agendaTentativeBadge: "Tentative agenda",
+      agendaThemeLabel: "Thematic session",
+      agendaTopicLabel: "Topic",
+      agendaPanelistsLabel: "Panelists",
+      agendaBreakoutLabel: "Breakout question",
+      agenda: {
+        day1Label: "Day one",
+        day1Date: "Wednesday, August 26, 2026",
+        day2Label: "Day two",
+        day2Date: "Thursday, August 27, 2026",
+        day3Label: "Day three",
+        day3Date: "Friday, August 28, 2026",
+        items: {
+          arrival: "Arrival and registration",
+          welcome: "Welcome remarks",
+          introductions: "Introductions",
+          overview: "Overview of the conference",
+          groupPhoto: "Group photo — all participants",
+          panel: "Panel discussion",
+          panel1: "Panel discussion (1)",
+          panel2: "Panel discussion (2)",
+          qa: "Q & A",
+          lunch: "Lunch",
+          coffee: "Coffee break",
+          breakout: "Breakout discussions",
+          reporting: "Group reporting",
+          synthesis: "Synthesis by research assistants",
+          recap: "Recap of the previous day",
+          reactions: "Reactions and reflections",
+          studentBreakout: "Breakout session — open to students",
+          farewell: "Lunch, networking, and farewell reception",
+        },
+        topics: {
+          skills: "Linking Defence Investments to Skills, Careers, and Inuit Participation",
+          culture: "Beyond Infrastructure: Women, Language, and Culture in Arctic Security",
+          nunavut: "Arctic Security Begins in Nunavut — Not Just NATO",
+          investments:
+            "Canada Strong in the Arctic: How Security Investments Will Impact Jobs, Housing, Infrastructure, and the Environment in Iqaluit",
+          students:
+            "Student Roundtable: Youth Perspectives on Arctic Security and Defence Futures",
+        },
+        breakoutQuestions: {
+          industrialBase:
+            "How could the Defence Team deepen domestic partnerships with academia, think tanks, provinces, territories, and Indigenous communities and organizations to leverage its defence industrial strategy in advancing a whole-of-nation approach that strengthens Canada's strategic advantage, harnesses Canadian ingenuity, and drives economic growth and development?",
+          arcticNorth:
+            "How could the Defence Team advance defence priorities and operations and cross-cutting issues in the Arctic and North, including climate resilience, social and economic development, and the implementation of Women, Peace and Security (WPS)?",
+        },
+      },
       partnersEyebrow: "Partners & sponsors",
       partnersTitle: "Partnership opportunities",
       partnersBody:
-        "Sponsorship and partnership opportunities are available for organizations that share our commitment to safer, more resilient, and more inclusive communities. Get in touch to learn more.",
+        "Sponsorship and partnership opportunities are available for organizations that share our commitment to inclusive, community-informed Arctic security. In line with Buy Canadian principles, the conference prioritizes Canadian and Nunavut-based suppliers. Get in touch to learn more.",
       partnersCta: "Become a sponsor",
       ctaEyebrow: "Stay informed",
-      ctaTitle: "Be the first to know",
+      ctaTitle: "Join us in Iqaluit",
       ctaBody:
-        "Details on dates, venue, registration, speakers, and the agenda will be announced soon. Contact us to stay in the loop or explore our other events in the meantime.",
+        "Registration details will be announced soon. Contact us to register your interest, explore partnership opportunities, or learn more about joining in person or online.",
       ctaContact: "Contact us",
       ctaEvents: "Explore our events",
-      comingSoonBadge: "Details coming soon",
     },
     volunteer: {
       title: "Volunteer With Us",
