@@ -68,7 +68,6 @@ export const fr = {
           "Libérer le potentiel des jeunes esprits pour créer un avenir sans crime, pauvreté ni désespoir.",
         imageAlt: "Jeunes et communautés soutenus par les programmes de l'IRRL",
         ctaEvents: "Événements à venir et passés",
-        ctaAfrica: "Visiter le Programme Afrique",
       },
     },
     whoWeAre: {
@@ -115,6 +114,7 @@ export const fr = {
     regions: {
       eyebrow: "Notre portée",
       title: "Régions que nous desservons dans le monde",
+      lead: "Un travail ancré dans les communautés, avec une base au Nunavut (Canada) — reliant les réalités du Nord à la recherche et aux partenariats mondiaux.",
       mapLabel: "Carte du monde mettant en évidence le Nunavut, Canada",
       nunavutLabel: "Nunavut, Canada",
       legend: "Région mise en évidence : Nunavut, Canada",

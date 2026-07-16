@@ -72,7 +72,6 @@ export const iu = {
           "Unlock the potential of young minds to create a future free from crime, poverty, and despair.",
         imageAlt: "Young people and communities supported by RLRI programs",
         ctaEvents: "Upcoming & Past Events",
-        ctaAfrica: "Visit Our Africa Program",
       },
     },
     whoWeAre: {
@@ -119,6 +118,7 @@ export const iu = {
     regions: {
       eyebrow: "Our reach",
       title: "Regions We Serve Across the Globe",
+      lead: "Community-rooted work with a home base in Nunavut, Canada — connecting northern realities to global research and partnership.",
       mapLabel: "World map highlighting Nunavut, Canada",
       nunavutLabel: "Nunavut, Canada",
       legend: "Highlighted region: Nunavut, Canada",
