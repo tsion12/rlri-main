@@ -113,7 +113,6 @@ export const en = {
     regions: {
       eyebrow: "Our reach",
       title: "Regions We Serve Across the Globe",
-      lead: "Community-rooted work with a home base in Nunavut, Canada — connecting northern realities to global research and partnership.",
       mapLabel: "World map highlighting Nunavut, Canada",
       nunavutLabel: "Nunavut, Canada",
       legend: "Highlighted region: Nunavut, Canada",
