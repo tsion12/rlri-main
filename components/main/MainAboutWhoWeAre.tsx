@@ -3,18 +3,9 @@
 import Image from "next/image";
 import { au } from "@/components/shared/africa-ui";
 
-type Chapter = {
-  title: string;
-  body: string;
-  highlight?: boolean;
-};
-
 type Props = {
   eyebrow: string;
   heading: string;
-  journeyTitle: string;
-  journeyLead: string;
-  milestoneBadge: string;
   originTitle: string;
   mottoLabel: string;
   motto: string;
@@ -23,95 +14,16 @@ type Props = {
   locationLabel: string;
   locationTagline: string;
   tags: string[];
-  pullQuote: string;
   imageSrc: string;
   imageAlt: string;
   welcome: string;
   welcomeSub: string;
   originBody: string;
-  chapters: Chapter[];
 };
-
-function JourneyCard({
-  chapter,
-  index,
-  milestoneBadge,
-  className = "",
-}: {
-  chapter: Chapter;
-  index: number;
-  milestoneBadge: string;
-  className?: string;
-}) {
-  const featured = chapter.highlight;
-
-  return (
-    <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border transition duration-500 hover:-translate-y-1 hover:shadow-lg ${className} ${
-        featured
-          ? "border-teal-400/50 bg-linear-to-br from-teal-600 via-teal-700 to-emerald-800 text-white shadow-xl shadow-teal-900/25 dark:border-teal-500/40"
-          : "border-zinc-200/90 bg-white/95 shadow-sm hover:border-teal-200/80 dark:border-zinc-800/90 dark:bg-zinc-900/70 dark:hover:border-teal-800/50"
-      }`}
-    >
-      {!featured && (
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_100%_0%,rgba(20,184,166,0.06),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:bg-[radial-gradient(ellipse_90%_60%_at_100%_0%,rgba(45,212,191,0.08),transparent_55%)]"
-          aria-hidden
-        />
-      )}
-      {featured && (
-        <>
-          <div
-            className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-white/10 blur-2xl"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_0%_100%,rgba(91,33,182,0.25),transparent_55%)]"
-            aria-hidden
-          />
-        </>
-      )}
-
-      <div className={`relative flex flex-1 flex-col p-6 sm:p-8 ${featured ? "" : ""}`}>
-        <div className="flex items-center justify-between gap-3">
-          <span
-            className={`text-[11px] font-bold tabular-nums tracking-widest ${
-              featured ? "text-teal-100/90" : "text-teal-600 dark:text-teal-400"
-            }`}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          {featured && (
-            <span className="rounded-full border border-white/25 bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90">
-              {milestoneBadge}
-            </span>
-          )}
-        </div>
-        <h4
-          className={`mt-4 text-xl font-semibold tracking-tight ${
-            featured ? "text-white" : "text-zinc-900 dark:text-zinc-50"
-          }`}
-        >
-          {chapter.title}
-        </h4>
-        <p
-          className={`mt-4 flex-1 text-[0.98rem] leading-[1.78] ${
-            featured ? "text-teal-50/95" : "text-zinc-600 dark:text-zinc-400"
-          }`}
-        >
-          {chapter.body}
-        </p>
-      </div>
-    </article>
-  );
-}
 
 export function MainAboutWhoWeAre({
   eyebrow,
   heading,
-  journeyTitle,
-  journeyLead,
-  milestoneBadge,
   originTitle,
   mottoLabel,
   motto,
@@ -120,16 +32,12 @@ export function MainAboutWhoWeAre({
   locationLabel,
   locationTagline,
   tags,
-  pullQuote,
   imageSrc,
   imageAlt,
   welcome,
   welcomeSub,
   originBody,
-  chapters,
 }: Props) {
-  const [purpose, approach, milestone, forward] = chapters;
-
   return (
     <section
       id="who-we-are"
@@ -269,67 +177,6 @@ export function MainAboutWhoWeAre({
               <blockquote className="mt-3 text-lg font-semibold leading-snug text-zinc-200 sm:text-xl">
                 {slogan}
               </blockquote>
-            </figure>
-          </div>
-        </div>
-
-        {/* Journey bento */}
-        <div className="home-fade-up mt-16 lg:mt-20" style={{ animationDelay: "240ms" }}>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h3 className={au.about.sectionTitle}>{journeyTitle}</h3>
-              <p className="mt-2 max-w-md text-sm text-zinc-500 dark:text-zinc-500">
-                {journeyLead}
-              </p>
-            </div>
-            <div className="flex gap-1.5" aria-hidden>
-              {chapters.map((_, i) => (
-                <span
-                  key={i}
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === 2 ? "w-8 bg-teal-500" : "w-3 bg-zinc-300 dark:bg-zinc-700"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {purpose && <JourneyCard chapter={purpose} index={0} milestoneBadge={milestoneBadge} />}
-            {approach && <JourneyCard chapter={approach} index={1} milestoneBadge={milestoneBadge} />}
-          </div>
-
-          {milestone && (
-            <div className="mt-5">
-              <JourneyCard
-                chapter={milestone}
-                index={2}
-                milestoneBadge={milestoneBadge}
-                className="min-h-[200px]"
-              />
-            </div>
-          )}
-
-          <div className="mt-5 grid gap-5 lg:grid-cols-5 lg:items-stretch">
-            {forward && (
-              <div className="lg:col-span-3">
-                <JourneyCard chapter={forward} index={3} milestoneBadge={milestoneBadge} className="h-full" />
-              </div>
-            )}
-            <figure className="relative flex flex-col justify-center overflow-hidden rounded-2xl border border-teal-200/60 bg-teal-50/50 p-8 dark:border-teal-900/50 dark:bg-teal-950/30 lg:col-span-2">
-              <div
-                className="pointer-events-none absolute -right-6 -top-6 font-serif text-[6rem] leading-none text-teal-600/10 dark:text-teal-400/10"
-                aria-hidden
-              >
-                &ldquo;
-              </div>
-              <blockquote className="relative font-serif text-xl font-medium italic leading-snug text-teal-900 dark:text-teal-100 sm:text-2xl">
-                {pullQuote}
-              </blockquote>
-              <div
-                className="relative mt-6 h-1 w-14 rounded-full bg-linear-to-r from-violet-600 to-teal-500"
-                aria-hidden
-              />
             </figure>
           </div>
         </div>

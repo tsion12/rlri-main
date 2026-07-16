@@ -9,7 +9,6 @@ export type MainNavItem = {
 
 /** About dropdown items in the main header. */
 export const MAIN_ABOUT_NAV: MainNavItem[] = [
-  { labelKey: "nav.ourStory", href: mainAboutSectionHref("whoWeAre") },
   { labelKey: "nav.missionVision", href: mainAboutSectionHref("missionVision") },
   { labelKey: "nav.policies", href: mainAboutSectionHref("policies") },
   { labelKey: "nav.publications", href: mainRoutes.publications },

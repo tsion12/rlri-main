@@ -353,7 +353,7 @@ export const fr = {
       pastLabel: "Événements passés",
       pastReportsLabel: "Rapports d'événements",
       pastReportsLead:
-        "Parcourez les rapports — Soirée des couples et programmation SSDiC documentés sur Issuu.",
+        "Parcourez les rapports — Couples Camp Against GBV et programmation SSDiC documentés sur Issuu.",
       pastUnityRunLabel: "Course Love & Unity",
       agendaDate: "Samedi 27 juin 2026",
       agendaActivity: "Activité",
@@ -398,9 +398,9 @@ export const fr = {
       },
       reports: {
         couplesNight: {
-          title: "Rapport d'événement — Soirée des couples",
+          title: "Rapport d'événement — Couples Camp Against GBV",
           summary:
-            "Résumé flipbook de la Soirée des couples de l'IRRV — programmation, participation et résultats communautaires.",
+            "Résumé flipbook du Couples Camp Against GBV de l'IRRV — programmation, participation et résultats communautaires de ce camp sur la violence basée sur le genre.",
         },
         ssdic: {
           title: "Rapport d'événement — SSDiC",

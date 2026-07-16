@@ -14,26 +14,6 @@ export async function MainAboutUsPage({ locale }: Props) {
   const [t, policyPosts] = await Promise.all([getTranslator(locale), getMainPolicyPosts(locale)]);
   const storyImage = mainGallerySrc("REAL LIFE INSTITUTE DAY 1-13.jpg");
 
-  const timelineChapters = [
-    {
-      title: t("pages.aboutUs.story.chapters.purpose"),
-      body: t("pages.aboutUs.story.p2"),
-    },
-    {
-      title: t("pages.aboutUs.story.chapters.approach"),
-      body: t("pages.aboutUs.story.p3"),
-    },
-    {
-      title: t("pages.aboutUs.story.chapters.milestone"),
-      body: t("pages.aboutUs.story.p4"),
-      highlight: true,
-    },
-    {
-      title: t("pages.aboutUs.story.chapters.forward"),
-      body: t("pages.aboutUs.story.p5"),
-    },
-  ];
-
   const pillars = [
     {
       key: "vision",
@@ -83,9 +63,6 @@ export async function MainAboutUsPage({ locale }: Props) {
       <MainAboutWhoWeAre
         eyebrow={t("pages.aboutUs.story.eyebrow")}
         heading={t("pages.aboutUs.story.heading")}
-        journeyTitle={t("pages.aboutUs.story.journeyTitle")}
-        journeyLead={t("pages.aboutUs.story.journeyLead")}
-        milestoneBadge={t("pages.aboutUs.story.milestoneBadge")}
         originTitle={t("pages.aboutUs.story.chapters.origin")}
         mottoLabel={t("pages.aboutUs.story.mottoLabel")}
         motto={t("pages.aboutUs.story.motto")}
@@ -99,13 +76,11 @@ export async function MainAboutUsPage({ locale }: Props) {
           t("pages.aboutUs.story.tags.under40"),
           t("pages.aboutUs.story.tags.iq"),
         ]}
-        pullQuote={t("pages.aboutUs.story.pullQuote")}
         imageSrc={storyImage}
         imageAlt={t("pages.aboutUs.story.imageAlt")}
         welcome={t("pages.aboutUs.welcome")}
         welcomeSub={t("pages.aboutUs.welcomeSub")}
         originBody={t("pages.aboutUs.story.p1")}
-        chapters={timelineChapters}
       />
 
       {/* Temporarily hidden — Issuu flipbook has a slide issue

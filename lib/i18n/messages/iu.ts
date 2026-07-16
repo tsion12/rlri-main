@@ -356,7 +356,7 @@ export const iu = {
       pastLabel: "Past events",
       pastReportsLabel: "Event reports",
       pastReportsLead:
-        "Flip through post-event reports — Couples Night and SSDiC programming documented on Issuu.",
+        "Flip through post-event reports — Couples Camp Against GBV and SSDiC programming documented on Issuu.",
       pastUnityRunLabel: "Love & Unity Run",
       agendaDate: "Saturday, June 27, 2026",
       agendaActivity: "Activity",
@@ -401,9 +401,9 @@ export const iu = {
       },
       reports: {
         couplesNight: {
-          title: "Couples Night Event Report",
+          title: "Couples Camp Against GBV Event Report",
           summary:
-            "A flipbook summary of RLRI's Couples Night — programming, participation, and community outcomes from this relationship-building gathering.",
+            "A flipbook summary of RLRI's Couples Camp Against GBV — programming, participation, and community outcomes from this camp addressing gender-based violence.",
         },
         ssdic: {
           title: "SSDiC Event Report",
