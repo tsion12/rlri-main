@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { au } from "@/components/africa/africa-ui";
+import { au } from "@/components/shared/africa-ui";
 
 type Chapter = {
   title: string;

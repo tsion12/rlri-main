@@ -12,7 +12,7 @@ import {
   SocialLinkedIn,
   SocialX,
   SocialYouTube,
-} from "@/components/africa/africa-icons";
+} from "@/components/shared/africa-icons";
 import { useTranslations } from "@/components/main/i18n/LocaleProvider";
 import { MAIN_FOOTER_NAV } from "@/lib/main-navigation";
 import { mainAboutSectionHref, mainAddresses, mainEmails, mainPhones, mainRoutes } from "@/lib/main-routes";

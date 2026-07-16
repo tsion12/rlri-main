@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { au } from "@/components/africa/africa-ui";
+import { au } from "@/components/shared/africa-ui";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/components/main/i18n/LocaleProvider";
 import { LanguageSwitcher } from "@/components/main/LanguageSwitcher";

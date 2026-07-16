@@ -1,6 +1,6 @@
 "use client";
 
-import { au } from "@/components/africa/africa-ui";
+import { au } from "@/components/shared/africa-ui";
 import { useTranslations } from "@/components/main/i18n/LocaleProvider";
 import type { TranslationKey } from "@/lib/i18n/messages/en";
 import { mainRoutes } from "@/lib/main-routes";

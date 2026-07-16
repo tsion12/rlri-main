@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { au } from "@/components/africa/africa-ui";
+import { au } from "@/components/shared/africa-ui";
 import { MainLink } from "@/components/main/MainLink";
 import { mainAboutSectionHref } from "@/lib/main-routes";
 import type { WpPostWithSource } from "@/lib/wp";
