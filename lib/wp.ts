@@ -91,7 +91,7 @@ type WpApiCategory = {
 };
 
 const API = {
-  main: "https://reallifeinstitute.org/wp-json/wp/v2",
+  main: "https://www.reallifeinstitute.org/wp-json/wp/v2",
 } as const;
 
 const WP_REVALIDATE_SECONDS = 300;
