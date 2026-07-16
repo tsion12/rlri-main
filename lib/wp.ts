@@ -1,26 +1,8 @@
 export type MainSiteLocale = "en" | "fr";
 
 export type WpSource = "main" | "africa";
-/* Main-site locales — no i18n import so Africa-only deploys can use a slimmer wp.ts. */
 import { request as httpsRequest } from "node:https";
 
-export type AfricaProgramKey =
-  | "oceans"
-  | "digital-futures"
-  | "climate"
-  | "peacebuilding"
-  | "health-systems-equity-social-transformation";
-
-const AFRICA_PROGRAM_META: Record<AfricaProgramKey, { label: string; categoryId: number }> = {
-  oceans: { label: "Oceans", categoryId: 44 },
-  "digital-futures": { label: "Digital Futures", categoryId: 45 },
-  climate: { label: "Climate Adaptation & Resilience", categoryId: 46 },
-  peacebuilding: { label: "Peacebuilding & Inclusive Dialogues", categoryId: 47 },
-  "health-systems-equity-social-transformation": {
-    label: "Health Systems, Equity, and Social Transformation",
-    categoryId: 48,
-  },
-};
 
 export type WpPost = {
   id: number;
@@ -32,7 +14,7 @@ export type WpPost = {
   excerpt?: { rendered: string };
   featuredImage?: string | null;
   theme?: string | null;
-  programKey?: AfricaProgramKey | null;
+  programKey?: string | null;
   programLabel?: string | null;
   authorName?: string | null;
   authorBio?: string | null;
@@ -108,11 +90,9 @@ type WpApiCategory = {
   slug?: string;
 };
 
-const API: Record<WpSource, string> = {
+const API = {
   main: "https://reallifeinstitute.org/wp-json/wp/v2",
-  africa: "https://cms-programs.reallifeinstitute.or/wp-json/wp/v2",
-};
-const AFRICA_API_FALLBACK = "https://cms-programs.reallifeinstitute.org/wp-json/wp/v2";
+} as const;
 
 const WP_REVALIDATE_SECONDS = 300;
 const WP_TIMEOUT_MS = 12000;
@@ -215,53 +195,6 @@ function normCategoryName(input: string): string {
     .trim();
 }
 
-const CATEGORY_NAME_TO_PROGRAM = new Map<string, AfricaProgramKey>([
-  ["oceans", "oceans"],
-  ["ocean maritime", "oceans"],
-  ["digital futures", "digital-futures"],
-  ["technology society", "digital-futures"],
-  ["climate adaptation resilience", "climate"],
-  ["environment resilience", "climate"],
-  ["peacebuilding inclusive dialogues", "peacebuilding"],
-  ["peace civil society", "peacebuilding"],
-  ["food environment and natural resources", "health-systems-equity-social-transformation"],
-  ["food systems environment", "health-systems-equity-social-transformation"],
-  ["health systems equity and social transformation", "health-systems-equity-social-transformation"],
-  ["health systems", "health-systems-equity-social-transformation"],
-  ["public health", "health-systems-equity-social-transformation"],
-]);
-
-const GENERIC_CATEGORY_NAMES = new Set([
-  "uncategorized",
-  "blog",
-  "blog ap",
-  "stories ap",
-  "stories africa",
-  "publication",
-  "policy",
-  "policies africa",
-  "research",
-  "development",
-]);
-
-function parseAfricaProgramFromCategories(
-  categories: Array<{ id?: number; name: string; slug?: string }>,
-): AfricaProgramKey | null {
-  for (const cat of categories) {
-    if (typeof cat.id === "number") {
-      const key = (Object.keys(AFRICA_PROGRAM_META) as AfricaProgramKey[]).find(
-        (k) => AFRICA_PROGRAM_META[k].categoryId === cat.id,
-      );
-      if (key) return key;
-    }
-  }
-  for (const cat of categories) {
-    const key = CATEGORY_NAME_TO_PROGRAM.get(normCategoryName(cat.name));
-    if (key) return key;
-  }
-  return null;
-}
-
 const MAIN_PUBLICATION_EXTERNAL_FALLBACK: Record<string, string> = {
   "women-and-peacebuilding":
     "https://www.tandfonline.com/doi/full/10.1080/14678802.2025.2510675",
@@ -301,8 +234,8 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
       name: decodeBasicEntities(term.name!.trim()),
       slug: term.slug?.trim(),
     }));
-  const programKey = source === "africa" ? parseAfricaProgramFromCategories(categories) : null;
-  const programLabel = programKey ? AFRICA_PROGRAM_META[programKey].label : null;
+  const programKey = null;
+  const programLabel = null;
   const category = categories.find((cat) => !GENERIC_CATEGORY_NAMES.has(normCategoryName(cat.name)));
   const isPolicy =
     source === "main" &&
@@ -341,42 +274,6 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
     isPublication,
     externalUrl,
   };
-}
-
-const AFRICA_PROGRAM_QUERY_VALUES: Record<AfricaProgramKey, string[]> = {
-  oceans: ["oceans", "ocean", "ocean-maritime"],
-  "digital-futures": ["digital-futures", "digital", "technology-society"],
-  climate: ["climate", "climate-adaptation-resilience", "environment-resilience"],
-  peacebuilding: ["peacebuilding", "peacebuilding-inclusive-dialogues", "peace-civil-society"],
-  "health-systems-equity-social-transformation": [
-    "health-systems-equity-social-transformation",
-    "health-systems",
-    "health-equity",
-    "food-environment-natural-resources",
-    "food-environment",
-    "food-systems-environment",
-  ],
-};
-
-export function parseAfricaProgram(value: string | null | undefined): AfricaProgramKey | null {
-  if (!value) return null;
-  const v = value.trim().toLowerCase();
-  const keys = Object.keys(AFRICA_PROGRAM_QUERY_VALUES) as AfricaProgramKey[];
-  for (const key of keys) {
-    if (AFRICA_PROGRAM_QUERY_VALUES[key].includes(v)) return key;
-  }
-  return null;
-}
-
-export function getAfricaProgramLabel(program: AfricaProgramKey): string {
-  return AFRICA_PROGRAM_META[program].label;
-}
-
-export function postMatchesAfricaProgram(post: WpPostWithSource, program: AfricaProgramKey): boolean {
-  if (post.source !== "africa") return false;
-  if (post.programKey) return post.programKey === program;
-  if (post.programLabel) return getAfricaProgramLabel(program) === post.programLabel;
-  return false;
 }
 
 async function fetchJsonViaHttpsIpv4<T>(url: string): Promise<T | null> {
@@ -461,46 +358,20 @@ async function wpFetchJson<T>(url: string): Promise<T | null> {
   return fetchJsonViaHttpsIpv4<T>(url);
 }
 
-async function wpFetchJsonWithAfricaFallback<T>(url: string): Promise<T | null> {
-  const primary = await wpFetchJson<T>(url);
-  if (primary !== null) return primary;
-  if (!url.startsWith(API.africa)) return null;
-  const fallbackUrl = url.replace(API.africa, AFRICA_API_FALLBACK);
-  if (fallbackUrl === url) return null;
-  return wpFetchJson<T>(fallbackUrl);
-}
-
 async function fetchPostsForSource(source: WpSource): Promise<WpPostWithSource[]> {
-  const url = new URL(`${API[source]}/posts`);
+  if (source !== "main") return [];
+  const url = new URL(`${API.main}/posts`);
   url.searchParams.set("per_page", String(WP_POSTS_PER_PAGE));
   url.searchParams.set("_embed", "author,wp:term");
-  const posts = source === "africa"
-    ? await wpFetchJsonWithAfricaFallback<WpApiPost[]>(url.toString())
-    : await wpFetchJson<WpApiPost[]>(url.toString());
+  const posts = await wpFetchJson<WpApiPost[]>(url.toString());
   if (!Array.isArray(posts)) return [];
   return posts.map((p) => normalizePost(source, p));
 }
 
-/** Merged posts from both WordPress sites. If one site fails, posts from the other are still returned. */
+/** Main-site WordPress posts. Safe on fetch failure (empty list). */
 export async function getPosts(): Promise<WpPostWithSource[]> {
-  const [mainPosts, africaPosts] = await Promise.all([
-    fetchPostsForSource("main"),
-    fetchPostsForSource("africa"),
-  ]);
-  return [...mainPosts, ...africaPosts];
+  return fetchPostsForSource("main");
 }
-
-/** Category IDs on the Africa Programs WordPress site. */
-const AFRICA_CAT = {
-  blogAp: 42,     // Legacy "Blog AP" ID; fallback by category name/slug is applied.
-  storiesAp: 43,  // Legacy "Stories AP" ID; fallback by category name/slug is applied.
-} as const;
-
-const BLOG_AP_CATEGORY_NAMES = new Set(["blog ap"]);
-const STORIES_AP_CATEGORY_NAMES = new Set(["stories ap"]);
-const AFRICA_CATEGORY_PAGE_SIZE = 100;
-const AFRICA_POST_MAX_PAGES = 4;
-const africaCategoryIdCache = new Map<string, number | null>();
 
 function getPostCategoryTerms(post: WpApiPost) {
   const terms = post._embedded?.["wp:term"] ?? [];
@@ -525,24 +396,6 @@ function postHasCategory(
   });
 }
 
-async function fetchAfricaPostsRaw(categoryId?: number): Promise<WpApiPost[]> {
-  const all: WpApiPost[] = [];
-  for (let page = 1; page <= AFRICA_POST_MAX_PAGES; page += 1) {
-    const url = new URL(`${API.africa}/posts`);
-    if (typeof categoryId === "number") {
-      url.searchParams.set("categories", String(categoryId));
-    }
-    url.searchParams.set("per_page", "50");
-    url.searchParams.set("page", String(page));
-    url.searchParams.set("_embed", "author,wp:term");
-    const posts = await wpFetchJsonWithAfricaFallback<WpApiPost[]>(url.toString());
-    if (!Array.isArray(posts) || posts.length === 0) break;
-    all.push(...posts);
-    if (posts.length < 50) break;
-  }
-  return dedupePosts(all);
-}
-
 function dedupePosts(posts: WpApiPost[]) {
   const seen = new Set<number>();
   return posts.filter((post) => {
@@ -552,76 +405,10 @@ function dedupePosts(posts: WpApiPost[]) {
   });
 }
 
-async function fetchAfricaCategories(): Promise<WpApiCategory[]> {
-  const all: WpApiCategory[] = [];
-  for (let page = 1; page <= AFRICA_POST_MAX_PAGES; page += 1) {
-    const url = new URL(`${API.africa}/categories`);
-    url.searchParams.set("per_page", String(AFRICA_CATEGORY_PAGE_SIZE));
-    url.searchParams.set("page", String(page));
-    const categories = await wpFetchJsonWithAfricaFallback<WpApiCategory[]>(url.toString());
-    if (!Array.isArray(categories) || categories.length === 0) break;
-    all.push(...categories);
-    if (categories.length < AFRICA_CATEGORY_PAGE_SIZE) break;
-  }
-  return all;
-}
-
 function categoryMatchesNames(category: WpApiCategory, names: ReadonlySet<string>) {
   const normalizedName = category.name ? normCategoryName(category.name) : "";
   const normalizedSlug = category.slug ? normCategoryName(category.slug) : "";
   return names.has(normalizedName) || names.has(normalizedSlug);
-}
-
-async function resolveAfricaCategoryId(primaryId: number, names: ReadonlySet<string>): Promise<number | null> {
-  const cacheKey = `${primaryId}:${Array.from(names).sort().join(",")}`;
-  if (africaCategoryIdCache.has(cacheKey)) {
-    return africaCategoryIdCache.get(cacheKey) ?? null;
-  }
-
-  const categories = await fetchAfricaCategories();
-  if (categories.length === 0) {
-    africaCategoryIdCache.set(cacheKey, primaryId);
-    return primaryId;
-  }
-
-  const hasPrimary = categories.some((category) => category.id === primaryId);
-  if (hasPrimary) {
-    africaCategoryIdCache.set(cacheKey, primaryId);
-    return primaryId;
-  }
-
-  const matched = categories.find((category) => categoryMatchesNames(category, names));
-  const resolved = matched?.id ?? null;
-  africaCategoryIdCache.set(cacheKey, resolved);
-  return resolved;
-}
-
-/** Africa "Blog-AP" category posts, newest first. Safe on fetch failure (empty list). */
-export async function getAfricaPosts(): Promise<WpPostWithSource[]> {
-  const resolvedCategory = await resolveAfricaCategoryId(AFRICA_CAT.blogAp, BLOG_AP_CATEGORY_NAMES);
-  let posts = resolvedCategory ? await fetchAfricaPostsRaw(resolvedCategory) : [];
-  if (posts.length === 0) {
-    posts = (await fetchAfricaPostsRaw()).filter((post) =>
-      postHasCategory(post, { id: resolvedCategory ?? AFRICA_CAT.blogAp, names: BLOG_AP_CATEGORY_NAMES }),
-    );
-  }
-  return posts
-    .map((p) => normalizePost("africa", p))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-/** Africa "Stories-AP" category posts, newest first. Safe on fetch failure (empty list). */
-export async function getAfricaStories(): Promise<WpPostWithSource[]> {
-  const resolvedCategory = await resolveAfricaCategoryId(AFRICA_CAT.storiesAp, STORIES_AP_CATEGORY_NAMES);
-  let posts = resolvedCategory ? await fetchAfricaPostsRaw(resolvedCategory) : [];
-  if (posts.length === 0) {
-    posts = (await fetchAfricaPostsRaw()).filter((post) =>
-      postHasCategory(post, { id: resolvedCategory ?? AFRICA_CAT.storiesAp, names: STORIES_AP_CATEGORY_NAMES }),
-    );
-  }
-  return posts
-    .map((p) => normalizePost("africa", p))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 const MAIN_POLICY_CATEGORY_ID = 28;
@@ -912,15 +699,14 @@ export async function getPost(
   source: WpSource,
   slug: string,
 ): Promise<WpPostWithSource | null> {
+  if (source !== "main") return null;
+
   for (const candidate of wpSlugLookupCandidates(slug)) {
-    const url = new URL(`${API[source]}/posts`);
+    const url = new URL(`${API.main}/posts`);
     url.searchParams.set("slug", candidate);
     url.searchParams.set("_embed", "author,wp:term");
 
-    const posts =
-      source === "africa"
-        ? await wpFetchJsonWithAfricaFallback<WpApiPost[]>(url.toString())
-        : await wpFetchJson<WpApiPost[]>(url.toString());
+    const posts = await wpFetchJson<WpApiPost[]>(url.toString());
     if (!Array.isArray(posts) || !posts[0]) continue;
 
     return normalizePost(source, posts[0]);
@@ -929,128 +715,3 @@ export async function getPost(
   return null;
 }
 
-/** Headings that are UI chrome, not webinar titles (Elementor / ElementsKit). */
-const ELEMENTOR_TITLE_SKIP =
-  /^(venue|access the virtual webinar|connect via google meet|next webinar)$/i;
-
-type ParsedCountdownEvent = {
-  title: string;
-  excerpt: string;
-  at: Date;
-};
-
-/**
- * Parse ElementsKit countdown widgets and associated titles from the upcoming-events page HTML.
- */
-function parseElementorCountdownEvents(html: string): ParsedCountdownEvent[] {
-  const results: ParsedCountdownEvent[] = [];
-  const countdownRe = /data-ekit-countdown="([^"]+)"/g;
-  let m: RegExpExecArray | null;
-  while ((m = countdownRe.exec(html)) !== null) {
-    const pos = m.index;
-    const dateStr = m[1].trim();
-    const before = html.slice(0, pos);
-
-    const titleMatches = [
-      ...before.matchAll(/class="ekit-heading--title[^"]*"[^>]*>([^<]+)<\/h2>/gi),
-    ].map((x) => stripHtml(x[1]).trim());
-    const titles = titleMatches.filter(
-      (t) => t.length >= 12 && !ELEMENTOR_TITLE_SKIP.test(t),
-    );
-    const title = titles[titles.length - 1];
-    if (!title) continue;
-
-    const isoLike = dateStr.includes("T") ? dateStr : dateStr.replace(" ", "T");
-    const at = new Date(isoLike);
-    if (Number.isNaN(at.getTime())) continue;
-
-    const descMatch = [...before.matchAll(/<div[^>]*ekit-heading__description[^>]*>([\s\S]*?)<\/div>/gi)];
-    const rawDesc = descMatch.length > 0 ? descMatch[descMatch.length - 1][1] : "";
-    const excerpt = stripHtml(rawDesc).slice(0, 280).trim();
-
-    results.push({ title, excerpt, at });
-  }
-  return results;
-}
-
-/**
- * Prefer the next upcoming event (soonest at/after start of today). If none, use the most recent past event.
- */
-function pickHeroCountdownEvent(events: ParsedCountdownEvent[]): ParsedCountdownEvent | null {
-  if (events.length === 0) return null;
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
-  const startMs = start.getTime();
-
-  const upcoming = events.filter((e) => e.at.getTime() >= startMs);
-  if (upcoming.length > 0) {
-    return upcoming.sort((a, b) => a.at.getTime() - b.at.getTime())[0];
-  }
-  return events.sort((a, b) => b.at.getTime() - a.at.getTime())[0];
-}
-
-/**
- * Returns the Africa upcoming-events page, with the hero preferring the most relevant parsed webinar
- * (ElementsKit countdown + heading) when present.
- */
-export async function getUpcomingEventsPage(): Promise<WpPageHighlight | null> {
-  const url = new URL(`${API.africa}/pages`);
-  url.searchParams.set("slug", "upcoming-events");
-
-  const pages = await wpFetchJsonWithAfricaFallback<WpApiPage[]>(url.toString());
-  if (!Array.isArray(pages) || pages.length === 0) return null;
-
-  const candidates = pages.map((page) => {
-    const parsed = parseElementorCountdownEvents(page.content.rendered);
-    const selected = pickHeroCountdownEvent(parsed);
-    return { page, selected };
-  });
-
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
-  const todayMs = now.getTime();
-
-  const withUpcoming = candidates
-    .filter((c) => c.selected && c.selected.at.getTime() >= todayMs)
-    .sort((a, b) => a.selected!.at.getTime() - b.selected!.at.getTime());
-
-  const withAnyEvent = candidates
-    .filter((c) => c.selected)
-    .sort((a, b) => b.selected!.at.getTime() - a.selected!.at.getTime());
-
-  const preferredCandidate =
-    withUpcoming[0] ??
-    withAnyEvent[0] ??
-    (candidates.find((c) => c.page.link.includes("/events/upcoming-events/")) ??
-      [...candidates].sort(
-        (a, b) => new Date(b.page.modified).getTime() - new Date(a.page.modified).getTime(),
-      )[0]);
-
-  const preferred = preferredCandidate.page;
-  const selected = preferredCandidate.selected;
-
-  const rawPageExcerpt = preferred.excerpt?.rendered || preferred.content.rendered;
-  const pageExcerpt = stripHtml(rawPageExcerpt).slice(0, 220).trim();
-
-  const pageTitle = stripHtml(preferred.title.rendered) || "Upcoming Events";
-
-  if (selected) {
-    return {
-      title: selected.title,
-      excerpt: selected.excerpt || pageExcerpt,
-      link: preferred.link,
-      modified: preferred.modified,
-      featuredImage: preferred.yoast_head_json?.og_image?.[0]?.url ?? null,
-      eventDateISO: selected.at.toISOString(),
-    };
-  }
-
-  return {
-    title: pageTitle,
-    excerpt: pageExcerpt,
-    link: preferred.link,
-    modified: preferred.modified,
-    featuredImage: preferred.yoast_head_json?.og_image?.[0]?.url ?? null,
-    eventDateISO: null,
-  };
-}

@@ -1,17 +1,7 @@
-import type { Metadata } from "next";
-import { AfricaHomeContent } from "@/components/africa/AfricaHomeContent";
-import { AfricaPageShell } from "@/components/africa/AfricaPageShell";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/lib/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Africa Program | Real Life Research Institute",
-  description:
-    "Pan-African programs for climate resilience, energy access, urban sustainability, and food security.",
-};
-
+/** Temporary: africa home removed; Step 5 will serve locale routes at `/`. */
 export default function Home() {
-  return (
-    <AfricaPageShell>
-      <AfricaHomeContent />
-    </AfricaPageShell>
-  );
+  redirect(`/main/${defaultLocale}`);
 }

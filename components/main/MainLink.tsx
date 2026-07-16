@@ -14,5 +14,9 @@ export function MainLink({ href, ...props }: Props) {
   const locale = useLocale();
   const base = mainBaseFromPathname(pathname);
 
+  if (href.startsWith("http://") || href.startsWith("https://")) {
+    return <Link href={href} {...props} />;
+  }
+
   return <Link href={mainHref(href, { base, locale })} {...props} />;
 }

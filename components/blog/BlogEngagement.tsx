@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { africaRoutes } from "@/lib/africa-routes";
+import { mainRoutes } from "@/lib/main-routes";
 import { useState } from "react";
 
 /* ── types ────────────────────────────────────────────────────────── */
@@ -391,17 +391,17 @@ export function BlogEngagement({ slug, source, title }: Props) {
           We don&apos;t run a newsletter yet
         </p>
         <p className="relative mt-1.5 max-w-md text-sm leading-relaxed text-stone-400 dark:text-zinc-500">
-          For new posts and webinars, visit the journal often or check upcoming Africa Program events.
+          For new posts and events, visit the journal often or check upcoming institute events.
         </p>
         <div className="relative mt-7 flex flex-wrap gap-3">
           <Link
-            href={africaRoutes.upcomingEvents}
+            href={mainRoutes.events}
             className="inline-flex min-h-11 items-center justify-center rounded-xl bg-amber-400 px-7 text-sm font-bold text-amber-950 shadow transition hover:bg-amber-300"
           >
             Upcoming events
           </Link>
           <a
-            href="mailto:contact-africa@reallifeinstitute.org"
+            href="mailto:contact@reallifeinstitute.org"
             className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15 dark:border-zinc-900/30 dark:bg-zinc-900/60 dark:text-zinc-900 dark:hover:bg-zinc-900/80"
           >
             Email the team

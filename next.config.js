@@ -11,16 +11,6 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cms-programs.reallifeinstitute.or",
-        pathname: "/wp-content/uploads/**",
-      },
-      {
-        protocol: "https",
-        hostname: "cms-programs.reallifeinstitute.org",
-        pathname: "/wp-content/uploads/**",
-      },
-      {
-        protocol: "https",
         hostname: "reallifeinstitute.org",
         pathname: "/wp-content/uploads/**",
       },

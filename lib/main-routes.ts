@@ -18,8 +18,8 @@ export const mainRoutes = {
   events: "/events",
   /** Flagship RLRI conference — placeholder until details are announced. */
   conference: "/conference",
-  /** Donations (shared with Africa Program until a main-site flow exists). */
-  donate: "/africa/donate",
+  /** Donations — Africa Program donation flow until a main-site flow exists. */
+  donate: "https://africa-programs.reallifeinstitute.org/donate",
   africaProgram: "https://africa-programs.reallifeinstitute.org/",
 } as const;
 
