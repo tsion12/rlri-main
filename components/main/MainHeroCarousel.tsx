@@ -149,7 +149,9 @@ export function MainHeroCarousel() {
               style={{ animationDelay: "320ms" }}
             >
               <HeroCta cta={activeSlide.primaryCta} variant="primary" />
-              <HeroCta cta={activeSlide.secondaryCta} variant="secondary" />
+              {activeSlide.secondaryCta ? (
+                <HeroCta cta={activeSlide.secondaryCta} variant="secondary" />
+              ) : null}
             </div>
           </div>
         </div>

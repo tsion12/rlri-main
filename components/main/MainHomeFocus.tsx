@@ -21,12 +21,6 @@ export function MainHomeFocus() {
       href: mainRoutes.mentalHealth,
       external: false,
     },
-    {
-      titleKey: "home.cardAfricaTitle" as const,
-      bodyKey: "home.cardAfricaBody" as const,
-      href: mainRoutes.africaProgram,
-      external: true,
-    },
   ] as const;
 
   return (

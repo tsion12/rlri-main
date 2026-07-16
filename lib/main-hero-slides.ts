@@ -16,7 +16,7 @@ export type MainHeroSlide = {
   titleKey: TranslationKey;
   subtitleKey: TranslationKey;
   primaryCta: MainHeroSlideCta;
-  secondaryCta: MainHeroSlideCta;
+  secondaryCta?: MainHeroSlideCta;
 };
 
 const MAIN_HERO_IMAGE_FILES = [
@@ -36,11 +36,6 @@ const MAIN_HERO_COPY = {
   titleKey: "home.heroSlides.primary.title",
   subtitleKey: "home.heroSlides.primary.subtitle",
   primaryCta: { labelKey: "home.heroSlides.primary.ctaEvents", href: mainRoutes.events },
-  secondaryCta: {
-    labelKey: "home.heroSlides.primary.ctaAfrica",
-    href: mainRoutes.africaProgram,
-    external: true,
-  },
 } as const satisfies Omit<MainHeroSlide, "id" | "image">;
 
 /**
