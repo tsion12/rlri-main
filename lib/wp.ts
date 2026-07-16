@@ -94,6 +94,27 @@ const API = {
   main: "https://www.reallifeinstitute.org/wp-json/wp/v2",
 } as const;
 
+/**
+ * WordPress emits media URLs on the apex host, but that host currently returns 403
+ * for uploads (and the REST API). Prefer www so Next/Image and browsers can load them.
+ */
+function normalizeWpMediaUrl(url: string | null | undefined): string | null {
+  if (!url?.trim()) return null;
+  try {
+    const parsed = new URL(url.trim());
+    if (
+      parsed.hostname === "reallifeinstitute.org" ||
+      parsed.hostname === "www.reallifeinstitute.org"
+    ) {
+      parsed.hostname = "www.reallifeinstitute.org";
+      return parsed.toString();
+    }
+  } catch {
+    return url.trim();
+  }
+  return url.trim();
+}
+
 const WP_REVALIDATE_SECONDS = 300;
 const WP_TIMEOUT_MS = 12000;
 const WP_POSTS_PER_PAGE = 50;
@@ -281,7 +302,7 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
     title: post.title,
     content: post.content,
     excerpt: post.excerpt,
-    featuredImage: post.yoast_head_json?.og_image?.[0]?.url ?? null,
+    featuredImage: normalizeWpMediaUrl(post.yoast_head_json?.og_image?.[0]?.url),
     theme: isPolicy ? "Policy" : programLabel ?? category?.name?.trim() ?? null,
     programKey,
     programLabel,
