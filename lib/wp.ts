@@ -117,6 +117,7 @@ const AFRICA_API_FALLBACK = "https://cms-programs.reallifeinstitute.org/wp-json/
 const WP_REVALIDATE_SECONDS = 300;
 const WP_TIMEOUT_MS = 12000;
 const WP_POSTS_PER_PAGE = 50;
+const WP_RETRY_DELAYS_MS = [350, 900];
 const WP_FETCH_HEADERS = {
   accept: "application/json",
   "User-Agent": "RLRI-Site/1.0 (+https://reallifeinstitute.org)",
@@ -418,17 +419,45 @@ async function fetchJsonViaHttpsIpv4<T>(url: string): Promise<T | null> {
   });
 }
 
-async function wpFetchJson<T>(url: string): Promise<T | null> {
-  try {
-    const res = await fetch(url, {
-      next: { revalidate: WP_REVALIDATE_SECONDS },
-      headers: WP_FETCH_HEADERS,
-    });
-    if (res.ok) return (await res.json()) as T;
-  } catch {
-    // fall through to IPv4
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchWithRetry(url: string): Promise<Response | null> {
+  for (let attempt = 0; attempt <= WP_RETRY_DELAYS_MS.length; attempt += 1) {
+    try {
+      const res = await fetch(url, {
+        next: { revalidate: WP_REVALIDATE_SECONDS },
+        headers: WP_FETCH_HEADERS,
+      });
+      if (res.ok) return res;
+
+      // Retry transient infra/CMS responses like 5xx/429/408.
+      if (![408, 429].includes(res.status) && (res.status < 500 || res.status >= 600)) {
+        return null;
+      }
+    } catch {
+      // handled below by IPv4 fallback and retry delay
+    }
+
+    if (attempt < WP_RETRY_DELAYS_MS.length) {
+      await sleep(WP_RETRY_DELAYS_MS[attempt]);
+    }
   }
-  // Retry over IPv4 when fetch fails or returns a non-2xx (timeouts, DNS, CDN blocks).
+  return null;
+}
+
+async function wpFetchJson<T>(url: string): Promise<T | null> {
+  const res = await fetchWithRetry(url);
+  if (res?.ok) {
+    try {
+      return (await res.json()) as T;
+    } catch {
+      return null;
+    }
+  }
+  // Fallback path for environments where undici fetch intermittently times out
+  // on dual-stack DNS routes; forcing IPv4 is typically more reliable.
   return fetchJsonViaHttpsIpv4<T>(url);
 }
 
