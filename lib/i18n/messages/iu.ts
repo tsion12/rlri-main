@@ -116,6 +116,13 @@ export const iu = {
       emailLabel: "Email us",
       cta: "Work with us",
     },
+    regions: {
+      eyebrow: "Our reach",
+      title: "Regions We Serve Across the Globe",
+      mapLabel: "World map highlighting Nunavut, Canada",
+      nunavutLabel: "Nunavut, Canada",
+      legend: "Highlighted region: Nunavut, Canada",
+    },
     partners: {
       title: "Past Sponsors",
       lead: "Building Strong Relationships for Greater Impact",

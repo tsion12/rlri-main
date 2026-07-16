@@ -112,6 +112,13 @@ export const fr = {
       emailLabel: "Courriel",
       cta: "Travailler avec nous",
     },
+    regions: {
+      eyebrow: "Notre portée",
+      title: "Régions que nous desservons dans le monde",
+      mapLabel: "Carte du monde mettant en évidence le Nunavut, Canada",
+      nunavutLabel: "Nunavut, Canada",
+      legend: "Région mise en évidence : Nunavut, Canada",
+    },
     partners: {
       title: "Anciens commanditaires",
       lead: "Des relations solides pour un impact plus grand",
