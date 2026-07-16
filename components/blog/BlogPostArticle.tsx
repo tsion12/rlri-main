@@ -87,6 +87,22 @@ function excerptRepeatsBodyOpening(excerptHtml: string, bodyHtml: string): boole
 const POLICY_DETAIL_SUBTITLE =
   "At Real Life Research Institute, our policies put community first and reflect the values we live by.";
 
+type AuthorProfile = {
+  name: string;
+  role: string;
+  bio?: string;
+  avatar?: string | null;
+  linkedin?: string;
+};
+
+/** Single-author byline for Dr. Chris (reuse for title-matched posts). */
+const CHRIS_SOLO: AuthorProfile[] = [
+  {
+    name: "Chris Begealawuh, PhD",
+    role: "Author",
+    linkedin: "https://www.linkedin.com/in/nchongayi-christantus-020827a1/",
+  },
+];
 
 /** Solomon Kimaita — same bio as April 2026 webinar speaker profile. */
 const SOLOMON_KIMAITA_AUTHOR: AuthorProfile = {
@@ -230,6 +246,14 @@ const AUTHOR_OVERRIDES: Record<string, AuthorProfile[]> = {
         bio: "María Ayuk is a Postdoctoral Researcher and Associate Lecturer at Otto‑von‑Guericke University Magdeburg. Her research focuses on environmental and climate policy, forestry, sustainable development, knowledge transfer, and peace and security governance. She is a Member of the Baobab Sahel Climate‑Conflict project at the University of Cape Town, contributing to interdisciplinary research on climate‑related insecurity in the Sahel. An alumna of the George C. Marshall European Center for Security Studies, she brings an integrated perspective to the intersections of environmental change, security, and international cooperation.",
       },
     ],
+  "the-real-life-institute-in-iqaluit-celebrates-diversity-and-inclusion-through-soccer-and-a-community-food-festival-on-canadian-multiculturalism-day-2026":
+    [
+      {
+        name: "Faithfulness Mulango",
+        role: "Real Life Research Institute Volunteer",
+        avatar: "/assets/Team/Faithfulness-Mulango.png",
+      },
+    ],
 };
 
 /** Normalize titles so WP punctuation/spacing variants still match overrides. */
@@ -329,9 +353,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
   const canonicalPath = blogPostPath(post);
   const wpAuthorBio = post.authorBio?.trim();
   const fallbackAuthor: AuthorProfile = {
-    name:
-      post.authorName?.trim() ||
-      "RLRI Editorial Team"),
+    name: post.authorName?.trim() || "RLRI Editorial Team",
     role: "RLRI Contributor",
     bio: wpAuthorBio || undefined,
     avatar: post.authorAvatar ?? null,

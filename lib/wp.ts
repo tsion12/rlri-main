@@ -195,6 +195,26 @@ function normCategoryName(input: string): string {
     .trim();
 }
 
+/** Bucket / system categories — skip when picking a post theme label. */
+const GENERIC_CATEGORY_NAMES = new Set([
+  "uncategorized",
+  "blog",
+  "blog iu",
+  "blog ap",
+  "stories ap",
+  "stories africa",
+  "publication",
+  "publications",
+  "publication en",
+  "policy",
+  "policies",
+  "policy en",
+  "policy fr",
+  "policies africa",
+  "research",
+  "development",
+]);
+
 const MAIN_PUBLICATION_EXTERNAL_FALLBACK: Record<string, string> = {
   "women-and-peacebuilding":
     "https://www.tandfonline.com/doi/full/10.1080/14678802.2025.2510675",
