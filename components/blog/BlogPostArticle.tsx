@@ -2,13 +2,13 @@ import Link from "next/link";
 import { BlogAuthorsBioSection } from "@/components/blog/BlogAuthorsBioSection";
 import { BlogEngagement } from "@/components/blog/BlogEngagement";
 import { BlogSharePanel } from "@/components/blog/BlogSharePanel";
-import { mainRoutes } from "@/lib/main-routes";
 import { resolveAuthorPhoto } from "@/lib/blog-author-photos";
 import { finalizeBlogBodyHtml } from "@/lib/strip-blog-html";
 import { blogPostPath, postIsMainPolicy, stripHtml, type WpPostWithSource } from "@/lib/wp";
 
-/** Main-site policies list anchor (no main-routes module on Africa-only deploys). */
-const MAIN_POLICIES_LIST_HREF = "/aboutus#institute-policies";
+/** Main-site policies list (blog lives outside [locale]; default en). */
+const MAIN_POLICIES_LIST_HREF = "/en/aboutus#institute-policies";
+const MAIN_BLOGS_LIST_HREF = "/en/blogs";
 
 function formatPostDate(iso: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -387,7 +387,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <nav className="relative mb-10" aria-label="Breadcrumb">
         <Link
-          href={isPolicy ? policiesListHref : mainRoutes.blogs}
+          href={isPolicy ? policiesListHref : MAIN_BLOGS_LIST_HREF}
           className="group inline-flex items-center gap-2 rounded-full border border-stone-200/90 bg-white/90 px-4 py-2.5 text-sm font-medium text-stone-600 shadow-sm ring-1 ring-stone-950/5 transition-all hover:border-amber-300/80 hover:bg-amber-50/80 hover:text-stone-900 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:ring-white/5 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/80 dark:hover:text-zinc-100"
         >
           <span aria-hidden className="transition-transform group-hover:-translate-x-0.5">
@@ -538,7 +538,7 @@ export function BlogPostArticle({ post }: { post: WpPostWithSource }) {
 
       <footer className="relative mt-14 flex flex-col gap-4 border-t border-stone-200/80 pt-10 dark:border-zinc-800 sm:flex-row sm:items-center sm:justify-between">
         <Link
-          href={isPolicy ? policiesListHref : mainRoutes.blogs}
+          href={isPolicy ? policiesListHref : MAIN_BLOGS_LIST_HREF}
           className={`inline-flex items-center gap-2 text-sm font-semibold transition ${
             isPolicy
               ? "text-teal-800 hover:text-teal-950 dark:text-teal-400 dark:hover:text-teal-200"

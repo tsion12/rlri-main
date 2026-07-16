@@ -1,6 +1,6 @@
 /**
  * User-facing routes for the main institute site (reallifeinstitute.org).
- * Middleware rewrites these paths to `/main/*` internally.
+ * Public paths are locale-prefixed by mainHref (e.g. `/en/aboutus`).
  */
 export const mainRoutes = {
   home: "/",

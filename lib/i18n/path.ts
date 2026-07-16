@@ -1,8 +1,8 @@
 import { defaultLocale, isLocale, type Locale } from "./config";
 import { mainRoutes } from "@/lib/main-routes";
 
-/** Prefix when viewing the main site via `/main` on localhost. */
-export type MainPathBase = "" | "/main";
+/** @deprecated Kept for call-site compatibility; always empty after /main de-prefix. */
+export type MainPathBase = "";
 
 export type ParsedMainPath = {
   base: MainPathBase;
@@ -13,31 +13,24 @@ export type ParsedMainPath = {
 
 /**
  * Parse locale from a Next.js or browser pathname.
- * Supports `/main/fr/about`, `/fr/about`, and `/about` (default en).
+ * Supports `/fr/about` and `/en/about` (locale always present).
  */
 export function parseMainPath(pathname: string): ParsedMainPath {
-  let rest = pathname;
-  let base: MainPathBase = "";
-
-  if (rest === "/main" || rest.startsWith("/main/")) {
-    base = "/main";
-    rest = rest === "/main" ? "/" : rest.slice("/main".length) || "/";
-  }
-
+  const rest = pathname;
   const segments = rest.split("/").filter(Boolean);
   const maybeLocale = segments[0];
 
   if (maybeLocale && isLocale(maybeLocale)) {
     const tail = segments.slice(1);
     return {
-      base,
+      base: "",
       locale: maybeLocale,
       pathname: tail.length ? `/${tail.join("/")}` : "/",
     };
   }
 
   return {
-    base,
+    base: "",
     locale: defaultLocale,
     pathname: rest === "" ? "/" : rest.startsWith("/") ? rest : `/${rest}`,
   };
@@ -51,13 +44,13 @@ export function mainLocaleFromPathname(pathname: string): Locale {
   return parseMainPath(pathname).locale;
 }
 
-/** Public URL segment for a locale (`""` for default English). */
+/** Public URL segment for a locale (always includes the locale). */
 export function localePathPrefix(locale: Locale): string {
-  return locale === defaultLocale ? "" : `/${locale}`;
+  return `/${locale}`;
 }
 
 /**
- * Build a main-site href with locale and optional `/main` dev prefix.
+ * Build a main-site href with locale prefix.
  */
 export function mainHref(
   route: string,
@@ -70,15 +63,7 @@ export function mainHref(
   const routePath = path === "/" ? "" : path;
   const localeSeg = localePathPrefix(options.locale);
 
-  if (options.base === "/main") {
-    const internal = `/main/${options.locale}${routePath}${hash}`;
-    return internal === `/main/${options.locale}` && routePath === ""
-      ? `/main/${options.locale}`
-      : internal;
-  }
-
-  const publicPath = `${localeSeg}${routePath}${hash}` || "/";
-  return publicPath;
+  return `${localeSeg}${routePath}${hash}` || `/${options.locale}`;
 }
 
 export function navItemActiveMain(
