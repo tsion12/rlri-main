@@ -96,9 +96,6 @@ export function MainRegionsMap() {
           >
             {t("home.regions.title")}
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-lg text-zinc-500 dark:text-zinc-400">
-            {t("home.regions.lead")}
-          </p>
         </header>
 
         <div
