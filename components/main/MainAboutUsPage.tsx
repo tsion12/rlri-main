@@ -1,5 +1,5 @@
 import { MainAboutHashScroll } from "@/components/main/MainAboutHashScroll";
-import { MainAboutIssuuFlipbook } from "@/components/main/MainAboutIssuuFlipbook";
+// import { MainAboutIssuuFlipbook } from "@/components/main/MainAboutIssuuFlipbook";
 import { MainAboutPolicies } from "@/components/main/MainAboutPolicies";
 import { MainAboutValuePillars } from "@/components/main/MainAboutValuePillars";
 import { MainAboutWhoWeAre } from "@/components/main/MainAboutWhoWeAre";
@@ -108,6 +108,7 @@ export async function MainAboutUsPage({ locale }: Props) {
         chapters={timelineChapters}
       />
 
+      {/* Temporarily hidden — Issuu flipbook has a slide issue
       <MainAboutIssuuFlipbook
         eyebrow={t("pages.aboutUs.flipbook.eyebrow")}
         title={t("pages.aboutUs.flipbook.title")}
@@ -116,6 +117,7 @@ export async function MainAboutUsPage({ locale }: Props) {
         openExternal={t("pages.aboutUs.flipbook.openExternal")}
         hint={t("pages.aboutUs.flipbook.hint")}
       />
+      */}
 
       <MainAboutValuePillars
         valueEyebrow={t("pages.aboutUs.value.eyebrow")}
