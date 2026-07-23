@@ -30,7 +30,7 @@ export async function MainMentalHealthPage({ locale }: Props) {
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-linear-to-b from-zinc-950/75 via-zinc-950/65 to-zinc-950/80"
+          className="absolute inset-0 bg-linear-to-b from-zinc-950/65 via-zinc-950/40 to-zinc-950/80"
           aria-hidden
         />
         <div

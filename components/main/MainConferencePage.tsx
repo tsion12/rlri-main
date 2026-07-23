@@ -33,7 +33,7 @@ export async function MainConferencePage({ locale }: Props) {
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-linear-to-b from-slate-950/90 via-slate-900/75 to-slate-950/95"
+          className="absolute inset-0 bg-linear-to-b from-slate-950/70 via-slate-950/45 to-slate-950/85"
           aria-hidden
         />
         <div
@@ -93,33 +93,6 @@ export async function MainConferencePage({ locale }: Props) {
           className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-[#f4f8fb] to-transparent dark:from-zinc-950"
           aria-hidden
         />
-      </section>
-
-      {/* About */}
-      <section
-        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-        aria-labelledby="conference-about-heading"
-      >
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
-            {t("pages.conference.aboutEyebrow")}
-          </p>
-          <h2
-            id="conference-about-heading"
-            className="mt-4 text-center font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
-          >
-            {t("pages.conference.aboutTitle")}
-          </h2>
-          <p className="mt-8 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-[17px]">
-            {t("pages.conference.aboutP1")}
-          </p>
-          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-[17px]">
-            {t("pages.conference.aboutP2")}
-          </p>
-          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-[17px]">
-            {t("pages.conference.aboutP3")}
-          </p>
-        </div>
       </section>
 
       {/* Thematic focus */}

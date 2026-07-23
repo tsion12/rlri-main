@@ -6,29 +6,38 @@
 export const MAIN_GALLERY_BASE = "/assets/main-gallery";
 
 export const MAIN_GALLERY_FILES = [
-  // Love & Unity Run — curated set. First 20 feed the marquee strips, first 12 the spotlight picker.
+  // Spotlight for "The Love & Unity Run in Iqaluit" — couple & dog running.
+  "RUNNING-12.jpg",
+  // Featured Moments — curated 10-picture set (spotlight picker + lead marquee).
+  "Live from the run 8.jpg", // deputy mayor and another lady
+  "REAL LIFE INSTITUTE 1-16.jpg", // lady with items on display
+  "REAL LIFE INSTITUTE 1-19.jpg", // girls playing with colour
+  "Live from the run 20.jpg", // runner on the course
+  "REAL LIFE INSTITUTE 1-17.jpg", // peace-sign fitness banner
+  "prize being given to Isaac.jpeg", // Isaac with his prize
+  "Live from the run 16.jpeg", // deputy mayor pointing two fingers
+  "WhatsApp Image 2025-08-23 at 19.07.56.jpeg", // fireman and woman
+  "man running while smiling.jpg", // man running while smiling
+  "REAL LIFE INSTITUTE-2.jpg", // MLA giving award to best couple
+  // Additional Love & Unity Run photos for the fuller gallery / lightbox.
   "Live from the run 1.jpg",
   "From uphill challenges to lasting connections _- a race that inspired a whole community.jpg",
   "Iqaluit Unity Race.jpeg",
-  "man running while smiling.jpg",
   "Live from the run 13.jpg",
   "Unity Race pictures 1.jpg",
   "Live from the run 24.jpg",
   "Award being given to couple.jpg",
   "Live from the run 2.jpg",
   "Live from the run fireman and safety.jpeg",
-  "Live from the run 20.jpg",
   "Unity Race pictures 2.jpg",
   "Live from the run 3.jpg",
   "Live from the run 4.jpg",
   "Live from the run 5.jpg",
   "Live from the run 7.jpg",
-  "Live from the run 8.jpg",
   "Live from the run 9.jpg",
   "Live from the run 10.jpg",
   "Live from the run 14.jpg",
   "Live from the run 15.jpeg",
-  "Live from the run 16.jpeg",
   "Live from the run 18.jpeg",
   "Live from the run 19.jpeg",
   "Live from the run 21.jpg",

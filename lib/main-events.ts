@@ -1,4 +1,5 @@
 import type { TranslationKey } from "@/lib/i18n/messages/en";
+import { mainGallerySrc } from "@/lib/main-gallery";
 import { mainRoutes } from "@/lib/main-routes";
 
 export type MainInstituteEventTiming = "upcoming" | "past";
@@ -51,7 +52,7 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
     id: "unity-race-2026",
     timing: "upcoming",
     sortDate: "2026-07-01",
-    image: "Iqaluit Unity Race.jpeg",
+    image: "Supporting Well-Being Across the North.jpg",
     titleKey: "pages.events.items.unityRace.title",
     summaryKey: "pages.events.items.unityRace.summary",
     whenKey: "pages.events.items.unityRace.when",
@@ -77,7 +78,7 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
     id: "summer-celebrations-2026",
     timing: "upcoming",
     sortDate: "2026-06-01",
-    image: "Celebrate Canada pictures 3.jpeg",
+    image: "REAL LIFE INSTITUTE 1-10.jpg",
     titleKey: "pages.events.items.summerCelebrations.title",
     summaryKey: "pages.events.items.summerCelebrations.summary",
     whenKey: "pages.events.items.summerCelebrations.when",
@@ -130,10 +131,23 @@ export const MULTICULTURALISM_GALLERY_IMAGES = MULTICULTURALISM_GALLERY_FILES.ma
   }),
 );
 
-/** Spread of event photos for the hero carousel — diverse moments across the day. */
-const EVENTS_HERO_INDICES = [0, 1, 3, 5, 7, 9, 11, 13, 15, 17, 18, 19] as const;
+/**
+ * "Community events & celebrations" slide show — a spread across RLRI programming:
+ * multiculturalism, the Love & Unity Run, community soccer, and Canada Day.
+ */
+const EVENTS_HERO_FILES = [
+  "Multiculturalism Day 1.jpeg", // Multiculturalism Day table with flags
+  "WhatsApp Image 2025-08-23 at 19.07.55 (1).jpeg", // stretching exercises, up close
+  "RUNNING-14.jpg", // lady running
+  "REAL LIFE INSTITUTE 1-15.jpg", // Indigenous items on display
+  "Community Soccer initiative.jpeg", // community soccer team
+  "Celebrate Canada pictures 1.jpeg", // Canada Day celebration
+] as const;
 
-export const EVENTS_HERO_IMAGES = EVENTS_HERO_INDICES.map((index) => MULTICULTURALISM_GALLERY_IMAGES[index]);
+export const EVENTS_HERO_IMAGES = EVENTS_HERO_FILES.map((file, index) => ({
+  id: `events-hero-${index}`,
+  src: mainGallerySrc(file),
+}));
 
 export const EVENTS_HERO_INTERVAL_MS = 2800;
 

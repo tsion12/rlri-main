@@ -8,7 +8,8 @@ type Props = { locale: Locale };
 
 const HERO_IMAGE = "Calling all Student Volunteers.jpeg";
 const HERO_BADGE_IMAGE = "volunteer.jpeg";
-const APPLY_IMAGE = "Ready to join us.jpg";
+// "Ready to join us?" — MLA and the City of Iqaluit tent.
+const APPLY_IMAGE = "WhatsApp Image 2025-08-23 at 19.08.01 (1).jpeg";
 
 function CardIcon({ variant }: { variant: "impact" | "experience" | "belonging" }) {
   if (variant === "experience") {

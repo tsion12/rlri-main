@@ -99,10 +99,10 @@ export function MainHeroCarousel() {
                   className="object-cover"
                 />
               </div>
-              <div className="absolute inset-0 bg-linear-to-br from-teal-950/90 via-zinc-950/75 to-zinc-950/50" />
-              <div className="absolute inset-0 bg-linear-to-t from-zinc-950/85 via-zinc-950/20 to-transparent" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_15%_50%,rgba(20,184,166,0.22),transparent_55%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_100%_0%,rgba(255,255,255,0.06),transparent_50%)]" />
+              {/* Left-weighted scrim: keeps headline legible while the photo stays visible on the right. */}
+              <div className="absolute inset-0 bg-linear-to-r from-zinc-950/80 via-zinc-950/40 to-zinc-950/5" />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950/70 via-zinc-950/5 to-transparent" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_18%_50%,rgba(13,148,136,0.18),transparent_60%)]" />
             </div>
           );
         })}

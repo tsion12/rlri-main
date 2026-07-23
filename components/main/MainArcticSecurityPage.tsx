@@ -64,7 +64,7 @@ export async function MainArcticSecurityPage({ locale }: Props) {
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-900/70 to-slate-950/90"
+          className="absolute inset-0 bg-linear-to-b from-slate-950/70 via-slate-950/40 to-slate-950/80"
           aria-hidden
         />
         <div

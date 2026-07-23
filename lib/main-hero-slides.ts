@@ -19,15 +19,16 @@ export type MainHeroSlide = {
   secondaryCta?: MainHeroSlideCta;
 };
 
+// Hero "Empowering Young Minds for a Secure Future" — curated 8-picture set.
 const MAIN_HERO_IMAGE_FILES = [
-  "Live from the run 1.jpg",
-  "man running while smiling.jpg",
-  "Iqaluit Unity Race.jpeg",
-  "Live from the run 13.jpg",
-  "Celebrate Canada pictures 3.jpeg",
-  "Live from the run 24.jpg",
-  "Welcome to Real Life Research Institute.jpg",
-  "Live from the run 2.jpg",
+  "Rethinking Arctic Security from Iqaluit-conference.jpeg",
+  "WhatsApp-Image-2025-07-23-at-11.01.17.webp",
+  "RUNNING-11.jpg",
+  "WhatsApp Image 2025-08-23 at 19.07.55.jpeg",
+  "RUNNING-1.jpg",
+  "REAL LIFE INSTITUTE-12.jpg",
+  "REAL LIFE INSTITUTE 1-18.jpg",
+  "WhatsApp Image 2025-08-23 at 15.19.35 (12).jpeg",
 ] as const;
 
 const MAIN_HERO_COPY = {
