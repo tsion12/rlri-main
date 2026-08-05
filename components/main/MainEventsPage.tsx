@@ -224,7 +224,9 @@ export async function MainEventsPage({ locale }: Props) {
                 summary={t(report.summaryKey)}
                 embedSrc={mainIssuuEmbedSrc(report.documentId)}
                 viewUrl={mainIssuuViewUrl(report.documentId)}
+                coverImageUrl={report.coverImageUrl}
                 openLabel={t("pages.events.openReport")}
+                loadInlineLabel={t("pages.events.loadInline")}
                 iframeTitle={`${t("pages.events.reportIframeTitle")}: ${t(report.titleKey)}`}
               />
             ))}

@@ -78,8 +78,7 @@ export function MainAboutIssuuFlipbook({
               <iframe
                 title={iframeTitle}
                 src={MAIN_ABOUT_ISSUU_EMBED_SRC}
-                allow="clipboard-write; autoplay; encrypted-media; fullscreen; picture-in-picture"
-                sandbox="allow-top-navigation allow-top-navigation-by-user-activation allow-downloads allow-scripts allow-same-origin allow-popups allow-modals allow-popups-to-escape-sandbox allow-forms"
+                allow="clipboard-write; fullscreen"
                 allowFullScreen
                 className="absolute inset-0 size-full border-0"
                 loading="lazy"

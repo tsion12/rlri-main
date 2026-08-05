@@ -349,13 +349,15 @@ export const en = {
       pastLabel: "Past events",
       pastReportsLabel: "Event reports",
       pastReportsLead:
-        "Flip through post-event reports — Couples Camp Against GBV and SSDiC programming documented on Issuu.",
+        "Flip through post-event reports — Celebrating Canada, Couples Camp Against GBV, and SSDiC programming documented on Issuu.",
+
       pastUnityRunLabel: "Love & Unity Run",
       agendaDate: "Saturday, June 27, 2026",
       agendaActivity: "Activity",
       agendaStart: "Start",
       agendaEnd: "End",
       openReport: "Open in Issuu",
+      loadInline: "Load flipbook here",
       reportEyebrow: "Event report",
       reportIframeTitle: "Event report flipbook",
       featuredLabel: "Next on the calendar",
@@ -393,6 +395,11 @@ export const en = {
         sport: "Sport",
       },
       reports: {
+        celebratingCanada: {
+          title: "Celebrating Canada / Célébration du Canada",
+          summary:
+            "A bilingual flipbook celebrating Canada — community gatherings, culture, and shared moments from RLRI programming across the North.",
+        },
         couplesNight: {
           title: "Couples Camp Against GBV Event Report",
           summary:
