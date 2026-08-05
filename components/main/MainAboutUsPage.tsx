@@ -63,7 +63,6 @@ export async function MainAboutUsPage({ locale }: Props) {
       <MainAboutWhoWeAre
         eyebrow={t("pages.aboutUs.story.eyebrow")}
         heading={t("pages.aboutUs.story.heading")}
-        originTitle={t("pages.aboutUs.story.chapters.origin")}
         mottoLabel={t("pages.aboutUs.story.mottoLabel")}
         motto={t("pages.aboutUs.story.motto")}
         sloganLabel={t("pages.aboutUs.story.sloganLabel")}
@@ -80,7 +79,6 @@ export async function MainAboutUsPage({ locale }: Props) {
         imageAlt={t("pages.aboutUs.story.imageAlt")}
         welcome={t("pages.aboutUs.welcome")}
         welcomeSub={t("pages.aboutUs.welcomeSub")}
-        originBody={t("pages.aboutUs.story.p1")}
       />
 
       {/* Temporarily hidden — Issuu flipbook has a slide issue

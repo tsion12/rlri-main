@@ -1,15 +1,10 @@
-import Image from "next/image";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
-import { mainGallerySrc } from "@/lib/main-gallery";
 import { mainRoutes } from "@/lib/main-routes";
+import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
-
-const HERO_IMAGE = "Supporting Well-Being Across the North.jpg";
-const APPROACH_IMAGE = "Holistic, Community-Driven Mental Health.jpg";
-const BANNER_IMAGE = "REAL LIFE INSTITUTE 1-7 (2).jpg";
 
 export async function MainMentalHealthPage({ locale }: Props) {
   const t = await getTranslator(locale);
@@ -21,14 +16,7 @@ export async function MainMentalHealthPage({ locale }: Props) {
         className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden"
         aria-labelledby="mental-health-hero-heading"
       >
-        <Image
-          src={mainGallerySrc(HERO_IMAGE)}
-          alt=""
-          fill
-          preload
-          className="object-cover"
-          sizes="100vw"
-        />
+        <MainImagePlaceholder accent="teal" variant="overlay" />
         <div
           className="absolute inset-0 bg-linear-to-b from-zinc-950/65 via-zinc-950/40 to-zinc-950/80"
           aria-hidden
@@ -87,17 +75,7 @@ export async function MainMentalHealthPage({ locale }: Props) {
 
           <div className="order-1 lg:order-2">
             <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_32px_80px_-32px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5 dark:ring-white/10 sm:aspect-[5/4] lg:aspect-[4/5]">
-              <Image
-                src={mainGallerySrc(APPROACH_IMAGE)}
-                alt={t("pages.mentalHealth.approachImageAlt")}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div
-                className="pointer-events-none absolute inset-0 bg-linear-to-tr from-teal-950/25 via-transparent to-transparent"
-                aria-hidden
-              />
+              <MainImagePlaceholder accent="teal" variant="panel" />
             </div>
           </div>
         </div>
@@ -106,13 +84,7 @@ export async function MainMentalHealthPage({ locale }: Props) {
       {/* Section 3 — Banner CTA */}
       <section className="relative" aria-labelledby="mental-health-banner-heading">
         <div className="relative min-h-[min(520px,70vh)] overflow-hidden lg:min-h-[min(560px,65vh)]">
-          <Image
-            src={mainGallerySrc(BANNER_IMAGE)}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
+          <MainImagePlaceholder accent="teal" variant="overlay" />
           <div
             className="absolute inset-0 bg-linear-to-r from-zinc-950/50 via-zinc-950/35 to-zinc-950/75 lg:from-zinc-950/40 lg:via-zinc-950/25 lg:to-zinc-950/85"
             aria-hidden

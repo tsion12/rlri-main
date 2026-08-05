@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import type { ComponentType } from "react";
-import { mainGallerySrc } from "@/lib/main-gallery";
+import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 
 function IconVision({ className = "h-10 w-10" }: { className?: string }) {
   return (
@@ -171,8 +170,6 @@ export function MainAboutValuePillars({
   pillars,
   coreLabel,
 }: Props) {
-  const heroImage = mainGallerySrc("Ready to join us.jpg");
-
   return (
     <section
       id="mission-vision"
@@ -181,14 +178,8 @@ export function MainAboutValuePillars({
     >
       {/* Hero band */}
       <div className="relative min-h-[min(440px,58vh)] overflow-hidden">
-        <Image
-          src={heroImage}
-          alt=""
-          fill
-          className="object-cover scale-105"
-          sizes="100vw"
-          priority={false}
-        />
+        {/* Designed placeholder band — no representative photo for this section. */}
+        <MainImagePlaceholder accent="teal" variant="overlay" />
         <div className="absolute inset-0 bg-zinc-950/75" aria-hidden />
         <div
           className="absolute inset-0 bg-linear-to-b from-violet-950/30 via-zinc-950/55 to-zinc-950/92"

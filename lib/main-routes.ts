@@ -8,7 +8,6 @@ export const mainRoutes = {
   ourStory: "/about/our-story",
   missionVision: "/about/mission-vision",
   policies: "/about/policies",
-  publications: "/about/publications",
   blogs: "/blogs",
   arcticSecurity: "/arctic-security",
   mentalHealth: "/mental-health",

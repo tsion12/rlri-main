@@ -19,8 +19,8 @@ export const iu = {
     policies: "Maligaksait",
     publications: "Titiraqsimajut",
     blogs: "Blogit",
-    arcticSecurity: "Ukuaqtiup Piluartumik",
-    conference: "Conference",
+    arcticSecurity: "Community Programs",
+    conference: "Arctic Security",
     mentalHealth: "Isumagijjutivut Aanniaqtailimayut",
     volunteer: "Ikajurniq",
     faq: "Apervigivaktut Apervaktaujut",
@@ -78,7 +78,7 @@ export const iu = {
       eyebrow: "Who we are",
       title: "Welcome to Real Life Research Institute!",
       intro:
-        "The Real-Life Research Institute (RLRI) was founded on the commitment to building stronger, safer, and more inclusive communities where every person has the opportunity to thrive. From our home in Canada's Arctic to Ottawa and beyond, we bring together research, community programs, and partnerships that promote social inclusion, strengthen community resilience, and empower people to shape the decisions that affect their lives.",
+        "The Real Life Research Institute (RLRI) was founded on the commitment to building stronger, safer, and more inclusive communities where every person has the opportunity to thrive. From our home in Canada's Arctic to Ottawa and beyond, we bring together research, community programs, and partnerships that promote social inclusion, strengthen community resilience, and empower people to shape the decisions that affect their lives.",
       skillTitle: "Community-Led Programs",
       skillBody:
         "From youth inclusion and leadership to sports, multiculturalism, and community safety, our programs strengthen social connection, equity, and belonging.",
@@ -187,7 +187,7 @@ export const iu = {
           forward: "What guides us",
         },
         p1:
-          "The Real-Life Research Institute (RLRI) was founded on the commitment to building stronger, safer, and more inclusive communities where every person has the opportunity to thrive, regardless of their background, identity, geography, or socioeconomic circumstances. Our journey began when a group of community leaders, researchers, youth advocates, and practitioners recognized persistent challenges affecting individuals and communities in Iqaluit, Ottawa, and beyond. Many young people, newcomers, Indigenous peoples, women, and other underserved populations continued to face barriers to meaningful participation in society, including social exclusion, inequality, limited access to opportunities, experiences of discrimination, and a lack of culturally responsive support systems.",
+          "The Real Life Research Institute (RLRI) was founded on the commitment to building stronger, safer, and more inclusive communities where every person has the opportunity to thrive, regardless of their background, identity, geography, or socioeconomic circumstances. Our journey began when a group of community leaders, researchers, youth advocates, and practitioners recognized persistent challenges affecting individuals and communities in Iqaluit, Ottawa, and beyond. Many young people, newcomers, Indigenous peoples, women, and other underserved populations continued to face barriers to meaningful participation in society, including social exclusion, inequality, limited access to opportunities, experiences of discrimination, and a lack of culturally responsive support systems.",
         p2:
           "Motivated by a belief that lasting change is built from within communities, we came together to create practical solutions that empower people, strengthen social connections, and promote equity and belonging. Working with limited resources but a shared vision, we organized community dialogues, youth engagement activities, cultural events, mentorship initiatives, sports and recreation programs, and research projects focused on addressing local priorities and amplifying community voices.",
         p3:
@@ -211,7 +211,7 @@ export const iu = {
         eyebrow: "Our value",
         title: "What Sets Us Apart",
         lead:
-          "At the Real Life Research Institute, we do not only study youth and communities; we work to strengthen their voice, expand their choices, and improve their long-term prospects, with a particular focus on individuals under 40.",
+          "At the Real Life Research Institute, we engage youth and communities in research and work to strengthen their voices, expand their choices, and improve their long-term prospects, with a particular focus on individuals under 40.",
         coreLabel: "At our core",
       },
       pillars: {
@@ -274,16 +274,16 @@ export const iu = {
       articleCount: "{count} articles in this section",
     },
     arcticSecurity: {
-      title: "Ukuaqtiup Piluartumik",
+      title: "Community Programs",
       description:
-        "Community-rooted Arctic security through sport, multiculturalism, and Northern–Southern research dialogue in Iqaluit and across the circumpolar North.",
+        "Community programs — sport, multiculturalism, and Northern–Southern research dialogue — that build belonging, trust, and resilience in Iqaluit and across the North.",
       heroEyebrow: "Flagship program",
-      heroTitle: "Arctic Security",
+      heroTitle: "Community Programs",
       introQuestion: "What makes people feel safe and at home in the North?",
       introLead:
-        "At RLRI, Arctic security begins with connected, inclusive communities—not only infrastructure and policy.",
+        "At RLRI, strong and connected communities begin with belonging and inclusion—not only infrastructure and policy.",
       pillarsEyebrow: "Program pillars",
-      pillarsTitle: "Three ways we strengthen security in the North",
+      pillarsTitle: "Three ways we strengthen communities in the North",
       pillarsReadMore: "Read more",
       pillarSportsTitle: "Sports & Community Engagement",
       pillarSportsSummary:
@@ -298,10 +298,10 @@ export const iu = {
         "At the Real Life Research Institute, we understand Arctic security not only as a matter of infrastructure or policy, but as something grounded in strong, connected, and inclusive communities. In the North, people feel safer and more at home when there are meaningful opportunities to connect, interact, and build trust across cultures and generations. Our Sports and Community Engagement program contributes to Arctic security by creating shared spaces that reduce social isolation, strengthen relationships, and build a sense of belonging. We believe that these factors are key in fostering safe and resilient Northern communities. To advance this work, we run two main annual programs in Iqaluit:",
       pillarSportsSoccerTitle: "Community Soccer Initiative",
       pillarSportsSoccerBody:
-        "Bringing youth and community members together through football to promote inclusion, teamwork, and social cohesion. In the spirit of the FIFA World Cup 2026, co-hosted by Canada, our 2026 soccer program is supported through generous funding from Canadian Heritage, enabling us to expand access and community participation.",
+        "Bringing youth and community members together through football to promote inclusion, teamwork, and social cohesion. In the spirit of the FIFA World Cup 2026, co-hosted by Canada, our 2026 soccer program is generously funded by the Government of Canada, enabling us to expand access and community participation.",
       pillarSportsRaceTitle: "Iqaluit Unity Race",
       pillarSportsRaceBody:
-        "As part of our annual Arctic security programming, the Iqaluit Unity Race creates inclusive public spaces that bring people together, strengthen community ties, and promote collective well-being—key foundations of safe and resilient Northern communities. By encouraging broad participation across cultures, ages, gender, and backgrounds, the race helps reduce isolation and foster a shared sense of belonging. These are critical elements of community-based Arctic security.",
+        "As part of our annual Arctic security programming, the Iqaluit Unity Race creates inclusive public spaces that bring people together, strengthen community ties, and promote collective well-being—key foundations of safe and resilient Northern communities. By encouraging broad participation across cultures, ages, genders, and backgrounds, the race helps reduce isolation and foster a shared sense of belonging. These are critical elements of community-based Arctic security.",
       pillarSportsRaceSupport:
         "The first two successive editions of the Iqaluit Unity Race have been delivered with the generous support of the Department of Community Services, Government of Nunavut, and the City of Iqaluit, enabling this initiative to grow into a flagship platform for community engagement and unity in the North.",
       pillarSportsPhotosCta: "See event photos",
@@ -333,7 +333,7 @@ export const iu = {
       approachLabel: "Our approach",
       approachTitle: "Holistic, Community-Driven Mental Health",
       approachP1:
-        "At the Real Life Research Institute, we approach mental health as a community-driven and holistic issue, shaped by culture, connection, and everyday realities in Nunavut. We focus on practical, locally grounded approaches that strengthen well-being, reduce isolation, and promote inclusion across communities.",
+        "At the Real Life Research Institute, we approach mental health as a community-driven, holistic issue shaped by culture, connection, and everyday realities in Nunavut. We focus on practical, locally grounded approaches that strengthen well-being, reduce isolation, and promote inclusion across communities.",
       approachP2:
         "Our work brings together community-based mental health support, harm reduction, and culturally grounded programming, with attention to the diverse needs of youth, women, families, and vulnerable groups. We recognize the importance of addressing the broader conditions that affect mental health, including social connection, access to services, and community environments.",
       approachImageAlt: "Community gathering supporting mental health and well-being in the North",
@@ -474,7 +474,7 @@ export const iu = {
           title: "1st Annual Iqaluit Arctic Security Conference",
           summary:
             "Rethinking Arctic Security from Iqaluit — three days of panels, breakout discussions, and community dialogue bringing federal, territorial, municipal, and Inuit voices together on Canada's Arctic security future.",
-          when: "August 26–28, 2026",
+          when: "Dates to be announced",
           where: "Iqaluit, Nunavut",
           program: "Arctic Security · Research & Dialogue",
         },
@@ -489,7 +489,7 @@ export const iu = {
         communitySoccer: {
           title: "Community Soccer Initiative 2026",
           summary:
-            "Youth and community members come together through football to promote inclusion, teamwork, and social cohesion — supported by Canadian Heritage in the spirit of FIFA World Cup 2026.",
+            "Youth and community members come together through football to promote inclusion, teamwork, and social cohesion — funded by the Government of Canada in the spirit of FIFA World Cup 2026.",
           when: "Summer 2026 · Schedule to be announced",
           where: "Iqaluit, Nunavut",
           program: "Arctic Security · Sports & Community Engagement",
@@ -515,14 +515,14 @@ export const iu = {
     conference: {
       title: "Iqaluit Arctic Security Conference",
       description:
-        "The 1st Annual Iqaluit Arctic Security Conference — Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture. August 26–28, 2026 in Iqaluit, Nunavut.",
+        "The 1st Annual Iqaluit Arctic Security Conference — Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture. Iqaluit, Nunavut — dates to be announced.",
       heroEyebrow: "1st Annual Iqaluit Arctic Security Conference",
       heroTitle:
         "Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture",
       heroLead:
         "The Real Life Institute convenes federal actors, territorial and municipal leaders, Inuit institutions, students, and policy experts in Iqaluit for three days of dialogue — exploring how Canada's Arctic security investments can be inclusive and deliver sustainable outcomes for all communities.",
       heroWhenLabel: "When",
-      heroWhen: "August 26–28, 2026",
+      heroWhen: "Dates to be announced",
       heroWhereLabel: "Where",
       heroWhere: "Iqaluit, Nunavut",
       heroFormatLabel: "Format",
@@ -552,10 +552,10 @@ export const iu = {
       expectEyebrow: "Conference format",
       expectTitle: "A reverse-engagement model",
       expectLead:
-        "Unlike traditional conferences where policymakers primarily present and receive questions, this conference creates space for community actors to present their perspectives and priorities first — followed by structured Q&A enabling direct dialogue with invited DND/CAF stakeholders.",
+        "Unlike traditional conferences where policymakers primarily present and receive questions, this conference creates space for community actors to present their perspectives and priorities first, followed by a structured Q&A that enables direct dialogue with invited DND/CAF stakeholders.",
       expect1Title: "Panels, breakouts & plenaries",
       expect1Body:
-        "Each session features a panel discussion, interactive Q&A, and facilitated breakout groups, followed by a plenary where sub-groups report back on key insights and recommendations.",
+        "Each session features a panel discussion, an interactive Q&A, and facilitated breakout groups, followed by a plenary in which sub-groups report back on key insights and recommendations.",
       expect2Title: "Students as contributors",
       expect2Body:
         "Students take part throughout — joining breakout discussions, co-authoring a dedicated policy brief, and contributing to post-conference policy briefings — developing the next generation of Canadian defence and security scholars.",
@@ -573,11 +573,11 @@ export const iu = {
       agendaBreakoutLabel: "Breakout question",
       agenda: {
         day1Label: "Day one",
-        day1Date: "Wednesday, August 26, 2026",
+        day1Date: "Date to be announced",
         day2Label: "Day two",
-        day2Date: "Thursday, August 27, 2026",
+        day2Date: "Date to be announced",
         day3Label: "Day three",
-        day3Date: "Friday, August 28, 2026",
+        day3Date: "Date to be announced",
         items: {
           arrival: "Arrival and registration",
           welcome: "Welcome remarks",

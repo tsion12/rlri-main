@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n/config";
 import type { TranslationKey } from "@/lib/i18n/messages/en";
 import { getTranslator } from "@/lib/i18n/translate";
 import { MainEventsHero } from "@/components/main/MainEventsHero";
+import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 import { MainIssuuEmbed } from "@/components/main/MainIssuuEmbed";
 import { MainLink } from "@/components/main/MainLink";
 import { MainRecentMulticulturalismSection } from "@/components/main/MainRecentMulticulturalismSection";
@@ -35,13 +36,17 @@ function EventCard({
   const content = (
     <>
       <div className={`relative overflow-hidden ${featured ? "aspect-21/9 sm:aspect-24/9" : "aspect-16/10"}`}>
-        <Image
-          src={mainGallerySrc(event.image)}
-          alt=""
-          fill
-          className="object-cover transition duration-700 group-hover:scale-105"
-          sizes={featured ? "(max-width: 768px) 100vw, 56rem" : "(max-width: 768px) 100vw, 24rem"}
-        />
+        {event.placeholder ? (
+          <MainImagePlaceholder accent="sky" variant="panel" />
+        ) : (
+          <Image
+            src={mainGallerySrc(event.image)}
+            alt=""
+            fill
+            className="object-cover transition duration-700 group-hover:scale-105"
+            sizes={featured ? "(max-width: 768px) 100vw, 56rem" : "(max-width: 768px) 100vw, 24rem"}
+          />
+        )}
         <div
           className="absolute inset-0 bg-linear-to-t from-zinc-950/70 via-zinc-950/20 to-transparent"
           aria-hidden

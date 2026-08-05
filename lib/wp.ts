@@ -115,6 +115,19 @@ function normalizeWpMediaUrl(url: string | null | undefined): string | null {
   return url.trim();
 }
 
+/**
+ * Rewrite apex `reallifeinstitute.org/wp-content/...` links inside rendered post
+ * HTML to the www host. The apex returns 403 for uploads, so inline PDF/media
+ * links in the body would otherwise fail the same way the download button did.
+ */
+function normalizeWpUploadHostsInHtml(html: string | null | undefined): string {
+  if (!html) return html ?? "";
+  return html.replace(
+    /https:\/\/reallifeinstitute\.org\/wp-content\//gi,
+    "https://www.reallifeinstitute.org/wp-content/",
+  );
+}
+
 const WP_REVALIDATE_SECONDS = 300;
 const WP_TIMEOUT_MS = 12000;
 const WP_POSTS_PER_PAGE = 50;
@@ -285,7 +298,12 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
       const slug = cat.slug ? normCategoryName(cat.slug) : "";
       return MAIN_POLICY_CATEGORY_NAME_UNION.has(name) || MAIN_POLICY_CATEGORY_NAME_UNION.has(slug);
     });
-  const downloadUrl = isPolicy ? extractPolicyDownloadUrl(post.content.rendered) : null;
+  // Normalize to the www host: the apex reallifeinstitute.org returns 403 for
+  // uploads, so the raw PDF link parsed from post content must be rewritten too
+  // (same reason featured images are normalized above).
+  const downloadUrl = isPolicy
+    ? normalizeWpMediaUrl(extractPolicyDownloadUrl(post.content.rendered))
+    : null;
   const isPublication =
     source === "main" &&
     categories.some((cat) => {
@@ -300,7 +318,7 @@ function normalizePost(source: WpSource, post: WpApiPost): WpPostWithSource {
     slug: post.slug,
     date: post.date,
     title: post.title,
-    content: post.content,
+    content: { ...post.content, rendered: normalizeWpUploadHostsInHtml(post.content.rendered) },
     excerpt: post.excerpt,
     featuredImage: normalizeWpMediaUrl(post.yoast_head_json?.og_image?.[0]?.url),
     theme: isPolicy ? "Policy" : programLabel ?? category?.name?.trim() ?? null,
