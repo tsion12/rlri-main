@@ -11,21 +11,21 @@ export type MainFaqItem = {
 export const MAIN_FAQ_ITEMS: MainFaqItem[] = [
   {
     id: "what-is-rlri",
-    question: "What is Real Life Research Institute?",
+    question: "What is the Real Life Research Institute?",
     answer:
-      "Real Life Research Institute (RLRI) is a federally and territorially registered non-profit organization based in Iqaluit, Nunavut, Canada. We support community-based projects and research that aim to improve the well-being and daily lives of people both within our communities and beyond. Our work focuses on empowering individuals with diverse learning needs and those in underserved communities through our Literacies Program, which includes financial literacy, digital literacy, health and cultural literacy, and environmental literacy. In addition to these programs, we conduct humanitarian and development work in vulnerable communities in Canada and abroad. We rely on both our dedicated Canada-based staff to support our programs and a trusted network of local experts and partners who lead implementation efforts on the ground abroad.",
+      "The Real Life Research Institute (RLRI) is a federally and territorially registered nonprofit organization based in Iqaluit, Nunavut, Canada. We support community-based projects and research that aim to improve the well-being and daily lives of people both within our communities and beyond. Our work focuses on empowering individuals with diverse learning needs and those in underserved communities through our Literacies Program, which includes financial, digital, health, cultural, and environmental literacy. In addition to these programs, we conduct humanitarian and development work in vulnerable communities in Canada and abroad. We rely on both our dedicated Canada-based staff to support our programs and a trusted network of local experts and partners who lead implementation efforts on the ground and abroad.",
   },
   {
     id: "who-we-support",
     question: "Who does the Real Life Research Institute support?",
     answer:
-      "Our work supports youth, particularly young adults under 40, as well as women and individuals with diverse learning needs, including those with limited access to formal education or training. We serve underserved and remote communities, with a strong focus on Nunavut, by delivering inclusive programs that build capacity in financial, digital, health and cultural, and environmental literacy. Internationally, we extend our support to vulnerable populations through humanitarian efforts, WASH (water, sanitation, and hygiene) programs, peacebuilding, and climate resilience initiatives.",
+      "Our work supports youth, particularly young adults under 40, as well as women and individuals with diverse learning needs, including those with limited access to formal education or training. We serve underserved and remote communities, with a strong focus on Nunavut, by delivering inclusive programs that build capacity in financial, digital, health, cultural, and environmental literacy. Internationally, we extend our support to vulnerable populations through humanitarian efforts, WASH (water, sanitation, and hygiene) programs, peacebuilding, and climate resilience initiatives.",
   },
   {
     id: "where-we-work",
     question: "How does Real Life decide where to work?",
     answer:
-      "Real Life Research Institute determines where to work based on a combination of community-identified needs, research evidence, and strategic partnerships. We prioritize regions and populations where systemic barriers to opportunity persist and where our programs can create meaningful, sustainable impact. Whether locally in Nunavut or internationally, we respond to urgent challenges such as educational inequality, climate vulnerability, or humanitarian crises by working collaboratively with local stakeholders, organizations, and experts who understand the unique context of each community.",
+      "The Real Life Research Institute determines where to work based on a combination of community-identified needs, research evidence, and strategic partnerships. We prioritize regions and populations where systemic barriers to opportunity persist and where our programs can create meaningful, sustainable impact. Whether locally in Nunavut or internationally, we respond to urgent challenges such as educational inequality, climate vulnerability, and humanitarian crises by working collaboratively with local stakeholders, organizations, and experts who understand each community's unique context.",
   },
   {
     id: "contributions",
@@ -58,11 +58,11 @@ export const MAIN_FAQ_ITEMS: MainFaqItem[] = [
     id: "fund-beneficiaries",
     question: "Who benefits from Real Life's scholarships and emergency relief fund?",
     answer:
-      "Real Life's scholarships and emergency relief fund primarily benefit individuals from underserved communities. We also support individuals and families in crisis, such as those affected by displacement, housing insecurity, and other emergencies, by providing timely assistance to help them regain stability and continue their personal or academic journey.",
+      "Real Life's scholarships and emergency relief fund primarily benefit individuals from underserved communities. We also support individuals and families in crisis, such as those affected by displacement, housing insecurity, and other emergencies, by providing timely assistance to help them regain stability and continue their personal or academic journeys.",
   },
   {
     id: "safeguarding",
-    question: "What are Real Life Research Institute's safeguarding principles?",
+    question: "What are the Real Life Research Institute's safeguarding principles?",
     answer:
       'Real Life Research Institute is committed to upholding the highest standards of safeguarding to ensure the safety, dignity, and well-being of all individuals involved in our programs, especially children, youth, women, and vulnerable community members. Our safeguarding principles include zero tolerance for abuse and exploitation. All staff, volunteers, and partners are expected to adhere to our safeguarding policy and code of conduct. For more information, please see the "Policies" section on our website to access our full safeguarding policy and related documents.',
     answerLinkPhrase: '"Policies" section',
@@ -87,12 +87,12 @@ export const MAIN_FAQ_ITEMS: MainFaqItem[] = [
     id: "indigenous-knowledge",
     question: "How does Real Life approach Indigenous knowledge and decolonization?",
     answer:
-      "Real Life Research Institute centers Indigenous knowledge, leadership, and lived experience across all aspects of our work. We engage in decolonial research and programming that prioritizes Indigenous languages, practices, worldviews, and community-defined goals.",
+      "Real Life Research Institute centres Indigenous knowledge, leadership, and lived experience across all aspects of our work. We engage in decolonial research and programming that prioritizes Indigenous languages, practices, worldviews, and community-defined goals.",
   },
   {
     id: "humanitarian",
     question: "What is Real Life's role in humanitarian research and response?",
     answer:
-      "Real Life Research Institute plays an active role in humanitarian research and response by conducting community-centered, evidence-based research that informs effective interventions in crisis-affected regions. We collaborate closely with local partners and experts to design and implement programs addressing climate change, displacement, food security, health, water, sanitation, and hygiene. Our approach prioritizes the rights, dignity, and participation of affected populations to ensure sustainable and culturally appropriate solutions.",
+      "Real Life Research Institute plays an active role in humanitarian research and response by conducting community-centred, evidence-based research that informs effective interventions in crisis-affected regions. We collaborate closely with local partners and experts to design and implement programs addressing climate change, displacement, food security, health, water, sanitation, and hygiene. Our approach prioritizes the rights, dignity, and participation of affected populations to ensure sustainable and culturally appropriate solutions.",
   },
 ];

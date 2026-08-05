@@ -10,6 +10,8 @@ export type MainInstituteEvent = {
   sortDate: string;
   /** Filename inside `public/assets/main-gallery/` (not necessarily part of the home gallery). */
   image: string;
+  /** When true, the card shows a designed placeholder instead of `image` (e.g. an event with no representative photo yet). */
+  placeholder?: boolean;
   titleKey: TranslationKey;
   summaryKey: TranslationKey;
   whenKey: TranslationKey;
@@ -39,7 +41,9 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
     id: "arctic-security-conference-2026",
     timing: "upcoming",
     sortDate: "2026-08-26",
+    // Conference has not happened yet — show a designed placeholder, not a photo.
     image: "Rethinking Arctic Security from Iqaluit-conference.jpeg",
+    placeholder: true,
     titleKey: "pages.events.items.arcticConference.title",
     summaryKey: "pages.events.items.arcticConference.summary",
     whenKey: "pages.events.items.arcticConference.when",

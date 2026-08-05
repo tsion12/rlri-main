@@ -287,7 +287,7 @@ export function BlogEngagement({ slug, source, title }: Props) {
                   type="submit"
                   className="inline-flex items-center gap-2 rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-semibold text-white shadow transition hover:bg-stone-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
                 >
-                  Share thought
+                  Share thoughts
                   <span aria-hidden>→</span>
                 </button>
               </div>

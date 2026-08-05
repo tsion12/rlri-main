@@ -15,8 +15,8 @@ export const fr = {
     policies: "Politiques",
     publications: "Publications",
     blogs: "Blogues",
-    arcticSecurity: "Sécurité arctique",
-    conference: "Conférence",
+    arcticSecurity: "Programmes communautaires",
+    conference: "Sécurité arctique",
     mentalHealth: "Santé mentale",
     volunteer: "Bénévolat",
     faq: "FAQ",
@@ -271,16 +271,16 @@ export const fr = {
       articleCount: "{count} articles dans cette section",
     },
     arcticSecurity: {
-      title: "Sécurité arctique",
+      title: "Programmes communautaires",
       description:
-        "Une sécurité arctique ancrée dans la communauté — sport, multiculturalisme et dialogue de recherche Nord–Sud à Iqaluit et dans l'Arctique circumpolaire.",
+        "Des programmes communautaires — sport, multiculturalisme et dialogue de recherche Nord–Sud — qui renforcent l'appartenance, la confiance et la résilience à Iqaluit et dans tout le Nord.",
       heroEyebrow: "Programme phare",
-      heroTitle: "Sécurité arctique",
+      heroTitle: "Programmes communautaires",
       introQuestion: "Qu'est-ce qui fait que les gens se sentent en sécurité et chez eux dans le Nord?",
       introLead:
-        "À l'IRRV, la sécurité arctique commence par des communautés connectées et inclusives — pas seulement par les infrastructures et les politiques.",
+        "À l'IRRV, des communautés fortes et connectées commencent par l'appartenance et l'inclusion — pas seulement par les infrastructures et les politiques.",
       pillarsEyebrow: "Piliers du programme",
-      pillarsTitle: "Trois façons de renforcer la sécurité dans le Nord",
+      pillarsTitle: "Trois façons de renforcer les communautés dans le Nord",
       pillarsReadMore: "En savoir plus",
       pillarSportsTitle: "Sport et engagement communautaire",
       pillarSportsSummary:
@@ -295,10 +295,10 @@ export const fr = {
         "At the Real Life Research Institute, we understand Arctic security not only as a matter of infrastructure or policy, but as something grounded in strong, connected, and inclusive communities. In the North, people feel safer and more at home when there are meaningful opportunities to connect, interact, and build trust across cultures and generations. Our Sports and Community Engagement program contributes to Arctic security by creating shared spaces that reduce social isolation, strengthen relationships, and build a sense of belonging. We believe that these factors are key in fostering safe and resilient Northern communities. To advance this work, we run two main annual programs in Iqaluit:",
       pillarSportsSoccerTitle: "Initiative de soccer communautaire",
       pillarSportsSoccerBody:
-        "Bringing youth and community members together through football to promote inclusion, teamwork, and social cohesion. In the spirit of the FIFA World Cup 2026, co-hosted by Canada, our 2026 soccer program is supported through generous funding from Canadian Heritage, enabling us to expand access and community participation.",
+        "Bringing youth and community members together through football to promote inclusion, teamwork, and social cohesion. In the spirit of the FIFA World Cup 2026, co-hosted by Canada, our 2026 soccer program is generously funded by the Government of Canada, enabling us to expand access and community participation.",
       pillarSportsRaceTitle: "Course de l'unité d'Iqaluit",
       pillarSportsRaceBody:
-        "As part of our annual Arctic security programming, the Iqaluit Unity Race creates inclusive public spaces that bring people together, strengthen community ties, and promote collective well-being—key foundations of safe and resilient Northern communities. By encouraging broad participation across cultures, ages, gender, and backgrounds, the race helps reduce isolation and foster a shared sense of belonging. These are critical elements of community-based Arctic security.",
+        "As part of our annual Arctic security programming, the Iqaluit Unity Race creates inclusive public spaces that bring people together, strengthen community ties, and promote collective well-being—key foundations of safe and resilient Northern communities. By encouraging broad participation across cultures, ages, genders, and backgrounds, the race helps reduce isolation and foster a shared sense of belonging. These are critical elements of community-based Arctic security.",
       pillarSportsRaceSupport:
         "The first two successive editions of the Iqaluit Unity Race have been delivered with the generous support of the Department of Community Services, Government of Nunavut, and the City of Iqaluit, enabling this initiative to grow into a flagship platform for community engagement and unity in the North.",
       pillarSportsPhotosCta: "Voir les photos d'événements",
@@ -471,7 +471,7 @@ export const fr = {
           title: "1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique",
           summary:
             "Repenser la sécurité de l'Arctique depuis Iqaluit — trois journées de tables rondes, de discussions en sous-groupes et de dialogue communautaire réunissant des voix fédérales, territoriales, municipales et inuites sur l'avenir de la sécurité de l'Arctique canadien.",
-          when: "Du 26 au 28 août 2026",
+          when: "Dates à confirmer",
           where: "Iqaluit, Nunavut",
           program: "Sécurité arctique · Recherche et dialogue",
         },
@@ -486,7 +486,7 @@ export const fr = {
         communitySoccer: {
           title: "Initiative de soccer communautaire 2026",
           summary:
-            "Les jeunes et les membres de la communauté se réunissent autour du football pour promouvoir l'inclusion et la cohésion sociale — avec le soutien de Patrimoine canadien.",
+            "Les jeunes et les membres de la communauté se réunissent autour du football pour promouvoir l'inclusion et la cohésion sociale — avec le soutien du gouvernement du Canada.",
           when: "Été 2026 · Horaire à confirmer",
           where: "Iqaluit, Nunavut",
           program: "Sécurité arctique · Sport et engagement communautaire",
@@ -512,14 +512,14 @@ export const fr = {
     conference: {
       title: "Conférence d'Iqaluit sur la sécurité de l'Arctique",
       description:
-        "La 1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique — Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada. Du 26 au 28 août 2026 à Iqaluit, au Nunavut.",
+        "La 1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique — Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada. Iqaluit, au Nunavut — dates à confirmer.",
       heroEyebrow: "1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique",
       heroTitle:
         "Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada",
       heroLead:
         "L'Institut Real Life réunit à Iqaluit des acteurs fédéraux, des dirigeants territoriaux et municipaux, des institutions inuites, des étudiants et des experts en politiques pour trois journées de dialogue — afin que les investissements du Canada en matière de sécurité dans l'Arctique soient inclusifs et produisent des retombées durables pour toutes les communautés.",
       heroWhenLabel: "Quand",
-      heroWhen: "Du 26 au 28 août 2026",
+      heroWhen: "Dates à confirmer",
       heroWhereLabel: "Où",
       heroWhere: "Iqaluit, Nunavut",
       heroFormatLabel: "Format",
@@ -570,11 +570,11 @@ export const fr = {
       agendaBreakoutLabel: "Question des sous-groupes",
       agenda: {
         day1Label: "Jour un",
-        day1Date: "Mercredi 26 août 2026",
+        day1Date: "Date à confirmer",
         day2Label: "Jour deux",
-        day2Date: "Jeudi 27 août 2026",
+        day2Date: "Date à confirmer",
         day3Label: "Jour trois",
-        day3Date: "Vendredi 28 août 2026",
+        day3Date: "Date à confirmer",
         items: {
           arrival: "Arrivée et inscription",
           welcome: "Mot de bienvenue",

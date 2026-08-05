@@ -3,10 +3,10 @@ import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
 import { mainGallerySrc } from "@/lib/main-gallery";
 import { mainEmails } from "@/lib/main-routes";
+import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 
 type Props = { locale: Locale };
 
-const HERO_IMAGE = "Calling all Student Volunteers.jpeg";
 const HERO_BADGE_IMAGE = "volunteer.jpeg";
 // "Ready to join us?" — MLA and the City of Iqaluit tent.
 const APPLY_IMAGE = "WhatsApp Image 2025-08-23 at 19.08.01 (1).jpeg";
@@ -79,14 +79,8 @@ export async function MainVolunteerPage({ locale }: Props) {
 
           <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:justify-self-end">
             <div className="relative aspect-4/5 overflow-hidden rounded-3xl bg-zinc-100 shadow-[0_28px_70px_-30px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-white/10">
-              <Image
-                src={mainGallerySrc(HERO_IMAGE)}
-                alt={t("pages.volunteer.heroImageAlt")}
-                fill
-                preload
-                className="object-cover"
-                sizes="(max-width: 1024px) 90vw, 28rem"
-              />
+              {/* No student-volunteer photo yet — designed placeholder. */}
+              <MainImagePlaceholder accent="teal" variant="panel" />
             </div>
             <div className="absolute -bottom-6 -left-4 w-44 overflow-hidden rounded-2xl border-4 border-white shadow-xl sm:-left-6 sm:w-52 dark:border-zinc-900">
               <div className="relative aspect-4/3 bg-zinc-100 dark:bg-zinc-900">

@@ -6,7 +6,6 @@ import { au } from "@/components/shared/africa-ui";
 type Props = {
   eyebrow: string;
   heading: string;
-  originTitle: string;
   mottoLabel: string;
   motto: string;
   sloganLabel: string;
@@ -18,13 +17,11 @@ type Props = {
   imageAlt: string;
   welcome: string;
   welcomeSub: string;
-  originBody: string;
 };
 
 export function MainAboutWhoWeAre({
   eyebrow,
   heading,
-  originTitle,
   mottoLabel,
   motto,
   sloganLabel,
@@ -36,7 +33,6 @@ export function MainAboutWhoWeAre({
   imageAlt,
   welcome,
   welcomeSub,
-  originBody,
 }: Props) {
   return (
     <section
@@ -87,12 +83,12 @@ export function MainAboutWhoWeAre({
           </ul>
         </header>
 
-        {/* Origin feature */}
+        {/* Origin image */}
         <div
-          className="home-fade-up mt-14 grid items-start gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-8 xl:gap-12"
+          className="home-fade-up mt-14 flex justify-center lg:mt-20"
           style={{ animationDelay: "100ms" }}
         >
-          <div className="relative lg:col-span-5 lg:sticky lg:top-28">
+          <div className="relative w-full max-w-md lg:max-w-xl">
             <div
               className="pointer-events-none absolute -bottom-3 -right-3 hidden h-full w-full rounded-3xl border-2 border-teal-500/35 lg:block dark:border-teal-500/25"
               aria-hidden
@@ -130,19 +126,6 @@ export function MainAboutWhoWeAre({
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7">
-            <div className="relative overflow-hidden rounded-3xl bg-white/90 p-8 shadow-[0_20px_50px_-24px_rgba(15,23,42,0.2)] ring-1 ring-zinc-200/90 backdrop-blur-sm dark:bg-zinc-900/80 dark:ring-zinc-800/90 sm:p-10 lg:p-11">
-              <div
-                className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-linear-to-r from-violet-700 via-teal-600 to-teal-400"
-                aria-hidden
-              />
-              <p className={au.about.sectionTitle}>{originTitle}</p>
-              <p className="about-dropcap mt-6 text-lg leading-[1.82] text-zinc-700 dark:text-zinc-300">
-                {originBody}
-              </p>
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
-import Image from "next/image";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
-import { CONFERENCE_HERO_IMAGE } from "@/lib/main-conference";
 import { mainEmails, mainRoutes } from "@/lib/main-routes";
+import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
@@ -24,14 +23,8 @@ export async function MainConferencePage({ locale }: Props) {
         className="relative flex min-h-dvh items-center justify-center overflow-hidden"
         aria-labelledby="conference-hero-heading"
       >
-        <Image
-          src={CONFERENCE_HERO_IMAGE}
-          alt={t("pages.conference.heroImageAlt")}
-          fill
-          preload
-          className="object-cover"
-          sizes="100vw"
-        />
+        {/* Conference not held yet — designed placeholder in place of a photo. */}
+        <MainImagePlaceholder accent="sky" variant="overlay" />
         <div
           className="absolute inset-0 bg-linear-to-b from-slate-950/70 via-slate-950/45 to-slate-950/85"
           aria-hidden
