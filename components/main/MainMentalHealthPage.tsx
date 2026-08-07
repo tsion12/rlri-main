@@ -1,10 +1,15 @@
+import Image from "next/image";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
+import { mainGallerySrc } from "@/lib/main-gallery";
 import { mainRoutes } from "@/lib/main-routes";
 import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
+
+// "Our approach" — RLRI volunteers looking after a runner on the tundra course.
+const APPROACH_IMAGE = "Holistic, Community-Driven Mental Health.jpg";
 
 export async function MainMentalHealthPage({ locale }: Props) {
   const t = await getTranslator(locale);
@@ -75,7 +80,13 @@ export async function MainMentalHealthPage({ locale }: Props) {
 
           <div className="order-1 lg:order-2">
             <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_32px_80px_-32px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5 dark:ring-white/10 sm:aspect-[5/4] lg:aspect-[4/5]">
-              <MainImagePlaceholder accent="teal" variant="panel" />
+              <Image
+                src={mainGallerySrc(APPROACH_IMAGE)}
+                alt={t("pages.mentalHealth.approachImageAlt")}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>

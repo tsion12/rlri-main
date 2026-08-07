@@ -312,7 +312,8 @@ export const fr = {
       pillar1SoccerAlt: "Match de soccer communautaire à Iqaluit",
       pillar1RaceAlt: "Participants à la course de l'unité d'Iqaluit",
       pillar2ImageAlt: "Rassemblement multiculturel dans le Nord",
-      pillar3ImageAlt: "Dialogue de recherche entre communautés du Nord et partenaires",
+      pillar3ImageAlt:
+        "Délégués rassemblés sur les marches devant une conférence de recherche et de politiques",
       ctaEyebrow: "S'impliquer",
       ctaTitle: "Contribuer à des communautés nordiques plus sûres et plus connectées",
       ctaBody:
@@ -333,7 +334,8 @@ export const fr = {
         "À l'Institut de recherche Real Life, nous abordons la santé mentale comme une question communautaire et holistique, façonnée par la culture, les liens et les réalités du quotidien au Nunavut. Nous privilégions des approches pratiques et locales qui renforcent le bien-être, réduisent l'isolement et favorisent l'inclusion dans les communautés.",
       approachP2:
         "Notre travail réunit le soutien communautaire en santé mentale, la réduction des méfaits et des programmes culturellement adaptés, en tenant compte des besoins des jeunes, des femmes, des familles et des groupes vulnérables. Nous reconnaissons l'importance des conditions plus larges qui influencent la santé mentale, notamment les liens sociaux, l'accès aux services et les environnements communautaires.",
-      approachImageAlt: "Rassemblement communautaire en appui au bien-être dans le Nord",
+      approachImageAlt:
+        "Des bénévoles de l'IRRL prennent soin d'une personne coureuse au repos en bordure du parcours, en lui offrant de l'eau et du soutien",
       bannerTitle: "Soutenir le bien-être dans tout le Nord",
       bannerSubtext:
         "Programmation pratique et culturellement adaptée en santé mentale pour les communautés du Nunavut.",
@@ -648,10 +650,12 @@ export const fr = {
       applyBody:
         "Envoyez votre CV à jobs_hr@reallifeinstitute.org. Les candidatures ferment le 15 mai 2026. Nous accueillons des candidats de tous horizons passionnés par la communauté et l'inclusion.",
       applyNow: "Postuler",
-      // TODO(fr): French translations needed for the three alt strings below (English placeholders).
-      heroImageAlt: "Student volunteer in a Real Life Institute t-shirt wearing a Canada lanyard",
-      heroBadgeImageAlt: "RLRI volunteer in a red team shirt visiting a museum exhibit",
-      applyImageAlt: "RLRI volunteers serving food together under an event tent",
+      heroImageAlt:
+        "Jeune bénévole en chandail rouge de l'Institut de recherche Real Life, devant une vitrine de sculptures inuites",
+      heroBadgeImageAlt:
+        "Jeune bénévole portant un chandail d'équipe de l'Institut de recherche Real Life et un cordon Canada",
+      applyImageAlt:
+        "L'équipe de l'IRRL remet un prix à un membre de la communauté sous la tente de la Ville d'Iqaluit",
     },
     faq: {
       title: "Foire aux questions",

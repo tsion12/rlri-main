@@ -315,7 +315,8 @@ export const iu = {
       pillar1SoccerAlt: "Community soccer game in Iqaluit",
       pillar1RaceAlt: "Participants at the Iqaluit Unity Race",
       pillar2ImageAlt: "Multicultural community gathering and celebration in the North",
-      pillar3ImageAlt: "Research dialogue connecting Northern communities and partners",
+      pillar3ImageAlt:
+        "Delegates gathered on the steps outside a research and policy conference",
       ctaEyebrow: "Get involved",
       ctaTitle: "Help build safer, more connected Northern communities",
       ctaBody:
@@ -336,7 +337,8 @@ export const iu = {
         "At the Real Life Research Institute, we approach mental health as a community-driven, holistic issue shaped by culture, connection, and everyday realities in Nunavut. We focus on practical, locally grounded approaches that strengthen well-being, reduce isolation, and promote inclusion across communities.",
       approachP2:
         "Our work brings together community-based mental health support, harm reduction, and culturally grounded programming, with attention to the diverse needs of youth, women, families, and vulnerable groups. We recognize the importance of addressing the broader conditions that affect mental health, including social connection, access to services, and community environments.",
-      approachImageAlt: "Community gathering supporting mental health and well-being in the North",
+      approachImageAlt:
+        "RLRI volunteers checking on a runner resting beside the course, offering water and support",
       bannerTitle: "Supporting Well-Being Across the North",
       bannerSubtext:
         "Practical, culturally grounded mental health programming for communities in Nunavut.",
@@ -649,9 +651,12 @@ export const iu = {
       applyBody:
         "Send your resume to jobs_hr@reallifeinstitute.org. Applications close May 15, 2026. We welcome applicants from all backgrounds who are passionate about community and inclusion.",
       applyNow: "Apply now",
-      heroImageAlt: "Student volunteer in a Real Life Institute t-shirt wearing a Canada lanyard",
-      heroBadgeImageAlt: "RLRI volunteer in a red team shirt visiting a museum exhibit",
-      applyImageAlt: "RLRI volunteers serving food together under an event tent",
+      heroImageAlt:
+        "Student volunteer in a red Real Life Research Institute shirt standing in front of a display of Inuit carvings",
+      heroBadgeImageAlt:
+        "Student volunteer in a Real Life Research Institute team shirt wearing a Canada lanyard",
+      applyImageAlt:
+        "RLRI team presenting an award to a community member under the City of Iqaluit tent",
     },
     faq: {
       title: "Apervigivaktut Apervaktaujut",

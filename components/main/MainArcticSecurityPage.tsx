@@ -3,7 +3,6 @@ import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
 import { ARCTIC_PILLAR_IDS, ARCTIC_SECURITY_IMAGES } from "@/lib/main-arctic-security";
 import { mainEventsGalleryHash, mainRoutes } from "@/lib/main-routes";
-import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
@@ -265,9 +264,13 @@ export async function MainArcticSecurityPage({ locale }: Props) {
       >
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-24">
           <div className="relative order-2 aspect-4/5 overflow-hidden rounded-3xl shadow-[0_32px_80px_-32px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5 dark:ring-white/10 lg:order-1 sm:aspect-[5/4]">
-            {/* Research & Northern–Southern Dialogue — designed placeholder in
-                place of a repeated photo. */}
-            <MainImagePlaceholder accent="teal" variant="panel" />
+            <Image
+              src={ARCTIC_SECURITY_IMAGES.pillar3Dialogue}
+              alt={t("pages.arcticSecurity.pillar3ImageAlt")}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
           <div className="order-1 lg:order-2">
             <div className="flex flex-wrap items-center gap-4">

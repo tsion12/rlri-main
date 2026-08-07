@@ -3,10 +3,11 @@ import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
 import { mainGallerySrc } from "@/lib/main-gallery";
 import { mainEmails } from "@/lib/main-routes";
-import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 
 type Props = { locale: Locale };
 
+// "Calling all student volunteers!" — student volunteer in an RLRI team shirt.
+const HERO_IMAGE = "Calling all Student Volunteers.jpeg";
 const HERO_BADGE_IMAGE = "volunteer.jpeg";
 // "Ready to join us?" — MLA and the City of Iqaluit tent.
 const APPLY_IMAGE = "WhatsApp Image 2025-08-23 at 19.08.01 (1).jpeg";
@@ -79,8 +80,14 @@ export async function MainVolunteerPage({ locale }: Props) {
 
           <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:justify-self-end">
             <div className="relative aspect-4/5 overflow-hidden rounded-3xl bg-zinc-100 shadow-[0_28px_70px_-30px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-white/10">
-              {/* No student-volunteer photo yet — designed placeholder. */}
-              <MainImagePlaceholder accent="teal" variant="panel" />
+              <Image
+                src={mainGallerySrc(HERO_IMAGE)}
+                alt={t("pages.volunteer.heroImageAlt")}
+                fill
+                preload
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 28rem"
+              />
             </div>
             <div className="absolute -bottom-6 -left-4 w-44 overflow-hidden rounded-2xl border-4 border-white shadow-xl sm:-left-6 sm:w-52 dark:border-zinc-900">
               <div className="relative aspect-4/3 bg-zinc-100 dark:bg-zinc-900">
@@ -139,7 +146,9 @@ export async function MainVolunteerPage({ locale }: Props) {
               src={mainGallerySrc(APPLY_IMAGE)}
               alt={t("pages.volunteer.applyImageAlt")}
               fill
-              className="object-cover"
+              /* Framed from near the top of the tall source frame so the City of
+                 Iqaluit logo on the tent canopy stays in shot. */
+              className="object-cover object-[center_15%]"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
