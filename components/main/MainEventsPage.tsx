@@ -8,9 +8,8 @@ import { MainIssuuEmbed } from "@/components/main/MainIssuuEmbed";
 import { MainLink } from "@/components/main/MainLink";
 import { MainRecentMulticulturalismSection } from "@/components/main/MainRecentMulticulturalismSection";
 import {
-  getMainInstituteUpcomingEvents,
+  getMainInstituteEvents,
   MAIN_PAST_GATHERING,
-  MULTICULTURALISM_GALLERY_IMAGES,
   EVENTS_HERO_IMAGES,
   type MainInstituteEvent,
 } from "@/lib/main-events";
@@ -28,10 +27,13 @@ function EventCard({
   event,
   t,
   featured,
+  ribbon,
 }: {
   event: MainInstituteEvent;
   t: (key: TranslationKey) => string;
   featured?: boolean;
+  /** Corner ribbon on featured cards. Omit on past events — they are not "next on the calendar". */
+  ribbon?: string;
 }) {
   const content = (
     <>
@@ -51,9 +53,9 @@ function EventCard({
           className="absolute inset-0 bg-linear-to-t from-zinc-950/70 via-zinc-950/20 to-transparent"
           aria-hidden
         />
-        {featured ? (
+        {ribbon ? (
           <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-            {t("pages.events.featuredLabel")}
+            {ribbon}
           </span>
         ) : null}
       </div>
@@ -130,7 +132,7 @@ function EventCard({
 
 export async function MainEventsPage({ locale }: Props) {
   const t = await getTranslator(locale);
-  const upcoming = getMainInstituteUpcomingEvents();
+  const { upcoming, past } = getMainInstituteEvents();
   const reports = getMainEventReports();
 
   return (
@@ -174,13 +176,30 @@ export async function MainEventsPage({ locale }: Props) {
           </div>
 
           {upcoming.length > 0 ? (
-            <ul className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {upcoming.map((event) => (
-                <li key={event.id}>
-                  <EventCard event={event} t={t} />
-                </li>
-              ))}
-            </ul>
+            <>
+              {/* Lead with the next event so a single entry still reads as a
+                  headline rather than one lonely card in a three-up grid. */}
+              <EventCard
+                event={upcoming[0]}
+                t={t}
+                featured
+                ribbon={t("pages.events.featuredLabel")}
+              />
+              {upcoming.length > 1 ? (
+                <div className="mt-12">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
+                    {t("pages.events.alsoUpcomingLabel")}
+                  </p>
+                  <ul className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                    {upcoming.slice(1).map((event) => (
+                      <li key={event.id}>
+                        <EventCard event={event} t={t} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </>
           ) : (
             <div className="mx-auto max-w-2xl rounded-3xl border border-zinc-200 bg-white p-10 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
               <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -208,9 +227,25 @@ export async function MainEventsPage({ locale }: Props) {
               {t("pages.events.pastUnityRunLabel")}
             </p>
             <div className="mt-6">
+              {/* No ribbon: this one already happened. */}
               <EventCard event={MAIN_PAST_GATHERING} t={t} featured />
             </div>
           </div>
+
+          {past.length > 0 ? (
+            <div className="mb-12">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
+                {t("pages.events.pastProgramsLabel")}
+              </p>
+              <ul className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                {past.map((event) => (
+                  <li key={event.id}>
+                    <EventCard event={event} t={t} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           <div className="mb-8 max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">

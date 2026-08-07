@@ -161,7 +161,12 @@ export const fr = {
         motto: "Innover la vérité. Transformer des vies.",
         sloganLabel: "Slogan",
         slogan: "Là où la découverte rencontre le changement concret",
-        imageAlt: "Membres de la communauté lors d'un événement de l'IRRL",
+        imageAlt:
+          "L'équipe de l'Institut de recherche Real Life célèbre devant la bannière bilingue anglais-inuktitut de l'institut",
+        imageAltResearch:
+          "Une personne chercheuse de l'IRRL présente les politiques de l'institut devant un auditoire à Iqaluit",
+        imageAltCommunity:
+          "Des familles en tenue traditionnelle agitent des drapeaux canadiens lors de la Journée du multiculturalisme de l'IRRL",
         pullQuote: "à Real Life, la vraie vie commence!",
         journeyTitle: "Notre parcours",
         journeyLead:
@@ -358,6 +363,7 @@ export const fr = {
         "Parcourez les rapports — Célébration du Canada, Couples Camp Against GBV et programmation SSDiC documentés sur Issuu.",
 
       pastUnityRunLabel: "Course Love & Unity",
+      pastProgramsLabel: "Plus tôt cette année",
       agendaDate: "Samedi 27 juin 2026",
       agendaActivity: "Activité",
       agendaStart: "Début",
@@ -473,7 +479,7 @@ export const fr = {
           title: "1re Conférence annuelle d'Iqaluit sur la sécurité de l'Arctique",
           summary:
             "Repenser la sécurité de l'Arctique depuis Iqaluit — trois journées de tables rondes, de discussions en sous-groupes et de dialogue communautaire réunissant des voix fédérales, territoriales, municipales et inuites sur l'avenir de la sécurité de l'Arctique canadien.",
-          when: "Dates à confirmer",
+          when: "22–24 octobre 2026",
           where: "Iqaluit, Nunavut",
           program: "Sécurité arctique · Recherche et dialogue",
         },
@@ -481,7 +487,7 @@ export const fr = {
           title: "Course de l'unité d'Iqaluit 2026",
           summary:
             "Notre course communautaire phare revient — rassemblant les résidents de toutes cultures, âges et horizons pour une célébration inclusive de l'unité à Iqaluit.",
-          when: "Été 2026 · Date à confirmer",
+          when: "Été 2026",
           where: "Iqaluit, Nunavut",
           program: "Sécurité arctique · Sport et engagement communautaire",
         },
@@ -489,7 +495,7 @@ export const fr = {
           title: "Initiative de soccer communautaire 2026",
           summary:
             "Les jeunes et les membres de la communauté se réunissent autour du football pour promouvoir l'inclusion et la cohésion sociale — avec le soutien du gouvernement du Canada.",
-          when: "Été 2026 · Horaire à confirmer",
+          when: "Été 2026",
           where: "Iqaluit, Nunavut",
           program: "Sécurité arctique · Sport et engagement communautaire",
         },
@@ -521,7 +527,7 @@ export const fr = {
       heroLead:
         "L'Institut Real Life réunit à Iqaluit des acteurs fédéraux, des dirigeants territoriaux et municipaux, des institutions inuites, des étudiants et des experts en politiques pour trois journées de dialogue — afin que les investissements du Canada en matière de sécurité dans l'Arctique soient inclusifs et produisent des retombées durables pour toutes les communautés.",
       heroWhenLabel: "Quand",
-      heroWhen: "Dates à confirmer",
+      heroWhen: "22–24 octobre 2026",
       heroWhereLabel: "Où",
       heroWhere: "Iqaluit, Nunavut",
       heroFormatLabel: "Format",

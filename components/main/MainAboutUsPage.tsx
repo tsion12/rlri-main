@@ -12,7 +12,39 @@ type Props = { locale: Locale };
 
 export async function MainAboutUsPage({ locale }: Props) {
   const [t, policyPosts] = await Promise.all([getTranslator(locale), getMainPolicyPosts(locale)]);
-  const storyImage = mainGallerySrc("REAL LIFE INSTITUTE DAY 1-13.jpg");
+
+  // Lead frame: the team in front of the bilingual institute banner. Supporting
+  // frames: research/policy work, and community celebration.
+  const storyImages = [
+    {
+      src: mainGallerySrc("Welcome to Real Life Research Institute.jpg"),
+      alt: t("pages.aboutUs.story.imageAlt"),
+    },
+    {
+      src: mainGallerySrc("REAL LIFE INSTITUTE DAY 1-13.jpg"),
+      alt: t("pages.aboutUs.story.imageAltResearch"),
+    },
+    {
+      src: mainGallerySrc("Multiculturalism Day 1.jpeg"),
+      alt: t("pages.aboutUs.story.imageAltCommunity"),
+    },
+  ] as const;
+
+  // The two focus cards restate what the institute does. The strings live under
+  // `home.whoWeAre` because the home page introduces the same two areas — they
+  // describe the institute, not the page, so they are shared rather than forked.
+  const focus = [
+    {
+      key: "programs",
+      title: t("home.whoWeAre.skillTitle"),
+      body: t("home.whoWeAre.skillBody"),
+    },
+    {
+      key: "research",
+      title: t("home.whoWeAre.researchTitle"),
+      body: t("home.whoWeAre.researchBody"),
+    },
+  ];
 
   const pillars = [
     {
@@ -63,6 +95,7 @@ export async function MainAboutUsPage({ locale }: Props) {
       <MainAboutWhoWeAre
         eyebrow={t("pages.aboutUs.story.eyebrow")}
         heading={t("pages.aboutUs.story.heading")}
+        lead={t("home.whoWeAre.intro")}
         mottoLabel={t("pages.aboutUs.story.mottoLabel")}
         motto={t("pages.aboutUs.story.motto")}
         sloganLabel={t("pages.aboutUs.story.sloganLabel")}
@@ -75,8 +108,8 @@ export async function MainAboutUsPage({ locale }: Props) {
           t("pages.aboutUs.story.tags.under40"),
           t("pages.aboutUs.story.tags.iq"),
         ]}
-        imageSrc={storyImage}
-        imageAlt={t("pages.aboutUs.story.imageAlt")}
+        images={storyImages}
+        focus={focus}
         welcome={t("pages.aboutUs.welcome")}
         welcomeSub={t("pages.aboutUs.welcomeSub")}
       />

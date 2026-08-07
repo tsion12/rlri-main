@@ -159,7 +159,12 @@ export const en = {
         motto: "Innovating Truth. Impacting Lives.",
         sloganLabel: "Slogan",
         slogan: "Where Discovery Meets Real-World Change",
-        imageAlt: "Community members at a Real Life Research Institute event",
+        imageAlt:
+          "The Real Life Research Institute team celebrating together in front of the institute's English and Inuktitut banner",
+        imageAltResearch:
+          "An RLRI researcher presenting the institute's policies to an audience in Iqaluit",
+        imageAltCommunity:
+          "Families in traditional dress waving Canadian flags at RLRI's Multiculturalism Day",
         pullQuote: "at real life, real life begins!",
         journeyTitle: "Our journey",
         journeyLead:
@@ -354,6 +359,7 @@ export const en = {
         "Flip through post-event reports — Celebrating Canada, Couples Camp Against GBV, and SSDiC programming documented on Issuu.",
 
       pastUnityRunLabel: "Love & Unity Run",
+      pastProgramsLabel: "Earlier this year",
       agendaDate: "Saturday, June 27, 2026",
       agendaActivity: "Activity",
       agendaStart: "Start",
@@ -469,7 +475,7 @@ export const en = {
           title: "1st Annual Iqaluit Arctic Security Conference",
           summary:
             "Rethinking Arctic Security from Iqaluit — three days of panels, breakout discussions, and community dialogue bringing federal, territorial, municipal, and Inuit voices together on Canada's Arctic security future.",
-          when: "Dates to be announced",
+          when: "October 22–24, 2026",
           where: "Iqaluit, Nunavut",
           program: "Arctic Security · Research & Dialogue",
         },
@@ -477,7 +483,7 @@ export const en = {
           title: "Iqaluit Unity Race 2026",
           summary:
             "Our flagship community race returns — bringing together residents across cultures, ages, and backgrounds for an inclusive public celebration of unity and well-being in Iqaluit.",
-          when: "Summer 2026 · Date to be announced",
+          when: "Summer 2026",
           where: "Iqaluit, Nunavut",
           program: "Arctic Security · Sports & Community Engagement",
         },
@@ -485,7 +491,7 @@ export const en = {
           title: "Community Soccer Initiative 2026",
           summary:
             "Youth and community members come together through football to promote inclusion, teamwork, and social cohesion — funded by the Government of Canada in the spirit of FIFA World Cup 2026.",
-          when: "Summer 2026 · Schedule to be announced",
+          when: "Summer 2026",
           where: "Iqaluit, Nunavut",
           program: "Arctic Security · Sports & Community Engagement",
         },
@@ -517,7 +523,7 @@ export const en = {
       heroLead:
         "The Real Life Institute convenes federal actors, territorial and municipal leaders, Inuit institutions, students, and policy experts in Iqaluit for three days of dialogue — exploring how Canada's Arctic security investments can be inclusive and deliver sustainable outcomes for all communities.",
       heroWhenLabel: "When",
-      heroWhen: "Dates to be announced",
+      heroWhen: "October 22–24, 2026",
       heroWhereLabel: "Where",
       heroWhere: "Iqaluit, Nunavut",
       heroFormatLabel: "Format",

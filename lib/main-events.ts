@@ -2,12 +2,15 @@ import type { TranslationKey } from "@/lib/i18n/messages/en";
 import { mainGallerySrc } from "@/lib/main-gallery";
 import { mainRoutes } from "@/lib/main-routes";
 
-export type MainInstituteEventTiming = "upcoming" | "past";
-
 export type MainInstituteEvent = {
   id: string;
-  timing: MainInstituteEventTiming;
-  sortDate: string;
+  /**
+   * ISO date on which the event stops being something a visitor can still turn
+   * up to. Drives both the ordering and the upcoming/past split, so the
+   * calendar cannot keep advertising a program that has already run — the old
+   * hardcoded `timing` flag had to be edited by hand and silently went stale.
+   */
+  endDate: string;
   /** Filename inside `public/assets/main-gallery/` (not necessarily part of the home gallery). */
   image: string;
   /** When true, the card shows a designed placeholder instead of `image` (e.g. an event with no representative photo yet). */
@@ -21,11 +24,10 @@ export type MainInstituteEvent = {
   href?: string;
 };
 
-/** Only the Unity Run appears as a photo card in the past-events section. */
+/** The Unity Run keeps its own headline slot in the past-events section. */
 export const MAIN_PAST_GATHERING: MainInstituteEvent = {
   id: "love-unity-run",
-  timing: "past",
-  sortDate: "2025-08-23",
+  endDate: "2025-08-23",
   image: "WhatsApp Image 2025-08-23 at 19.07.50 (1).jpeg",
   titleKey: "pages.events.items.loveUnityRun.title",
   summaryKey: "pages.events.items.loveUnityRun.summary",
@@ -36,11 +38,11 @@ export const MAIN_PAST_GATHERING: MainInstituteEvent = {
   href: `${mainRoutes.home}#main-events-gallery`,
 };
 
-export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
+/** Every dated RLRI program, newest end date last. Split by `getMainInstituteEvents`. */
+export const MAIN_INSTITUTE_EVENTS: MainInstituteEvent[] = [
   {
     id: "arctic-security-conference-2026",
-    timing: "upcoming",
-    sortDate: "2026-08-26",
+    endDate: "2026-10-24",
     // Conference has not happened yet — show a designed placeholder, not a photo.
     image: "Rethinking Arctic Security from Iqaluit-conference.jpeg",
     placeholder: true,
@@ -54,8 +56,7 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
   },
   {
     id: "unity-race-2026",
-    timing: "upcoming",
-    sortDate: "2026-07-01",
+    endDate: "2026-07-01",
     image: "Supporting Well-Being Across the North.jpg",
     titleKey: "pages.events.items.unityRace.title",
     summaryKey: "pages.events.items.unityRace.summary",
@@ -67,8 +68,7 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
   },
   {
     id: "community-soccer-2026",
-    timing: "upcoming",
-    sortDate: "2026-06-15",
+    endDate: "2026-06-15",
     image: "Community Soccer initiative.jpeg",
     titleKey: "pages.events.items.communitySoccer.title",
     summaryKey: "pages.events.items.communitySoccer.summary",
@@ -80,8 +80,10 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
   },
   {
     id: "summer-celebrations-2026",
-    timing: "upcoming",
-    sortDate: "2026-06-01",
+    // The listing is a call for student volunteers, and that intake closed on
+    // 15 May 2026 (see `pages.volunteer.applyBody`), so it stops being
+    // something a visitor can act on well before the celebrations wrap up.
+    endDate: "2026-05-15",
     image: "REAL LIFE INSTITUTE 1-10.jpg",
     titleKey: "pages.events.items.summerCelebrations.title",
     summaryKey: "pages.events.items.summerCelebrations.summary",
@@ -93,8 +95,30 @@ export const MAIN_INSTITUTE_UPCOMING_EVENTS: MainInstituteEvent[] = [
   },
 ];
 
-export function getMainInstituteUpcomingEvents() {
-  return [...MAIN_INSTITUTE_UPCOMING_EVENTS].sort((a, b) => a.sortDate.localeCompare(b.sortDate));
+/** `YYYY-MM-DD` in local time, so the split flips at local midnight. */
+function isoDay(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+    date.getDate(),
+  ).padStart(2, "0")}`;
+}
+
+/**
+ * Split the calendar on today's date: soonest first for what is still ahead,
+ * most recent first for what has already run.
+ *
+ * The events route is statically rendered, so "today" is the moment the page
+ * was generated — see the `revalidate` export in `app/[locale]/events/page.tsx`,
+ * which re-renders daily so a long-lived deployment cannot go stale.
+ */
+export function getMainInstituteEvents(now = new Date()) {
+  const today = isoDay(now);
+  const upcoming = MAIN_INSTITUTE_EVENTS.filter((event) => event.endDate >= today).sort((a, b) =>
+    a.endDate.localeCompare(b.endDate),
+  );
+  const past = MAIN_INSTITUTE_EVENTS.filter((event) => event.endDate < today).sort((a, b) =>
+    b.endDate.localeCompare(a.endDate),
+  );
+  return { upcoming, past };
 }
 
 export const MULTICULTURALISM_DAY_FLYER = "/assets/main-events/multiculturalism-day-2026-flyer.png";
