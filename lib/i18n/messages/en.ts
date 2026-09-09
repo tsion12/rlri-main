@@ -498,7 +498,7 @@ export const en = {
         summerCelebrations: {
           title: "Iqaluit Summer Celebrations 2026",
           summary:
-            "RLRI is recruiting student volunteers to help deliver three of Iqaluit's biggest summer celebrations — a hands-on way to support community well-being in the North.",
+            "Thank you to the student volunteers who helped deliver three of Iqaluit's biggest summer celebrations — a hands-on contribution to community well-being in the North.",
           when: "June – August 2026",
           where: "Iqaluit, Nunavut",
           program: "Volunteer program",
@@ -529,7 +529,7 @@ export const en = {
       heroNotifyCta: "Get notified",
       heroRegisterCta: "Register to participate",
       heroImageAlt: "Conference participants gathered in front of a map of Iqaluit",
-      hostLabel: "Host institution",
+      hostLabel: "VENUE",
       hostName: "Nunavut Arctic College",
       funderLabel: "Funding partner",
       funderName: "Department of National Defence (DND)",
@@ -613,28 +613,28 @@ export const en = {
       ctaEvents: "Explore our events",
     },
     volunteer: {
-      title: "Volunteer With Us",
+      title: "Thank You, Volunteers",
       description:
-        "Join our community of researchers, practitioners, and advocates contributing time and expertise to RLRI.",
+        "With gratitude to the volunteers who gave their time and care to RLRI's community celebrations in Iqaluit.",
       heroEyebrow: "Iqaluit 2026",
-      heroTitle: "Calling All Student Volunteers!",
+      heroTitle: "Thank You All Volunteers!",
       heroBody:
-        "We're looking for 3 motivated students to help bring three of Iqaluit's biggest summer celebrations to life. Join the Real Life Research Institute and make a real difference in your community.",
-      benefitsHeading: "Volunteer benefits",
-      impactTitle: "Make a Real Impact",
+        "To every student and community volunteer who helped bring Iqaluit's summer celebrations to life — thank you. Your energy, kindness, and commitment made a real difference for the Real Life Research Institute and for our community.",
+      benefitsHeading: "What you gave",
+      impactTitle: "You Made a Real Impact",
       impactBody:
-        "Help deliver Iqaluit's biggest summer events and contribute directly to community well-being in the North.",
-      experienceTitle: "Gain Experience",
+        "You helped deliver Iqaluit's biggest summer events and contributed directly to community well-being in the North.",
+      experienceTitle: "You Shared Your Skills",
       experienceBody:
-        "Build valuable skills in event coordination, community engagement, and nonprofit programming.",
-      belongingTitle: "Be Part of Something Bigger",
+        "From event coordination to welcoming guests, you brought care, creativity, and professionalism to every shift.",
+      belongingTitle: "You Strengthened Belonging",
       belongingBody:
-        "Join a passionate team advancing equity, inclusion, and belonging across Northern communities.",
-      applyLabel: "How to apply",
-      applyTitle: "Ready to Join Us?",
+        "You helped build a warmer, more inclusive community — advancing equity and connection across the North.",
+      applyLabel: "Stay connected",
+      applyTitle: "We Are Grateful",
       applyBody:
-        "Send your resume to jobs_hr@reallifeinstitute.org. Applications close May 15, 2026. We welcome applicants from all backgrounds who are passionate about community and inclusion.",
-      applyNow: "Apply now",
+        "If you volunteered with us, or want to stay involved in future programs, we would love to hear from you. Reach out anytime at jobs_hr@reallifeinstitute.org.",
+      applyNow: "Get in touch",
       heroImageAlt:
         "Student volunteer in a red Real Life Research Institute shirt standing in front of a display of Inuit carvings",
       heroBadgeImageAlt:

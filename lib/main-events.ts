@@ -80,9 +80,9 @@ export const MAIN_INSTITUTE_EVENTS: MainInstituteEvent[] = [
   },
   {
     id: "summer-celebrations-2026",
-    // The listing is a call for student volunteers, and that intake closed on
-    // 15 May 2026 (see `pages.volunteer.applyBody`), so it stops being
-    // something a visitor can act on well before the celebrations wrap up.
+    // The listing thanks student volunteers for summer celebrations; intake
+    // closed on 15 May 2026, so it stops being something a visitor can apply
+    // to well before the celebrations wrap up.
     endDate: "2026-05-15",
     image: "REAL LIFE INSTITUTE 1-10.jpg",
     titleKey: "pages.events.items.summerCelebrations.title",

@@ -502,7 +502,7 @@ export const fr = {
         summerCelebrations: {
           title: "Célébrations estivales d'Iqaluit 2026",
           summary:
-            "L'IRRV recrute des étudiants bénévoles pour trois grandes célébrations estivales d'Iqaluit — une façon concrète de soutenir le bien-être communautaire dans le Nord.",
+            "Merci aux étudiants bénévoles qui ont aidé à livrer trois grandes célébrations estivales d'Iqaluit — une contribution concrète au bien-être communautaire dans le Nord.",
           when: "Juin – août 2026",
           where: "Iqaluit, Nunavut",
           program: "Programme de bénévolat",
@@ -533,7 +533,7 @@ export const fr = {
       heroNotifyCta: "Être informé(e)",
       heroRegisterCta: "S'inscrire pour participer",
       heroImageAlt: "Rassemblement de dialogue communautaire à Iqaluit",
-      hostLabel: "Établissement hôte",
+      hostLabel: "LIEU",
       hostName: "Collège de l'Arctique du Nunavut",
       funderLabel: "Partenaire financier",
       funderName: "Ministère de la Défense nationale (MDN)",
@@ -618,28 +618,28 @@ export const fr = {
       ctaEvents: "Découvrir nos événements",
     },
     volunteer: {
-      title: "Bénévolat",
+      title: "Merci aux bénévoles",
       description:
-        "Rejoignez notre communauté de chercheurs, praticiens et défenseurs qui offrent temps et expertise à l'IRRL.",
+        "Avec gratitude envers les bénévoles qui ont offert leur temps et leur soin aux célébrations communautaires de l'IRRL à Iqaluit.",
       heroEyebrow: "Iqaluit 2026",
-      heroTitle: "Appel à tous les étudiants bénévoles !",
+      heroTitle: "Merci à tous les bénévoles !",
       heroBody:
-        "Nous recherchons 3 étudiants motivés pour contribuer à la réussite de trois des plus grandes célébrations estivales d'Iqaluit. Joignez-vous à l'Institut de recherche Real Life et faites une vraie différence dans votre communauté.",
-      benefitsHeading: "Avantages du bénévolat",
-      impactTitle: "Avoir un impact réel",
+        "À chaque étudiant et bénévole communautaire qui a aidé à donner vie aux célébrations estivales d'Iqaluit — merci. Votre énergie, votre bienveillance et votre engagement ont fait une vraie différence pour l'Institut de recherche Real Life et pour notre communauté.",
+      benefitsHeading: "Ce que vous avez apporté",
+      impactTitle: "Vous avez eu un impact réel",
       impactBody:
-        "Aidez à livrer les plus grands événements estivaux d'Iqaluit et contribuez directement au bien-être communautaire dans le Nord.",
-      experienceTitle: "Acquérir de l'expérience",
+        "Vous avez contribué à livrer les plus grands événements estivaux d'Iqaluit et au bien-être communautaire dans le Nord.",
+      experienceTitle: "Vous avez partagé vos compétences",
       experienceBody:
-        "Développez des compétences utiles en coordination d'événements, mobilisation communautaire et programmation sans but lucratif.",
-      belongingTitle: "Faire partie de quelque chose de plus grand",
+        "De la coordination d'événements à l'accueil des invités, vous avez apporté soin, créativité et professionnalisme à chaque quart.",
+      belongingTitle: "Vous avez renforcé le sentiment d'appartenance",
       belongingBody:
-        "Joignez-vous à une équipe passionnée qui fait avancer l'équité, l'inclusion et le sentiment d'appartenance dans les communautés nordiques.",
-      applyLabel: "Comment postuler",
-      applyTitle: "Prêt(e) à nous rejoindre ?",
+        "Vous avez aidé à bâtir une communauté plus chaleureuse et inclusive — en faisant avancer l'équité et les liens dans le Nord.",
+      applyLabel: "Rester en contact",
+      applyTitle: "Nous vous sommes reconnaissants",
       applyBody:
-        "Envoyez votre CV à jobs_hr@reallifeinstitute.org. Les candidatures ferment le 15 mai 2026. Nous accueillons des candidats de tous horizons passionnés par la communauté et l'inclusion.",
-      applyNow: "Postuler",
+        "Si vous avez fait du bénévolat avec nous, ou souhaitez rester impliqué(e) dans de futurs programmes, nous serions ravis d'avoir de vos nouvelles. Écrivez-nous en tout temps à jobs_hr@reallifeinstitute.org.",
+      applyNow: "Nous contacter",
       heroImageAlt:
         "Jeune bénévole en chandail rouge de l'Institut de recherche Real Life, devant une vitrine de sculptures inuites",
       heroBadgeImageAlt:
