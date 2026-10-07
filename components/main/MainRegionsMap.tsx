@@ -15,9 +15,9 @@ const OCEAN = "#f4f7f8";
 const LAND_FILL = "#cfd5d8";
 const LAND_HOVER = "#9aa5ab";
 const LAND_STROKE = "#f8fafb";
-const NUNAVUT_FILL = "#0f766e";
-const NUNAVUT_HOVER = "#0d9488";
-const NUNAVUT_STROKE = "#115e59";
+const REGION_FILL = "#0f766e";
+const REGION_HOVER = "#0d9488";
+const REGION_STROKE = "#115e59";
 
 type TooltipState = {
   name: string;
@@ -29,8 +29,10 @@ function isCanadaCountry(geo: { id?: string | number }): boolean {
   return String(geo.id) === CANADA_COUNTRY_ID;
 }
 
-function isNunavut(geo: { properties?: { name?: string } }): boolean {
-  return geo.properties?.name === "Nunavut";
+function operatingRegionLabelKey(name: string) {
+  if (name === "Nunavut") return "home.regions.nunavutLabel" as const;
+  if (name === "Ontario") return "home.regions.ontarioLabel" as const;
+  return null;
 }
 
 function geoName(geo: { properties?: { name?: string } }): string {
@@ -105,7 +107,11 @@ export function MainRegionsMap() {
         >
           <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-linear-to-b from-white/70 to-transparent dark:from-zinc-950/40" />
 
-          <div className="relative mx-auto aspect-[2/1] w-full max-w-[920px] px-2 pt-4 pb-2 sm:px-4 sm:pt-6 sm:pb-4">
+          <div
+            className="relative mx-auto aspect-[2/1] w-full max-w-[920px] px-2 pt-4 pb-2 sm:px-4 sm:pt-6 sm:pb-4"
+            role="img"
+            aria-label={t("home.regions.mapLabel")}
+          >
             <ComposableMap
               projection="geoNaturalEarth1"
               projectionConfig={{
@@ -141,17 +147,16 @@ export function MainRegionsMap() {
               <Geographies geography={CANADA_GEO_URL}>
                 {({ geographies }) =>
                   geographies.map((geo) => {
-                    const highlighted = isNunavut(geo);
-                    const name = highlighted
-                      ? t("home.regions.nunavutLabel")
-                      : geoName(geo);
+                    const labelKey = operatingRegionLabelKey(geoName(geo));
+                    const highlighted = labelKey !== null;
+                    const name = labelKey ? t(labelKey) : geoName(geo);
                     return (
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
                         style={
                           highlighted
-                            ? landStyle(NUNAVUT_FILL, NUNAVUT_HOVER, NUNAVUT_STROKE, 0.7)
+                            ? landStyle(REGION_FILL, REGION_HOVER, REGION_STROKE, 0.7)
                             : landStyle(LAND_FILL, LAND_HOVER, LAND_STROKE, 0.4)
                         }
                         onMouseEnter={(event) => showTooltip(name, event)}
@@ -178,7 +183,7 @@ export function MainRegionsMap() {
           <div className="flex items-center justify-center gap-2 border-t border-zinc-200/70 bg-white/70 px-4 py-3 text-sm text-zinc-600 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-400">
             <span
               className="inline-block size-2.5 rounded-sm"
-              style={{ backgroundColor: NUNAVUT_FILL }}
+              style={{ backgroundColor: REGION_FILL }}
               aria-hidden
             />
             {t("home.regions.legend")}

@@ -114,10 +114,11 @@ export const fr = {
     regions: {
       eyebrow: "Notre portée",
       title: "Régions que nous desservons dans le monde",
-      lead: "Un travail ancré dans les communautés, avec une base au Nunavut (Canada) — reliant les réalités du Nord à la recherche et aux partenariats mondiaux.",
-      mapLabel: "Carte du monde mettant en évidence le Nunavut, Canada",
+      lead: "Un travail ancré dans les communautés, au Nunavut et en Ontario (Canada) — reliant les réalités du Nord à la recherche et aux partenariats mondiaux.",
+      mapLabel: "Carte du monde mettant en évidence le Nunavut et l'Ontario, Canada",
       nunavutLabel: "Nunavut, Canada",
-      legend: "Région mise en évidence : Nunavut, Canada",
+      ontarioLabel: "Ontario, Canada",
+      legend: "Régions mises en évidence : Nunavut et Ontario, Canada",
     },
     partners: {
       title: "Anciens commanditaires",

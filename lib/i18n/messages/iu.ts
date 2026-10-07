@@ -118,10 +118,11 @@ export const iu = {
     regions: {
       eyebrow: "Our reach",
       title: "Regions We Serve Across the Globe",
-      lead: "Community-rooted work with a home base in Nunavut, Canada — connecting northern realities to global research and partnership.",
-      mapLabel: "World map highlighting Nunavut, Canada",
+      lead: "Community-rooted work in Nunavut and Ontario, Canada — connecting northern realities to global research and partnership.",
+      mapLabel: "World map highlighting Nunavut and Ontario, Canada",
       nunavutLabel: "Nunavut, Canada",
-      legend: "Highlighted region: Nunavut, Canada",
+      ontarioLabel: "Ontario, Canada",
+      legend: "Highlighted regions: Nunavut and Ontario, Canada",
     },
     partners: {
       title: "Past Sponsors",
