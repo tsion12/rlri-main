@@ -13,19 +13,19 @@ type Props = { locale: Locale };
 export async function MainAboutUsPage({ locale }: Props) {
   const [t, policyPosts] = await Promise.all([getTranslator(locale), getMainPolicyPosts(locale)]);
 
-  // Lead frame: the team in front of the bilingual institute banner. Supporting
-  // frames: research/policy work, and community celebration.
+  // Lead frame: community members celebrating Canada Day together. Supporting
+  // frames: the Arctic security research dialogue, and a community celebration.
   const storyImages = [
     {
-      src: mainGallerySrc("Welcome to Real Life Research Institute.jpg"),
+      src: mainGallerySrc("Celebrate Canada pictures 1.jpeg"),
       alt: t("pages.aboutUs.story.imageAlt"),
     },
     {
-      src: mainGallerySrc("REAL LIFE INSTITUTE DAY 1-13.jpg"),
+      src: mainGallerySrc("Rethinking Arctic Security from Iqaluit-conference.jpeg"),
       alt: t("pages.aboutUs.story.imageAltResearch"),
     },
     {
-      src: mainGallerySrc("Multiculturalism Day 1.jpeg"),
+      src: mainGallerySrc("Multiculturalism & Food Festival.jpeg"),
       alt: t("pages.aboutUs.story.imageAltCommunity"),
     },
   ] as const;
@@ -96,10 +96,6 @@ export async function MainAboutUsPage({ locale }: Props) {
         eyebrow={t("pages.aboutUs.story.eyebrow")}
         heading={t("pages.aboutUs.story.heading")}
         lead={t("home.whoWeAre.intro")}
-        mottoLabel={t("pages.aboutUs.story.mottoLabel")}
-        motto={t("pages.aboutUs.story.motto")}
-        sloganLabel={t("pages.aboutUs.story.sloganLabel")}
-        slogan={t("pages.aboutUs.story.slogan")}
         locationLabel={t("pages.aboutUs.story.locationLabel")}
         locationTagline={t("pages.aboutUs.story.locationTagline")}
         tags={[

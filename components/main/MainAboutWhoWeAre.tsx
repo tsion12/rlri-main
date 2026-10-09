@@ -19,10 +19,6 @@ type Props = {
   heading: string;
   /** Sits beside the heading — the section used to be a headline over empty space. */
   lead: string;
-  mottoLabel: string;
-  motto: string;
-  sloganLabel: string;
-  slogan: string;
   locationLabel: string;
   locationTagline: string;
   tags: string[];
@@ -71,10 +67,6 @@ export function MainAboutWhoWeAre({
   eyebrow,
   heading,
   lead,
-  mottoLabel,
-  motto,
-  sloganLabel,
-  slogan,
   locationLabel,
   locationTagline,
   tags,
@@ -199,43 +191,9 @@ export function MainAboutWhoWeAre({
           </div>
         </div>
 
-        {/* Identity band */}
-        <div
-          className="home-fade-up relative mt-14 overflow-hidden rounded-3xl lg:mt-16"
-          style={{ animationDelay: "200ms" }}
-        >
-          <div className="absolute inset-0 bg-linear-to-br from-zinc-900 via-zinc-900 to-teal-950 dark:from-zinc-950 dark:to-teal-950" />
-          <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_0%_0%,rgba(45,212,191,0.18),transparent_50%),radial-gradient(ellipse_60%_50%_at_100%_100%,rgba(91,33,182,0.15),transparent_50%)]"
-            aria-hidden
-          />
-          <div className="relative grid gap-10 px-8 py-10 sm:px-10 sm:py-12 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-12">
-            <figure>
-              <figcaption className="text-[10px] font-semibold uppercase tracking-[0.24em] text-teal-400">
-                {mottoLabel}
-              </figcaption>
-              <blockquote className="mt-3 font-serif text-2xl font-medium leading-snug text-white sm:text-[1.65rem]">
-                &ldquo;{motto}&rdquo;
-              </blockquote>
-            </figure>
-            <div
-              className="hidden h-24 w-px bg-linear-to-b from-transparent via-white/20 to-transparent lg:block"
-              aria-hidden
-            />
-            <figure className="lg:text-right">
-              <figcaption className="text-[10px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                {sloganLabel}
-              </figcaption>
-              <blockquote className="mt-3 text-lg font-semibold leading-snug text-zinc-200 sm:text-xl">
-                {slogan}
-              </blockquote>
-            </figure>
-          </div>
-        </div>
-
         {/* What the institute does */}
         <div
-          className="home-fade-up mt-6 grid gap-4 sm:grid-cols-2 lg:gap-5"
+          className="home-fade-up mt-14 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:gap-5"
           style={{ animationDelay: "260ms" }}
         >
           {focus.map((item, index) => (

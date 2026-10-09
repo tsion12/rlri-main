@@ -162,16 +162,12 @@ export const iu = {
       story: {
         eyebrow: "Who we are",
         heading: "Real Life Research Institute",
-        mottoLabel: "Motto",
-        motto: "Innovating Truth. Impacting Lives.",
-        sloganLabel: "Slogan",
-        slogan: "Where Discovery Meets Real-World Change",
         imageAlt:
-          "The Real Life Research Institute team celebrating together in front of the institute's English and Inuktitut banner",
+          "Real Life Research Institute community members in cultural dress waving Canadian flags at a Celebrate Canada gathering",
         imageAltResearch:
-          "An RLRI researcher presenting the institute's policies to an audience in Iqaluit",
+          "The RLRI team gathered in front of an Arctic map at the Rethinking Arctic Security dialogue in Iqaluit",
         imageAltCommunity:
-          "Families in traditional dress waving Canadian flags at RLRI's Multiculturalism Day",
+          "Community members sharing dishes in traditional dress at RLRI's Multiculturalism and Food Festival",
         pullQuote: "at real life, real life begins!",
         journeyTitle: "Our journey",
         journeyLead:

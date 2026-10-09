@@ -158,16 +158,12 @@ export const fr = {
       story: {
         eyebrow: "Qui nous sommes",
         heading: "Institut de recherche Real Life",
-        mottoLabel: "Devise",
-        motto: "Innover la vérité. Transformer des vies.",
-        sloganLabel: "Slogan",
-        slogan: "Là où la découverte rencontre le changement concret",
         imageAlt:
-          "L'équipe de l'Institut de recherche Real Life célèbre devant la bannière bilingue anglais-inuktitut de l'institut",
+          "Des membres de la communauté de l'Institut de recherche Real Life en tenue culturelle agitent des drapeaux canadiens lors d'un rassemblement Célébrons le Canada",
         imageAltResearch:
-          "Une personne chercheuse de l'IRRL présente les politiques de l'institut devant un auditoire à Iqaluit",
+          "L'équipe de l'IRRL réunie devant une carte de l'Arctique lors du dialogue « Repenser la sécurité arctique » à Iqaluit",
         imageAltCommunity:
-          "Des familles en tenue traditionnelle agitent des drapeaux canadiens lors de la Journée du multiculturalisme de l'IRRL",
+          "Des membres de la communauté en tenue traditionnelle partagent des plats lors du Festival du multiculturalisme et de la gastronomie de l'IRRL",
         pullQuote: "à Real Life, la vraie vie commence!",
         journeyTitle: "Notre parcours",
         journeyLead:
