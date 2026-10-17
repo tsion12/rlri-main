@@ -41,6 +41,19 @@ export const MAIN_PAST_GATHERING: MainInstituteEvent = {
 /** Every dated RLRI program, newest end date last. Split by `getMainInstituteEvents`. */
 export const MAIN_INSTITUTE_EVENTS: MainInstituteEvent[] = [
   {
+    id: "ethical-ai-masterclass",
+    endDate: "2026-12-31",
+    image: "Rethinking Arctic Security from Iqaluit-conference.jpeg",
+    placeholder: true,
+    titleKey: "pages.events.items.ethicalAiMasterclass.title",
+    summaryKey: "pages.events.items.ethicalAiMasterclass.summary",
+    whenKey: "pages.events.items.ethicalAiMasterclass.when",
+    whereKey: "pages.events.items.ethicalAiMasterclass.where",
+    programKey: "pages.events.items.ethicalAiMasterclass.program",
+    tagKeys: ["pages.events.tags.ethicalAi", "pages.events.tags.community"],
+    href: mainRoutes.ethicalAi,
+  },
+  {
     id: "arctic-security-conference-2026",
     endDate: "2026-10-23",
     // Conference has not happened yet — show a designed placeholder, not a photo.

@@ -20,6 +20,12 @@ const nextConfig = {
         pathname: "/wp-content/uploads/**",
       },
       {
+        // Main-site CMS (blogs, policies, publications) — see API.main in lib/wp.ts.
+        protocol: "https",
+        hostname: "cms-programs.reallifeinstitute.org",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
         protocol: "https",
         hostname: "secure.gravatar.com",
         pathname: "/avatar/**",

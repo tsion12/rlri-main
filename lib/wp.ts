@@ -91,7 +91,12 @@ type WpApiCategory = {
 };
 
 const API = {
-  main: "https://www.reallifeinstitute.org/wp-json/wp/v2",
+  // Main-site content (Canadian program blogs, institute policies, publications)
+  // is served from the cms-programs WordPress. It hosts both programs; the
+  // category filtering below keeps the Canadian/main content separate from the
+  // Africa program's. Previously this pointed at www.reallifeinstitute.org, whose
+  // TLS certificate lapsed; cms-programs has a valid auto-renewing certificate.
+  main: "https://cms-programs.reallifeinstitute.org/wp-json/wp/v2",
 } as const;
 
 /**
@@ -558,7 +563,6 @@ const MAIN_PUBLICATION_CATEGORY_NAMES = new Set([
 const MAIN_BLOG_CATEGORY_ID = 1;
 const MAIN_BLOG_CATEGORY_NAMES = new Set(["blog"]);
 
-const MAIN_BLOG_IU_CATEGORY_ID = 39;
 const MAIN_BLOG_IU_CATEGORY_NAMES = new Set(["blog iu", "blog-iu"]);
 
 function sortMainPostsNewest(posts: WpPostWithSource[]): WpPostWithSource[] {
@@ -609,30 +613,62 @@ async function fetchMainBlogPostsFiltered(options: {
   return sortMainPostsNewest(posts.map((p) => normalizePost("main", p)));
 }
 
+/** Canadian Aboriginal Syllabics — used to tell Inuktitut posts from Latin-script ones. */
+const INUKTITUT_SYLLABICS_RE = /[᐀-ᙿᢰ-ᣵ]/g;
+
+/**
+ * True when a post reads as Inuktitut (its title is mostly syllabics rather than
+ * Latin letters). Used to separate English from Inuktitut when the CMS files both
+ * under one "Blog" category with no language metadata.
+ */
+function isInuktitutPost(post: WpPostWithSource): boolean {
+  const title = post.title?.rendered ?? "";
+  const syllabics = (title.match(INUKTITUT_SYLLABICS_RE) || []).length;
+  const latin = (title.match(/[A-Za-z]/g) || []).length;
+  return syllabics > latin;
+}
+
 /**
  * Main site journal posts by locale:
- * - `en`: WordPress category **Blog** only
- * - `fr`: **Blog-IU** only
+ * - `en`: English posts
+ * - `fr`: Inuktitut posts (the second language slot on this Nunavut-based site)
+ *
+ * When the CMS has a dedicated **Blog-IU** category, that drives the split. When
+ * it files every language under one **Blog** category (no language metadata), we
+ * split by script instead — Latin titles → `en`, syllabics → `fr`.
  */
 export async function getMainBlogPosts(locale: MainSiteLocale): Promise<WpPostWithSource[]> {
   try {
     const blogCategoryId =
       (await resolveMainCategoryId(MAIN_BLOG_CATEGORY_NAMES)) ?? MAIN_BLOG_CATEGORY_ID;
-    const blogIuCategoryId =
-      (await resolveMainCategoryId(MAIN_BLOG_IU_CATEGORY_NAMES)) ?? MAIN_BLOG_IU_CATEGORY_ID;
+    // Resolve Blog-IU strictly by name — no numeric fallback. The category id
+    // that once meant "Blog-IU" on the old host maps to an unrelated category on
+    // the current CMS, so a hardcoded fallback would surface the wrong posts.
+    const blogIuCategoryId = await resolveMainCategoryId(MAIN_BLOG_IU_CATEGORY_NAMES);
 
-    if (locale === "fr") {
+    // Preferred path: the CMS has a dedicated Inuktitut category.
+    if (blogIuCategoryId !== null) {
+      if (locale === "fr") {
+        return fetchMainBlogPostsFiltered({
+          categoryIds: [blogIuCategoryId],
+          names: [MAIN_BLOG_IU_CATEGORY_NAMES],
+        });
+      }
       return fetchMainBlogPostsFiltered({
-        categoryIds: [blogIuCategoryId],
-        names: [MAIN_BLOG_IU_CATEGORY_NAMES],
+        categoryIds: [blogCategoryId],
+        names: [MAIN_BLOG_CATEGORY_NAMES],
+        exclude: { id: blogIuCategoryId, names: MAIN_BLOG_IU_CATEGORY_NAMES },
       });
     }
 
-    return fetchMainBlogPostsFiltered({
+    // Fallback: one mixed "Blog" category — separate English from Inuktitut by script.
+    const blogPosts = await fetchMainBlogPostsFiltered({
       categoryIds: [blogCategoryId],
       names: [MAIN_BLOG_CATEGORY_NAMES],
-      exclude: { id: blogIuCategoryId, names: MAIN_BLOG_IU_CATEGORY_NAMES },
     });
+    return blogPosts.filter((post) =>
+      locale === "fr" ? isInuktitutPost(post) : !isInuktitutPost(post),
+    );
   } catch {
     return [];
   }

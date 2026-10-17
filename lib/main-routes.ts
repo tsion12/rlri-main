@@ -17,6 +17,8 @@ export const mainRoutes = {
   events: "/events",
   /** Flagship RLRI conference — placeholder until details are announced. */
   conference: "/conference",
+  /** Public Ethical AI Masterclass. Overview is open; sessions need the shared password. */
+  ethicalAi: "/ethical-ai-masterclass",
   /** Donations — Africa Program donation flow until a main-site flow exists. */
   donate: "https://africa-programs.reallifeinstitute.org/donate",
   africaProgram: "https://africa-programs.reallifeinstitute.org/",

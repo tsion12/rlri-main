@@ -142,13 +142,13 @@ export function MainAboutWhoWeAre({
           className="home-fade-up mt-14 grid gap-4 lg:mt-16 lg:grid-cols-12 lg:gap-5"
           style={{ animationDelay: "120ms" }}
         >
-          <figure className="group relative aspect-4/3 overflow-hidden rounded-3xl bg-zinc-200 shadow-[0_32px_80px_-32px_rgba(15,23,42,0.45)] ring-1 ring-zinc-900/5 lg:col-span-7 lg:aspect-16/11 dark:bg-zinc-800 dark:ring-white/10">
+          <figure className="group relative aspect-4/3 overflow-hidden rounded-3xl bg-zinc-200 shadow-[0_32px_80px_-32px_rgba(15,23,42,0.45)] ring-1 ring-zinc-900/5 lg:col-span-8 lg:aspect-auto lg:min-h-[36rem] dark:bg-zinc-800 dark:ring-white/10">
             <Image
               src={primary.src}
               alt={primary.alt}
               fill
-              className="object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
-              sizes="(max-width: 1024px) 100vw, 58vw"
+              className="object-cover object-[center_42%] transition duration-700 ease-out group-hover:scale-[1.03]"
+              sizes="(max-width: 1024px) 100vw, 66vw"
             />
             <div
               className="absolute inset-0 bg-linear-to-t from-zinc-950/75 via-zinc-950/10 to-transparent"
@@ -173,7 +173,7 @@ export function MainAboutWhoWeAre({
             </figcaption>
           </figure>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1 lg:grid-rows-2 lg:gap-5">
+          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1 lg:grid-rows-2 lg:gap-5">
             {supporting.map((image) => (
               <figure
                 key={image.src}

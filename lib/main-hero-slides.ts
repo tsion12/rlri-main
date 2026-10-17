@@ -37,6 +37,10 @@ const MAIN_HERO_COPY = {
   titleKey: "home.heroSlides.primary.title",
   subtitleKey: "home.heroSlides.primary.subtitle",
   primaryCta: { labelKey: "home.heroSlides.primary.ctaEvents", href: mainRoutes.events },
+  secondaryCta: {
+    labelKey: "home.heroSlides.primary.ctaMasterclass",
+    href: mainRoutes.ethicalAi,
+  },
 } as const satisfies Omit<MainHeroSlide, "id" | "image">;
 
 /**

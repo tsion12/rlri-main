@@ -22,6 +22,7 @@ export const iu = {
     arcticSecurity: "Community Programs",
     conference: "Arctic Security",
     mentalHealth: "Isumagijjutivut Aanniaqtailimayut",
+    ethicalAi: "Ethical AI",
     volunteer: "Ikajurniq",
     faq: "Apervigivaktut Apervaktaujut",
     openMenu: "Menu amma",
@@ -72,6 +73,7 @@ export const iu = {
           "Unlock the potential of young minds to create a future free from crime, poverty, and despair.",
         imageAlt: "Young people and communities supported by RLRI programs",
         ctaEvents: "Upcoming & Past Events",
+        ctaMasterclass: "Ethical AI Masterclass",
       },
     },
     whoWeAre: {
@@ -159,11 +161,13 @@ export const iu = {
       heroTitle: "Where discovery meets real-world change",
       heroLead:
         "We turn knowledge into action—investing in youth and communities who have long been left behind.",
+      heroImageAlt:
+        "Two people laugh as blue powder is thrown into the air at an RLRI community celebration",
       story: {
         eyebrow: "Who we are",
         heading: "Real Life Research Institute",
         imageAlt:
-          "Real Life Research Institute community members in cultural dress waving Canadian flags at a Celebrate Canada gathering",
+          "RLRI volunteers in institute hoodies laugh together while serving food under a tent",
         imageAltResearch:
           "The RLRI team gathered in front of an Arctic map at the Rethinking Arctic Security dialogue in Iqaluit",
         imageAltCommunity:
@@ -405,6 +409,7 @@ export const iu = {
         volunteer: "Volunteer",
         multiculturalism: "Multiculturalism",
         sport: "Sport",
+        ethicalAi: "Ethical AI",
       },
       reports: {
         celebratingCanada: {
@@ -475,6 +480,14 @@ export const iu = {
         },
       },
       items: {
+        ethicalAiMasterclass: {
+          title: "Ethical AI Masterclass",
+          summary:
+            "A public introduction to responsible artificial intelligence, with session notes that open for anyone who has the access password.",
+          when: "Open now",
+          where: "Online, on this website",
+          program: "Ethical AI · Masterclass",
+        },
         arcticConference: {
           title: "Real Life Conference on Arctic Security",
           summary:
@@ -645,6 +658,54 @@ export const iu = {
         "Student volunteer in a Real Life Research Institute team shirt wearing a Canada lanyard",
       applyImageAlt:
         "RLRI team presenting an award to a community member under the City of Iqaluit tent",
+    },
+    ethicalAi: {
+      title: "Ethical AI Masterclass",
+      description:
+        "A public Real Life Research Institute masterclass on responsible artificial intelligence. Session notes open with the access password.",
+      heroEyebrow: "Open to everyone",
+      heroTitle: "Ethical AI Masterclass",
+      heroLead:
+        "Anyone can read what this masterclass covers. If you have the password, sign in on this page to open the sessions.",
+      aboutTitle: "What this masterclass is",
+      aboutP1:
+        "Artificial intelligence already shapes hiring, finance, health, education, and public services. The choices about how those systems are built and used are usually made inside organizations, long before a law or an audit arrives. This masterclass is a practical way to ask who is responsible, who is affected, and what should change.",
+      aboutP2:
+        "It is hosted by the Real Life Research Institute and convened with Dr. Chris Begealawuh. The introduction on this page is public. The session notes open after you sign in with the password you were given. No separate account is required.",
+      audienceTitle: "Who it is for",
+      audienceBody:
+        "Researchers, students, practitioners, and community or policy partners — anyone whose work meets artificial intelligence in real lives.",
+      outlineTitle: "The sessions",
+      outlineLead: "The titles below are public. Sign in to read each session.",
+      loginTitle: "Sign in",
+      loginLead: "Enter the masterclass password. Anyone with that password can open the sessions from this page.",
+      passwordLabel: "Password",
+      loginCta: "Open the masterclass",
+      loginPending: "Checking…",
+      loginInvalid: "That password is not recognized. Check it and try again.",
+      loginUnavailable:
+        "Sign-in is not configured on this site yet. Email info@reallifeinstitute.org if you were given a password.",
+      signedInEyebrow: "You are signed in",
+      classroomTitle: "Session notes",
+      classroomLead: "These notes stay available in this browser until you sign out, or for 30 days.",
+      signOut: "Sign out",
+      sessions: {
+        decision: {
+          title: "When an AI system makes a decision",
+          summary: "Who is actually in charge when a model screens, scores, or recommends.",
+          body: "A model can rank a job application, flag a transaction, or suggest a service without a person appearing to decide. Someone still chose the data, the objective, the threshold, and whether a person can challenge the result. If those choices are unnamed, harm has nowhere to land.\n\nStart with a system you know. Write down what decision it influences, who feels it, and who inside the organization can stop or change it. If you cannot name that person, the system is not yet accountable.",
+        },
+        bias: {
+          title: "Bias, consent, and who is left out",
+          summary: "How unequal outcomes show up even when a system never sees a protected trait.",
+          body: "Unfair results rarely require a system to store gender, race, or disability as a field. Proxies in the data, a narrow idea of a “normal” user, and a consent form nobody can refuse will do the same work. People with less power to opt out carry more of the risk.\n\nFor each system, ask whose data trained it, who was missing, what a person is told, and whether they can decline without losing a job, a service, or a benefit. Consent that is not a real choice is not consent.",
+        },
+        accountability: {
+          title: "Accountability inside the organization",
+          summary: "How responsibility is built in before an outside review arrives.",
+          body: "Laws, audits, and public oversight matter, and they often arrive late and see little of the model, the training data, or the internal trade-off. The stronger pattern is to put review inside the organization: a clear owner, a written decision, and a path to escalate harm to leadership before a system is widely used.\n\nLeave this session with one change you can name: a role, a review step, or a record of why a threshold was set. Ethical AI is an organizational practice, not a slogan added after deployment.",
+        },
+      },
     },
     faq: {
       title: "Apervigivaktut Apervaktaujut",

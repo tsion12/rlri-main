@@ -18,6 +18,7 @@ export const fr = {
     arcticSecurity: "Programmes communautaires",
     conference: "Sécurité arctique",
     mentalHealth: "Santé mentale",
+    ethicalAi: "IA éthique",
     volunteer: "Bénévolat",
     faq: "FAQ",
     openMenu: "Ouvrir le menu",
@@ -68,6 +69,7 @@ export const fr = {
           "Libérer le potentiel des jeunes esprits pour créer un avenir sans crime, pauvreté ni désespoir.",
         imageAlt: "Jeunes et communautés soutenus par les programmes de l'IRRL",
         ctaEvents: "Événements à venir et passés",
+        ctaMasterclass: "Masterclass IA éthique",
       },
     },
     whoWeAre: {
@@ -155,11 +157,13 @@ export const fr = {
       heroTitle: "Là où la découverte rencontre le changement concret",
       heroLead:
         "Nous transformons le savoir en action—en investissant dans les jeunes et les communautés trop longtemps laissés pour compte.",
+      heroImageAlt:
+        "Deux personnes rient pendant qu'une poudre bleue est lancée dans les airs lors d'une célébration communautaire de l'IRRL",
       story: {
         eyebrow: "Qui nous sommes",
         heading: "Institut de recherche Real Life",
         imageAlt:
-          "Des membres de la communauté de l'Institut de recherche Real Life en tenue culturelle agitent des drapeaux canadiens lors d'un rassemblement Célébrons le Canada",
+          "Des bénévoles de l'IRRL en chandail de l'institut rient ensemble en servant de la nourriture sous une tente",
         imageAltResearch:
           "L'équipe de l'IRRL réunie devant une carte de l'Arctique lors du dialogue « Repenser la sécurité arctique » à Iqaluit",
         imageAltCommunity:
@@ -402,6 +406,7 @@ export const fr = {
         volunteer: "Bénévolat",
         multiculturalism: "Multiculturalisme",
         sport: "Sport",
+        ethicalAi: "IA éthique",
       },
       reports: {
         celebratingCanada: {
@@ -472,6 +477,14 @@ export const fr = {
         },
       },
       items: {
+        ethicalAiMasterclass: {
+          title: "Masterclass IA éthique",
+          summary:
+            "Une introduction publique à l'intelligence artificielle responsable, avec des notes de séance accessibles à toute personne qui a le mot de passe.",
+          when: "Ouvert maintenant",
+          where: "En ligne, sur ce site",
+          program: "IA éthique · Masterclass",
+        },
         arcticConference: {
           title: "Conférence Real Life sur la sécurité de l'Arctique",
           summary:
@@ -643,6 +656,57 @@ export const fr = {
         "Jeune bénévole portant un chandail d'équipe de l'Institut de recherche Real Life et un cordon Canada",
       applyImageAlt:
         "L'équipe de l'IRRL remet un prix à un membre de la communauté sous la tente de la Ville d'Iqaluit",
+    },
+    ethicalAi: {
+      title: "Masterclass IA éthique",
+      description:
+        "Une masterclass publique de l'Institut de recherche Real Life sur l'intelligence artificielle responsable. Les notes de séance s'ouvrent avec le mot de passe.",
+      heroEyebrow: "Ouvert à toutes et à tous",
+      heroTitle: "Masterclass IA éthique",
+      heroLead:
+        "Tout le monde peut lire ce que couvre cette masterclass. Si vous avez le mot de passe, connectez-vous sur cette page pour ouvrir les séances.",
+      aboutTitle: "En quoi consiste cette masterclass",
+      aboutP1:
+        "L'intelligence artificielle influence déjà l'embauche, la finance, la santé, l'éducation et les services publics. Les choix sur la façon dont ces systèmes sont conçus et utilisés se prennent le plus souvent à l'intérieur des organisations, bien avant qu'une loi ou un audit n'intervienne. Cette masterclass offre une façon concrète de demander qui est responsable, qui est touché, et ce qui doit changer.",
+      aboutP2:
+        "Elle est offerte par l'Institut de recherche Real Life et animée avec Dr Chris Begealawuh. L'introduction sur cette page est publique. Les notes de séance s'ouvrent lorsque vous vous connectez avec le mot de passe qui vous a été remis. Aucun compte distinct n'est requis.",
+      audienceTitle: "À qui elle s'adresse",
+      audienceBody:
+        "Chercheuses et chercheurs, étudiantes et étudiants, praticiennes et praticiens, partenaires communautaires ou politiques — toute personne dont le travail rencontre l'intelligence artificielle dans la vie réelle.",
+      outlineTitle: "Les séances",
+      outlineLead: "Les titres ci-dessous sont publics. Connectez-vous pour lire chaque séance.",
+      loginTitle: "Connexion",
+      loginLead:
+        "Entrez le mot de passe de la masterclass. Toute personne qui l'a peut ouvrir les séances depuis cette page.",
+      passwordLabel: "Mot de passe",
+      loginCta: "Ouvrir la masterclass",
+      loginPending: "Vérification…",
+      loginInvalid: "Ce mot de passe n'est pas reconnu. Vérifiez-le et réessayez.",
+      loginUnavailable:
+        "La connexion n'est pas encore configurée sur ce site. Écrivez à info@reallifeinstitute.org si un mot de passe vous a été remis.",
+      signedInEyebrow: "Vous êtes connecté(e)",
+      classroomTitle: "Notes de séance",
+      classroomLead:
+        "Ces notes restent disponibles dans ce navigateur jusqu'à votre déconnexion, ou pendant 30 jours.",
+      signOut: "Se déconnecter",
+      sessions: {
+        decision: {
+          title: "Quand un système d'IA prend une décision",
+          summary: "Qui est vraiment responsable lorsqu'un modèle filtre, note ou recommande.",
+          body: "Un modèle peut classer une candidature, signaler une transaction ou suggérer un service sans qu'une personne semble décider. Quelqu'un a tout de même choisi les données, l'objectif, le seuil, et si une personne peut contester le résultat. Si ces choix n'ont pas de nom, le tort n'a nulle part où se poser.\n\nPartez d'un système que vous connaissez. Notez quelle décision il influence, qui la subit, et qui dans l'organisation peut l'arrêter ou la modifier. Si vous ne pouvez pas nommer cette personne, le système n'est pas encore responsable.",
+        },
+        bias: {
+          title: "Biais, consentement et personnes laissées de côté",
+          summary:
+            "Comment des résultats inégaux apparaissent même lorsqu'un système ne voit aucun trait protégé.",
+          body: "Des résultats injustes n'exigent pas qu'un système enregistre le genre, la race ou le handicap comme champ. Des variables substitutives dans les données, une idée étroite de l'utilisateur « normal », et un formulaire de consentement que personne ne peut refuser font le même travail. Les personnes qui ont moins de pouvoir de refus portent davantage le risque.\n\nPour chaque système, demandez quelles données l'ont entraîné, qui manquait, ce qu'on dit à la personne, et si elle peut refuser sans perdre un emploi, un service ou une prestation. Un consentement qui n'est pas un vrai choix n'est pas un consentement.",
+        },
+        accountability: {
+          title: "La responsabilité à l'intérieur de l'organisation",
+          summary: "Comment la responsabilité se construit avant qu'un examen externe n'arrive.",
+          body: "Les lois, les audits et le contrôle public comptent, et ils arrivent souvent tard en voyant peu du modèle, des données d'entraînement ou de l'arbitrage interne. Le modèle plus solide place l'examen dans l'organisation : un responsable clair, une décision écrite, et un chemin pour signaler un tort à la direction avant qu'un système ne soit largement utilisé.\n\nQuittez cette séance avec un changement que vous pouvez nommer : un rôle, une étape de revue, ou une trace de la raison d'un seuil. L'IA éthique est une pratique organisationnelle, pas un slogan ajouté après le déploiement.",
+        },
+      },
     },
     faq: {
       title: "Foire aux questions",
