@@ -100,18 +100,30 @@ const API = {
 } as const;
 
 /**
- * WordPress emits media URLs on the apex host, but that host currently returns 403
- * for uploads (and the REST API). Prefer www so Next/Image and browsers can load them.
+ * Canonical host for WordPress media/uploads. The apex `reallifeinstitute.org`
+ * returns 403 for uploads and the `www` host's TLS certificate lapsed (it can't
+ * auto-renew while the domain points at Vercel). `cms-programs` holds the same
+ * uploads and has a valid auto-renewing certificate, so we serve all media from
+ * there — matching the REST host in `API.main`.
+ */
+const WP_MEDIA_HOST = "cms-programs.reallifeinstitute.org";
+
+/** Hosts whose uploads must be rewritten to {@link WP_MEDIA_HOST}. */
+const WP_LEGACY_MEDIA_HOSTS = new Set([
+  "reallifeinstitute.org",
+  "www.reallifeinstitute.org",
+]);
+
+/**
+ * Point media URLs at {@link WP_MEDIA_HOST} so Next/Image and browsers can load
+ * them over a valid certificate.
  */
 function normalizeWpMediaUrl(url: string | null | undefined): string | null {
   if (!url?.trim()) return null;
   try {
     const parsed = new URL(url.trim());
-    if (
-      parsed.hostname === "reallifeinstitute.org" ||
-      parsed.hostname === "www.reallifeinstitute.org"
-    ) {
-      parsed.hostname = "www.reallifeinstitute.org";
+    if (WP_LEGACY_MEDIA_HOSTS.has(parsed.hostname)) {
+      parsed.hostname = WP_MEDIA_HOST;
       return parsed.toString();
     }
   } catch {
@@ -121,15 +133,15 @@ function normalizeWpMediaUrl(url: string | null | undefined): string | null {
 }
 
 /**
- * Rewrite apex `reallifeinstitute.org/wp-content/...` links inside rendered post
- * HTML to the www host. The apex returns 403 for uploads, so inline PDF/media
- * links in the body would otherwise fail the same way the download button did.
+ * Rewrite apex / www `…/wp-content/...` links inside rendered post HTML to
+ * {@link WP_MEDIA_HOST}, so inline PDF/media links in the body load over a valid
+ * certificate instead of hitting the apex 403 or the lapsed www TLS cert.
  */
 function normalizeWpUploadHostsInHtml(html: string | null | undefined): string {
   if (!html) return html ?? "";
   return html.replace(
-    /https:\/\/reallifeinstitute\.org\/wp-content\//gi,
-    "https://www.reallifeinstitute.org/wp-content/",
+    /https:\/\/(?:www\.)?reallifeinstitute\.org\/wp-content\//gi,
+    `https://${WP_MEDIA_HOST}/wp-content/`,
   );
 }
 
