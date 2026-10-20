@@ -484,8 +484,8 @@ export const en = {
         arcticConference: {
           title: "Real Life Conference on Arctic Security",
           summary:
-            "Rethinking Arctic Security from Iqaluit — three days of panels, breakout discussions, and community dialogue bringing federal, territorial, municipal, and Inuit voices together on Canada's Arctic security future.",
-          when: "October 21, 22 and 23, 2026",
+            "Rethinking Arctic Security from Iqaluit has been rescheduled to March 11–13, 2027. Three days of panels, breakout discussions, and community dialogue will bring federal, territorial, municipal, and Inuit voices together on Canada's Arctic security future. The venue remains the same.",
+          when: "March 11–13, 2027",
           where: "Nunavut Arctic College, Iqaluit",
           program: "Arctic Security · Research & Dialogue",
         },
@@ -526,12 +526,12 @@ export const en = {
     conference: {
       title: "Real Life Conference on Arctic Security",
       description:
-        "The Real Life Conference on Arctic Security — Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture. October 21, 22 and 23, 2026 at Nunavut Arctic College, Iqaluit, Nunavut.",
+        "The Real Life Conference on Arctic Security — Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture. Rescheduled to March 11–13, 2027 at Nunavut Arctic College, Iqaluit, Nunavut. The venue remains the same.",
       heroEyebrow: "Real Life Conference on Arctic Security",
       heroTitle:
         "Rethinking Arctic Security from Iqaluit: Integrating Municipal and Community Perspectives into Canada's Security Architecture",
       heroWhenLabel: "When",
-      heroWhen: "October 21, 22 and 23, 2026",
+      heroWhen: "March 11–13, 2027",
       heroWhereLabel: "Where",
       heroWhere: "Nunavut Arctic College, Iqaluit",
       heroFormatLabel: "Format",
@@ -539,6 +539,15 @@ export const en = {
       heroNotifyCta: "Get notified",
       heroRegisterCta: "Register to participate",
       heroImageAlt: "Conference participants gathered in front of a map of Iqaluit",
+      rescheduleEyebrow: "Save the new date",
+      rescheduleTitle: "The conference has been rescheduled to March 11–13, 2027",
+      rescheduleBody:
+        "The additional time will help us strengthen participation and ensure richer, more meaningful contributions from communities, practitioners, researchers, and policymakers.",
+      rescheduleQuestions:
+        "To encourage thoughtful engagement, we are sharing our discussion questions in advance, giving participants time to reflect and provide valuable feedback.",
+      rescheduleVenue: "Venue remains the same.",
+      rescheduleClosing:
+        "We look forward to seeing you in Iqaluit in March as we continue this important conversation on the future of Arctic security.",
       hostLabel: "VENUE",
       hostName: "Nunavut Arctic College",
       funderLabel: "Funding partner",
@@ -553,17 +562,17 @@ export const en = {
       agendaResourceTbc: "To be confirmed",
       agenda: {
         day1Label: "Day 1",
-        day1Date: "21 October 2026",
+        day1Date: "11 March 2027",
         day1Theme: "Strengthening Canada's Defence Industrial Base and Partnerships",
         day1Body:
           "Opening ceremony and conference overview. Discussions will explore how defence investments can support workforce development, education, employment opportunities, and meaningful participation of Northern and Indigenous communities. Interactive panels and breakout sessions will examine partnerships among governments, Indigenous organizations, academia, and community stakeholders to strengthen economic growth and national resilience.",
         day2Label: "Day 2",
-        day2Date: "22 October 2026",
+        day2Date: "12 March 2027",
         day2Theme: "Canada Strong in the Arctic, the North, and North America",
         day2Body:
           "Discussions will focus on Arctic security beyond NATO and traditional military perspectives, highlighting culture, language, gender inclusion, climate resilience, and community well-being. Participants will develop recommendations for strengthening Arctic resilience and community-centred approaches to security and development.",
         day3Label: "Day 3",
-        day3Date: "23 October 2026",
+        day3Date: "13 March 2027",
         day3Theme: "Community Impacts and Youth Perspectives on Arctic Security",
         day3Body:
           "The final day will examine how security investments may influence jobs, housing, infrastructure, sustainability, and quality of life in Northern communities. A youth-focused roundtable will provide future-oriented perspectives on Arctic security, followed by conference reflections and a networking reception.",

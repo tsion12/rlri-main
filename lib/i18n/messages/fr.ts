@@ -488,8 +488,8 @@ export const fr = {
         arcticConference: {
           title: "Conférence Real Life sur la sécurité de l'Arctique",
           summary:
-            "Repenser la sécurité de l'Arctique depuis Iqaluit — trois journées de tables rondes, de discussions en sous-groupes et de dialogue communautaire réunissant des voix fédérales, territoriales, municipales et inuites sur l'avenir de la sécurité de l'Arctique canadien.",
-          when: "Les 21, 22 et 23 octobre 2026",
+            "Repenser la sécurité de l'Arctique depuis Iqaluit a été reportée aux 11, 12 et 13 mars 2027. Trois journées de tables rondes, de discussions en sous-groupes et de dialogue communautaire réuniront des voix fédérales, territoriales, municipales et inuites sur l'avenir de la sécurité de l'Arctique canadien. Le lieu demeure le même.",
+          when: "Les 11, 12 et 13 mars 2027",
           where: "Collège de l'Arctique du Nunavut, Iqaluit",
           program: "Sécurité arctique · Recherche et dialogue",
         },
@@ -530,12 +530,12 @@ export const fr = {
     conference: {
       title: "Conférence Real Life sur la sécurité de l'Arctique",
       description:
-        "La Conférence Real Life sur la sécurité de l'Arctique — Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada. Les 21, 22 et 23 octobre 2026, au Collège de l'Arctique du Nunavut, à Iqaluit.",
+        "La Conférence Real Life sur la sécurité de l'Arctique — Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada. Reportée aux 11, 12 et 13 mars 2027, au Collège de l'Arctique du Nunavut, à Iqaluit. Le lieu demeure le même.",
       heroEyebrow: "Conférence Real Life sur la sécurité de l'Arctique",
       heroTitle:
         "Repenser la sécurité de l'Arctique depuis Iqaluit : intégrer les perspectives municipales et communautaires à l'architecture de sécurité du Canada",
       heroWhenLabel: "Quand",
-      heroWhen: "Les 21, 22 et 23 octobre 2026",
+      heroWhen: "Les 11, 12 et 13 mars 2027",
       heroWhereLabel: "Où",
       heroWhere: "Collège de l'Arctique du Nunavut, Iqaluit",
       heroFormatLabel: "Format",
@@ -543,6 +543,15 @@ export const fr = {
       heroNotifyCta: "Être informé(e)",
       heroRegisterCta: "S'inscrire pour participer",
       heroImageAlt: "Rassemblement de dialogue communautaire à Iqaluit",
+      rescheduleEyebrow: "Notez la nouvelle date",
+      rescheduleTitle: "La conférence a été reportée aux 11, 12 et 13 mars 2027",
+      rescheduleBody:
+        "Ce délai supplémentaire nous permettra de renforcer la participation et d'assurer des contributions plus riches et plus significatives de la part des communautés, des praticiens, des chercheurs et des décideurs.",
+      rescheduleQuestions:
+        "Afin d'encourager un engagement réfléchi, nous partageons nos questions de discussion à l'avance, pour donner aux participants le temps de réfléchir et de formuler des commentaires utiles.",
+      rescheduleVenue: "Le lieu demeure le même.",
+      rescheduleClosing:
+        "Au plaisir de vous retrouver à Iqaluit en mars, alors que nous poursuivons cette conversation importante sur l'avenir de la sécurité de l'Arctique.",
       hostLabel: "LIEU",
       hostName: "Collège de l'Arctique du Nunavut",
       funderLabel: "Partenaire financier",
@@ -557,17 +566,17 @@ export const fr = {
       agendaResourceTbc: "À confirmer",
       agenda: {
         day1Label: "Jour 1",
-        day1Date: "21 octobre 2026",
+        day1Date: "11 mars 2027",
         day1Theme: "Renforcer la base industrielle de défense du Canada et ses partenariats",
         day1Body:
           "Cérémonie d'ouverture et présentation de la conférence. Les échanges porteront sur la façon dont les investissements en défense peuvent soutenir le développement de la main-d'œuvre, l'éducation, les possibilités d'emploi et la participation véritable des communautés nordiques et autochtones. Des tables rondes interactives et des sous-groupes examineront les partenariats entre les gouvernements, les organisations autochtones, le milieu universitaire et les parties prenantes communautaires afin de renforcer la croissance économique et la résilience nationale.",
         day2Label: "Jour 2",
-        day2Date: "22 octobre 2026",
+        day2Date: "12 mars 2027",
         day2Theme: "Un Canada fort dans l'Arctique, le Nord et l'Amérique du Nord",
         day2Body:
           "Les discussions porteront sur la sécurité de l'Arctique au-delà de l'OTAN et des perspectives militaires traditionnelles, en mettant en avant la culture, la langue, l'inclusion des genres, la résilience climatique et le mieux-être des communautés. Les participants formuleront des recommandations pour renforcer la résilience de l'Arctique et les approches centrées sur les communautés en matière de sécurité et de développement.",
         day3Label: "Jour 3",
-        day3Date: "23 octobre 2026",
+        day3Date: "13 mars 2027",
         day3Theme: "Retombées communautaires et perspectives des jeunes sur la sécurité de l'Arctique",
         day3Body:
           "La dernière journée examinera l'influence des investissements en sécurité sur l'emploi, le logement, les infrastructures, la durabilité et la qualité de vie dans les communautés nordiques. Une table ronde consacrée aux jeunes offrira des perspectives tournées vers l'avenir, suivie des réflexions de clôture et d'une réception de réseautage.",

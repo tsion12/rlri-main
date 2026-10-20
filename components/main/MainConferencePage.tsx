@@ -112,6 +112,32 @@ export async function MainConferencePage({ locale }: Props) {
         />
       </section>
 
+      {/* Reschedule notice */}
+      <section
+        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+        aria-labelledby="conference-reschedule-heading"
+      >
+        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
+            {t("pages.conference.rescheduleEyebrow")}
+          </p>
+          <h2
+            id="conference-reschedule-heading"
+            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
+          >
+            {t("pages.conference.rescheduleTitle")}
+          </h2>
+          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p>{t("pages.conference.rescheduleBody")}</p>
+            <p>{t("pages.conference.rescheduleQuestions")}</p>
+            <p className="font-semibold text-zinc-900 dark:text-zinc-100">
+              {t("pages.conference.rescheduleVenue")}
+            </p>
+            <p>{t("pages.conference.rescheduleClosing")}</p>
+          </div>
+        </div>
+      </section>
+
       {/* Host institution & funding partner */}
       <section
         className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"

@@ -54,8 +54,8 @@ export const MAIN_INSTITUTE_EVENTS: MainInstituteEvent[] = [
     href: mainRoutes.ethicalAi,
   },
   {
-    id: "arctic-security-conference-2026",
-    endDate: "2026-10-23",
+    id: "arctic-security-conference-2027",
+    endDate: "2027-03-13",
     // Conference has not happened yet — show a designed placeholder, not a photo.
     image: "Rethinking Arctic Security from Iqaluit-conference.jpeg",
     placeholder: true,

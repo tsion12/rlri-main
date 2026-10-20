@@ -2,7 +2,7 @@ import type { TranslationKey } from "@/lib/i18n/messages/en";
 import { mainGallerySrc } from "@/lib/main-gallery";
 
 /**
- * Real Life Conference on Arctic Security — October 21, 22 and 23, 2026 at
+ * Real Life Conference on Arctic Security — March 11–13, 2027 at
  * Nunavut Arctic College. The conference has not taken place yet, so the page
  * shows a designed placeholder rather than a photo (see MainConferencePage).
  * Kept here for when real conference photography is available.
