@@ -19,7 +19,8 @@ export const MAIN_PRIMARY_NAV: MainNavItem[] = [
   { labelKey: "nav.arcticSecurity", href: mainRoutes.arcticSecurity },
   { labelKey: "nav.conference", href: mainRoutes.conference },
   { labelKey: "nav.mentalHealth", href: mainRoutes.mentalHealth },
-  { labelKey: "nav.ethicalAi", href: mainRoutes.ethicalAi },
+  // Ethical AI Masterclass is unpublished for now.
+  // { labelKey: "nav.ethicalAi", href: mainRoutes.ethicalAi },
   { labelKey: "nav.volunteer", href: mainRoutes.volunteer },
   { labelKey: "nav.faq", href: mainRoutes.faq },
 ];
@@ -31,7 +32,8 @@ export const MAIN_FOOTER_NAV: MainNavItem[] = [
   { labelKey: "footer.contact", href: `mailto:${mainEmails.info}`, external: true },
   { labelKey: "footer.programs", href: "#main-home-focus" },
   { labelKey: "footer.mediaCenter", href: mainRoutes.blogs },
-  { labelKey: "nav.ethicalAi", href: mainRoutes.ethicalAi },
+  // Ethical AI Masterclass is unpublished for now.
+  // { labelKey: "nav.ethicalAi", href: mainRoutes.ethicalAi },
   { labelKey: "footer.getInvolved", href: mainRoutes.volunteer },
   { labelKey: "footer.careers", href: mainRoutes.volunteer },
 ];

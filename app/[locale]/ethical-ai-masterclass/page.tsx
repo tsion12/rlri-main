@@ -1,16 +1,7 @@
-import type { Metadata } from "next";
-import { MainEthicalAiMasterclassPage } from "@/components/main/MainEthicalAiMasterclassPage";
-import { isLocale, type Locale } from "@/lib/i18n/config";
-import { localizedTitleMetadata } from "@/lib/i18n/page-metadata";
+import { notFound } from "next/navigation";
 
-type Props = { params: Promise<{ locale: string }> };
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return localizedTitleMetadata(params, "pages.ethicalAi.title");
-}
-
-export default async function EthicalAiMasterclassPage({ params }: Props) {
-  const { locale: localeParam } = await params;
-  const locale = (isLocale(localeParam) ? localeParam : "en") as Locale;
-  return <MainEthicalAiMasterclassPage locale={locale} />;
+// Ethical AI Masterclass is unpublished for now.
+// Restore the previous page (MainEthicalAiMasterclassPage) to publish it again.
+export default function EthicalAiMasterclassPage() {
+  notFound();
 }
