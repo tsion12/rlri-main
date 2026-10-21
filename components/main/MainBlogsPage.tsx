@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
@@ -33,12 +32,10 @@ function FeaturedPostCard({
     >
       {post.featuredImage && (
         <div className="relative h-52 w-full shrink-0 overflow-hidden lg:h-auto lg:min-h-[280px] lg:w-[42%]">
-          <Image
+          <img
             src={post.featuredImage}
             alt=""
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 42vw"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
       )}
@@ -83,12 +80,10 @@ function BlogCard({ post, readMore }: { post: WpPostWithSource; readMore: string
     >
       {post.featuredImage && (
         <div className="relative h-44 overflow-hidden">
-          <Image
+          <img
             src={post.featuredImage}
             alt=""
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
       )}

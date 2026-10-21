@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { au } from "@/components/shared/africa-ui";
 import { MainLink } from "@/components/main/MainLink";
@@ -104,12 +103,10 @@ export function MainAboutPolicies({
                   >
                     {post.featuredImage ? (
                       <div className="relative aspect-16/10 overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                        <Image
+                        <img
                           src={post.featuredImage}
                           alt=""
-                          fill
-                          className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                         />
                         <div
                           className="absolute inset-0 bg-linear-to-t from-zinc-950/35 via-transparent to-transparent"
