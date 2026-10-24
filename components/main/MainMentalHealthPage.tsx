@@ -8,8 +8,8 @@ import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
 
-// "Our approach" — RLRI volunteers looking after a runner on the tundra course.
-const APPROACH_IMAGE = "Holistic, Community-Driven Mental Health.jpg";
+// "Our approach" — community members on a wellbeing run through Iqaluit.
+const APPROACH_IMAGE = "Supporting Well-Being Across the North.jpg";
 
 export async function MainMentalHealthPage({ locale }: Props) {
   const t = await getTranslator(locale);

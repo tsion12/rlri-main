@@ -26,7 +26,7 @@ export async function MainAboutUsPage({ locale }: Props) {
       alt: t("pages.aboutUs.story.imageAltResearch"),
     },
     {
-      src: mainGallerySrc("Multiculturalism & Food Festival.jpeg"),
+      src: mainGallerySrc("Celebrate Canada pictures 1.jpeg"),
       alt: t("pages.aboutUs.story.imageAltCommunity"),
     },
   ] as const;
