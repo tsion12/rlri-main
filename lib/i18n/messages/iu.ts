@@ -240,6 +240,21 @@ export const iu = {
         viewAll: "View all policies",
         empty: "Policy posts will appear here when published in the Policy category on our site.",
       },
+      // English kept until community translation is available.
+      board: {
+        eyebrow: "Governance",
+        title: "Our Board of Directors",
+        lead:
+          "Real Life Research Institute is led by a Board of Directors guiding its mission across Nunavut and Canada.",
+        photoPending: "Photo coming soon",
+        roles: {
+          chair: "Chair · Director, Indigenous Engagement",
+          viceChair: "Vice Chair · Board Technical Adviser",
+          strategicOperations: "Director, Strategic Operations",
+          programs: "Programs Director",
+          policyAdvisor: "Senior Policy Advisor",
+        },
+      },
     },
     ourStory: {
       title: "Unikkaatigijavut",

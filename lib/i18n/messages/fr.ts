@@ -237,6 +237,20 @@ export const fr = {
         empty:
           "Les publications apparaîtront ici lorsqu'elles seront publiées dans la catégorie Politique sur notre site.",
       },
+      board: {
+        eyebrow: "Gouvernance",
+        title: "Notre conseil d'administration",
+        lead:
+          "L'Institut de recherche Real Life est dirigé par un conseil d'administration qui guide sa mission à travers le Nunavut et le Canada.",
+        photoPending: "Photo à venir",
+        roles: {
+          chair: "Président · Directeur, Engagement autochtone",
+          viceChair: "Vice-président · Conseiller technique du conseil",
+          strategicOperations: "Directeur, Opérations stratégiques",
+          programs: "Directrice des programmes",
+          policyAdvisor: "Conseiller principal en politiques",
+        },
+      },
     },
     ourStory: {
       title: "Notre histoire",

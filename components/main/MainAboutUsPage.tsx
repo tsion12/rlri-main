@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MainAboutBoard } from "@/components/main/MainAboutBoard";
 import { MainAboutHashScroll } from "@/components/main/MainAboutHashScroll";
 // import { MainAboutIssuuFlipbook } from "@/components/main/MainAboutIssuuFlipbook";
 import { MainAboutPolicies } from "@/components/main/MainAboutPolicies";
@@ -6,6 +7,7 @@ import { MainAboutValuePillars } from "@/components/main/MainAboutValuePillars";
 import { MainAboutWhoWeAre } from "@/components/main/MainAboutWhoWeAre";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslator } from "@/lib/i18n/translate";
+import { CANADIAN_BOARD_MEMBERS } from "@/lib/main-board";
 import { mainGallerySrc } from "@/lib/main-gallery";
 import { getMainPolicyPosts } from "@/lib/wp";
 
@@ -46,6 +48,22 @@ export async function MainAboutUsPage({ locale }: Props) {
       body: t("home.whoWeAre.researchBody"),
     },
   ];
+
+  // Canadian Board of Directors. Names and photos live in `lib/main-board.ts`;
+  // the role label for each member is translated here from its `roleKey`.
+  const boardRoleLabels = {
+    chair: t("pages.aboutUs.board.roles.chair"),
+    viceChair: t("pages.aboutUs.board.roles.viceChair"),
+    strategicOperations: t("pages.aboutUs.board.roles.strategicOperations"),
+    programs: t("pages.aboutUs.board.roles.programs"),
+    policyAdvisor: t("pages.aboutUs.board.roles.policyAdvisor"),
+  } as const;
+  const boardMembers = CANADIAN_BOARD_MEMBERS.map((member) => ({
+    id: member.id,
+    name: member.name,
+    role: boardRoleLabels[member.roleKey],
+    photo: member.photo,
+  }));
 
   const pillars = [
     {
@@ -119,6 +137,14 @@ export async function MainAboutUsPage({ locale }: Props) {
         focus={focus}
         welcome={t("pages.aboutUs.welcome")}
         welcomeSub={t("pages.aboutUs.welcomeSub")}
+      />
+
+      <MainAboutBoard
+        eyebrow={t("pages.aboutUs.board.eyebrow")}
+        title={t("pages.aboutUs.board.title")}
+        lead={t("pages.aboutUs.board.lead")}
+        photoPending={t("pages.aboutUs.board.photoPending")}
+        members={boardMembers}
       />
 
       {/* Temporarily hidden — Issuu flipbook has a slide issue
