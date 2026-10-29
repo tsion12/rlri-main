@@ -17,6 +17,7 @@ export const iu = {
     ourStory: "Unikkaatigijavut",
     missionVision: "Pivalliajuliriniq & Takunnautit",
     policies: "Maligaksait",
+    board: "Board of Directors",
     publications: "Titiraqsimajut",
     blogs: "Blogit",
     arcticSecurity: "Community Programs",

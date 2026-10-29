@@ -13,6 +13,7 @@ export const fr = {
     ourStory: "Notre histoire",
     missionVision: "Mission et vision",
     policies: "Politiques",
+    board: "Conseil d'administration",
     publications: "Publications",
     blogs: "Blogues",
     arcticSecurity: "Programmes communautaires",

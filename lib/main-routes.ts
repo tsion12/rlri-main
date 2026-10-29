@@ -30,6 +30,7 @@ export const mainAboutAnchors = {
   missionVision: "mission-vision",
   flipbook: "about-flipbook",
   policies: "institute-policies",
+  board: "board",
 } as const;
 
 export type MainAboutSection = keyof typeof mainAboutAnchors;

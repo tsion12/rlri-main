@@ -11,6 +11,7 @@ export const en = {
     ourStory: "Our Story",
     missionVision: "Our Mission & Vision",
     policies: "Policies",
+    board: "Board of Directors",
     publications: "Publications",
     blogs: "Blogs",
     arcticSecurity: "Community Programs",

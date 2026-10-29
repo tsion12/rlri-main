@@ -11,6 +11,7 @@ export type MainNavItem = {
 export const MAIN_ABOUT_NAV: MainNavItem[] = [
   { labelKey: "nav.missionVision", href: mainAboutSectionHref("missionVision") },
   { labelKey: "nav.policies", href: mainAboutSectionHref("policies") },
+  { labelKey: "nav.board", href: mainAboutSectionHref("board") },
 ];
 
 /** Primary header links (excluding About). */
