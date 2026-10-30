@@ -1,42 +1,123 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import type { Locale } from "@/lib/i18n/config";
+import type { TranslationKey } from "@/lib/i18n/messages/en";
 import { getTranslator } from "@/lib/i18n/translate";
-import { mainEmails, mainRoutes } from "@/lib/main-routes";
+import { MAIN_LOGO_SRC } from "@/lib/main-assets";
 import {
+  CONFERENCE_HERO_IMAGE,
   CONFERENCE_REGISTER_ANCHOR,
   MAIN_CONFERENCE_DAYS,
   MINDS_LOGO_SRC,
+  conferenceDirectionsHref,
+  type ConferenceDirectionMode,
 } from "@/lib/main-conference";
+import { mainEmails, mainRoutes } from "@/lib/main-routes";
+import { MainConferenceMap } from "@/components/main/MainConferenceMap";
 import { MainConferenceRegistrationForm } from "@/components/main/MainConferenceRegistrationForm";
-import { MainImagePlaceholder } from "@/components/main/MainImagePlaceholder";
 import { MainLink } from "@/components/main/MainLink";
 
 type Props = { locale: Locale };
 
-/** Card treatment per agenda day, matching the order of `MAIN_CONFERENCE_DAYS`. */
-const DAY_CARD_THEMES = [
-  {
-    surface: "bg-linear-to-br from-teal-800 via-teal-900 to-emerald-950",
-    label: "text-teal-300",
-    date: "text-teal-200/80",
-    body: "text-teal-50/85",
-    rule: "border-teal-300/25",
-  },
-  {
-    surface: "bg-linear-to-br from-slate-900 via-slate-950 to-zinc-950",
-    label: "text-amber-300",
-    date: "text-amber-200/80",
-    body: "text-slate-200/85",
-    rule: "border-amber-300/25",
-  },
-  {
-    surface: "bg-linear-to-br from-sky-800 via-sky-950 to-indigo-950",
-    label: "text-sky-300",
-    date: "text-sky-200/80",
-    body: "text-sky-50/85",
-    rule: "border-sky-300/25",
-  },
-] as const;
+const DIRECTIONS: readonly {
+  mode: ConferenceDirectionMode;
+  labelKey: TranslationKey;
+}[] = [
+  { mode: "driving", labelKey: "pages.conference.listing.driving" },
+  { mode: "transit", labelKey: "pages.conference.listing.transit" },
+  { mode: "bicycling", labelKey: "pages.conference.listing.cycling" },
+  { mode: "walking", labelKey: "pages.conference.listing.walking" },
+];
+
+function Icon({ children }: { children: ReactNode }) {
+  return (
+    <svg
+      className="size-5 shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      aria-hidden
+    >
+      {children}
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <Icon>
+      <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" />
+      <circle cx="12" cy="10" r="2.25" />
+    </Icon>
+  );
+}
+
+function CalendarIcon() {
+  return (
+    <Icon>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
+      <path d="M8 3.5V7M16 3.5V7M3.5 10h17" />
+    </Icon>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <Icon>
+      <circle cx="12" cy="12" r="8.25" />
+      <path d="M12 8v4.5l3 2" />
+    </Icon>
+  );
+}
+
+function PeopleIcon() {
+  return (
+    <Icon>
+      <circle cx="9" cy="8" r="2.25" />
+      <circle cx="16" cy="9" r="1.75" />
+      <path d="M4.5 18.5c.6-2.6 2.5-4 4.5-4s3.9 1.4 4.5 4" />
+      <path d="M14 14.6c1.3-.4 2.5-.2 3.6.8.7.6 1.2 1.5 1.5 2.6" />
+    </Icon>
+  );
+}
+
+function DirectionIcon({ mode }: { mode: ConferenceDirectionMode }) {
+  if (mode === "driving") {
+    return (
+      <Icon>
+        <path d="M4 16.5 6.2 8.8A2 2 0 0 1 8.1 7.5h7.8a2 2 0 0 1 1.9 1.3L20 16.5" />
+        <path d="M4 16.5h16v2.2a1.3 1.3 0 0 1-1.3 1.3H5.3A1.3 1.3 0 0 1 4 18.7z" />
+        <circle cx="7.5" cy="16.5" r="0.9" fill="currentColor" stroke="none" />
+        <circle cx="16.5" cy="16.5" r="0.9" fill="currentColor" stroke="none" />
+      </Icon>
+    );
+  }
+  if (mode === "transit") {
+    return (
+      <Icon>
+        <rect x="4" y="4.5" width="16" height="12" rx="2" />
+        <path d="M4 11h16M8 16.5v2.5M16 16.5v2.5M7.5 14h.01M16.5 14h.01" />
+      </Icon>
+    );
+  }
+  if (mode === "bicycling") {
+    return (
+      <Icon>
+        <circle cx="6.5" cy="16" r="3" />
+        <circle cx="17.5" cy="16" r="3" />
+        <path d="M6.5 16 10 9h3l2 3h2.5M10 9l1.5 7M13 12h3" />
+        <circle cx="13" cy="7" r="1.2" />
+      </Icon>
+    );
+  }
+  return (
+    <Icon>
+      <circle cx="13" cy="5" r="1.6" />
+      <path d="M10 21l1.5-6L9 12.5 11 9.5h3.2l2.3 3.2L15 15l1.2 6" />
+    </Icon>
+  );
+}
 
 export async function MainConferencePage({ locale }: Props) {
   const t = await getTranslator(locale);
@@ -44,291 +125,309 @@ export async function MainConferencePage({ locale }: Props) {
   const registerHref = `#${CONFERENCE_REGISTER_ANCHOR}`;
 
   return (
-    <div className="bg-[#f4f8fb] dark:bg-zinc-950">
-      {/* Hero */}
-      <section
-        className="relative flex min-h-dvh items-center justify-center overflow-hidden"
-        aria-labelledby="conference-hero-heading"
-      >
-        {/* Conference not held yet — designed placeholder in place of a photo. */}
-        <MainImagePlaceholder accent="sky" variant="overlay" />
-        <div
-          className="absolute inset-0 bg-linear-to-b from-slate-950/70 via-slate-950/45 to-slate-950/85"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_15%,rgba(56,189,248,0.18),transparent_50%),radial-gradient(ellipse_60%_50%_at_85%_85%,rgba(99,102,241,0.12),transparent_45%)]"
-          aria-hidden
-        />
-        <div className="relative z-10 mx-auto max-w-5xl px-4 py-28 text-center sm:px-6 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-sky-300/95">
-            {t("pages.conference.heroEyebrow")}
-          </p>
-          <h1
-            id="conference-hero-heading"
-            className="mt-6 font-serif text-3xl font-semibold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-5xl"
-          >
-            {t("pages.conference.heroTitle")}
-          </h1>
-
-          <dl className="mx-auto mt-10 flex max-w-3xl flex-wrap items-stretch justify-center gap-4">
-            {(
-              [
-                { labelKey: "pages.conference.heroWhenLabel", valueKey: "pages.conference.heroWhen" },
-                { labelKey: "pages.conference.heroWhereLabel", valueKey: "pages.conference.heroWhere" },
-                { labelKey: "pages.conference.heroFormatLabel", valueKey: "pages.conference.heroFormat" },
-              ] as const
-            ).map(({ labelKey, valueKey }) => (
-              <div
-                key={labelKey}
-                className="min-w-48 rounded-2xl border border-white/15 bg-white/10 px-6 py-4 backdrop-blur-sm"
-              >
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-200/90">
-                  {t(labelKey)}
-                </dt>
-                <dd className="mt-1 text-sm font-semibold text-white">{t(valueKey)}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={contactHref}
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:bg-sky-50"
-            >
-              {t("pages.conference.heroNotifyCta")}
-            </a>
-            <a
-              href={registerHref}
-              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
-            >
-              {t("pages.conference.heroRegisterCta")}
-            </a>
-          </div>
-        </div>
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-[#f4f8fb] to-transparent dark:from-zinc-950"
-          aria-hidden
-        />
-      </section>
-
-      {/* Reschedule notice */}
-      <section
-        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-        aria-labelledby="conference-reschedule-heading"
-      >
-        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
-            {t("pages.conference.rescheduleEyebrow")}
-          </p>
-          <h2
-            id="conference-reschedule-heading"
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
-          >
-            {t("pages.conference.rescheduleTitle")}
-          </h2>
-          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            <p>{t("pages.conference.rescheduleBody")}</p>
-            <p>{t("pages.conference.rescheduleQuestions")}</p>
-            <p className="font-semibold text-zinc-900 dark:text-zinc-100">
-              {t("pages.conference.rescheduleVenue")}
-            </p>
-            <p>{t("pages.conference.rescheduleClosing")}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Host institution & funding partner */}
-      <section
-        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-        aria-label={t("pages.conference.hostLabel")}
-      >
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:justify-between lg:gap-12 lg:px-8">
-          <dl className="grid gap-6 text-center sm:grid-cols-2 sm:text-left">
-            {(
-              [
-                { labelKey: "pages.conference.hostLabel", valueKey: "pages.conference.hostName" },
-                { labelKey: "pages.conference.funderLabel", valueKey: "pages.conference.funderName" },
-              ] as const
-            ).map(({ labelKey, valueKey }) => (
-              <div key={labelKey}>
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-700 dark:text-sky-400">
-                  {t(labelKey)}
-                </dt>
-                <dd className="mt-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                  {t(valueKey)}
-                </dd>
-              </div>
-            ))}
-          </dl>
+    <div className="bg-white dark:bg-zinc-950">
+      <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8">
+        <div className="relative aspect-[2.15/1] overflow-hidden rounded-2xl bg-slate-900">
           <Image
-            src={MINDS_LOGO_SRC}
-            alt={t("pages.conference.mindsLogoAlt")}
-            width={1183}
-            height={264}
-            sizes="(min-width: 1024px) 320px, 260px"
-            className="h-auto w-64 rounded-lg lg:w-80"
+            src={CONFERENCE_HERO_IMAGE}
+            alt={t("pages.conference.heroImageAlt")}
+            fill
+            priority
+            sizes="(min-width: 1152px) 1152px, 100vw"
+            className="object-cover object-[center_30%]"
           />
         </div>
-      </section>
+      </div>
 
-      {/* Agenda */}
-      <section
-        className="border-b border-zinc-200/80 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-900/40"
-        aria-labelledby="conference-agenda-heading"
-      >
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
-            {t("pages.conference.agendaEyebrow")}
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-20 pt-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_20.5rem] lg:items-start lg:gap-14 lg:px-8">
+        <div className="order-2 min-w-0 lg:order-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-700 dark:text-sky-400">
+            {t("pages.conference.heroEyebrow")}
           </p>
-          <h2
-            id="conference-agenda-heading"
-            className="mt-4 text-center font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
-          >
-            {t("pages.conference.agendaTitle")}
-          </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-center text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {t("pages.conference.agendaLead")}
+          <h1 className="mt-3 font-serif text-3xl font-semibold leading-tight tracking-tight text-zinc-950 sm:text-4xl dark:text-zinc-50">
+            {t("pages.conference.title")}
+          </h1>
+          <p className="mt-4 text-lg leading-snug text-zinc-700 dark:text-zinc-300">
+            {t("pages.conference.heroTitle")}
           </p>
-          <p className="mt-6 flex justify-center">
-            <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-800 dark:border-sky-900/50 dark:bg-sky-950/40 dark:text-sky-300">
-              {t("pages.conference.agendaTentativeBadge")}
+          <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+            {t("pages.conference.listing.by")}{" "}
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100">
+              {t("common.siteName")}
             </span>
           </p>
 
-          <ol className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8">
-            {MAIN_CONFERENCE_DAYS.map((day, index) => {
-              const theme = DAY_CARD_THEMES[index % DAY_CARD_THEMES.length];
-              return (
-                <li
-                  key={day.id}
-                  className={`flex flex-col rounded-3xl p-8 shadow-[0_28px_64px_-32px_rgba(15,23,42,0.55)] ${theme.surface}`}
-                >
-                  <p
-                    className={`text-xs font-semibold uppercase tracking-[0.24em] ${theme.label}`}
+          <ul className="mt-6 space-y-3 text-sm text-zinc-800 dark:text-zinc-200">
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 text-zinc-500 dark:text-zinc-400">
+                <PinIcon />
+              </span>
+              <span>
+                <span className="font-semibold">{t("pages.conference.hostName")}</span>
+                <span className="text-zinc-500 dark:text-zinc-400">
+                  {" "}
+                  · {t("pages.conference.listing.cityLine")}
+                </span>
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 text-zinc-500 dark:text-zinc-400">
+                <CalendarIcon />
+              </span>
+              <span className="font-semibold">{t("pages.conference.heroWhen")}</span>
+            </li>
+          </ul>
+
+          <section className="mt-10 border-t border-zinc-200 pt-8 dark:border-zinc-800" aria-labelledby="conference-overview-heading">
+            <h2 id="conference-overview-heading" className="text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.listing.overview")}
+            </h2>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p>{t("pages.conference.rescheduleBody")}</p>
+              <p>{t("pages.conference.rescheduleQuestions")}</p>
+              <p>{t("pages.conference.rescheduleClosing")}</p>
+            </div>
+            <div className="mt-6 rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4 dark:border-sky-900/60 dark:bg-sky-950/40">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-800 dark:text-sky-300">
+                {t("pages.conference.rescheduleEyebrow")}
+              </p>
+              <p className="mt-2 font-semibold text-zinc-950 dark:text-zinc-50">
+                {t("pages.conference.rescheduleTitle")}
+              </p>
+              <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
+                {t("pages.conference.rescheduleVenue")}
+              </p>
+            </div>
+          </section>
+
+          <section className="mt-10 border-t border-zinc-200 pt-8 dark:border-zinc-800" aria-labelledby="conference-know-heading">
+            <h2 id="conference-know-heading" className="text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.listing.goodToKnow")}
+            </h2>
+            <div className="mt-5 grid gap-6 rounded-2xl border border-zinc-200 p-5 sm:grid-cols-2 dark:border-zinc-800">
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                  {t("pages.conference.listing.highlights")}
+                </h3>
+                <ul className="mt-3 space-y-2.5 text-sm text-zinc-700 dark:text-zinc-300">
+                  <li className="flex items-center gap-2.5">
+                    <span className="text-zinc-500">
+                      <ClockIcon />
+                    </span>
+                    {t("pages.conference.listing.duration")}
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <span className="text-zinc-500">
+                      <PeopleIcon />
+                    </span>
+                    {t("pages.conference.heroFormat")}
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                  {t("pages.conference.listing.venueLabel")}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                  {t("pages.conference.rescheduleVenue")}
+                </p>
+                <p className="mt-1 text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {t("pages.conference.hostName")}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-10 border-t border-zinc-200 pt-8 dark:border-zinc-800" aria-labelledby="conference-location-heading">
+            <h2 id="conference-location-heading" className="text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.listing.location")}
+            </h2>
+            <h3 className="mt-4 text-base font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.hostName")}
+            </h3>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.listing.street")}
+            </p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.listing.cityLine")}
+            </p>
+            <h4 className="mt-6 text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.listing.directions")}
+            </h4>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {DIRECTIONS.map(({ mode, labelKey }) => (
+                <li key={mode}>
+                  <a
+                    href={conferenceDirectionsHref(mode)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3.5 py-2 text-sm font-medium text-zinc-800 transition hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
                   >
-                    {t(day.labelKey)}
+                    <DirectionIcon mode={mode} />
+                    {t(labelKey)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <MainConferenceMap
+              showLabel={t("pages.conference.listing.showMap")}
+              hideLabel={t("pages.conference.listing.hideMap")}
+              title={t("pages.conference.listing.mapTitle")}
+            />
+          </section>
+
+          <section className="mt-10 border-t border-zinc-200 pt-8 dark:border-zinc-800" aria-labelledby="conference-agenda-heading">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 id="conference-agenda-heading" className="text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+                {t("pages.conference.listing.agenda")}
+              </h2>
+              <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-800 dark:border-sky-900/50 dark:bg-sky-950/40 dark:text-sky-300">
+                {t("pages.conference.agendaTentativeBadge")}
+              </span>
+            </div>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.agendaLead")}
+            </p>
+            <ol className="mt-8 space-y-8">
+              {MAIN_CONFERENCE_DAYS.map((day) => (
+                <li key={day.id} className="border-t border-zinc-100 pt-6 first:border-t-0 first:pt-0 dark:border-zinc-800/80">
+                  <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                    {t(day.labelKey)} · {t(day.dateKey)}
                   </p>
-                  <p
-                    className={`mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] ${theme.date}`}
-                  >
-                    {t(day.dateKey)}
-                  </p>
-                  <h3 className="mt-5 font-serif text-2xl font-semibold leading-snug text-white">
+                  <h3 className="mt-1 text-lg font-semibold leading-snug text-zinc-950 dark:text-zinc-50">
                     {t(day.themeKey)}
                   </h3>
-                  <p className={`mt-5 flex-1 text-sm leading-relaxed ${theme.body}`}>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
                     {t(day.bodyKey)}
                   </p>
-                  <p className={`mt-8 border-t pt-5 text-xs ${theme.rule} ${theme.body}`}>
-                    <span className="font-semibold uppercase tracking-[0.18em]">
+                  <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
+                    <span className="font-semibold text-zinc-700 dark:text-zinc-300">
                       {t("pages.conference.agendaResourceLabel")}
                     </span>
-                    <span className="ml-2">
-                      {day.resourceKey
-                        ? t(day.resourceKey)
-                        : t("pages.conference.agendaResourceTbc")}
-                    </span>
+                    {" · "}
+                    {day.resourceKey
+                      ? t(day.resourceKey)
+                      : t("pages.conference.agendaResourceTbc")}
                   </p>
                 </li>
-              );
-            })}
-          </ol>
-        </div>
-      </section>
+              ))}
+            </ol>
+          </section>
 
-      {/* Student volunteers */}
-      <section
-        className="border-b border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950"
-        aria-labelledby="conference-students-heading"
-      >
-        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
-            {t("pages.conference.studentEyebrow")}
-          </p>
-          <h2
-            id="conference-students-heading"
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
-          >
-            {t("pages.conference.studentTitle")}
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {t("pages.conference.studentBody")}
-          </p>
-          <div className="mt-8">
+          <section className="mt-10 border-t border-zinc-200 pt-8 dark:border-zinc-800" aria-labelledby="conference-students-heading">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-700 dark:text-sky-400">
+              {t("pages.conference.studentEyebrow")}
+            </p>
+            <h2 id="conference-students-heading" className="mt-2 text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.studentTitle")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.studentBody")}
+            </p>
             <a
               href={registerHref}
-              className="inline-flex items-center justify-center rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500"
+              className="mt-5 inline-flex text-sm font-semibold text-sky-800 underline-offset-2 hover:underline dark:text-sky-300"
             >
               {t("pages.conference.studentCta")}
             </a>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Registration form */}
-      <section
-        id={CONFERENCE_REGISTER_ANCHOR}
-        className="scroll-mt-24 border-b border-zinc-200/80 bg-slate-50 dark:border-zinc-800 dark:bg-zinc-900/40"
-        aria-labelledby="conference-register-heading"
-      >
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-700 dark:text-sky-400">
-            {t("pages.conference.register.eyebrow")}
-          </p>
-          <h2
-            id="conference-register-heading"
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
-          >
-            {t("pages.conference.register.title")}
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {t("pages.conference.register.lead")}
-          </p>
-          <div className="mt-10">
-            <MainConferenceRegistrationForm />
-          </div>
-        </div>
-      </section>
+          <section className="mt-10 border-t border-zinc-200 pt-8 dark:border-zinc-800" aria-labelledby="conference-organizer-heading">
+            <h2 id="conference-organizer-heading" className="text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.listing.organizedBy")}
+            </h2>
+            <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                <Image
+                  src={MAIN_LOGO_SRC}
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="size-14 rounded-full border border-zinc-200 bg-white object-contain p-1.5 dark:border-zinc-700"
+                />
+                <div>
+                  <p className="font-semibold text-zinc-950 dark:text-zinc-50">
+                    {t("common.siteName")}
+                  </p>
+                  <a
+                    href={contactHref}
+                    className="mt-1 inline-flex text-sm font-semibold text-sky-800 underline-offset-2 hover:underline dark:text-sky-300"
+                  >
+                    {t("pages.conference.listing.contact")}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+                {t("pages.conference.funderLabel")}
+              </p>
+              <p className="mt-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                {t("pages.conference.funderName")}
+              </p>
+              <Image
+                src={MINDS_LOGO_SRC}
+                alt={t("pages.conference.mindsLogoAlt")}
+                width={1183}
+                height={264}
+                sizes="280px"
+                className="mt-4 h-auto w-56 rounded-lg"
+              />
+            </div>
+          </section>
 
-      {/* CTA */}
-      <section
-        className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-sky-950"
-        aria-labelledby="conference-cta-heading"
-      >
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_50%,rgba(14,165,233,0.2),transparent)]"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-300/90">
-            {t("pages.conference.ctaEyebrow")}
-          </p>
-          <h2
-            id="conference-cta-heading"
-            className="mt-4 font-serif text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+          <section
+            id={CONFERENCE_REGISTER_ANCHOR}
+            className="mt-10 scroll-mt-24 border-t border-zinc-200 pt-8 dark:border-zinc-800"
+            aria-labelledby="conference-register-heading"
           >
-            {t("pages.conference.ctaTitle")}
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-sky-100/85">
-            {t("pages.conference.ctaBody")}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={contactHref}
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:bg-sky-50"
-            >
-              {t("pages.conference.ctaContact")}
-            </a>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-700 dark:text-sky-400">
+              {t("pages.conference.register.eyebrow")}
+            </p>
+            <h2 id="conference-register-heading" className="mt-2 text-xl font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.register.title")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.register.lead")}
+            </p>
+            <div className="mt-6">
+              <MainConferenceRegistrationForm />
+            </div>
             <MainLink
               href={mainRoutes.events}
-              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+              className="mt-6 inline-flex text-sm font-semibold text-sky-800 underline-offset-2 hover:underline dark:text-sky-300"
             >
               {t("pages.conference.ctaEvents")}
             </MainLink>
-          </div>
+          </section>
         </div>
-      </section>
+
+        <aside className="order-1 lg:sticky lg:top-24 lg:order-2 lg:self-start">
+          <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)] dark:border-zinc-800 dark:bg-zinc-900">
+            <p className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.conference.heroWhen")}
+            </p>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.heroFormat")}
+            </p>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+              {t("pages.conference.hostName")}
+            </p>
+            <a
+              href={registerHref}
+              className="mt-5 flex w-full items-center justify-center rounded-lg bg-sky-700 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500"
+            >
+              {t("pages.conference.heroRegisterCta")}
+            </a>
+            <a
+              href={contactHref}
+              className="mt-3 flex w-full items-center justify-center rounded-lg border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
+            >
+              {t("pages.conference.heroNotifyCta")}
+            </a>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }

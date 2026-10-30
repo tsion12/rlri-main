@@ -3,13 +3,30 @@ import { mainGallerySrc } from "@/lib/main-gallery";
 
 /**
  * Real Life Conference on Arctic Security — March 11–13, 2027 at
- * Nunavut Arctic College. The conference has not taken place yet, so the page
- * shows a designed placeholder rather than a photo (see MainConferencePage).
- * Kept here for when real conference photography is available.
+ * Nunavut Arctic College, Nunatta Campus, Iqaluit.
  */
 export const CONFERENCE_HERO_IMAGE = mainGallerySrc(
   "Rethinking Arctic Security from Iqaluit-conference.jpeg",
 );
+
+/** Nunatta Campus, as published by Nunavut Arctic College. */
+export const CONFERENCE_VENUE_QUERY =
+  "502 Niaqunngusiariaq Road, Iqaluit, NU X0A 2H0";
+
+export const CONFERENCE_MAP_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(CONFERENCE_VENUE_QUERY)}&z=16&output=embed`;
+
+const DIRECTION_MODES = ["driving", "transit", "bicycling", "walking"] as const;
+
+export type ConferenceDirectionMode = (typeof DIRECTION_MODES)[number];
+
+export function conferenceDirectionsHref(mode: ConferenceDirectionMode): string {
+  const params = new URLSearchParams({
+    api: "1",
+    destination: CONFERENCE_VENUE_QUERY,
+    travelmode: mode,
+  });
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
 
 /** MINDS (Mobilizing Insights in Defence and Security) funding-program lockup. */
 export const MINDS_LOGO_SRC = "/assets/main-site/minds-logo.jpeg";
